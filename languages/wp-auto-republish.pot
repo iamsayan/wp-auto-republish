@@ -1,0 +1,201 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: WP Auto Republish\n"
+"POT-Creation-Date: 2018-12-23 21:31+0530\n"
+"PO-Revision-Date: 2018-12-23 21:30+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.1.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: wp-auto-republish.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: admin/notice.php:28
+msgid ""
+"Hey, I noticed you've been using WP Auto Republish for more than 1 week – "
+"that’s awesome! Could you please do me a BIG favor and give it a <strong>5-"
+"star</strong> rating on WordPress? Just to help us spread the word and boost "
+"my motivation."
+msgstr ""
+
+#: admin/notice.php:29
+msgid "Ok, you deserve it"
+msgstr ""
+
+#: admin/notice.php:30
+msgid "I already did"
+msgstr ""
+
+#: admin/notice.php:31
+msgid "Nope&#44; maybe later"
+msgstr ""
+
+#: admin/settings-fields.php:16
+msgid "Enable this if you want to auto republish old posts of your blog."
+msgstr ""
+
+#: admin/settings-fields.php:51
+msgid "Select minimum interval between post republishing."
+msgstr ""
+
+#: admin/settings-fields.php:78
+msgid ""
+"Select randomness interval from here which will be added to minimum "
+"republish interval."
+msgstr ""
+
+#: admin/settings-fields.php:107
+msgid "Select the post age before eligible for republishing."
+msgstr ""
+
+#: admin/settings-fields.php:128
+msgid "Select the method of getting old posts from database."
+msgstr ""
+
+#: admin/settings-fields.php:149
+msgid ""
+"Select the position of republished post (choosing the 2nd position will "
+"leave the most recent post in place)."
+msgstr ""
+
+#: admin/settings-fields.php:171
+msgid ""
+"Select how you want to show original published date of the post on frontend."
+msgstr ""
+
+#: admin/settings-fields.php:181
+msgid "Message before original published date of the post on frontend."
+msgstr ""
+
+#: admin/settings-fields.php:202
+msgid "Select Taxonomy: "
+msgstr ""
+
+#: admin/settings-fields.php:217
+msgid ""
+"Select how you want to include or exclude a post category from republishing. "
+"If you choose excluding, selected categories/post tags will be ignored and "
+"vice-versa."
+msgstr ""
+
+#: admin/settings-fields.php:247
+msgid ""
+"Select categories which you want to include to republishing or exclude from "
+"republishing."
+msgstr ""
+
+#: admin/settings-fields.php:259
+msgid ""
+"Write the post IDs which you want to select forcefully (when you select "
+"excluding) or want to not select forcefully (when you select including)."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: admin/settings-page.php:14 wp-auto-republish.php:145
+msgid "WP Auto Republish"
+msgstr ""
+
+#: admin/settings-page.php:14
+msgid "Ver"
+msgstr ""
+
+#: admin/settings-page.php:15
+msgid ""
+"This plugin helps to revive old posts by resetting the publish date to the "
+"current date."
+msgstr ""
+
+#: admin/settings-page.php:22
+msgid "Configure Settings"
+msgstr ""
+
+#: admin/settings-page.php:29
+msgid "Save Changes"
+msgstr ""
+
+#: wp-auto-republish.php:120
+msgid "Enable Auto Republish?"
+msgstr ""
+
+#: wp-auto-republish.php:121
+msgid "Minimum Republish Interval:"
+msgstr ""
+
+#: wp-auto-republish.php:122
+msgid "Randomness Interval:"
+msgstr ""
+
+#: wp-auto-republish.php:123
+msgid "Post Republish Eligibility Age:"
+msgstr ""
+
+#: wp-auto-republish.php:124
+msgid "Select Old Posts Query Method:"
+msgstr ""
+
+#: wp-auto-republish.php:125
+msgid "Republish Post to Position:"
+msgstr ""
+
+#: wp-auto-republish.php:126
+msgid "Show Original Publication Date:"
+msgstr ""
+
+#: wp-auto-republish.php:127
+msgid "Original Publication Message:"
+msgstr ""
+
+#: wp-auto-republish.php:128
+msgid "Auto Republish Old Posts by:"
+msgstr ""
+
+#: wp-auto-republish.php:131
+msgid "Select Categories or Tags:"
+msgstr ""
+
+#: wp-auto-republish.php:132
+msgid "Override Category or Post Tags Filtering for Specific Posts:"
+msgstr ""
+
+#: wp-auto-republish.php:168
+msgid "Settings"
+msgstr ""
+
+#: wp-auto-republish.php:177
+msgid "Support"
+msgstr ""
+
+#: wp-auto-republish.php:178
+msgid "Donate"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/wp-auto-republish/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"The WP Auto Republish plugin helps revive old posts by resetting the publish "
+"date to the current date. This will push old posts to your front page, the "
+"top of archive pages, and back into RSS feeds. Ideal for sites with a large "
+"repository of evergreen content."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Sayan Datta"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://profiles.wordpress.org/infosatech/"
+msgstr ""
