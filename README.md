@@ -43,8 +43,8 @@ This plugin helps revive old posts by resetting the published date to the curren
 * Community support via the [support forums](https://wordpress.org/support/plugin/wp-auto-republish) at WordPress.org.
 
 #### Contribute
-* Active development of this plugin is handled [on GitHub](https://github.com/iamsayan/wp-last-modified-info).
-* Feel free to [fork the project on GitHub](https://github.com/iamsayan/wp-last-modified-info) and submit your contributions via pull request.
+* Active development of this plugin is handled [on GitHub](https://github.com/iamsayan/wp-auto-republish).
+* Feel free to [fork the project on GitHub](https://github.com/iamsayan/wp-auto-republish) and submit your contributions via pull request.
 
 ## Installation
 
