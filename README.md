@@ -1,3 +1,5 @@
+![alt text](https://github.com/iamsayan/wp-auto-republish/raw/master/banner.png "Plugin Banner")
+
 # WP Auto Republish
 The WP Auto Republish plugin helps revive old posts by resetting the published date to the current date.
 Republish your old posts automatically by resetting the date to the current date. Revive old posts to users that haven't seen them.
@@ -92,3 +94,10 @@ No. The date on posts is updated to the current date making a post appear new. U
 #### Doesn't changing the timestamp affect permalinks that include dates?
 
 Yes, permalinks with dates would be affected. This plugin shouldn't be used if your permalinks include dates since those dates will change when a post is republished.
+
+#### The plugin isn't working or have a bug? ####
+
+Post detailed information about the issue in the [support forum](https://wordpress.org/support/plugin/wp-auto-republish) and I will work to fix it.
+
+## Changelog ##
+[View Changelog](CHANGELOG.md)
