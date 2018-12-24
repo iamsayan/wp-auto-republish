@@ -14,7 +14,7 @@ Like WP Auto Republish plugin? Consider leaving a [5 star review](https://wordpr
 2. Old content won't show up in date-based searches on search engines, but resetting the date can make them <strong>look fresh again</strong>.
 3. People <strong>like to share and link to new content, </strong>and they determine that by looking at the publication date.
 4. It will highlight older posts by moving them back to <strong>front page and in the RSS feed</strong>.
-5. Old Posts Highlighter will improve your <strong>blog visibility, traffic and SEO</strong>!
+5. WP Auto Republish will improve your <strong>blog visibility, traffic and SEO</strong>!
 6. And also <strong>Google likes updated content</strong> if it’s done right.
 
 #### What does this plugin do?
