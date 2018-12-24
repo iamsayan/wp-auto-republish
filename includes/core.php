@@ -28,7 +28,7 @@ function wpar_custom_post_types_support() {
     return $output;
 }
 
-function wpar_republish_old_post () {
+function wpar_republish_old_post() {
     global $wpdb;
     
     $wpar_settings = get_option('wpar_plugin_settings');
@@ -36,6 +36,7 @@ function wpar_republish_old_post () {
 	$wpar_omit_by_type = $wpar_settings['wpar_exclude_by_type'];
 	$wpar_age_limit = $wpar_settings['wpar_republish_post_age'];
 	$wpar_method = $wpar_settings['wpar_republish_method'];
+	$wpar_post_types = wpar_custom_post_types_support();
 
 	$wpar_omit_id = '';
 	$wpar_order_by = 'post_date ASC';
@@ -45,19 +46,28 @@ function wpar_republish_old_post () {
 	
 	$sql = "SELECT ID, post_date
             FROM $wpdb->posts
-            WHERE post_type IN (" . implode( ',', wpar_custom_post_types_support() ) . ")
+            WHERE post_type IN (" . implode( ',', $wpar_post_types ) . ")
                 AND post_status = 'publish'
 				AND post_date < '" . current_time( 'mysql' ) . "' - INTERVAL " . $wpar_age_limit * 24 . " HOUR 
 				";
+
     if ( isset( $wpar_omit_by_type ) && $wpar_omit_by_type != 'none' ) {
 
 		$wpar_omit = $wpar_settings['wpar_exclude_by'];
 		$wpar_omit_id = !empty( $wpar_settings['wpar_exclude_category_tag'] ) ? implode( ',', $wpar_settings['wpar_exclude_category_tag'] ) : '1';
 		$wpar_omit_override = $wpar_settings['wpar_override_category_tag'];
+		$wpar_omit_post = array_slice( $wpar_post_types, 1 );
 
-		$wpar_omit_type = '';
-		if ( isset( $wpar_omit_by_type ) && $wpar_omit_by_type == 'exclude' ) {
-			$wpar_omit_type = 'NOT';
+		$wpar_omit_type = 'NOT';
+		if ( isset( $wpar_omit_by_type ) && $wpar_omit_by_type == 'include' ) {
+			$wpar_omit_type = '';
+
+			$sql = "SELECT ID, post_date
+            FROM $wpdb->posts
+            WHERE post_type = 'post'
+                AND post_status = 'publish'
+				AND post_date < '" . current_time( 'mysql' ) . "' - INTERVAL " . $wpar_age_limit * 24 . " HOUR 
+				";
 		}
 
     	$sql = $sql."AND $wpar_omit_type(ID IN (SELECT tr.object_id 
@@ -65,13 +75,28 @@ function wpar_republish_old_post () {
                                           inner join $wpdb->term_taxonomy tax on t.term_id=tax.term_id and tax.taxonomy='$wpar_omit'
                                           inner join $wpdb->term_relationships tr on tr.term_taxonomy_id=tax.term_taxonomy_id 
 									WHERE t.term_id IN (".$wpar_omit_id.")))";
-		if ( !empty( $wpar_omit_override ) ) {
-			if ( isset( $wpar_omit_by_type ) && $wpar_omit_by_type == 'exclude' ) {
+		
+
+		if ( isset( $wpar_omit_by_type ) && $wpar_omit_by_type == 'include' && count( $wpar_omit_post ) >= 1 ) {
+			if ( !empty( $wpar_omit_override ) ) {
 			    $sql = $sql."
-			      UNION SELECT ID, post_date FROM $wpdb->posts WHERE ID IN (".$wpar_omit_override.")";
-			} else {
+			    	AND NOT(ID IN (SELECT ID FROM $wpdb->posts WHERE ID IN (".$wpar_omit_override.")))";
+			}
+			$sql = $sql."
+			    UNION SELECT ID, post_date
+			    FROM $wpdb->posts
+			    WHERE post_type IN (" . implode( ',', $wpar_omit_post ) . ")
+			    	AND post_status = 'publish'
+			    	AND post_date < '" . current_time( 'mysql' ) . "' - INTERVAL " . $wpar_age_limit * 24 . " HOUR";
+		}
+
+		if ( !empty( $wpar_omit_override ) ) {
+			if ( isset( $wpar_omit_by_type ) && $wpar_omit_by_type == 'include' ) {
 				$sql = $sql."
 				  AND NOT(ID IN (SELECT ID FROM $wpdb->posts WHERE ID IN (".$wpar_omit_override.")))";
+			} else {
+				$sql = $sql."
+			      UNION SELECT ID, post_date FROM $wpdb->posts WHERE ID IN (".$wpar_omit_override.")";
 			}
 		}
     }            
@@ -79,9 +104,9 @@ function wpar_republish_old_post () {
 	      ORDER BY $wpar_order_by 
 		LIMIT 1 ";						
 
-	error_log ( $sql );
+	//error_log ( $sql );
 
-	$oldest_post = $wpdb->get_var( $sql, 0, 0 );
+	$oldest_post = $wpdb->get_var( $sql );
 	if ( isset( $oldest_post ) ) {
 		wpar_update_old_post( $oldest_post );
 	}

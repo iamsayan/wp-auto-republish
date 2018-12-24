@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: republish, republishing, old post promoter, old posts, old post, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 3.5
 Tested up to: 5.0
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 Requires PHP: 5.4
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
@@ -23,7 +23,7 @@ Like WP Auto Republish plugin? Consider leaving a [5 star review](https://wordpr
 2. Old content won't show up in date-based searches on search engines, but resetting the date can make them <strong>look fresh again</strong>.
 3. People <strong>like to share and link to new content, </strong>and they determine that by looking at the publication date.
 4. It will highlight older posts by moving them back to <strong>front page and in the RSS feed</strong>.
-5. Old Posts Highlighter will improve your <strong>blog visibility, traffic and SEO</strong>!
+5. WP Auto Republish will improve your <strong>blog visibility, traffic and SEO</strong>!
 6. And also <strong>Google likes updated content</strong> if it’s done right.
 
 #### What does this plugin do?
@@ -52,8 +52,8 @@ This plugin helps revive old posts by resetting the published date to the curren
 * Community support via the [support forums](https://wordpress.org/support/plugin/wp-auto-republish) at WordPress.org.
 
 #### Contribute
-* Active development of this plugin is handled [on GitHub](https://github.com/iamsayan/wp-last-modified-info).
-* Feel free to [fork the project on GitHub](https://github.com/iamsayan/wp-last-modified-info) and submit your contributions via pull request.
+* Active development of this plugin is handled [on GitHub](https://github.com/iamsayan/wp-auto-republish/).
+* Feel free to [fork the project on GitHub](https://github.com/iamsayan/wp-auto-republish/) and submit your contributions via pull request.
 
 == Installation ==
 
@@ -99,6 +99,12 @@ Yes, permalinks with dates would be affected. This plugin shouldn't be used if y
 1. This is the admin area of WP Auto Republish.
 
 == Changelog ==
+
+= 1.0.2 =
+
+* Added: A check to show a notice if permalinks structure contains date.
+* Improved: Custom Post Types Support.
+* Fixed: An plugin activation error notice.
 
 = 1.0.1 =
 

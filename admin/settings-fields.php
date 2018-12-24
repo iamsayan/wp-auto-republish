@@ -59,7 +59,6 @@ function wpar_random_republish_interval_display() {
         $wpar_settings['wpar_random_republish_interval'] = '14400';
     }
     $items = array(
-        //'0'       => 'Disable',
         '3600'    => 'Upto 1 hour',
         '7200'    => 'Upto 2 hours',
         '14400'   => 'Upto 4 hours',

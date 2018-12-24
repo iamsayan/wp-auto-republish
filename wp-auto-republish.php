@@ -3,7 +3,7 @@
  * Plugin Name: WP Auto Republish
  * Plugin URI: https://wordpress.org/plugins/wp-auto-republish/
  * Description: The WP Auto Republish plugin helps revive old posts by resetting the publish date to the current date. This will push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Sayan Datta
  * Author URI: https://profiles.wordpress.org/infosatech/
  * License: GPLv3
@@ -22,8 +22,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with WP Auto Republish. If not, see <http://www.gnu.org/licenses/>.
- *
- * Inspired by the Old Post Promoter Plugin by Blog Traffic Exchange that was once housed in the WordPress Plugin Repository.
  * 
  * @category Core
  * @package  WP Auto Republish
@@ -37,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define ( 'WPAR_PLUGIN_VERSION', '1.0.1' );
+define ( 'WPAR_PLUGIN_VERSION', '1.0.2' );
 
 // Internationalization
 add_action( 'plugins_loaded', 'wpar_plugin_load_textdomain' );
@@ -50,13 +48,6 @@ function wpar_plugin_load_textdomain() {
     load_plugin_textdomain( 'wp-auto-republish', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' ); 
 }
 
-function wpar_print_version() {
-    // fetch plugin version
-    $wparpluginfo = get_plugin_data(__FILE__);
-    $wparversion = $wparpluginfo['Version'];    
-    return $wparversion;
-}
-
 // register activation hook
 register_activation_hook( __FILE__, 'wpar_plugin_activation' );
 // register deactivation hook
@@ -67,6 +58,7 @@ function wpar_plugin_activation() {
     if ( ! current_user_can( 'activate_plugins' ) ) {
         return;
     }
+
     $default = array(
         'wpar_enable_plugin'                => 1,
         'wpar_minimun_republish_interval'   => 43200,
@@ -78,10 +70,11 @@ function wpar_plugin_activation() {
         'wpar_republish_position_text'      => 'Originally posted on ',
         'wpar_exclude_by_type'              => 'exclude',
         'wpar_exclude_by'                   => 'category',
-        'wpar_exclude_category_tag'         => '',
+        'wpar_exclude_category_tag'         => array(),
         'wpar_override_category_tag'        => ''
     );
     update_option( 'wpar_plugin_settings', $default );
+    set_transient( 'wpar-admin-notice-on-activation', true, 20 );
 }
 
 function wpar_plugin_deactivation() {
@@ -95,14 +88,32 @@ function wpar_plugin_deactivation() {
     delete_option( 'wpar_plugin_installed_time' );
 }
 
+function wpar_plugin_install_notice() { 
+
+    if( get_transient( 'wpar-admin-notice-on-activation' ) ) { ?>
+        <div class="notice notice-success">
+            <p><strong><?php printf( __( 'Thanks for installing %1$s v%2$s plugin. Click <a href="%3$s">here</a> to configure plugin settings.', 'ultimate-facebook-comments' ), 'WP Auto Republish', WPAR_PLUGIN_VERSION, admin_url( 'options-general.php?page=wp-auto-republish' ) ); ?></strong></p>
+        </div> <?php
+        delete_transient( 'wpar-admin-notice-on-activation' );
+    }
+    
+    if( preg_match( '(%year%|%monthnum%|%day%|%hour%|%minute%|%second%)', get_option('permalink_structure') ) === 1 ) { ?>
+        <div class="notice notice-warning">
+            <p><strong><?php printf( __( 'WARNING: As it seems that your permalinks structure contain date, please disable the WP Auto Republish plugin immediately.', 'ultimate-facebook-comments' ) ); ?></strong></p>
+        </div> <?php
+    }
+}
+
+add_action( 'admin_notices', 'wpar_plugin_install_notice' ); 
+
 function wpar_load_admin_assets() {
     // get current screen
     $current_screen = get_current_screen();
     if ( strpos( $current_screen->base, 'wp-auto-republish') !== false ) {
-        wp_enqueue_style( 'wpar-styles', plugins_url( 'admin/css/admin.min.css', __FILE__ ), array(), wpar_print_version() );
-        wp_enqueue_style( 'wpar-selectize-css', plugins_url( 'admin/css/selectize.min.css', __FILE__ ), array(), wpar_print_version() );
-        wp_enqueue_script( 'wpar-admin-js', plugins_url( 'admin/js/admin.min.js', __FILE__ ), array(), wpar_print_version() );
-        wp_enqueue_script( 'wpar-selectize-js', plugins_url( 'admin/js/selectize.min.js', __FILE__ ), array(), wpar_print_version() );
+        wp_enqueue_style( 'wpar-styles', plugins_url( 'admin/css/admin.min.css', __FILE__ ), array(), WPAR_PLUGIN_VERSION );
+        wp_enqueue_style( 'wpar-selectize-css', plugins_url( 'admin/css/selectize.min.css', __FILE__ ), array(), '0.12.6' );
+        wp_enqueue_script( 'wpar-admin-js', plugins_url( 'admin/js/admin.min.js', __FILE__ ), array(), WPAR_PLUGIN_VERSION );
+        wp_enqueue_script( 'wpar-selectize-js', plugins_url( 'admin/js/selectize.min.js', __FILE__ ), array(), '0.12.6' );
     }
 }
 

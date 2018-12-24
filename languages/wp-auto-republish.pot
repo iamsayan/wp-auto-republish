@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Auto Republish\n"
-"POT-Creation-Date: 2018-12-23 21:31+0530\n"
-"PO-Revision-Date: 2018-12-23 21:30+0530\n"
+"POT-Creation-Date: 2018-12-24 14:22+0530\n"
+"PO-Revision-Date: 2018-12-24 14:22+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -49,60 +49,60 @@ msgstr ""
 msgid "Select minimum interval between post republishing."
 msgstr ""
 
-#: admin/settings-fields.php:78
+#: admin/settings-fields.php:77
 msgid ""
 "Select randomness interval from here which will be added to minimum "
 "republish interval."
 msgstr ""
 
-#: admin/settings-fields.php:107
+#: admin/settings-fields.php:106
 msgid "Select the post age before eligible for republishing."
 msgstr ""
 
-#: admin/settings-fields.php:128
+#: admin/settings-fields.php:127
 msgid "Select the method of getting old posts from database."
 msgstr ""
 
-#: admin/settings-fields.php:149
+#: admin/settings-fields.php:148
 msgid ""
 "Select the position of republished post (choosing the 2nd position will "
 "leave the most recent post in place)."
 msgstr ""
 
-#: admin/settings-fields.php:171
+#: admin/settings-fields.php:170
 msgid ""
 "Select how you want to show original published date of the post on frontend."
 msgstr ""
 
-#: admin/settings-fields.php:181
+#: admin/settings-fields.php:180
 msgid "Message before original published date of the post on frontend."
 msgstr ""
 
-#: admin/settings-fields.php:202
+#: admin/settings-fields.php:201
 msgid "Select Taxonomy: "
 msgstr ""
 
-#: admin/settings-fields.php:217
+#: admin/settings-fields.php:216
 msgid ""
 "Select how you want to include or exclude a post category from republishing. "
 "If you choose excluding, selected categories/post tags will be ignored and "
 "vice-versa."
 msgstr ""
 
-#: admin/settings-fields.php:247
+#: admin/settings-fields.php:246
 msgid ""
 "Select categories which you want to include to republishing or exclude from "
 "republishing."
 msgstr ""
 
-#: admin/settings-fields.php:259
+#: admin/settings-fields.php:258
 msgid ""
 "Write the post IDs which you want to select forcefully (when you select "
 "excluding) or want to not select forcefully (when you select including)."
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-#: admin/settings-page.php:14 wp-auto-republish.php:145
+#: admin/settings-page.php:14 wp-auto-republish.php:156
 msgid "WP Auto Republish"
 msgstr ""
 
@@ -124,59 +124,72 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: wp-auto-republish.php:120
-msgid "Enable Auto Republish?"
+#: wp-auto-republish.php:95
+#, php-format
+msgid ""
+"Thanks for installing %1$s v%2$s plugin. Click <a href=\"%3$s\">here</a> to "
+"configure plugin settings."
 msgstr ""
 
-#: wp-auto-republish.php:121
-msgid "Minimum Republish Interval:"
-msgstr ""
-
-#: wp-auto-republish.php:122
-msgid "Randomness Interval:"
-msgstr ""
-
-#: wp-auto-republish.php:123
-msgid "Post Republish Eligibility Age:"
-msgstr ""
-
-#: wp-auto-republish.php:124
-msgid "Select Old Posts Query Method:"
-msgstr ""
-
-#: wp-auto-republish.php:125
-msgid "Republish Post to Position:"
-msgstr ""
-
-#: wp-auto-republish.php:126
-msgid "Show Original Publication Date:"
-msgstr ""
-
-#: wp-auto-republish.php:127
-msgid "Original Publication Message:"
-msgstr ""
-
-#: wp-auto-republish.php:128
-msgid "Auto Republish Old Posts by:"
+#: wp-auto-republish.php:102
+msgid ""
+"WARNING: As it seems that your permalinks structure contain date, please "
+"disable the WP Auto Republish plugin immediately."
 msgstr ""
 
 #: wp-auto-republish.php:131
-msgid "Select Categories or Tags:"
+msgid "Enable Auto Republish?"
 msgstr ""
 
 #: wp-auto-republish.php:132
+msgid "Minimum Republish Interval:"
+msgstr ""
+
+#: wp-auto-republish.php:133
+msgid "Randomness Interval:"
+msgstr ""
+
+#: wp-auto-republish.php:134
+msgid "Post Republish Eligibility Age:"
+msgstr ""
+
+#: wp-auto-republish.php:135
+msgid "Select Old Posts Query Method:"
+msgstr ""
+
+#: wp-auto-republish.php:136
+msgid "Republish Post to Position:"
+msgstr ""
+
+#: wp-auto-republish.php:137
+msgid "Show Original Publication Date:"
+msgstr ""
+
+#: wp-auto-republish.php:138
+msgid "Original Publication Message:"
+msgstr ""
+
+#: wp-auto-republish.php:139
+msgid "Auto Republish Old Posts by:"
+msgstr ""
+
+#: wp-auto-republish.php:142
+msgid "Select Categories or Tags:"
+msgstr ""
+
+#: wp-auto-republish.php:143
 msgid "Override Category or Post Tags Filtering for Specific Posts:"
 msgstr ""
 
-#: wp-auto-republish.php:168
+#: wp-auto-republish.php:179
 msgid "Settings"
 msgstr ""
 
-#: wp-auto-republish.php:177
+#: wp-auto-republish.php:188
 msgid "Support"
 msgstr ""
 
-#: wp-auto-republish.php:178
+#: wp-auto-republish.php:189
 msgid "Donate"
 msgstr ""
 
