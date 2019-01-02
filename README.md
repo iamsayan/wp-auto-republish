@@ -87,6 +87,15 @@ To customize original post publication date, you need to add this following snip
 }
 add_filter( 'wpar_published_date_format', 'wpar_override_time_format' );`
 
+#### How to customize the interval of scheduled post and old republish post?
+
+To customize the interval of scheduled post and old republish post, you need to add this following snippet to the end of your active theme's functions.php file:
+
+`function wpar_override_interval() {
+    return '7200'; // 2 hours
+}
+add_filter( 'wpar_scheduled_post_interval', 'wpar_override_interval' );`
+
 #### Are posts duplicated?
 
 No. The date on posts is updated to the current date making a post appear new. URLs don't change and comments continue to display with the post.
