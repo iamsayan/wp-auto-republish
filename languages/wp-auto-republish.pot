@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Auto Republish\n"
-"POT-Creation-Date: 2018-12-24 14:22+0530\n"
-"PO-Revision-Date: 2018-12-24 14:22+0530\n"
+"POT-Creation-Date: 2019-01-02 19:27+0530\n"
+"PO-Revision-Date: 2019-01-02 19:27+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -78,118 +78,148 @@ msgstr ""
 msgid "Message before original published date of the post on frontend."
 msgstr ""
 
-#: admin/settings-fields.php:201
-msgid "Select Taxonomy: "
-msgstr ""
-
-#: admin/settings-fields.php:216
+#: admin/settings-fields.php:202 admin/settings-fields.php:223
 msgid ""
 "Select how you want to include or exclude a post category from republishing. "
 "If you choose excluding, selected categories/post tags will be ignored and "
 "vice-versa."
 msgstr ""
 
-#: admin/settings-fields.php:246
+#: admin/settings-fields.php:247
 msgid ""
 "Select categories which you want to include to republishing or exclude from "
 "republishing."
 msgstr ""
 
-#: admin/settings-fields.php:258
+#: admin/settings-fields.php:271
+msgid ""
+"Select tags which you want to include to republishing or exclude from "
+"republishing."
+msgstr ""
+
+#: admin/settings-fields.php:283
 msgid ""
 "Write the post IDs which you want to select forcefully (when you select "
 "excluding) or want to not select forcefully (when you select including)."
 msgstr ""
 
-#. Plugin Name of the plugin/theme
-#: admin/settings-page.php:14 wp-auto-republish.php:156
-msgid "WP Auto Republish"
+#: admin/settings-fields.php:310
+msgid "Select the weekdays when you want to republish old posts."
 msgstr ""
 
-#: admin/settings-page.php:14
-msgid "Ver"
+#: admin/settings-fields.php:323
+msgid "Start Time:"
 msgstr ""
 
-#: admin/settings-page.php:15
+#: admin/settings-fields.php:326
+msgid "End Time:"
+msgstr ""
+
+#: admin/settings-fields.php:329
+msgid "Set the time period for republish old posts from here."
+msgstr ""
+
+#: admin/settings-page.php:16
 msgid ""
 "This plugin helps to revive old posts by resetting the publish date to the "
 "current date."
 msgstr ""
 
-#: admin/settings-page.php:22
+#: admin/settings-page.php:28
 msgid "Configure Settings"
 msgstr ""
 
-#: admin/settings-page.php:29
+#: admin/settings-page.php:35
 msgid "Save Changes"
 msgstr ""
 
-#: wp-auto-republish.php:95
+#: wp-auto-republish.php:99
 #, php-format
 msgid ""
 "Thanks for installing %1$s v%2$s plugin. Click <a href=\"%3$s\">here</a> to "
 "configure plugin settings."
 msgstr ""
 
-#: wp-auto-republish.php:102
+#: wp-auto-republish.php:106
 msgid ""
 "WARNING: As it seems that your permalinks structure contain date, please "
 "disable the WP Auto Republish plugin immediately."
 msgstr ""
 
-#: wp-auto-republish.php:131
+#: wp-auto-republish.php:135
 msgid "Enable Auto Republish?"
 msgstr ""
 
-#: wp-auto-republish.php:132
+#: wp-auto-republish.php:136
 msgid "Minimum Republish Interval:"
 msgstr ""
 
-#: wp-auto-republish.php:133
+#: wp-auto-republish.php:137
 msgid "Randomness Interval:"
 msgstr ""
 
-#: wp-auto-republish.php:134
+#: wp-auto-republish.php:138
 msgid "Post Republish Eligibility Age:"
 msgstr ""
 
-#: wp-auto-republish.php:135
+#: wp-auto-republish.php:139
 msgid "Select Old Posts Query Method:"
 msgstr ""
 
-#: wp-auto-republish.php:136
+#: wp-auto-republish.php:140
 msgid "Republish Post to Position:"
 msgstr ""
 
-#: wp-auto-republish.php:137
+#: wp-auto-republish.php:141
 msgid "Show Original Publication Date:"
 msgstr ""
 
-#: wp-auto-republish.php:138
+#: wp-auto-republish.php:142
 msgid "Original Publication Message:"
 msgstr ""
 
-#: wp-auto-republish.php:139
+#: wp-auto-republish.php:143
 msgid "Auto Republish Old Posts by:"
 msgstr ""
 
-#: wp-auto-republish.php:142
-msgid "Select Categories or Tags:"
+#: wp-auto-republish.php:144
+msgid "Select Taxonomy:"
 msgstr ""
 
-#: wp-auto-republish.php:143
+#: wp-auto-republish.php:145
+msgid "Select Categories:"
+msgstr ""
+
+#: wp-auto-republish.php:146
+msgid "Select Tags:"
+msgstr ""
+
+#: wp-auto-republish.php:147
 msgid "Override Category or Post Tags Filtering for Specific Posts:"
 msgstr ""
 
-#: wp-auto-republish.php:179
+#: wp-auto-republish.php:148
+msgid "Select Weekdays to Republish:"
+msgstr ""
+
+#: wp-auto-republish.php:149
+msgid "Time Range for Republishing:"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: wp-auto-republish.php:162
+msgid "WP Auto Republish"
+msgstr ""
+
+#: wp-auto-republish.php:180
 msgid "Settings"
 msgstr ""
 
-#: wp-auto-republish.php:188
+#: wp-auto-republish.php:189
 msgid "Support"
 msgstr ""
 
-#: wp-auto-republish.php:189
+#: wp-auto-republish.php:190
 msgid "Donate"
 msgstr ""
 

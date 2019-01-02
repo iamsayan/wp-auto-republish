@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: republish, republishing, old post promoter, old posts, old post, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 3.5
 Tested up to: 5.0
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 Requires PHP: 5.4
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
@@ -86,6 +86,15 @@ To customize original post publication date, you need to add this following snip
 }
 add_filter( 'wpar_published_date_format', 'wpar_override_time_format' );`
 
+= How to customize the interval of scheduled post and old republish post? =
+
+To customize the interval of scheduled post and old republish post, you need to add this following snippet to the end of your active theme's functions.php file:
+
+`function wpar_override_interval() {
+    return '7200'; // 2 hours
+}
+add_filter( 'wpar_scheduled_post_interval', 'wpar_override_interval' );`
+
 = Are posts duplicated? =
 
 No. The date on posts is updated to the current date making a post appear new. URLs don't change and comments continue to display with the post.
@@ -99,6 +108,13 @@ Yes, permalinks with dates would be affected. This plugin shouldn't be used if y
 1. This is the admin area of WP Auto Republish.
 
 == Changelog ==
+
+= 1.0.3 =
+
+* Added: Option to set date and time for republishing.
+* Added: Chinese translation. Thanks to [@cmhello](https://profiles.wordpress.org/cmhello)
+* Tweak: This plugin does not republish you old content if you have already scheduled a post within 1 hour. This interval can be modified by `wpar_scheduled_post_interval` filter.
+* Fixed: Incorrectly translated strings.
 
 = 1.0.2 =
 

@@ -189,16 +189,23 @@ function wpar_exclude_by_type_display() {
     }
     $items = array(
         'none'     => 'None',
-        'exclude'  => 'Excluding',
-        'include'  => 'Including'
+        'exclude'  => 'Excluding Categories/Tags',
+        'include'  => 'Including Categories/Tags'
     );
-    echo '<select id="wpar-exclude-type" name="wpar_plugin_settings[wpar_exclude_by_type]" style="width:20%;">';
+    echo '<select id="wpar-exclude-type" name="wpar_plugin_settings[wpar_exclude_by_type]" style="width:35%;">';
     foreach( $items as $item => $label ) {
         $selected = ( $wpar_settings['wpar_exclude_by_type'] == $item ) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
     }
     echo '</select>';
-    ?><span class="wparexclude" style="display: none;">&nbsp;&nbsp;&nbsp;<label for="wpar-exclude" style="font-size:14px;"><strong><?php _e( 'Select Taxonomy: ', 'wp-auto-republish' ); ?></strong></label>&nbsp;&nbsp;<?php
+    ?>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select how you want to include or exclude a post category from republishing. If you choose excluding, selected categories/post tags will be ignored and vice-versa.', 'wp-auto-republish' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <?php
+}
+
+function wpar_exclude_by_display() {
+    $wpar_settings = get_option('wpar_plugin_settings');
+    
     if( !isset($wpar_settings['wpar_exclude_by']) ) {
         $wpar_settings['wpar_exclude_by'] = 'category';
     }
@@ -206,44 +213,62 @@ function wpar_exclude_by_type_display() {
         'category'  => 'Categories',
         'post_tag'  => 'Post Tags'
     );
-    echo '<select id="wpar-exclude" name="wpar_plugin_settings[wpar_exclude_by]" style="width:22%;">';
+    echo '<select id="wpar-taxonomy" name="wpar_plugin_settings[wpar_exclude_by]" style="width:35%;">';
     foreach( $items as $item => $label ) {
         $selected = ( $wpar_settings['wpar_exclude_by'] == $item ) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
     }
     echo '</select>';
-    ?></span>
+    ?>
     &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select how you want to include or exclude a post category from republishing. If you choose excluding, selected categories/post tags will be ignored and vice-versa.', 'wp-auto-republish' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
-function wpar_exclude_category_tag_display() {
+function wpar_exclude_category_display() {
     $wpar_settings = get_option('wpar_plugin_settings');
     
-    if( $wpar_settings['wpar_exclude_by'] != 'none' ) {
-        $type = $wpar_settings['wpar_exclude_by'];
-    } else {
-        $type = 'category';
-    }
-    
-    if( !isset($wpar_settings['wpar_exclude_category_tag']) ) {
-        $wpar_settings['wpar_exclude_category_tag'][] = '';
+    if( !isset($wpar_settings['wpar_exclude_category']) ) {
+        $wpar_settings['wpar_exclude_category'][] = '';
     }
 
     $categories = get_terms( array(
-        'taxonomy'     => $type,
+        'taxonomy'     => 'category',
         'orderby'      => 'count',
-        'hide_empty'   => false,
+        //'hide_empty'   => false,
     ) );
 
-    echo '<select id="wpar-cat-tag" name="wpar_plugin_settings[wpar_exclude_category_tag][]" multiple="multiple" required style="width:90%;">';
+    echo '<select id="wpar-cat" name="wpar_plugin_settings[wpar_exclude_category][]" multiple="multiple" required style="width:90%;">';
     foreach( $categories as $item ) {
-        $selected = in_array( $item->term_id, $wpar_settings['wpar_exclude_category_tag'] ) ? ' selected="selected"' : '';
+        $selected = in_array( $item->term_id, $wpar_settings['wpar_exclude_category'] ) ? ' selected="selected"' : '';
         echo '<option value="' . $item->term_id . '"' . $selected . '>' . $item->name . '</option>';
     }
     echo '</select>';
     ?>
     &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select categories which you want to include to republishing or exclude from republishing.', 'wp-auto-republish' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <?php
+}
+
+function wpar_exclude_tag_display() {
+    $wpar_settings = get_option('wpar_plugin_settings');
+    
+    if( !isset($wpar_settings['wpar_exclude_tag']) ) {
+        $wpar_settings['wpar_exclude_tag'][] = '';
+    }
+
+    $tags = get_terms( array(
+        'taxonomy'     => 'post_tag',
+        'orderby'      => 'count',
+        //'hide_empty'   => false,
+    ) );
+
+    echo '<select id="wpar-tag" name="wpar_plugin_settings[wpar_exclude_tag][]" multiple="multiple" required style="width:90%;">';
+    foreach( $tags as $item ) {
+        $selected = in_array( $item->term_id, $wpar_settings['wpar_exclude_tag'] ) ? ' selected="selected"' : '';
+        echo '<option value="' . $item->term_id . '"' . $selected . '>' . $item->name . '</option>';
+    }
+    echo '</select>';
+    ?>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select tags which you want to include to republishing or exclude from republishing.', 'wp-auto-republish' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -256,6 +281,52 @@ function wpar_override_category_tag_display() {
     ?>
     <textarea id="wpar-override-cat-tag" name="wpar_plugin_settings[wpar_override_category_tag]" rows="3" cols="90" placeholder="ex: 53,109,257" style="width:90%"><?php if (isset($wpar_settings['wpar_override_category_tag'])) { echo $wpar_settings['wpar_override_category_tag']; } ?></textarea>
     &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Write the post IDs which you want to select forcefully (when you select excluding) or want to not select forcefully (when you select including).', 'wp-auto-republish' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <?php
+}
+
+function wpar_days_display() {
+    $wpar_settings = get_option('wpar_plugin_settings');
+    
+    if( !isset($wpar_settings['wpar_days']) ) {
+        $wpar_settings['wpar_days'][] = '';
+    }
+
+    $items = array(
+        'sun'  => 'Sunday',
+        'mon'  => 'Monday',
+        'tue'  => 'Tuesday',
+        'wed'  => 'Wednesday',
+        'thu'  => 'Thursday',
+        'fri'  => 'Friday',
+        'sat'  => 'Saturday'
+    );
+    echo '<select id="wpar-days" name="wpar_plugin_settings[wpar_days][]" multiple="multiple" required style="width:90%;">';
+    foreach( $items as $item => $label ) {
+        $selected = in_array( $item, $wpar_settings['wpar_days'] ) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
+    }
+    echo '</select>';
+    ?>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select the weekdays when you want to republish old posts.', 'wp-auto-republish' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <?php
+}
+
+function wpar_time_display() {
+    $wpar_settings = get_option('wpar_plugin_settings');
+    if( empty($wpar_settings['wpar_start_time']) ) {
+        $wpar_settings['wpar_start_time'] = '05:00:00';
+    }
+    if( empty($wpar_settings['wpar_end_time']) ) {
+        $wpar_settings['wpar_end_time'] = '23:00:00';
+    }
+    ?>  
+    <label for="wpar-start-time"><span style="font-weight: 600;font:size: 13px;"><?php _e( 'Start Time:', 'wp-auto-republish' ); ?> </span>
+        <input id="wpar-start-time" name="wpar_plugin_settings[wpar_start_time]" type="text" size="25" style="width:25%;" placeholder="05:00:00" required value="<?php if (isset($wpar_settings['wpar_start_time'])) { echo $wpar_settings['wpar_start_time']; } ?>" />
+    </label>&nbsp;&nbsp;&nbsp;
+    <label for="wpar-end-time"><span style="font-weight: 600;font:size: 13px;"><?php _e( 'End Time:', 'wp-auto-republish' ); ?> </span>
+        <input id="wpar-end-time" name="wpar_plugin_settings[wpar_end_time]" type="text" size="25" style="width:25%;" placeholder="23:00:00" required value="<?php if (isset($wpar_settings['wpar_end_time'])) { echo $wpar_settings['wpar_end_time']; } ?>" />
+    </label>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Set the time period for republish old posts from here.', 'wp-auto-republish' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 

@@ -1,11 +1,29 @@
 jQuery(document).ready(function($) {
-    $('select#wpar-cat-tag').selectize({
+
+    $('select#wpar-cat').selectize({
         plugins: ['remove_button'],
         delimiter: ',',
-        placeholder: '-- Select categories or tags --',
+        placeholder: '-- Select categories --',
         persist: false,
         create: false
     });
+
+    $('select#wpar-tag').selectize({
+        plugins: ['remove_button'],
+        delimiter: ',',
+        placeholder: '-- Select tags --',
+        persist: false,
+        create: false
+    });
+
+    $('select#wpar-days').selectize({
+        plugins: ['remove_button'],
+        delimiter: ',',
+        placeholder: '-- Select weekdays --',
+        persist: false,
+        create: false
+    });
+
     $('#wpar-position').change(function() {
         if ($('#wpar-position').val() == 'disable') {
             $('.wpar-text').hide();
@@ -17,13 +35,36 @@ jQuery(document).ready(function($) {
         }
     });
     $('#wpar-position').trigger('change');
+
     $('#wpar-exclude-type').change(function() {
         if ($('#wpar-exclude-type').val() == 'none') {
-            $('.wparexclude').hide();
+            $('.wpar-taxonomy').hide();
+            $('.wpar-cat'). hide();
+            $('.wpar-tag').hide();
+            $('.wpar-override-cat-tag').hide();
         }
         if ($('#wpar-exclude-type').val() != 'none') {
-            $('.wparexclude').show();
+            $('.wpar-taxonomy').show();
+            $('.wpar-override-cat-tag').show();
+            $('#wpar-taxonomy').change(function() {
+                if ($('#wpar-taxonomy').val() == 'category') {
+                    $('.wpar-cat').show();
+                    $('.wpar-tag').hide();
+                }
+                if ($('#wpar-taxonomy').val() == 'post_tag') {
+                    $('.wpar-tag').show();
+                    $('.wpar-cat').hide();
+                }
+            });
+            $('#wpar-taxonomy').trigger('change');
         }
     });
     $('#wpar-exclude-type').trigger('change');
+
+    $(".coffee-amt").change(function() {
+        var btn = $('.buy-coffee-btn');
+        btn.attr('href', btn.data('link') + $(this).val());
+    });
+    $(".coffee-amt").trigger('change');
+    
 });

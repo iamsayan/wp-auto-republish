@@ -1,0 +1,228 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Auto Republish\n"
+"POT-Creation-Date: 2018-12-31 22:12+0800\n"
+"PO-Revision-Date: 2018-12-31 22:28+0800\n"
+"Last-Translator: WordPress淘宝网 <support@wptaobao.com>\n"
+"Language-Team: WordPress淘宝网 <support@wptaobao.com>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: wp-auto-republish.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: admin/notice.php:28
+msgid ""
+"Hey, I noticed you've been using WP Auto Republish for more than 1 week – "
+"that’s awesome! Could you please do me a BIG favor and give it a <strong>5-"
+"star</strong> rating on WordPress? Just to help us spread the word and boost "
+"my motivation."
+msgstr ""
+"嘿, 我注意到你已经使用 WP 自动重新发布超过 1周了，这是非常棒的！你能帮我一个"
+"大忙，在 wordpress 上给它一个 <strong> 5 星级 </strong> 评级吗？只是为了帮助"
+"我们传播这个插件，提升我的动力。"
+
+#: admin/notice.php:29
+msgid "Ok, you deserve it"
+msgstr "好的，你应得的"
+
+#: admin/notice.php:30
+msgid "I already did"
+msgstr "我已经做了"
+
+#: admin/notice.php:31
+msgid "Nope&#44; maybe later"
+msgstr "以后再说！"
+
+#: admin/settings-fields.php:16
+msgid "Enable this if you want to auto republish old posts of your blog."
+msgstr "如果您想自动重新发布博客的旧文章，请启用此功能。"
+
+#: admin/settings-fields.php:51
+msgid "Select minimum interval between post republishing."
+msgstr "选择重新发布之间的最小间隔。"
+
+#: admin/settings-fields.php:77
+msgid ""
+"Select randomness interval from here which will be added to minimum "
+"republish interval."
+msgstr "从此处选择将添加到最小重新发布间隔的随机间隔。"
+
+#: admin/settings-fields.php:106
+msgid "Select the post age before eligible for republishing."
+msgstr "在符合重新发布条件之前，请选择发布年龄。"
+
+#: admin/settings-fields.php:127
+msgid "Select the method of getting old posts from database."
+msgstr "选择从数据库中获取旧文章的方法。"
+
+#: admin/settings-fields.php:148
+msgid ""
+"Select the position of republished post (choosing the 2nd position will "
+"leave the most recent post in place)."
+msgstr "选择重新发布的文章的位置 (选择第二个位置将保留最新的文章)。"
+
+#: admin/settings-fields.php:170
+msgid ""
+"Select how you want to show original published date of the post on frontend."
+msgstr "选择您希望在前端显示文章的原始发布日期的方式。"
+
+#: admin/settings-fields.php:180
+msgid "Message before original published date of the post on frontend."
+msgstr "在前端的文章的原始发布日期之前的消息。"
+
+#: admin/settings-fields.php:201
+msgid "Select Taxonomy: "
+msgstr "选择分类法："
+
+#: admin/settings-fields.php:216
+msgid ""
+"Select how you want to include or exclude a post category from republishing. "
+"If you choose excluding, selected categories/post tags will be ignored and "
+"vice-versa."
+msgstr ""
+"选择要在重新发布中包括或排除文章分类的方式。如果选择排除（Excluding），则选定"
+"的分类/文章标签将被忽略，反之亦然。"
+
+#: admin/settings-fields.php:246
+msgid ""
+"Select categories which you want to include to republishing or exclude from "
+"republishing."
+msgstr "选择要重新发布所包括的分类或从重新发布中排除的分类。"
+
+#: admin/settings-fields.php:258
+msgid ""
+"Write the post IDs which you want to select forcefully (when you select "
+"excluding) or want to not select forcefully (when you select including)."
+msgstr ""
+"填入要强制选择的文章 id (当您选择 排除/Excluding 时) 或不希望强制选择的文章 "
+"id (当您选择 包括/Including 时)。"
+
+#. Plugin Name of the plugin/theme
+#: admin/settings-page.php:14 wp-auto-republish.php:156
+msgid "WP Auto Republish"
+msgstr "WP 自动重新发布"
+
+#: admin/settings-page.php:14
+msgid "Ver"
+msgstr "版本"
+
+#: admin/settings-page.php:15
+msgid ""
+"This plugin helps to revive old posts by resetting the publish date to the "
+"current date."
+msgstr ""
+"此插件通过将发布日期重置为当前日期来帮助恢复旧的文章。感谢 <a href=\"https://"
+"www.wpdaxue.com\" target=\"_blank\">WordPress大学</a> 提供简体中文支持。"
+
+#: admin/settings-page.php:22
+msgid "Configure Settings"
+msgstr "配置设置"
+
+#: admin/settings-page.php:29
+msgid "Save Changes"
+msgstr "保存更改"
+
+#: wp-auto-republish.php:95
+#, php-format
+msgid ""
+"Thanks for installing %1$s v%2$s plugin. Click <a href=\"%3$s\">here</a> to "
+"configure plugin settings."
+msgstr ""
+"感谢您安装 %1$s v%2$s 插件。单击 <a href=\"%3$s\">这里</a> 配置插件设置。"
+
+#: wp-auto-republish.php:102
+msgid ""
+"WARNING: As it seems that your permalinks structure contain date, please "
+"disable the WP Auto Republish plugin immediately."
+msgstr ""
+"警告: 由于您的永久链接结构似乎包含日期，请立即禁用 WP 自动重新发布插件。"
+
+#: wp-auto-republish.php:131
+msgid "Enable Auto Republish?"
+msgstr "启用自动重新发布？"
+
+#: wp-auto-republish.php:132
+msgid "Minimum Republish Interval:"
+msgstr "最小重新发布间隔："
+
+#: wp-auto-republish.php:133
+msgid "Randomness Interval:"
+msgstr "随机间隔："
+
+#: wp-auto-republish.php:134
+msgid "Post Republish Eligibility Age:"
+msgstr "重新发布资格年龄："
+
+#: wp-auto-republish.php:135
+msgid "Select Old Posts Query Method:"
+msgstr "选择旧文章查询方法："
+
+#: wp-auto-republish.php:136
+msgid "Republish Post to Position:"
+msgstr "重新发布文章到什么位置："
+
+#: wp-auto-republish.php:137
+msgid "Show Original Publication Date:"
+msgstr "显示原始发布日期："
+
+#: wp-auto-republish.php:138
+msgid "Original Publication Message:"
+msgstr "原始发布消息："
+
+#: wp-auto-republish.php:139
+msgid "Auto Republish Old Posts by:"
+msgstr "根据什么自动重新发布旧文章："
+
+#: wp-auto-republish.php:142
+msgid "Select Categories or Tags:"
+msgstr "选择分类或标签："
+
+#: wp-auto-republish.php:143
+msgid "Override Category or Post Tags Filtering for Specific Posts:"
+msgstr "为特定的文章覆盖分类或文章标签筛选："
+
+#: wp-auto-republish.php:179
+msgid "Settings"
+msgstr "设置"
+
+#: wp-auto-republish.php:188
+msgid "Support"
+msgstr "支持"
+
+#: wp-auto-republish.php:189
+msgid "Donate"
+msgstr "捐赠"
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/wp-auto-republish/"
+msgstr "https://wordpress.org/plugins/wp-auto-republish/"
+
+#. Description of the plugin/theme
+msgid ""
+"The WP Auto Republish plugin helps revive old posts by resetting the publish "
+"date to the current date. This will push old posts to your front page, the "
+"top of archive pages, and back into RSS feeds. Ideal for sites with a large "
+"repository of evergreen content."
+msgstr ""
+"WP 自动重新发布插件通过将发布日期重置为当前日期来帮助恢复旧的文章。这将把旧的"
+"文章推到你的首页, 存档页面的顶部, 并返回到 RSS 源。非常适合拥有大量常绿内容存"
+"储库的网站。由 WordPress大学 https://www.wpdaxue.com 提供简体中文支持。"
+
+#. Author of the plugin/theme
+msgid "Sayan Datta"
+msgstr "Sayan Datta"
+
+#. Author URI of the plugin/theme
+msgid "https://profiles.wordpress.org/infosatech/"
+msgstr "https://profiles.wordpress.org/infosatech/"

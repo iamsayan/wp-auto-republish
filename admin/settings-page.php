@@ -11,8 +11,14 @@
 ?>
 
 <div class="wrap">
-    <h1><?php _e( 'WP Auto Republish', 'wp-auto-republish' ); ?> <span style="font-size:12px;"><?php _e( 'Ver', 'wp-auto-republish' ); ?> <?php echo WPAR_PLUGIN_VERSION ?></span></h1>
-    <div><?php _e( 'This plugin helps to revive old posts by resetting the publish date to the current date.', 'wp-auto-republish' ); ?></div><hr>
+    <div class="head-wrap">
+        <h1 class="title">WP Auto Republish<span class="title-count"><?php echo WPAR_PLUGIN_VERSION ?></span></h1>
+        <div><?php _e( 'This plugin helps to revive old posts by resetting the publish date to the current date.', 'wp-auto-republish' ); ?></div><hr>
+        <div class="top-sharebar">
+            <a class="share-btn rate-btn" href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" title="Please rate 5 stars if you like WP Auto Republish"><span class="dashicons dashicons-star-filled"></span> Rate 5 stars</a>
+            <a class="share-btn twitter" href="https://twitter.com/home?status=Check%20out%20WP%20Auto%20Republish,%20a%20%23WordPress%20%23plugin%20that%20revive%20your%20old%20posts%20by%20resetting%20the%20published%20date%20to%20the%20current%20date%20https%3A//wordpress.org/plugins/wp-auto-republish/%20via%20%40im_sayaan" target="_blank"><span class="dashicons dashicons-twitter"></span> Tweet about WP Auto Republish</a>
+        </div>
+    </div>
     <div id="poststuff" style="padding-top: 0;">
         <div id="post-body" class="metabox-holder columns-2">
             <div id="post-body-content">
@@ -30,10 +36,32 @@
                         </form>
                     </div>
                 </div>
+                <div class="coffee-box">
+                    <div class="coffee-amt-wrap">
+                        <p><select class="coffee-amt">
+                            <option value="2usd">$2</option>
+                            <option value="3usd">$3</option>
+                            <option value="4usd">$4</option>
+                            <option value="5usd" selected="selected">$5</option>
+                            <option value="6usd">$6</option>
+                            <option value="7usd">$7</option>
+                            <option value="8usd">$8</option>
+                            <option value="9usd">$9</option>
+                            <option value="10usd">$10</option>
+                            <option value="11usd">$11</option>
+                            <option value="12usd">$12</option>
+                            <option value="">Custom</option>
+                        </select></p>
+                        <a class="button button-primary buy-coffee-btn" href="https://www.paypal.me/iamsayan/5usd" data-link="https://www.paypal.me/iamsayan/" target="_blank">Buy me a coffee!</a>
+                    </div>
+                    <span class="coffee-heading">Buy me a coffee!</span>
+                    <p style="text-align: justify;">Thank you for using <strong>WP Auto Republish v<?php echo WPAR_PLUGIN_VERSION ?></strong>. If you found the plugin useful buy me a coffee! Your donation will motivate and make me happy for all the efforts. You can donate via PayPal.</p>
+                    <p style="text-align: justify; font-size: 12px; font-style: italic;">Developed with <span style="color:#e25555;">♥</span> by <a href="https://profiles.wordpress.org/infosatech/" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="https://github.com/iamsayan/wp-auto-republish" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-auto-republish" target="_blank" style="font-weight: 500;">Support</a> | <a href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.</p>
+                </div>
             </div>
             <div id="postbox-container-1" class="postbox-container">
                 <div class="postbox">
-                    <h3 class="hndle" style="cursor:default;">My Other Plugins!</h3>
+                    <h3 class="hndle" style="cursor:default;text-align: center;">My Other Plugins!</h3>
                     <div class="inside">
                         <div class="misc-pub-section">
                             <span class="dashicons dashicons-clock"></span>
@@ -56,6 +84,14 @@
                             <label>
                                 <strong><a href="https://wordpress.org/plugins/change-wp-page-permalinks/" target="_blank">WP Page Permalink Extension</a>: </strong>
                                 Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to wordpress pages very easily (tested on Yoast SEO
+                            </label>
+                        </div>
+                        <hr>
+                        <div class="misc-pub-section">
+                            <span class="dashicons dashicons-megaphone"></span>
+                            <label>
+                                <strong><a href="https://wordpress.org/plugins/simple-posts-ticker/" target="_blank">Simple Posts Ticker</a>: </strong>
+                                Simple Posts Ticker is a small tool that shows your most recent posts in a marquee style.
                             </label>
                         </div>
                         <hr>

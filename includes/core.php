@@ -10,18 +10,54 @@
  */
 
 add_action( 'init', 'wpar_plugin_init' );
-add_filter( 'the_content', 'wpar_hook_into_the_content', apply_filters( 'wpar_show_pub_date_priority', '10' ) );
 
 function wpar_plugin_init() {
-	if ( wpar_update_time() ) {
-		update_option( 'wpar_last_update', time() );
-		wpar_republish_old_post();
+	$wpar_settings = get_option('wpar_plugin_settings');
+	$wpar_days = $wpar_settings['wpar_days'];
+	$cur_date = current_time( 'timestamp', 0 );
+	$day = lcfirst( date( 'D', $cur_date ) );
+
+	$cur_time = strtotime( date( 'H:i:s', $cur_date ) );
+	$start_time = strtotime( !empty($wpar_settings['wpar_start_time']) ? $wpar_settings['wpar_start_time'] : '05:00:00' );
+	$end_time = strtotime( !empty($wpar_settings['wpar_end_time']) ? $wpar_settings['wpar_end_time'] : '23:00:00' );
+
+	$priority = 10;
+	$priority = apply_filters( 'wpar_show_pub_date_priority', $priority );
+
+	add_filter( 'the_content', 'wpar_hook_into_the_content', $priority );
+
+	$gap = 3600;
+	$gap = apply_filters( 'wpar_scheduled_post_interval', $gap );
+
+	$lastposts = get_posts( array(
+		'numberposts'    => 1,
+		'offset'         => 1,
+		'sort_order'     => 'ASC',
+		'post_status'    => 'future',
+	) );
+	foreach ( $lastposts as $lastpost ) {
+		$post_date = strtotime( $lastpost->post_date );
 	}
+
+	if ( isset( $post_date ) && ( $cur_date > $post_date ) && ( $cur_date < ( $post_date + $gap ) ) ) {
+		return;
+	}
+
+	if ( !empty( $wpar_days ) && in_array( $day, $wpar_days ) ) {
+		if ( $cur_time > $start_time && $cur_time < $end_time ) {
+	        if ( wpar_update_time() ) {
+		        update_option( 'wpar_last_update', time() );
+	            wpar_republish_old_post();
+		    }
+	    }
+	}
+	
 }
 
 function wpar_custom_post_types_support() {
     $output = array();
-    $post_types = apply_filters( 'wpar_supported_post_types', array( 'post' ), $output );
+	$post_types = apply_filters( 'wpar_supported_post_types', array( 'post' ), $output );
+	$post_types = array_unique( $post_types );
     foreach( $post_types as $post_type ) {
         $output[] = "'$post_type'";
     }
@@ -54,7 +90,11 @@ function wpar_republish_old_post() {
     if ( isset( $wpar_omit_by_type ) && $wpar_omit_by_type != 'none' ) {
 
 		$wpar_omit = $wpar_settings['wpar_exclude_by'];
-		$wpar_omit_id = !empty( $wpar_settings['wpar_exclude_category_tag'] ) ? implode( ',', $wpar_settings['wpar_exclude_category_tag'] ) : '1';
+		$wpar_omit_id = !empty( $wpar_settings['wpar_exclude_category'] ) ? implode( ',', $wpar_settings['wpar_exclude_category'] ) : '1';
+		if ( isset( $wpar_omit ) && $wpar_omit == 'post_tag' ) {
+			$wpar_omit_id = !empty( $wpar_settings['wpar_exclude_tag'] ) ? implode( ',', $wpar_settings['wpar_exclude_tag'] ) : '1';
+		}
+		
 		$wpar_omit_override = $wpar_settings['wpar_override_category_tag'];
 		$wpar_omit_post = array_slice( $wpar_post_types, 1 );
 
@@ -120,7 +160,7 @@ function wpar_update_old_post( $oldest_post ) {
     $post = get_post( $oldest_post );
 	$wpar_original_pub_date = get_post_meta( $oldest_post, '_wpar_original_pub_date', true ); 
 
-	if ( !isset( $wpar_original_pub_date ) || empty( $wpar_original_pub_date ) ) {
+	if ( !( isset( $wpar_original_pub_date ) && $wpar_original_pub_date != '' ) ) {
 	    $sql = "SELECT post_date from ".$wpdb->posts." WHERE ID = '$oldest_post'";
 		$wpar_original_pub_date = $wpdb->get_var( $sql );
 		update_post_meta( $oldest_post, '_wpar_original_pub_date', $wpar_original_pub_date );
@@ -133,11 +173,13 @@ function wpar_update_old_post( $oldest_post ) {
 	} else {
 		$lastposts = get_posts( array(
             'numberposts'    => 1,
-            'offset'         => 1
+			'offset'         => 1,
+			'post_status'    => 'publish',
+			'order'          => 'DESC',
         ) );
 		foreach ( $lastposts as $lastpost ) {
 			$post_date = strtotime( $lastpost->post_date );
-			$new_time = date( 'Y-m-d H:i:s', mktime( date("H",$post_date), date("i",$post_date), date("s",$post_date)+1, date("m",$post_date), date("d",$post_date), date("Y",$post_date) ) );
+			$new_time = date( 'Y-m-d H:i:s', mktime( date("H",$post_date), date("i",$post_date)+5, date("s",$post_date), date("m",$post_date), date("d",$post_date), date("Y",$post_date) ) );
 			$gmt_time = get_gmt_from_date( $new_time );
 		}
 	}
@@ -164,7 +206,7 @@ function wpar_hook_into_the_content( $content ) {
 	$wpar_text = $wpar_settings['wpar_republish_position_text'];
     
 	$wpar_original_pub_date = get_post_meta( $post->ID, '_wpar_original_pub_date', true );
-	
+
 	$local_date = date_i18n( apply_filters( 'wpar_published_date_format', $get_df . ' @ ' . $get_tf ), strtotime( $wpar_original_pub_date ) );
     
 	$dateline = '';
