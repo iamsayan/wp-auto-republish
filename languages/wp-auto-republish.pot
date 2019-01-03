@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Auto Republish\n"
-"POT-Creation-Date: 2019-01-02 19:27+0530\n"
-"PO-Revision-Date: 2019-01-02 19:27+0530\n"
+"POT-Creation-Date: 2019-01-04 00:11+0530\n"
+"PO-Revision-Date: 2019-01-04 00:11+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgstr ""
 #: admin/settings-fields.php:148
 msgid ""
 "Select the position of republished post (choosing the 2nd position will "
-"leave the most recent post in place)."
+"leave the most recent post in 1st place)."
 msgstr ""
 
 #: admin/settings-fields.php:170
@@ -107,15 +107,15 @@ msgstr ""
 msgid "Select the weekdays when you want to republish old posts."
 msgstr ""
 
-#: admin/settings-fields.php:323
+#: admin/settings-fields.php:324
 msgid "Start Time:"
 msgstr ""
 
-#: admin/settings-fields.php:326
+#: admin/settings-fields.php:327
 msgid "End Time:"
 msgstr ""
 
-#: admin/settings-fields.php:329
+#: admin/settings-fields.php:330
 msgid "Set the time period for republish old posts from here."
 msgstr ""
 
@@ -129,8 +129,20 @@ msgstr ""
 msgid "Configure Settings"
 msgstr ""
 
-#: admin/settings-page.php:35
-msgid "Save Changes"
+#: admin/settings-page.php:35 admin/settings-page.php:56
+msgid "Save Settings"
+msgstr ""
+
+#: admin/settings-page.php:38
+msgid "Please wait..."
+msgstr ""
+
+#: admin/settings-page.php:42
+msgid "Settings Saved Successfully!"
+msgstr ""
+
+#: admin/settings-page.php:50
+msgid "Saving..."
 msgstr ""
 
 #: wp-auto-republish.php:99
@@ -146,80 +158,80 @@ msgid ""
 "disable the WP Auto Republish plugin immediately."
 msgstr ""
 
-#: wp-auto-republish.php:135
+#: wp-auto-republish.php:147
 msgid "Enable Auto Republish?"
 msgstr ""
 
-#: wp-auto-republish.php:136
+#: wp-auto-republish.php:148
 msgid "Minimum Republish Interval:"
 msgstr ""
 
-#: wp-auto-republish.php:137
+#: wp-auto-republish.php:149
 msgid "Randomness Interval:"
 msgstr ""
 
-#: wp-auto-republish.php:138
+#: wp-auto-republish.php:150
 msgid "Post Republish Eligibility Age:"
 msgstr ""
 
-#: wp-auto-republish.php:139
+#: wp-auto-republish.php:151
 msgid "Select Old Posts Query Method:"
 msgstr ""
 
-#: wp-auto-republish.php:140
+#: wp-auto-republish.php:152
 msgid "Republish Post to Position:"
 msgstr ""
 
-#: wp-auto-republish.php:141
+#: wp-auto-republish.php:153
 msgid "Show Original Publication Date:"
 msgstr ""
 
-#: wp-auto-republish.php:142
+#: wp-auto-republish.php:154
 msgid "Original Publication Message:"
 msgstr ""
 
-#: wp-auto-republish.php:143
+#: wp-auto-republish.php:155
 msgid "Auto Republish Old Posts by:"
 msgstr ""
 
-#: wp-auto-republish.php:144
+#: wp-auto-republish.php:156
 msgid "Select Taxonomy:"
 msgstr ""
 
-#: wp-auto-republish.php:145
-msgid "Select Categories:"
+#: wp-auto-republish.php:157
+msgid "Select Post Categories:"
 msgstr ""
 
-#: wp-auto-republish.php:146
-msgid "Select Tags:"
+#: wp-auto-republish.php:158
+msgid "Select Post Tags:"
 msgstr ""
 
-#: wp-auto-republish.php:147
+#: wp-auto-republish.php:159
 msgid "Override Category or Post Tags Filtering for Specific Posts:"
 msgstr ""
 
-#: wp-auto-republish.php:148
+#: wp-auto-republish.php:160
 msgid "Select Weekdays to Republish:"
 msgstr ""
 
-#: wp-auto-republish.php:149
+#: wp-auto-republish.php:161
 msgid "Time Range for Republishing:"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-#: wp-auto-republish.php:162
+#: wp-auto-republish.php:174
 msgid "WP Auto Republish"
 msgstr ""
 
-#: wp-auto-republish.php:180
+#: wp-auto-republish.php:192
 msgid "Settings"
 msgstr ""
 
-#: wp-auto-republish.php:189
+#: wp-auto-republish.php:201
 msgid "Support"
 msgstr ""
 
-#: wp-auto-republish.php:190
+#: wp-auto-republish.php:202
 msgid "Donate"
 msgstr ""
 
@@ -240,5 +252,5 @@ msgid "Sayan Datta"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://profiles.wordpress.org/infosatech/"
+msgid "https://www.sayandatta.com"
 msgstr ""

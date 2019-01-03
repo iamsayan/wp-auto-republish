@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
     $('select#wpar-cat').selectize({
         plugins: ['remove_button'],
         delimiter: ',',
-        placeholder: '-- Select categories --',
+        placeholder: '-- Select categories (required) --',
         persist: false,
         create: false
     });
@@ -11,7 +11,7 @@ jQuery(document).ready(function($) {
     $('select#wpar-tag').selectize({
         plugins: ['remove_button'],
         delimiter: ',',
-        placeholder: '-- Select tags --',
+        placeholder: '-- Select tags (required) --',
         persist: false,
         create: false
     });
@@ -19,7 +19,7 @@ jQuery(document).ready(function($) {
     $('select#wpar-days').selectize({
         plugins: ['remove_button'],
         delimiter: ',',
-        placeholder: '-- Select weekdays --',
+        placeholder: '-- Select weekdays (required) --',
         persist: false,
         create: false
     });

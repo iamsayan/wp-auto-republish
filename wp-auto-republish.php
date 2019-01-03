@@ -3,9 +3,9 @@
  * Plugin Name: WP Auto Republish
  * Plugin URI: https://wordpress.org/plugins/wp-auto-republish/
  * Description: The WP Auto Republish plugin helps revive old posts by resetting the publish date to the current date. This will push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author: Sayan Datta
- * Author URI: https://profiles.wordpress.org/infosatech/
+ * Author URI: https://www.sayandatta.com
  * License: GPLv3
  * Text Domain: wp-auto-republish
  * Domain Path: /languages
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define ( 'WPAR_PLUGIN_VERSION', '1.0.3' );
+define ( 'WPAR_PLUGIN_VERSION', '1.0.4' );
 
 // Internationalization
 add_action( 'plugins_loaded', 'wpar_plugin_load_textdomain' );
@@ -73,7 +73,7 @@ function wpar_plugin_activation() {
         'wpar_exclude_category'             => array(),
         'wpar_exclude_tag'                  => array(),
         'wpar_override_category_tag'        => '',
-        'wpar_days'                         => array('mon','tue','wed','thu','fri','sat'),
+        'wpar_days'                         => array('sun','mon','tue','wed','thu','fri','sat'),
         'wpar_start_time'                   => '05:00:00',
         'wpar_end_time'                     => '23:00:00',
     );
@@ -123,6 +123,18 @@ function wpar_load_admin_assets() {
 
 add_action( 'admin_enqueue_scripts', 'wpar_load_admin_assets' );
 
+function wpar_ajax_save_admin_scripts() {
+    if ( is_admin() ) { 
+        // Embed the Script on our Plugin's Option Page Only
+        if ( isset($_GET['page']) && $_GET['page'] == 'wp-auto-republish' ) {
+            wp_enqueue_script('jquery');
+            wp_enqueue_script( 'jquery-form' );
+        }
+    }
+}
+
+add_action( 'admin_init', 'wpar_ajax_save_admin_scripts' );
+
 // register settings
 add_action( 'admin_init', 'wpar_register_plugin_settings' );
 
@@ -142,11 +154,11 @@ function wpar_register_plugin_settings() {
         add_settings_field('wpar_republish_position_text', __( 'Original Publication Message:', 'wp-auto-republish' ), 'wpar_republish_position_text_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-text', 'class' => 'wpar-text' ));
         add_settings_field('wpar_exclude_by_type', __( 'Auto Republish Old Posts by:', 'wp-auto-republish' ), 'wpar_exclude_by_type_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-exclude-type' ));
         add_settings_field('wpar_exclude_by', __( 'Select Taxonomy:', 'wp-auto-republish' ), 'wpar_exclude_by_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-taxonomy', 'class' => 'wpar-taxonomy' ));
-        add_settings_field('wpar_exclude_category', __( 'Select Categories:', 'wp-auto-republish' ), 'wpar_exclude_category_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-cat', 'class' => 'wpar-cat' ));
-        add_settings_field('wpar_exclude_tag', __( 'Select Tags:', 'wp-auto-republish' ), 'wpar_exclude_tag_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-tag', 'class' => 'wpar-tag' ));
+        add_settings_field('wpar_exclude_category', __( 'Select Post Categories:', 'wp-auto-republish' ), 'wpar_exclude_category_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-cat', 'class' => 'wpar-cat' ));
+        add_settings_field('wpar_exclude_tag', __( 'Select Post Tags:', 'wp-auto-republish' ), 'wpar_exclude_tag_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-tag', 'class' => 'wpar-tag' ));
         add_settings_field('wpar_override_category_tag', __( 'Override Category or Post Tags Filtering for Specific Posts:', 'wp-auto-republish' ), 'wpar_override_category_tag_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-override-cat-tag', 'class' => 'wpar-override-cat-tag' ));
         add_settings_field('wpar_days', __( 'Select Weekdays to Republish:', 'wp-auto-republish' ), 'wpar_days_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-days' ));
-        add_settings_field('wpar_time', __( 'Time Range for Republishing:', 'wp-auto-republish' ), 'wpar_time_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-time' ));
+        add_settings_field('wpar_time', __( 'Time Range for Republishing:', 'wp-auto-republish' ), 'wpar_time_display', 'wpar_plugin_option', 'wpar_plugin_section');
         
     //register settings
     register_setting( 'wpar_plugin_settings_fields', 'wpar_plugin_settings' );

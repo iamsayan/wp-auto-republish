@@ -18,8 +18,8 @@ function wpar_plugin_init() {
 	$day = lcfirst( date( 'D', $cur_date ) );
 
 	$cur_time = strtotime( date( 'H:i:s', $cur_date ) );
-	$start_time = strtotime( !empty($wpar_settings['wpar_start_time']) ? $wpar_settings['wpar_start_time'] : '05:00:00' );
-	$end_time = strtotime( !empty($wpar_settings['wpar_end_time']) ? $wpar_settings['wpar_end_time'] : '23:00:00' );
+	$start_time = strtotime( !empty($wpar_settings['wpar_start_time']) ? preg_replace( array( '/[^\d:]/', '/(?<=:):+/', '/^:+/', '/:+$/' ), '', $wpar_settings['wpar_start_time'] ) : '05:00:00' );
+	$end_time = strtotime( !empty($wpar_settings['wpar_end_time']) ? preg_replace( array( '/[^\d:]/', '/(?<=:):+/', '/^:+/', '/:+$/' ), '', $wpar_settings['wpar_end_time'] ) : '23:00:00' );
 
 	$priority = 10;
 	$priority = apply_filters( 'wpar_show_pub_date_priority', $priority );
@@ -96,6 +96,7 @@ function wpar_republish_old_post() {
 		}
 		
 		$wpar_omit_override = $wpar_settings['wpar_override_category_tag'];
+		$wpar_omit_override = preg_replace( array( '/[^\d,]/', '/(?<=,),+/', '/^,+/', '/,+$/' ), '', $wpar_omit_override );
 		$wpar_omit_post = array_slice( $wpar_post_types, 1 );
 
 		$wpar_omit_type = 'NOT';

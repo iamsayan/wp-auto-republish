@@ -32,8 +32,34 @@
                         <form id="saveForm" method="post" action="options.php" style="padding-left: 8px;">
                             <?php settings_fields( 'wpar_plugin_settings_fields' ); ?>
                             <?php do_settings_sections( 'wpar_plugin_option' ); ?>
-                            <p><?php submit_button( __( 'Save Changes', 'wp-auto-republish' ), 'primary save-settings', '', false ); ?></p>
+                            <p><?php submit_button( __( 'Save Settings', 'wp-auto-republish' ), 'primary save-settings', '', false ); ?></p>
                         </form>
+                        <div id="progressMessage" class="progressModal" style="display:none;">
+                            <?php _e( 'Please wait...', 'wp-auto-republish' ); ?>
+                        </div>
+                        <div id="saveMessage" class="successModal" style="display:none;">
+                            <p class="spt-success-msg">
+                                <?php _e( 'Settings Saved Successfully!', 'wp-auto-republish' ); ?>
+                            </p>
+                        </div>
+                        <script type="text/javascript">
+                            jQuery(document).ready(function($) {
+                                $('#saveForm').submit(function() {
+                                    $('#progressMessage').show();
+                                    $(".save-settings").addClass("disabled");
+                                    $(".save-settings").val("<?php _e( 'Saving...', 'wp-auto-republish' ); ?>");
+                                    $(this).ajaxSubmit({
+                                        success: function() {
+                                            $('#progressMessage').fadeOut();
+                                            $('#saveMessage').show().delay(4000).fadeOut();
+                                            $(".save-settings").removeClass("disabled");
+                                            $(".save-settings").val("<?php _e( 'Save Settings', 'wp-auto-republish' ); ?>");
+                                        }
+                                    });
+                                    return false;
+                                });
+                            });
+                        </script>
                     </div>
                 </div>
                 <div class="coffee-box">
@@ -56,7 +82,7 @@
                     </div>
                     <span class="coffee-heading">Buy me a coffee!</span>
                     <p style="text-align: justify;">Thank you for using <strong>WP Auto Republish v<?php echo WPAR_PLUGIN_VERSION ?></strong>. If you found the plugin useful buy me a coffee! Your donation will motivate and make me happy for all the efforts. You can donate via PayPal.</p>
-                    <p style="text-align: justify; font-size: 12px; font-style: italic;">Developed with <span style="color:#e25555;">♥</span> by <a href="https://profiles.wordpress.org/infosatech/" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="https://github.com/iamsayan/wp-auto-republish" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-auto-republish" target="_blank" style="font-weight: 500;">Support</a> | <a href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.</p>
+                    <p style="text-align: justify; font-size: 12px; font-style: italic;">Developed with <span style="color:#e25555;">♥</span> by <a href="https://www.sayandatta.com" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="https://github.com/iamsayan/wp-auto-republish" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-auto-republish" target="_blank" style="font-weight: 500;">Support</a> | <a href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.</p>
                 </div>
             </div>
             <div id="postbox-container-1" class="postbox-container">

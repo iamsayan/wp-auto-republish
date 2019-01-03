@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: republish, republishing, old post promoter, old posts, old post, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 3.5
 Tested up to: 5.0
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 Requires PHP: 5.4
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
@@ -108,6 +108,13 @@ Yes, permalinks with dates would be affected. This plugin shouldn't be used if y
 1. This is the admin area of WP Auto Republish.
 
 == Changelog ==
+
+= 1.0.4 =
+
+* Fixed: A bug where "Save Settings" button is not working if at least one categories and tag is not selected.
+* Improved: Adapted ajax mechanism to save plugin settings
+* Improved: Input Validation in plugin settings.
+* Fixed: Incorrectly translated strings.
 
 = 1.0.3 =
 
