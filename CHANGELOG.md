@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.0.4
+
+* Fixed: A bug where "Save Settings" button is not working if at least one categories and tag is not selected.
+* Improved: Adapted ajax mechanism to save plugin settings
+* Improved: Input Validation in plugin settings.
+* Fixed: Incorrectly translated strings.
+
 ## 1.0.3
 
 * Added: Option to set date and time for republishing.
