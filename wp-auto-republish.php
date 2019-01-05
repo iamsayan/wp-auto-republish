@@ -48,38 +48,44 @@ function wpar_plugin_load_textdomain() {
     load_plugin_textdomain( 'wp-auto-republish', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' ); 
 }
 
+// Activation
+function wpar_plugin_activation() {
+    if ( ! current_user_can( 'activate_plugins' ) ) {
+        return;
+    }
+    do_action( 'wpar_plugin_default_options' );
+}
+
 // register activation hook
 register_activation_hook( __FILE__, 'wpar_plugin_activation' );
 // register deactivation hook
 register_deactivation_hook( __FILE__, 'wpar_plugin_deactivation' );
 
-function wpar_plugin_activation() {
+function wpar_plugin_activation_add_option() {
     
-    if ( ! current_user_can( 'activate_plugins' ) ) {
-        return;
-    }
-
-    $default = array(
-        'wpar_enable_plugin'                => 1,
-        'wpar_minimun_republish_interval'   => 43200,
-        'wpar_random_republish_interval'    => 14400,
-        'wpar_republish_post_age'           => 120,
-        'wpar_republish_post_position'      => 1,
+    $options = array(
+        'wpar_enable_plugin'                => '1',
+        'wpar_minimun_republish_interval'   => '43200',
+        'wpar_random_republish_interval'    => '14400',
+        'wpar_republish_post_age'           => '120',
+        'wpar_republish_post_position'      => '1',
         'wpar_republish_method'             => 'old_first',
         'wpar_republish_position'           => 'disable',
-        'wpar_republish_position_text'      => 'Originally posted on ',
+        'wpar_republish_position_text'      => __( 'Originally posted on ', 'wp-auto-republish' ),
         'wpar_exclude_by_type'              => 'exclude',
         'wpar_exclude_by'                   => 'category',
         'wpar_exclude_category'             => array(),
         'wpar_exclude_tag'                  => array(),
         'wpar_override_category_tag'        => '',
-        'wpar_days'                         => array('sun','mon','tue','wed','thu','fri','sat'),
+        'wpar_days'                         => array( 'sun','mon','tue','wed','thu','fri','sat' ),
         'wpar_start_time'                   => '05:00:00',
         'wpar_end_time'                     => '23:00:00',
     );
-    update_option( 'wpar_plugin_settings', $default );
-    set_transient( 'wpar-admin-notice-on-activation', true, 20 );
+    update_option( 'wpar_plugin_settings', $options );
+    set_transient( 'wpar-admin-notice-on-activation', true, 5 );
 }
+
+add_action( 'wpar_plugin_default_options', 'wpar_plugin_activation_add_option' );
 
 function wpar_plugin_deactivation() {
 

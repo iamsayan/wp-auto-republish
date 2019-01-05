@@ -24,22 +24,22 @@ function wpar_minimun_republish_interval_display() {
         $wpar_settings['wpar_minimun_republish_interval'] = '43200';
     }
     $items = array(
-        '300'     => '5 Minutes',
-        '600'     => '10 Minutes',
-        '900'     => '15 Minutes',
-        '1200'    => '20 Minutes',
-        '1800'    => '30 Minutes',
-        '3600'    => '1 hour',
-        '7200'    => '2 hours',
-        '14400'   => '4 hours',
-        '21600'   => '6 hours',
-        '28800'   => '8 hours',
-        '43200'   => '12 hours',
-        '86400'   => '24 hours (1 day)',
-        '172800'  => '48 hours (2 days)',
-        '259200'  => '72 hours (3 days)',
-        '432000'  => '120 hours (5 days)',
-        '604800'  => '168 hours (7 days)'
+        '300'     => __( '5 Minutes', 'wp-auto-republish' ),
+        '600'     => __( '10 Minutes', 'wp-auto-republish' ),
+        '900'     => __( '15 Minutes', 'wp-auto-republish' ),
+        '1200'    => __( '20 Minutes', 'wp-auto-republish' ),
+        '1800'    => __( '30 Minutes', 'wp-auto-republish' ),
+        '3600'    => __( '1 hour', 'wp-auto-republish' ),
+        '7200'    => __( '2 hours', 'wp-auto-republish' ),
+        '14400'   => __( '4 hours', 'wp-auto-republish' ),
+        '21600'   => __( '6 hours', 'wp-auto-republish' ),
+        '28800'   => __( '8 hours', 'wp-auto-republish' ),
+        '43200'   => __( '12 hours', 'wp-auto-republish' ),
+        '86400'   => __( '24 hours (1 day)', 'wp-auto-republish' ),
+        '172800'  => __( '48 hours (2 days)', 'wp-auto-republish' ),
+        '259200'  => __( '72 hours (3 days)', 'wp-auto-republish' ),
+        '432000'  => __( '120 hours (5 days)', 'wp-auto-republish' ),
+        '604800'  => __( '168 hours (7 days)', 'wp-auto-republish' )
     );
     echo '<select id="wpar-minimum" name="wpar_plugin_settings[wpar_minimun_republish_interval]" style="width:35%;">';
     foreach( $items as $item => $label ) {
@@ -59,13 +59,13 @@ function wpar_random_republish_interval_display() {
         $wpar_settings['wpar_random_republish_interval'] = '14400';
     }
     $items = array(
-        '3600'    => 'Upto 1 hour',
-        '7200'    => 'Upto 2 hours',
-        '14400'   => 'Upto 4 hours',
-        '21600'   => 'Upto 6 hours',
-        '28800'   => 'Upto 8 hours',
-        '43200'   => 'Upto 12 hours',
-        '86400'   => 'Upto 24 hours'
+        '3600'    => __( 'Upto 1 hour', 'wp-auto-republish' ),
+        '7200'    => __( 'Upto 2 hours', 'wp-auto-republish' ),
+        '14400'   => __( 'Upto 4 hours', 'wp-auto-republish' ),
+        '21600'   => __( 'Upto 6 hours', 'wp-auto-republish' ),
+        '28800'   => __( 'Upto 8 hours', 'wp-auto-republish' ),
+        '43200'   => __( 'Upto 12 hours', 'wp-auto-republish' ),
+        '86400'   => __( 'Upto 24 hours', 'wp-auto-republish' )
     );
     echo '<select id="wpar-random" name="wpar_plugin_settings[wpar_random_republish_interval]" style="width:35%;">';
     foreach( $items as $item => $label ) {
@@ -85,16 +85,16 @@ function wpar_republish_post_age_display() {
         $wpar_settings['wpar_republish_post_age'] = '120';
     }
     $items = array(
-        '30'   => '30 Days (1 month)',
-        '45'   => '45 Days (1.5 months)',
-        '60'   => '60 Days (2 months)',
-        '90'   => '90 Days (3 months)',
-        '120'  => '120 Days (4 months)',
-        '180'  => '180 Days (6 months)',
-        '240'  => '240 Days (8 months)',
-        '365'  => '365 Days (1 year)',
-        '730'  => '730 Days (2 years)',
-        '1095' => '1095 Days (3 years)'
+        '30'   => __( '30 Days (1 month)', 'wp-auto-republish' ),
+        '45'   => __( '45 Days (1.5 months)', 'wp-auto-republish' ),
+        '60'   => __( '60 Days (2 months)', 'wp-auto-republish' ),
+        '90'   => __( '90 Days (3 months)', 'wp-auto-republish' ),
+        '120'  => __( '120 Days (4 months)', 'wp-auto-republish' ),
+        '180'  => __( '180 Days (6 months)', 'wp-auto-republish' ),
+        '240'  => __( '240 Days (8 months)', 'wp-auto-republish' ),
+        '365'  => __( '365 Days (1 year)', 'wp-auto-republish' ),
+        '730'  => __( '730 Days (2 years)', 'wp-auto-republish' ),
+        '1095' => __( '1095 Days (3 years)', 'wp-auto-republish' )
     );
     echo '<select id="wpar-age" name="wpar_plugin_settings[wpar_republish_post_age]" style="width:35%;">';
     foreach( $items as $item => $label ) {
@@ -114,8 +114,8 @@ function wpar_republish_method_display() {
         $wpar_settings['wpar_republish_method'] = 'old_first';
     }
     $items = array(
-        'old_first'   => 'Select Old Post First (ASC)',
-        'random'      => 'Random Selection',
+        'old_first'   => __( 'Select Old Post First (ASC)', 'wp-auto-republish' ),
+        'random'      => __( 'Random Selection', 'wp-auto-republish' )
     );
     echo '<select id="wpar-method" name="wpar_plugin_settings[wpar_republish_method]" style="width:35%;">';
     foreach( $items as $item => $label ) {
@@ -135,8 +135,8 @@ function wpar_republish_post_position_display() {
         $wpar_settings['wpar_republish_post_position'] = '1';
     }
     $items = array(
-        '1'   => '1st Position',
-        '2'   => '2nd Position'
+        '1'   => __( '1st Position', 'wp-auto-republish' ),
+        '2'   => __( '2nd Position', 'wp-auto-republish' )
     );
     echo '<select id="wpar-promotion" name="wpar_plugin_settings[wpar_republish_post_position]" style="width:35%;">';
     foreach( $items as $item => $label ) {
@@ -156,9 +156,9 @@ function wpar_republish_position_display() {
         $wpar_settings['wpar_republish_position'] = 'disable';
     }
     $items = array(
-        'disable'         => 'Disable',
-        'before_content'  => 'Before Content',
-        'after_content'   => 'After Content'
+        'disable'         => __( 'Disable', 'wp-auto-republish' ),
+        'before_content'  => __( 'Before Content', 'wp-auto-republish' ),
+        'after_content'   => __( 'After Content', 'wp-auto-republish' )
     );
     echo '<select id="wpar-position" name="wpar_plugin_settings[wpar_republish_position]" style="width:35%;">';
     foreach( $items as $item => $label ) {
@@ -174,7 +174,7 @@ function wpar_republish_position_display() {
 function wpar_republish_position_text_display() {
     $wpar_settings = get_option('wpar_plugin_settings');
     if( empty($wpar_settings['wpar_republish_position_text']) ) {
-        $wpar_settings['wpar_republish_position_text'] = 'Originally posted on ';
+        $wpar_settings['wpar_republish_position_text'] = __( 'Originally posted on ', 'wp-auto-republish' );
     }
     ?>  <input id="wpar-text" name="wpar_plugin_settings[wpar_republish_position_text]" type="text" size="35" style="width:35%;" required value="<?php if (isset($wpar_settings['wpar_republish_position_text'])) { echo $wpar_settings['wpar_republish_position_text']; } ?>" />
         &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Message before original published date of the post on frontend.', 'wp-auto-republish' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
@@ -188,9 +188,9 @@ function wpar_exclude_by_type_display() {
         $wpar_settings['wpar_exclude_by_type'] = 'exclude';
     }
     $items = array(
-        'none'     => 'None',
-        'exclude'  => 'Excluding Categories/Tags',
-        'include'  => 'Including Categories/Tags'
+        'none'     => __( 'None', 'wp-auto-republish' ),
+        'exclude'  => __( 'Excluding Categories/Tags', 'wp-auto-republish' ),
+        'include'  => __( 'Including Categories/Tags', 'wp-auto-republish' )
     );
     echo '<select id="wpar-exclude-type" name="wpar_plugin_settings[wpar_exclude_by_type]" style="width:35%;">';
     foreach( $items as $item => $label ) {
@@ -210,8 +210,8 @@ function wpar_exclude_by_display() {
         $wpar_settings['wpar_exclude_by'] = 'category';
     }
     $items = array(
-        'category'  => 'Categories',
-        'post_tag'  => 'Post Tags'
+        'category'  => __( 'Categories', 'wp-auto-republish' ),
+        'post_tag'  => __( 'Post Tags', 'wp-auto-republish' )
     );
     echo '<select id="wpar-taxonomy" name="wpar_plugin_settings[wpar_exclude_by]" style="width:35%;">';
     foreach( $items as $item => $label ) {
@@ -292,13 +292,13 @@ function wpar_days_display() {
     }
 
     $items = array(
-        'sun'  => 'Sunday',
-        'mon'  => 'Monday',
-        'tue'  => 'Tuesday',
-        'wed'  => 'Wednesday',
-        'thu'  => 'Thursday',
-        'fri'  => 'Friday',
-        'sat'  => 'Saturday'
+        'sun'  => __( 'Sunday', 'wp-auto-republish' ),
+        'mon'  => __( 'Monday', 'wp-auto-republish' ),
+        'tue'  => __( 'Tuesday', 'wp-auto-republish' ),
+        'wed'  => __( 'Wednesday', 'wp-auto-republish' ),
+        'thu'  => __( 'Thursday', 'wp-auto-republish' ),
+        'fri'  => __( 'Friday', 'wp-auto-republish' ),
+        'sat'  => __( 'Saturday', 'wp-auto-republish' )
     );
     echo '<select id="wpar-days" name="wpar_plugin_settings[wpar_days][]" multiple="multiple" required style="width:90%;">';
     foreach( $items as $item => $label ) {
