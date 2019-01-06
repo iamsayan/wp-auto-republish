@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: republish, republishing, old post promoter, old posts, old post, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 3.5
 Tested up to: 5.0
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 Requires PHP: 5.4
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
@@ -45,7 +45,7 @@ This plugin helps revive old posts by resetting the published date to the curren
 
 #### Compatibility
 
-* This plugin is tested with W3 Total Cache, WP Super Cache, WP Rocket, WP Fastest Cache, Cachify, Comet Cache, Zen Cache, LiteSpeed Cache, Nginx Cache (by Till Krüss ), SG Optimizer, HyperCache, Cache Enabler, Godaddy Managed WordPress Hosting and WP Engine and fully compatible with WordPress Version 3.5 and beyond and also compatible with any WordPress theme.
+* This plugin is tested with W3 Total Cache, WP Super Cache, WP Rocket, WP Fastest Cache, Cachify, Comet Cache, Zen Cache, LiteSpeed Cache, Nginx Cache (by Till Krüss), SG Optimizer, HyperCache, Cache Enabler, Godaddy Managed WordPress Hosting and WP Engine and fully compatible with WordPress Version 3.5 and beyond and also compatible with any WordPress theme.
 
 #### Support
 
@@ -54,6 +54,10 @@ This plugin helps revive old posts by resetting the published date to the curren
 #### Contribute
 * Active development of this plugin is handled [on GitHub](https://github.com/iamsayan/wp-auto-republish/).
 * Feel free to [fork the project on GitHub](https://github.com/iamsayan/wp-auto-republish/) and submit your contributions via pull request.
+
+#### Translations
+
+Simplified Chinese (zh_CN) by [Changmeng Hu](https://profiles.wordpress.org/cmhello)
 
 == Installation ==
 
@@ -108,6 +112,11 @@ Yes, permalinks with dates would be affected. This plugin shouldn't be used if y
 1. This is the admin area of WP Auto Republish.
 
 == Changelog ==
+
+= 1.0.5 =
+
+* Updated: Chinese Translations.
+* Fixed: Incorrectly translated strings.
 
 = 1.0.4 =
 

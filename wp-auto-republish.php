@@ -3,7 +3,7 @@
  * Plugin Name: WP Auto Republish
  * Plugin URI: https://wordpress.org/plugins/wp-auto-republish/
  * Description: The WP Auto Republish plugin helps revive old posts by resetting the publish date to the current date. This will push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: Sayan Datta
  * Author URI: https://www.sayandatta.com
  * License: GPLv3
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define ( 'WPAR_PLUGIN_VERSION', '1.0.4' );
+define ( 'WPAR_PLUGIN_VERSION', '1.0.5' );
 
 // Internationalization
 add_action( 'plugins_loaded', 'wpar_plugin_load_textdomain' );
