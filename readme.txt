@@ -57,7 +57,7 @@ This plugin helps revive old posts by resetting the published date to the curren
 
 #### Translations
 
-Simplified Chinese (zh_CN) by [Changmeng Hu](https://profiles.wordpress.org/cmhello)
+* Simplified Chinese (zh_CN) by [Changmeng Hu](https://profiles.wordpress.org/cmhello)
 
 == Installation ==
 
