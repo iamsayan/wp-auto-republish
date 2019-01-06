@@ -34,7 +34,7 @@ This plugin helps revive old posts by resetting the published date to the curren
 
 #### Warnings
 
-* DON'T USE THIS PLUGIN IF YOUR PERMALINKS INCLUDE DATES 
+* **DON'T USE THIS PLUGIN IF YOUR PERMALINKS INCLUDE DATES**
 
 #### Compatibility
 
@@ -47,6 +47,10 @@ This plugin helps revive old posts by resetting the published date to the curren
 #### Contribute
 * Active development of this plugin is handled [on GitHub](https://github.com/iamsayan/wp-auto-republish).
 * Feel free to [fork the project on GitHub](https://github.com/iamsayan/wp-auto-republish) and submit your contributions via pull request.
+
+#### Translations
+
+* Simplified Chinese (zh_CN) by [Changmeng Hu](https://profiles.wordpress.org/cmhello)
 
 ## Installation
 
