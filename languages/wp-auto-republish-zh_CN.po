@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Auto Republish\n"
-"POT-Creation-Date: 2018-12-31 22:12+0800\n"
-"PO-Revision-Date: 2018-12-31 22:28+0800\n"
-"Last-Translator: WordPress淘宝网 <support@wptaobao.com>\n"
+"POT-Creation-Date: 2019-01-06 10:04+0800\n"
+"PO-Revision-Date: 2019-01-06 10:13+0800\n"
+"Last-Translator: WordPress大学 <support@wpdaxue.com>\n"
 "Language-Team: WordPress淘宝网 <support@wptaobao.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1\n"
+"X-Generator: Poedit 2.2\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -42,15 +42,107 @@ msgstr "我已经做了"
 
 #: admin/notice.php:31
 msgid "Nope&#44; maybe later"
-msgstr "以后再说！"
+msgstr "以后再说"
 
 #: admin/settings-fields.php:16
 msgid "Enable this if you want to auto republish old posts of your blog."
 msgstr "如果您想自动重新发布博客的旧文章，请启用此功能。"
 
+#: admin/settings-fields.php:27
+msgid "5 Minutes"
+msgstr "5分钟"
+
+#: admin/settings-fields.php:28
+msgid "10 Minutes"
+msgstr "10分钟"
+
+#: admin/settings-fields.php:29
+msgid "15 Minutes"
+msgstr "15分钟"
+
+#: admin/settings-fields.php:30
+msgid "20 Minutes"
+msgstr "20分钟"
+
+#: admin/settings-fields.php:31
+msgid "30 Minutes"
+msgstr "30分钟"
+
+#: admin/settings-fields.php:32
+msgid "1 hour"
+msgstr "1小时"
+
+#: admin/settings-fields.php:33
+msgid "2 hours"
+msgstr "2小时"
+
+#: admin/settings-fields.php:34
+msgid "4 hours"
+msgstr "4小时"
+
+#: admin/settings-fields.php:35
+msgid "6 hours"
+msgstr "6小时"
+
+#: admin/settings-fields.php:36
+msgid "8 hours"
+msgstr "8小时"
+
+#: admin/settings-fields.php:37
+msgid "12 hours"
+msgstr "12小时"
+
+#: admin/settings-fields.php:38
+msgid "24 hours (1 day)"
+msgstr "24小时（1天）"
+
+#: admin/settings-fields.php:39
+msgid "48 hours (2 days)"
+msgstr "48小时（2天）"
+
+#: admin/settings-fields.php:40
+msgid "72 hours (3 days)"
+msgstr "72小时（3天）"
+
+#: admin/settings-fields.php:41
+msgid "120 hours (5 days)"
+msgstr "120小时（5天）"
+
+#: admin/settings-fields.php:42
+msgid "168 hours (7 days)"
+msgstr "168小时（7天）"
+
 #: admin/settings-fields.php:51
 msgid "Select minimum interval between post republishing."
 msgstr "选择重新发布之间的最小间隔。"
+
+#: admin/settings-fields.php:62
+msgid "Upto 1 hour"
+msgstr "最多1小时"
+
+#: admin/settings-fields.php:63
+msgid "Upto 2 hours"
+msgstr "最多2小时"
+
+#: admin/settings-fields.php:64
+msgid "Upto 4 hours"
+msgstr "最多4小时"
+
+#: admin/settings-fields.php:65
+msgid "Upto 6 hours"
+msgstr "最多6小时"
+
+#: admin/settings-fields.php:66
+msgid "Upto 8 hours"
+msgstr "最多8小时"
+
+#: admin/settings-fields.php:67
+msgid "Upto 12 hours"
+msgstr "最多12小时"
+
+#: admin/settings-fields.php:68
+msgid "Upto 24 hours"
+msgstr "最多24小时"
 
 #: admin/settings-fields.php:77
 msgid ""
@@ -58,34 +150,115 @@ msgid ""
 "republish interval."
 msgstr "从此处选择将添加到最小重新发布间隔的随机间隔。"
 
+#: admin/settings-fields.php:88
+msgid "30 Days (1 month)"
+msgstr "30天（1个月）"
+
+#: admin/settings-fields.php:89
+msgid "45 Days (1.5 months)"
+msgstr "45天（1.5个月）"
+
+#: admin/settings-fields.php:90
+msgid "60 Days (2 months)"
+msgstr "60天（2个月）"
+
+#: admin/settings-fields.php:91
+msgid "90 Days (3 months)"
+msgstr "90天（3个月）"
+
+#: admin/settings-fields.php:92
+msgid "120 Days (4 months)"
+msgstr "120天（4个月）"
+
+#: admin/settings-fields.php:93
+msgid "180 Days (6 months)"
+msgstr "180天（6个月）"
+
+#: admin/settings-fields.php:94
+msgid "240 Days (8 months)"
+msgstr "240天（8个月）"
+
+#: admin/settings-fields.php:95
+msgid "365 Days (1 year)"
+msgstr "365天（1年）"
+
+#: admin/settings-fields.php:96
+msgid "730 Days (2 years)"
+msgstr "730天（2年）"
+
+#: admin/settings-fields.php:97
+msgid "1095 Days (3 years)"
+msgstr "1095天（3年）"
+
 #: admin/settings-fields.php:106
 msgid "Select the post age before eligible for republishing."
 msgstr "在符合重新发布条件之前，请选择发布年龄。"
+
+#: admin/settings-fields.php:117
+msgid "Select Old Post First (ASC)"
+msgstr "选择旧文章优先（ASC）"
+
+#: admin/settings-fields.php:118
+msgid "Random Selection"
+msgstr "随机选择"
 
 #: admin/settings-fields.php:127
 msgid "Select the method of getting old posts from database."
 msgstr "选择从数据库中获取旧文章的方法。"
 
+#: admin/settings-fields.php:138
+msgid "1st Position"
+msgstr "第一个位置"
+
+#: admin/settings-fields.php:139
+msgid "2nd Position"
+msgstr "第二个位置"
+
 #: admin/settings-fields.php:148
 msgid ""
 "Select the position of republished post (choosing the 2nd position will "
-"leave the most recent post in place)."
-msgstr "选择重新发布的文章的位置 (选择第二个位置将保留最新的文章)。"
+"leave the most recent post in 1st place)."
+msgstr ""
+"选择重新发布的文章的位置 (选择第二个位置将保留最新的文章在第一个位置)。"
+
+#: admin/settings-fields.php:159
+msgid "Disable"
+msgstr "禁用"
+
+#: admin/settings-fields.php:160
+msgid "Before Content"
+msgstr "内容之前"
+
+#: admin/settings-fields.php:161
+msgid "After Content"
+msgstr "内容之后"
 
 #: admin/settings-fields.php:170
 msgid ""
 "Select how you want to show original published date of the post on frontend."
 msgstr "选择您希望在前端显示文章的原始发布日期的方式。"
 
+#: admin/settings-fields.php:177 wp-auto-republish.php:74
+msgid "Originally posted on "
+msgstr "首发于 "
+
 #: admin/settings-fields.php:180
 msgid "Message before original published date of the post on frontend."
 msgstr "在前端的文章的原始发布日期之前的消息。"
 
-#: admin/settings-fields.php:201
-msgid "Select Taxonomy: "
-msgstr "选择分类法："
+#: admin/settings-fields.php:191
+msgid "None"
+msgstr "没有"
 
-#: admin/settings-fields.php:216
+#: admin/settings-fields.php:192
+msgid "Excluding Categories/Tags"
+msgstr "不包括分类/标签"
+
+#: admin/settings-fields.php:193
+msgid "Including Categories/Tags"
+msgstr "包括分类/标签"
+
+#: admin/settings-fields.php:202 admin/settings-fields.php:223
 msgid ""
 "Select how you want to include or exclude a post category from republishing. "
 "If you choose excluding, selected categories/post tags will be ignored and "
@@ -94,13 +267,27 @@ msgstr ""
 "选择要在重新发布中包括或排除文章分类的方式。如果选择排除（Excluding），则选定"
 "的分类/文章标签将被忽略，反之亦然。"
 
-#: admin/settings-fields.php:246
+#: admin/settings-fields.php:213
+msgid "Categories"
+msgstr "分类"
+
+#: admin/settings-fields.php:214
+msgid "Post Tags"
+msgstr "文章标签"
+
+#: admin/settings-fields.php:247
 msgid ""
 "Select categories which you want to include to republishing or exclude from "
 "republishing."
 msgstr "选择要重新发布所包括的分类或从重新发布中排除的分类。"
 
-#: admin/settings-fields.php:258
+#: admin/settings-fields.php:271
+msgid ""
+"Select tags which you want to include to republishing or exclude from "
+"republishing."
+msgstr "选择要包含的标签以重新发布或从重新发布中排除。"
+
+#: admin/settings-fields.php:283
 msgid ""
 "Write the post IDs which you want to select forcefully (when you select "
 "excluding) or want to not select forcefully (when you select including)."
@@ -108,16 +295,51 @@ msgstr ""
 "填入要强制选择的文章 id (当您选择 排除/Excluding 时) 或不希望强制选择的文章 "
 "id (当您选择 包括/Including 时)。"
 
-#. Plugin Name of the plugin/theme
-#: admin/settings-page.php:14 wp-auto-republish.php:156
-msgid "WP Auto Republish"
-msgstr "WP 自动重新发布"
+#: admin/settings-fields.php:295
+msgid "Sunday"
+msgstr "周日"
 
-#: admin/settings-page.php:14
-msgid "Ver"
-msgstr "版本"
+#: admin/settings-fields.php:296
+msgid "Monday"
+msgstr "周一"
 
-#: admin/settings-page.php:15
+#: admin/settings-fields.php:297
+msgid "Tuesday"
+msgstr "周二"
+
+#: admin/settings-fields.php:298
+msgid "Wednesday"
+msgstr "周三"
+
+#: admin/settings-fields.php:299
+msgid "Thursday"
+msgstr "周四"
+
+#: admin/settings-fields.php:300
+msgid "Friday"
+msgstr "周五"
+
+#: admin/settings-fields.php:301
+msgid "Saturday"
+msgstr "周六"
+
+#: admin/settings-fields.php:310
+msgid "Select the weekdays when you want to republish old posts."
+msgstr "如果要重新发布旧文章，请选择工作日。"
+
+#: admin/settings-fields.php:324
+msgid "Start Time:"
+msgstr "开始时间："
+
+#: admin/settings-fields.php:327
+msgid "End Time:"
+msgstr "时间结束："
+
+#: admin/settings-fields.php:330
+msgid "Set the time period for republish old posts from here."
+msgstr "从此处设置重新发布旧文章的时间段。"
+
+#: admin/settings-page.php:16
 msgid ""
 "This plugin helps to revive old posts by resetting the publish date to the "
 "current date."
@@ -125,15 +347,89 @@ msgstr ""
 "此插件通过将发布日期重置为当前日期来帮助恢复旧的文章。感谢 <a href=\"https://"
 "www.wpdaxue.com\" target=\"_blank\">WordPress大学</a> 提供简体中文支持。"
 
-#: admin/settings-page.php:22
+#: admin/settings-page.php:28
 msgid "Configure Settings"
 msgstr "配置设置"
 
-#: admin/settings-page.php:29
-msgid "Save Changes"
-msgstr "保存更改"
+#: admin/settings-page.php:35 admin/settings-page.php:56
+msgid "Save Settings"
+msgstr "保存设置"
 
-#: wp-auto-republish.php:95
+#: admin/settings-page.php:38
+msgid "Please wait..."
+msgstr "请稍候..."
+
+#: admin/settings-page.php:42
+msgid "Settings Saved Successfully!"
+msgstr "设置已成功保存！"
+
+#: admin/settings-page.php:50
+msgid "Saving..."
+msgstr "保存中..."
+
+#: admin/settings-page.php:79
+msgid "Custom"
+msgstr "自定义"
+
+#: admin/settings-page.php:81 admin/settings-page.php:83
+msgid "Buy me a coffee!"
+msgstr "给我买杯咖啡！"
+
+#: admin/settings-page.php:84
+#, php-format
+msgid ""
+"Thank you for using %s. If you found the plugin useful buy me a coffee! Your "
+"donation will motivate and make me happy for all the efforts. You can donate "
+"via PayPal."
+msgstr ""
+"感谢您使用%s。如果你发现插件哟用，请给我买咖啡！您的捐款将激励并让我为所有努"
+"力感到高兴。您可以通过PayPal捐款。"
+
+#: admin/settings-page.php:90
+msgid "My Other Plugins!"
+msgstr "我的其他插件！"
+
+#: admin/settings-page.php:96
+msgid ""
+"Display last update date and time on pages and posts very easily with "
+"'dateModified' Schema Markup."
+msgstr ""
+"使用“dateModified”架构标记可以非常轻松地在页面和文章上显示上次更新日期和时"
+"间。"
+
+#: admin/settings-page.php:104
+msgid ""
+"Ultimate Facebook Comment Solution with instant email notification for any "
+"WordPress Website. Everything is customizable."
+msgstr ""
+"终极Facebook评论解决方案，任何WordPress网站即时电子邮件通知。一切都是可定制"
+"的。"
+
+#: admin/settings-page.php:112
+msgid ""
+"Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to "
+"wordpress pages very easily (tested on Yoast SEO, All in One SEO Pack, Rank "
+"Math, SEOPresss and Others)."
+msgstr ""
+"将.html，.php，.aspx，.htm，.asp，.shtml等任何页面扩展名非常容易地添加到"
+"wordpress页面（在Yoast SEO，All in One SEO Pack，Rank Math，SEOPresss and "
+"Others上测试）。"
+
+#: admin/settings-page.php:120
+msgid ""
+"Simple Posts Ticker is a small tool that shows your most recent posts in a "
+"marquee style."
+msgstr "Simple Posts Ticker 是一个小工具，以大帐篷风格显示您最近的文章。"
+
+#: admin/settings-page.php:128
+msgid ""
+"Customize WP header, add custom code and enable, disable or remove the "
+"unwanted meta tags, links from the source code and many more."
+msgstr ""
+"自定义WP页眉，添加自定义代码并启用，禁用或删除不需要的元标记，源代码中的链接"
+"等等。"
+
+#: wp-auto-republish.php:105
 #, php-format
 msgid ""
 "Thanks for installing %1$s v%2$s plugin. Click <a href=\"%3$s\">here</a> to "
@@ -141,66 +437,87 @@ msgid ""
 msgstr ""
 "感谢您安装 %1$s v%2$s 插件。单击 <a href=\"%3$s\">这里</a> 配置插件设置。"
 
-#: wp-auto-republish.php:102
+#: wp-auto-republish.php:112
 msgid ""
 "WARNING: As it seems that your permalinks structure contain date, please "
 "disable the WP Auto Republish plugin immediately."
 msgstr ""
 "警告: 由于您的永久链接结构似乎包含日期，请立即禁用 WP 自动重新发布插件。"
 
-#: wp-auto-republish.php:131
+#: wp-auto-republish.php:153
 msgid "Enable Auto Republish?"
 msgstr "启用自动重新发布？"
 
-#: wp-auto-republish.php:132
+#: wp-auto-republish.php:154
 msgid "Minimum Republish Interval:"
 msgstr "最小重新发布间隔："
 
-#: wp-auto-republish.php:133
+#: wp-auto-republish.php:155
 msgid "Randomness Interval:"
 msgstr "随机间隔："
 
-#: wp-auto-republish.php:134
+#: wp-auto-republish.php:156
 msgid "Post Republish Eligibility Age:"
 msgstr "重新发布资格年龄："
 
-#: wp-auto-republish.php:135
+#: wp-auto-republish.php:157
 msgid "Select Old Posts Query Method:"
 msgstr "选择旧文章查询方法："
 
-#: wp-auto-republish.php:136
+#: wp-auto-republish.php:158
 msgid "Republish Post to Position:"
 msgstr "重新发布文章到什么位置："
 
-#: wp-auto-republish.php:137
+#: wp-auto-republish.php:159
 msgid "Show Original Publication Date:"
 msgstr "显示原始发布日期："
 
-#: wp-auto-republish.php:138
+#: wp-auto-republish.php:160
 msgid "Original Publication Message:"
 msgstr "原始发布消息："
 
-#: wp-auto-republish.php:139
+#: wp-auto-republish.php:161
 msgid "Auto Republish Old Posts by:"
 msgstr "根据什么自动重新发布旧文章："
 
-#: wp-auto-republish.php:142
-msgid "Select Categories or Tags:"
-msgstr "选择分类或标签："
+#: wp-auto-republish.php:162
+msgid "Select Taxonomy:"
+msgstr "选择分类法："
 
-#: wp-auto-republish.php:143
+#: wp-auto-republish.php:163
+msgid "Select Post Categories:"
+msgstr "选择文章分类："
+
+#: wp-auto-republish.php:164
+msgid "Select Post Tags:"
+msgstr "选择文章标签："
+
+#: wp-auto-republish.php:165
 msgid "Override Category or Post Tags Filtering for Specific Posts:"
 msgstr "为特定的文章覆盖分类或文章标签筛选："
 
-#: wp-auto-republish.php:179
+#: wp-auto-republish.php:166
+msgid "Select Weekdays to Republish:"
+msgstr "选择要重新发布的工作日："
+
+#: wp-auto-republish.php:167
+msgid "Time Range for Republishing:"
+msgstr "重新发布的时间范围："
+
+#. Plugin Name of the plugin/theme
+#: wp-auto-republish.php:180
+msgid "WP Auto Republish"
+msgstr "WP 自动重新发布"
+
+#: wp-auto-republish.php:198
 msgid "Settings"
 msgstr "设置"
 
-#: wp-auto-republish.php:188
+#: wp-auto-republish.php:207
 msgid "Support"
 msgstr "支持"
 
-#: wp-auto-republish.php:189
+#: wp-auto-republish.php:208
 msgid "Donate"
 msgstr "捐赠"
 
@@ -224,5 +541,14 @@ msgid "Sayan Datta"
 msgstr "Sayan Datta"
 
 #. Author URI of the plugin/theme
-msgid "https://profiles.wordpress.org/infosatech/"
-msgstr "https://profiles.wordpress.org/infosatech/"
+msgid "https://www.sayandatta.com"
+msgstr "https://www.sayandatta.com"
+
+#~ msgid "Ver"
+#~ msgstr "版本"
+
+#~ msgid "Save Changes"
+#~ msgstr "保存更改"
+
+#~ msgid "https://profiles.wordpress.org/infosatech/"
+#~ msgstr "https://profiles.wordpress.org/infosatech/"
