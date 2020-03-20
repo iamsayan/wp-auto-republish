@@ -24,6 +24,14 @@ jQuery(document).ready(function($) {
         create: false
     });
 
+    $('select#wpar-pt').selectize({
+        plugins: ['remove_button'],
+        delimiter: ',',
+        placeholder: '-- Select post types (required) --',
+        persist: false,
+        create: false
+    });
+
     $('#wpar-position').change(function() {
         if ($('#wpar-position').val() == 'disable') {
             $('.wpar-text').hide();

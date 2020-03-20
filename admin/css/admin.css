@@ -168,6 +168,14 @@ input, select, textarea {
     border-radius: 3px;
 }
 
+code {
+    font-size: 11px;
+}
+
+input, select, span.dashicon {
+    vertical-align: middle;
+}
+
 .switch {
     position: relative;
     display: inline-block;

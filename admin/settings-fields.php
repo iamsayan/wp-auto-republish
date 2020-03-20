@@ -41,7 +41,7 @@ function wpar_minimun_republish_interval_display() {
         '432000'  => __( '120 hours (5 days)', 'wp-auto-republish' ),
         '604800'  => __( '168 hours (7 days)', 'wp-auto-republish' )
     );
-    echo '<select id="wpar-minimum" name="wpar_plugin_settings[wpar_minimun_republish_interval]" style="width:35%;">';
+    echo '<select id="wpar-minimum" name="wpar_plugin_settings[wpar_minimun_republish_interval]" style="width:40%;">';
     foreach( $items as $item => $label ) {
         $selected = ( $wpar_settings['wpar_minimun_republish_interval'] == $item ) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
@@ -67,7 +67,7 @@ function wpar_random_republish_interval_display() {
         '43200'   => __( 'Upto 12 hours', 'wp-auto-republish' ),
         '86400'   => __( 'Upto 24 hours', 'wp-auto-republish' )
     );
-    echo '<select id="wpar-random" name="wpar_plugin_settings[wpar_random_republish_interval]" style="width:35%;">';
+    echo '<select id="wpar-random" name="wpar_plugin_settings[wpar_random_republish_interval]" style="width:40%;">';
     foreach( $items as $item => $label ) {
         $selected = ( $wpar_settings['wpar_random_republish_interval'] == $item ) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
@@ -96,7 +96,8 @@ function wpar_republish_post_age_display() {
         '730'  => __( '730 Days (2 years)', 'wp-auto-republish' ),
         '1095' => __( '1095 Days (3 years)', 'wp-auto-republish' )
     );
-    echo '<select id="wpar-age" name="wpar_plugin_settings[wpar_republish_post_age]" style="width:35%;">';
+    $items = apply_filters( 'wpar_republish_eligibility_age', $items );
+    echo '<select id="wpar-age" name="wpar_plugin_settings[wpar_republish_post_age]" style="width:40%;">';
     foreach( $items as $item => $label ) {
         $selected = ( $wpar_settings['wpar_republish_post_age'] == $item ) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
@@ -115,9 +116,10 @@ function wpar_republish_method_display() {
     }
     $items = array(
         'old_first'   => __( 'Select Old Post First (ASC)', 'wp-auto-republish' ),
+        'new_first'   => __( 'Select New Post First (DESC)', 'wp-auto-republish' ),
         'random'      => __( 'Random Selection', 'wp-auto-republish' )
     );
-    echo '<select id="wpar-method" name="wpar_plugin_settings[wpar_republish_method]" style="width:35%;">';
+    echo '<select id="wpar-method" name="wpar_plugin_settings[wpar_republish_method]" style="width:40%;">';
     foreach( $items as $item => $label ) {
         $selected = ( $wpar_settings['wpar_republish_method'] == $item ) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
@@ -138,7 +140,7 @@ function wpar_republish_post_position_display() {
         '1'   => __( '1st Position', 'wp-auto-republish' ),
         '2'   => __( '2nd Position', 'wp-auto-republish' )
     );
-    echo '<select id="wpar-promotion" name="wpar_plugin_settings[wpar_republish_post_position]" style="width:35%;">';
+    echo '<select id="wpar-promotion" name="wpar_plugin_settings[wpar_republish_post_position]" style="width:40%;">';
     foreach( $items as $item => $label ) {
         $selected = ( $wpar_settings['wpar_republish_post_position'] == $item ) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
@@ -160,7 +162,7 @@ function wpar_republish_position_display() {
         'before_content'  => __( 'Before Content', 'wp-auto-republish' ),
         'after_content'   => __( 'After Content', 'wp-auto-republish' )
     );
-    echo '<select id="wpar-position" name="wpar_plugin_settings[wpar_republish_position]" style="width:35%;">';
+    echo '<select id="wpar-position" name="wpar_plugin_settings[wpar_republish_position]" style="width:40%;">';
     foreach( $items as $item => $label ) {
         $selected = ( $wpar_settings['wpar_republish_position'] == $item ) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
@@ -176,7 +178,7 @@ function wpar_republish_position_text_display() {
     if( empty($wpar_settings['wpar_republish_position_text']) ) {
         $wpar_settings['wpar_republish_position_text'] = __( 'Originally posted on ', 'wp-auto-republish' );
     }
-    ?>  <input id="wpar-text" name="wpar_plugin_settings[wpar_republish_position_text]" type="text" size="35" style="width:35%;" required value="<?php if (isset($wpar_settings['wpar_republish_position_text'])) { echo $wpar_settings['wpar_republish_position_text']; } ?>" />
+    ?>  <input id="wpar-text" name="wpar_plugin_settings[wpar_republish_position_text]" type="text" size="35" style="width:40%;" required value="<?php if (isset($wpar_settings['wpar_republish_position_text'])) { echo $wpar_settings['wpar_republish_position_text']; } ?>" />
         &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Message before original published date of the post on frontend.', 'wp-auto-republish' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
@@ -192,7 +194,7 @@ function wpar_exclude_by_type_display() {
         'exclude'  => __( 'Excluding Categories/Tags', 'wp-auto-republish' ),
         'include'  => __( 'Including Categories/Tags', 'wp-auto-republish' )
     );
-    echo '<select id="wpar-exclude-type" name="wpar_plugin_settings[wpar_exclude_by_type]" style="width:35%;">';
+    echo '<select id="wpar-exclude-type" name="wpar_plugin_settings[wpar_exclude_by_type]" style="width:40%;">';
     foreach( $items as $item => $label ) {
         $selected = ( $wpar_settings['wpar_exclude_by_type'] == $item ) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
@@ -213,7 +215,7 @@ function wpar_exclude_by_display() {
         'category'  => __( 'Categories', 'wp-auto-republish' ),
         'post_tag'  => __( 'Post Tags', 'wp-auto-republish' )
     );
-    echo '<select id="wpar-taxonomy" name="wpar_plugin_settings[wpar_exclude_by]" style="width:35%;">';
+    echo '<select id="wpar-taxonomy" name="wpar_plugin_settings[wpar_exclude_by]" style="width:40%;">';
     foreach( $items as $item => $label ) {
         $selected = ( $wpar_settings['wpar_exclude_by'] == $item ) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
@@ -281,6 +283,28 @@ function wpar_override_category_tag_display() {
     $wpar_omit_override = preg_replace( array( '/[^\d,]/', '/(?<=,),+/', '/^,+/', '/,+$/' ), '', $wpar_settings['wpar_override_category_tag'] ); ?>
     <textarea id="wpar-override-cat-tag" name="wpar_plugin_settings[wpar_override_category_tag]" rows="3" cols="90" placeholder="ex: 53,109,257" style="width:90%"><?php if (isset($wpar_omit_override)) { echo $wpar_omit_override; } ?></textarea>
     &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Write the post IDs which you want to select forcefully (when you select excluding) or want to not select forcefully (when you select including).', 'wp-auto-republish' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <?php
+}
+
+function wpar_post_types_display() {
+    $wpar_settings = get_option('wpar_plugin_settings');
+    
+    if( !isset($wpar_settings['wpar_post_types']) ) {
+        $wpar_settings['wpar_post_types'][] = 'post';
+    }
+
+    $post_types = get_post_types(array(
+        'public'   => true,
+    ), 'names'); 
+
+    echo '<select id="wpar-pt" name="wpar_plugin_settings[wpar_post_types][]" multiple="multiple" style="width:90%;">';
+    foreach( $post_types as $item ) {
+        $selected = in_array( $item, $wpar_settings['wpar_post_types'] ) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $item . '</option>';
+    }
+    echo '</select>';
+    ?>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select post types where you want to show facebook comment box.', 'ultimate-facebook-comments' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 

@@ -17,7 +17,7 @@ function wpar_rating_admin_notice() {
     if ( wpar_plugin_get_installed_time() > strtotime( '-240 hours' )
         || '1' === get_option( 'wpar_plugin_dismiss_rating_notice' )
         || ! current_user_can( 'manage_options' )
-        || apply_filters( 'wpar_plugin_show_sticky_notice', false ) ) {
+        || apply_filters( 'wpar_plugin_hide_sticky_notice', false ) ) {
         return;
     }
 
@@ -26,9 +26,10 @@ function wpar_rating_admin_notice() {
     
     <div class="notice notice-success">
         <p><?php _e( 'Hey, I noticed you\'ve been using WP Auto Republish for more than 1 week – that’s awesome! Could you please do me a BIG favor and give it a <strong>5-star</strong> rating on WordPress? Just to help us spread the word and boost my motivation.', 'wp-auto-republish' ); ?><p>
-        <a href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" class="button button-secondary"><?php _e( 'Ok, you deserve it', 'wp-auto-republish' ); ?></a>&nbsp;
+        <p><a href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" class="button button-secondary"><?php _e( 'Ok, you deserve it', 'wp-auto-republish' ); ?></a>&nbsp;
         <a href="<?php echo $dismiss; ?>" class="already-did"><strong><?php _e( 'I already did', 'wp-auto-republish' ); ?></strong></a>&nbsp;<strong>|</strong>
-        <a href="<?php echo $no_thanks; ?>" class="later"><strong><?php _e( 'Nope&#44; maybe later', 'wp-auto-republish' ); ?></strong></a>
+        <a href="<?php echo $no_thanks; ?>" class="later"><strong><?php _e( 'Nope&#44; maybe later', 'wp-auto-republish' ); ?></strong></a>&nbsp;<strong>|</strong>
+        <a href="<?php echo $dismiss; ?>" class="hide"><strong><?php _e( 'I don\'t want to rate', 'wp-auto-republish' ); ?></strong></a></p>
     </div>
 <?php
 }

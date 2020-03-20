@@ -16,7 +16,7 @@
         <div><?php _e( 'This plugin helps to revive old posts by resetting the publish date to the current date.', 'wp-auto-republish' ); ?></div><hr>
         <div class="top-sharebar">
             <a class="share-btn rate-btn" href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" title="Please rate 5 stars if you like WP Auto Republish"><span class="dashicons dashicons-star-filled"></span> Rate 5 stars</a>
-            <a class="share-btn twitter" href="https://twitter.com/home?status=Check%20out%20WP%20Auto%20Republish,%20a%20%23WordPress%20%23plugin%20that%20revive%20your%20old%20posts%20by%20resetting%20the%20published%20date%20to%20the%20current%20date%20https%3A//wordpress.org/plugins/wp-auto-republish/%20via%20%40im_sayaan" target="_blank"><span class="dashicons dashicons-twitter"></span> Tweet about WP Auto Republish</a>
+            <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Check%20out%20WP%20Auto%20Republish,%20a%20%23WordPress%20%23plugin%20that%20revive%20your%20old%20posts%20by%20resetting%20the%20published%20date%20to%20the%20current%20date%20https%3A//wordpress.org/plugins/wp-auto-republish/%20via%20%40im_sayaan" target="_blank"><span class="dashicons dashicons-twitter"></span> Tweet about WP Auto Republish</a>
         </div>
     </div>
     <div id="poststuff" style="padding-top: 0;">
@@ -65,24 +65,24 @@
                 <div class="coffee-box">
                     <div class="coffee-amt-wrap">
                         <p><select class="coffee-amt">
-                            <option value="2usd">$2</option>
-                            <option value="3usd">$3</option>
-                            <option value="4usd">$4</option>
-                            <option value="5usd" selected="selected">$5</option>
+                            <option value="5usd">$5</option>
                             <option value="6usd">$6</option>
                             <option value="7usd">$7</option>
                             <option value="8usd">$8</option>
                             <option value="9usd">$9</option>
-                            <option value="10usd">$10</option>
+                            <option value="10usd" selected="selected">$10</option>
                             <option value="11usd">$11</option>
                             <option value="12usd">$12</option>
+                            <option value="13usd">$13</option>
+                            <option value="14usd">$14</option>
+                            <option value="15usd">$15</option>
                             <option value=""><?php _e( 'Custom', 'wp-auto-republish' ); ?></option>
                         </select></p>
-                        <a class="button button-primary buy-coffee-btn" style="margin-left: 2px;" href="https://www.paypal.me/iamsayan/5usd" data-link="https://www.paypal.me/iamsayan/" target="_blank"><?php _e( 'Buy me a coffee!', 'wp-auto-republish' ); ?></a>
+                        <a class="button button-primary buy-coffee-btn" style="margin-left: 2px;" href="https://www.paypal.me/iamsayan/10usd" data-link="https://www.paypal.me/iamsayan/" target="_blank"><?php _e( 'Buy me a coffee!', 'wp-auto-republish' ); ?></a>
                     </div>
                     <span class="coffee-heading"><?php _e( 'Buy me a coffee!', 'wp-auto-republish' ); ?></span>
                     <p style="text-align: justify;"><?php printf( __( 'Thank you for using %s. If you found the plugin useful buy me a coffee! Your donation will motivate and make me happy for all the efforts. You can donate via PayPal.', 'wp-auto-republish' ), '<strong>WP Auto Republish v' . WPAR_PLUGIN_VERSION . '</strong>' ); ?></strong></p>
-                    <p style="text-align: justify;font-size: 12px;font-style: italic;">Developed with <span style="color:#e25555;">♥</span> by <a href="https://www.sayandatta.com" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="https://github.com/iamsayan/wp-auto-republish" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-auto-republish" target="_blank" style="font-weight: 500;">Support</a> | <a href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.</p>
+                    <p style="text-align: justify;font-size: 12px;font-style: italic;">Developed with <span style="color:#e25555;">♥</span> by <a href="https://sayandatta.in" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="mailto:iamsayan@pm.me" style="font-weight: 500;">Hire Me</a> | <a href="https://github.com/iamsayan/wp-auto-republish" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-auto-republish" target="_blank" style="font-weight: 500;">Support</a> | <a href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.</p>
                 </div>
             </div>
             <div id="postbox-container-1" class="postbox-container">
@@ -100,8 +100,8 @@
                         <div class="misc-pub-section">
                             <span class="dashicons dashicons-admin-comments"></span>
                             <label>
-                                <strong><a href="https://wordpress.org/plugins/ultimate-facebook-comments/" target="_blank">Ultimate Facebook Comments</a>: </strong>
-                                <?php _e( 'Ultimate Facebook Comment Solution with instant email notification for any WordPress Website. Everything is customizable.', 'wp-auto-republish' ); ?>
+                                <strong><a href="https://wordpress.org/plugins/ultimate-facebook-comments/" target="_blank">Ultimate Social Comments</a>: </strong>
+                                <?php _e( 'Ultimate Facebook Comments Solution with instant email notification for any WordPress Website. Everything is customizable.', 'wp-auto-republish' ); ?>
                             </label>
                         </div>
                         <hr>

@@ -3,9 +3,9 @@
  * Plugin Name: WP Auto Republish
  * Plugin URI: https://wordpress.org/plugins/wp-auto-republish/
  * Description: The WP Auto Republish plugin helps revive old posts by resetting the publish date to the current date. This will push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
- * Version: 1.0.5
+ * Version: 1.0.7
  * Author: Sayan Datta
- * Author URI: https://www.sayandatta.com
+ * Author URI: https://sayandatta.in
  * License: GPLv3
  * Text Domain: wp-auto-republish
  * Domain Path: /languages
@@ -25,7 +25,7 @@
  * 
  * @category Core
  * @package  WP Auto Republish
- * @author   Sayan Datta
+ * @author   Sayan Datta <iamsayan@me>
  * @license  http://www.gnu.org/licenses/ GNU General Public License
  * @link     https://wordpress.org/plugins/wp-auto-republish/
  */
@@ -35,7 +35,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define ( 'WPAR_PLUGIN_VERSION', '1.0.5' );
+define ( 'WPAR_PLUGIN_VERSION', '1.0.7' );
+
+// debug scripts
+//define( 'WPAR_PLUGIN_ENABLE_DEBUG', 'true' );
 
 // Internationalization
 add_action( 'plugins_loaded', 'wpar_plugin_load_textdomain' );
@@ -117,12 +120,16 @@ function wpar_plugin_install_notice() {
 add_action( 'admin_notices', 'wpar_plugin_install_notice' ); 
 
 function wpar_load_admin_assets() {
+    $ver = WPAR_PLUGIN_VERSION;
+    if( defined( 'WPAR_PLUGIN_ENABLE_DEBUG' ) ) {
+        $ver = time();
+    }
     // get current screen
     $current_screen = get_current_screen();
     if ( strpos( $current_screen->base, 'wp-auto-republish') !== false ) {
-        wp_enqueue_style( 'wpar-styles', plugins_url( 'admin/css/admin.min.css', __FILE__ ), array(), WPAR_PLUGIN_VERSION );
+        wp_enqueue_style( 'wpar-styles', plugins_url( 'admin/css/admin.min.css', __FILE__ ), array(), $ver );
         wp_enqueue_style( 'wpar-selectize-css', plugins_url( 'admin/css/selectize.min.css', __FILE__ ), array(), '0.12.6' );
-        wp_enqueue_script( 'wpar-admin-js', plugins_url( 'admin/js/admin.min.js', __FILE__ ), array(), WPAR_PLUGIN_VERSION );
+        wp_enqueue_script( 'wpar-admin-js', plugins_url( 'admin/js/admin.min.js', __FILE__ ), array(), $ver );
         wp_enqueue_script( 'wpar-selectize-js', plugins_url( 'admin/js/selectize.min.js', __FILE__ ), array(), '0.12.6' );
     }
 }
@@ -159,10 +166,11 @@ function wpar_register_plugin_settings() {
         add_settings_field('wpar_republish_position', __( 'Show Original Publication Date:', 'wp-auto-republish' ), 'wpar_republish_position_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-position' ));
         add_settings_field('wpar_republish_position_text', __( 'Original Publication Message:', 'wp-auto-republish' ), 'wpar_republish_position_text_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-text', 'class' => 'wpar-text' ));
         add_settings_field('wpar_exclude_by_type', __( 'Auto Republish Old Posts by:', 'wp-auto-republish' ), 'wpar_exclude_by_type_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-exclude-type' ));
-        add_settings_field('wpar_exclude_by', __( 'Select Taxonomy:', 'wp-auto-republish' ), 'wpar_exclude_by_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-taxonomy', 'class' => 'wpar-taxonomy' ));
+        add_settings_field('wpar_exclude_by', __( 'Select Taxonomy (Post only):', 'wp-auto-republish' ), 'wpar_exclude_by_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-taxonomy', 'class' => 'wpar-taxonomy' ));
         add_settings_field('wpar_exclude_category', __( 'Select Post Categories:', 'wp-auto-republish' ), 'wpar_exclude_category_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-cat', 'class' => 'wpar-cat' ));
         add_settings_field('wpar_exclude_tag', __( 'Select Post Tags:', 'wp-auto-republish' ), 'wpar_exclude_tag_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-tag', 'class' => 'wpar-tag' ));
         add_settings_field('wpar_override_category_tag', __( 'Override Category or Post Tags Filtering for Specific Posts:', 'wp-auto-republish' ), 'wpar_override_category_tag_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-override-cat-tag', 'class' => 'wpar-override-cat-tag' ));
+        add_settings_field('wpar_post_types', __( 'Select Post Types to Republish:', 'wp-auto-republish' ), 'wpar_post_types_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-pt' ));
         add_settings_field('wpar_days', __( 'Select Weekdays to Republish:', 'wp-auto-republish' ), 'wpar_days_display', 'wpar_plugin_option', 'wpar_plugin_section', array( 'label_for' => 'wpar-days' ));
         add_settings_field('wpar_time', __( 'Time Range for Republishing:', 'wp-auto-republish' ), 'wpar_time_display', 'wpar_plugin_option', 'wpar_plugin_section');
         
@@ -188,9 +196,11 @@ function wpar_plugin_settings_page() {
 $wpar_settings = get_option( 'wpar_plugin_settings' ); 
 if ( isset( $wpar_settings['wpar_enable_plugin'] ) && $wpar_settings['wpar_enable_plugin'] == 1 ) {
     require_once plugin_dir_path( __FILE__ ) . 'includes/core.php';
+    require_once plugin_dir_path( __FILE__ ) . 'includes/cache.php';
 }
 
 require_once plugin_dir_path( __FILE__ ) . 'admin/notice.php';
+require_once plugin_dir_path( __FILE__ ) . 'admin/donate.php';
 
 // add action links
 function wpar_add_action_links ( $links ) {
@@ -205,7 +215,7 @@ function wpar_plugin_meta_links( $links, $file ) {
     if ( $file == $plugin ) // only for this plugin
         return array_merge( $links, 
             array( '<a href="https://wordpress.org/support/plugin/wp-auto-republish" target="_blank">' . __( 'Support', 'wp-auto-republish' ) . '</a>' ),
-            array( '<a href="http://bit.ly/2I0Gj60" target="_blank">' . __( 'Donate', 'wp-auto-republish' ) . '</a>' )
+            array( '<a href="https://www.paypal.me/iamsayan/" target="_blank">' . __( 'Donate', 'wp-auto-republish' ) . '</a>' )
         );
     return $links;
 }

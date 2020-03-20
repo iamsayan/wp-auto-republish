@@ -25,7 +25,7 @@ if ( !is_multisite() ) {
 
 	// This is a multisite
 	//
-	// @since 1.4.3
+	// @since 1.0.0
 	
     global $wpdb;
 	

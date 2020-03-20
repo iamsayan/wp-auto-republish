@@ -38,7 +38,7 @@ This plugin helps revive old posts by resetting the published date to the curren
 
 #### Compatibility
 
-* This plugin is tested with W3 Total Cache, WP Super Cache, WP Rocket, WP Fastest Cache, Cachify, Comet Cache, Zen Cache, LiteSpeed Cache, Nginx Cache (by Till Krüss ), SG Optimizer, HyperCache, Cache Enabler, Godaddy Managed WordPress Hosting and WP Engine and fully compatible with WordPress Version 3.5 and beyond and also compatible with any WordPress theme.
+* This plugin is tested with W3 Total Cache, WP Super Cache, WP Rocket, WP Fastest Cache, Cachify, Comet Cache, Zen Cache, LiteSpeed Cache, Nginx Cache (by Till Krüss ), SG Optimizer, HyperCache, Cache Enabler, Godaddy Managed WordPress Hosting and WP Engine and fully compatible with WordPress Version 4.0 and beyond and also compatible with any WordPress theme.
 
 #### Support
 
@@ -70,17 +70,6 @@ This plugin helps revive old posts by resetting the published date to the curren
 1. Enable/disable options and save changes.
 
 ### Frequently Asked Questions
-
-#### Is there any way to include custom post types?
-
-Yes. It is possible. By default, this plugin includes posts only. You can add other post types also by adding this snippet to the end of your active theme's functions.php file:
-
-`add_filter( 'wpar_supported_post_types', 'wpar_add_custom_post_types' );`
-
-`function wpar_add_custom_post_types( $output ) {
-    $post_types = array( 'page', 'product', 'any_cpt' );
-    return array_merge( $output, $post_types );
-}`
 
 #### How to customize original post publication date format?
 

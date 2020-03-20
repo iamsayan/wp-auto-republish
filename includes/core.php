@@ -26,6 +26,8 @@ function wpar_plugin_init() {
 
 	add_filter( 'the_content', 'wpar_hook_into_the_content', $priority );
 
+	do_action( 'wpar_republish_old_post_init' ); 
+
 	$gap = 3600;
 	$gap = apply_filters( 'wpar_scheduled_post_interval', $gap );
 
@@ -44,19 +46,23 @@ function wpar_plugin_init() {
 	}
 
 	if ( !empty( $wpar_days ) && in_array( $day, $wpar_days ) ) {
-		if ( $cur_time > $start_time && $cur_time < $end_time ) {
+		if ( $cur_time >= $start_time && $cur_time <= $end_time ) {
 	        if ( wpar_update_time() ) {
-		        update_option( 'wpar_last_update', time() );
-	            wpar_republish_old_post();
+				update_option( 'wpar_last_update', time() );
+				wpar_republish_old_post();
 		    }
 	    }
 	}
-	
 }
 
 function wpar_custom_post_types_support() {
-    $output = array();
-	$post_types = apply_filters( 'wpar_supported_post_types', array( 'post' ), $output );
+	$wpar_settings = get_option('wpar_plugin_settings');
+	$output = array();
+	$post_types = array( 'post' );
+	if( !empty( $wpar_settings['wpar_post_types'] ) ) {
+	    $post_types = $wpar_settings['wpar_post_types'];
+	}
+	$post_types = apply_filters( 'wpar_supported_post_types', $post_types );
 	$post_types = array_unique( $post_types );
     foreach( $post_types as $post_type ) {
         $output[] = "'$post_type'";
@@ -76,8 +82,12 @@ function wpar_republish_old_post() {
 
 	$wpar_omit_id = '';
 	$wpar_order_by = 'post_date ASC';
-	if ( isset( $wpar_method ) && $wpar_method == 'random' ) {
-		$wpar_order_by = 'RAND()';
+	if ( isset( $wpar_method ) ) {
+		if( $wpar_method == 'new_first' ) {
+		    $wpar_order_by = 'post_date DESC';
+		} elseif( $wpar_method == 'random' ) {
+			$wpar_order_by = 'RAND()';
+		}
 	}
 	
 	$sql = "SELECT ID, post_date
@@ -87,7 +97,7 @@ function wpar_republish_old_post() {
 				AND post_date < '" . current_time( 'mysql' ) . "' - INTERVAL " . $wpar_age_limit * 24 . " HOUR 
 				";
 
-    if ( isset( $wpar_omit_by_type ) && $wpar_omit_by_type != 'none' ) {
+    if ( isset( $wpar_omit_by_type ) && $wpar_omit_by_type != 'none' && !empty( $wpar_post_types ) && in_array( 'post', $wpar_post_types ) ) {
 
 		$wpar_omit = $wpar_settings['wpar_exclude_by'];
 		$wpar_omit_id = !empty( $wpar_settings['wpar_exclude_category'] ) ? implode( ',', $wpar_settings['wpar_exclude_category'] ) : '1';
@@ -97,18 +107,18 @@ function wpar_republish_old_post() {
 		
 		$wpar_omit_override = $wpar_settings['wpar_override_category_tag'];
 		$wpar_omit_override = preg_replace( array( '/[^\d,]/', '/(?<=,),+/', '/^,+/', '/,+$/' ), '', $wpar_omit_override );
-		$wpar_omit_post = array_slice( $wpar_post_types, 1 );
+		$wpar_omit_post = array_diff( $wpar_post_types, array( 'post' ) );
 
 		$wpar_omit_type = 'NOT';
 		if ( isset( $wpar_omit_by_type ) && $wpar_omit_by_type == 'include' ) {
 			$wpar_omit_type = '';
 
 			$sql = "SELECT ID, post_date
-            FROM $wpdb->posts
-            WHERE post_type = 'post'
-                AND post_status = 'publish'
-				AND post_date < '" . current_time( 'mysql' ) . "' - INTERVAL " . $wpar_age_limit * 24 . " HOUR 
-				";
+                FROM $wpdb->posts
+                WHERE post_type = 'post'
+                    AND post_status = 'publish'
+			    	AND post_date < '" . current_time( 'mysql' ) . "' - INTERVAL " . $wpar_age_limit * 24 . " HOUR 
+			    	";
 		}
 
     	$sql = $sql."AND $wpar_omit_type(ID IN (SELECT tr.object_id 
@@ -165,7 +175,6 @@ function wpar_update_old_post( $oldest_post ) {
 	    $sql = "SELECT post_date from ".$wpdb->posts." WHERE ID = '$oldest_post'";
 		$wpar_original_pub_date = $wpdb->get_var( $sql );
 		update_post_meta( $oldest_post, '_wpar_original_pub_date', $wpar_original_pub_date );
-        $wpar_original_pub_date = get_post_meta( $oldest_post, '_wpar_original_pub_date', true ); 
     }
 
 	if ( isset( $wpar_settings['wpar_republish_post_position'] ) && $wpar_settings['wpar_republish_post_position'] == 1 ) {
@@ -187,12 +196,10 @@ function wpar_update_old_post( $oldest_post ) {
 
 	$sql = "UPDATE $wpdb->posts SET post_date = '$new_time',post_date_gmt = '$gmt_time',post_modified = '$new_time',post_modified_gmt = '$gmt_time' WHERE ID = '$oldest_post'";		
 	$wpdb->query( $sql );
-    
-	require_once plugin_dir_path( __FILE__ ) . 'cache.php';
+
+	wpar_purge_site_cache();
 	
-	$permalink = get_permalink( $oldest_post );
-	
-	do_action( 'wpar_old_post_republished', $oldest_post ); 
+	do_action( 'wpar_old_post_republished', $post ); 
 }
 
 function wpar_hook_into_the_content( $content ) {
@@ -234,7 +241,7 @@ function wpar_update_time() {
 
 	if ( false === $last ) {
 		$ret = 1;
-	} elseif ( is_numeric( $last ) ) { 
+	} elseif ( is_numeric( $last ) ) {
 		if ( ( $time - $last ) >= ( $interval + rand( 0, $slop ) ) ) {
 			$ret = 1;
 		} else {

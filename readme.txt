@@ -1,11 +1,11 @@
 === WP Auto Republish ===
 Contributors: Infosatech
-Tags: republish, republishing, old post promoter, old posts, old post, post promoter, promotion, SEO, rss, plugin, posts
-Requires at least: 3.5
-Tested up to: 5.0
-Stable tag: 1.0.5
-Requires PHP: 5.4
-Donate link: http://bit.ly/2I0Gj60
+Tags: republish, republishing, old posts, old post, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
+Requires at least: 4.0
+Tested up to: 5.4
+Stable tag: 1.0.7
+Requires PHP: 5.6
+Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -45,7 +45,7 @@ This plugin helps revive old posts by resetting the published date to the curren
 
 #### Compatibility
 
-* This plugin is tested with W3 Total Cache, WP Super Cache, WP Rocket, WP Fastest Cache, Cachify, Comet Cache, Zen Cache, LiteSpeed Cache, Nginx Cache (by Till Krüss), SG Optimizer, HyperCache, Cache Enabler, Godaddy Managed WordPress Hosting and WP Engine and fully compatible with WordPress Version 3.5 and beyond and also compatible with any WordPress theme.
+* This plugin is tested with W3 Total Cache, WP Super Cache, WP Rocket, WP Fastest Cache, Cachify, Comet Cache, Zen Cache, LiteSpeed Cache, Nginx Cache (by Till Krüss), SG Optimizer, HyperCache, Cache Enabler, Swift Performance Lite, Breeze (Cloudways), Godaddy Managed WordPress Hosting and WP Engine and fully compatible with WordPress Version 3.5 and beyond and also compatible with any WordPress theme.
 
 #### Support
 
@@ -69,17 +69,6 @@ This plugin helps revive old posts by resetting the published date to the curren
 1. Configure settings according to your need and save changes.
 
 == Frequently Asked Questions ==
-
-= Is there any way to include custom post types? =
-
-Yes. It is possible. By default, this plugin includes posts only. You can add other post types also by adding this snippet to the end of your active theme's functions.php file:
-
-`add_filter( 'wpar_supported_post_types', 'wpar_add_custom_post_types' );`
-
-`function wpar_add_custom_post_types( $output ) {
-    $post_types = array( 'page', 'product', 'any_cpt' );
-    return array_merge( $output, $post_types );
-}`
 
 = How to customize original post publication date format? =
 
@@ -113,12 +102,30 @@ Yes, permalinks with dates would be affected. This plugin shouldn't be used if y
 
 == Changelog ==
 
+= 1.0.7 =
+Release Date: 20th March, 2020
+
+* Added: Ability to select custom post types from plugin settings.
+* Added: Ability to select/get posts by decending order.
+* Added: Support for Swift Performance Lite Cache Purge.
+* Fixed: Some broken links.
+* Preparing this plugin for some upcoming major changes.
+* Tested with WordPress v5.4.
+
+= 1.0.6 =
+Release Date: 14th January, 2019
+
+* Added: Support for Breeze (Cloudways) Cache Purge.
+* Fixed: A bug with godaddy cache purge.
+
 = 1.0.5 =
+Release Date: 5th January, 2019
 
 * Updated: Chinese Translations.
 * Fixed: Incorrectly translated strings.
 
 = 1.0.4 =
+Release Date: 3rd January, 2019
 
 * Fixed: A bug where "Save Settings" button is not working if at least one categories and tag is not selected.
 * Improved: Adapted ajax mechanism to save plugin settings
@@ -126,6 +133,7 @@ Yes, permalinks with dates would be affected. This plugin shouldn't be used if y
 * Fixed: Incorrectly translated strings.
 
 = 1.0.3 =
+Release Date: 2nd January, 2019
 
 * Added: Option to set date and time for republishing.
 * Added: Chinese translation. Thanks to [@cmhello](https://profiles.wordpress.org/cmhello)
@@ -133,16 +141,19 @@ Yes, permalinks with dates would be affected. This plugin shouldn't be used if y
 * Fixed: Incorrectly translated strings.
 
 = 1.0.2 =
+Release Date: 24th December, 2018
 
 * Added: A check to show a notice if permalinks structure contains date.
 * Improved: Custom Post Types Support.
 * Fixed: An plugin activation error notice.
 
 = 1.0.1 =
+Release Date: 24th December, 2018
 
 * Added: Option to force include/exclude posts by their ID.
 * Added: Option to select old post retrive method from database.
 
 = 1.0.0 =
+Release Date: 23rd December, 2018
 
 * Initial release.
