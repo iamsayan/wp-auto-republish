@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: republish, republishing, old posts, old post, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 4.0
 Tested up to: 5.4
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -45,7 +45,7 @@ This plugin helps revive old posts by resetting the published date to the curren
 
 #### Compatibility
 
-* This plugin is tested with W3 Total Cache, WP Super Cache, WP Rocket, WP Fastest Cache, Cachify, Comet Cache, Zen Cache, LiteSpeed Cache, Nginx Cache (by Till Krüss), SG Optimizer, HyperCache, Cache Enabler, Swift Performance Lite, Breeze (Cloudways), Godaddy Managed WordPress Hosting and WP Engine and fully compatible with WordPress Version 3.5 and beyond and also compatible with any WordPress theme.
+* This plugin is tested with W3 Total Cache, WP Super Cache, WP Rocket, WP Fastest Cache, Cachify, Comet Cache, Zen Cache, LiteSpeed Cache, Nginx Cache (by Till Krüss), SG Optimizer, HyperCache, Cache Enabler, Swift Performance Lite, Breeze (Cloudways), Godaddy Managed WordPress Hosting and WP Engine and fully compatible with WordPress Version 4.0 and beyond and also compatible with any WordPress theme.
 
 #### Support
 
@@ -101,6 +101,12 @@ Yes, permalinks with dates would be affected. This plugin shouldn't be used if y
 1. This is the admin area of WP Auto Republish.
 
 == Changelog ==
+
+= 1.0.8 =
+Release Date: 24th March, 2020
+
+* Fixed: A serious bug where a missing syntax causes unexpected behaviour at the time of auto republish.
+* Deprecation: `wpar_supported_post_types` filter will be deprecated in the upcoming version as this plugin now supports all custom post types.
 
 = 1.0.7 =
 Release Date: 20th March, 2020

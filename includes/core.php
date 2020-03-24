@@ -55,15 +55,15 @@ function wpar_plugin_init() {
 	}
 }
 
-function wpar_custom_post_types_support() {
+function wpar_post_types_support() {
 	$wpar_settings = get_option('wpar_plugin_settings');
 	$output = array();
 	$post_types = array( 'post' );
 	if( !empty( $wpar_settings['wpar_post_types'] ) ) {
-	    $post_types = $wpar_settings['wpar_post_types'];
+		$post_types = $wpar_settings['wpar_post_types'];
 	}
-	$post_types = apply_filters( 'wpar_supported_post_types', $post_types );
 	$post_types = array_unique( $post_types );
+	$post_types = apply_filters( 'wpar_supported_post_types', $post_types );
     foreach( $post_types as $post_type ) {
         $output[] = "'$post_type'";
     }
@@ -78,7 +78,7 @@ function wpar_republish_old_post() {
 	$wpar_omit_by_type = $wpar_settings['wpar_exclude_by_type'];
 	$wpar_age_limit = $wpar_settings['wpar_republish_post_age'];
 	$wpar_method = $wpar_settings['wpar_republish_method'];
-	$wpar_post_types = wpar_custom_post_types_support();
+	$wpar_post_types = wpar_post_types_support();
 
 	$wpar_omit_id = '';
 	$wpar_order_by = 'post_date ASC';
@@ -89,6 +89,10 @@ function wpar_republish_old_post() {
 			$wpar_order_by = 'RAND()';
 		}
 	}
+
+	if ( count( $wpar_post_types ) == 0 ) {
+		return;
+	}
 	
 	$sql = "SELECT ID, post_date
             FROM $wpdb->posts
@@ -97,7 +101,7 @@ function wpar_republish_old_post() {
 				AND post_date < '" . current_time( 'mysql' ) . "' - INTERVAL " . $wpar_age_limit * 24 . " HOUR 
 				";
 
-    if ( isset( $wpar_omit_by_type ) && $wpar_omit_by_type != 'none' && !empty( $wpar_post_types ) && in_array( 'post', $wpar_post_types ) ) {
+    if ( isset( $wpar_omit_by_type ) && $wpar_omit_by_type != 'none' && in_array( "'post'", $wpar_post_types ) ) {
 
 		$wpar_omit = $wpar_settings['wpar_exclude_by'];
 		$wpar_omit_id = !empty( $wpar_settings['wpar_exclude_category'] ) ? implode( ',', $wpar_settings['wpar_exclude_category'] ) : '1';
@@ -107,7 +111,7 @@ function wpar_republish_old_post() {
 		
 		$wpar_omit_override = $wpar_settings['wpar_override_category_tag'];
 		$wpar_omit_override = preg_replace( array( '/[^\d,]/', '/(?<=,),+/', '/^,+/', '/,+$/' ), '', $wpar_omit_override );
-		$wpar_omit_post = array_diff( $wpar_post_types, array( 'post' ) );
+		$wpar_omit_post = array_diff( $wpar_post_types, array( "'post'" ) );
 
 		$wpar_omit_type = 'NOT';
 		if ( isset( $wpar_omit_by_type ) && $wpar_omit_by_type == 'include' ) {

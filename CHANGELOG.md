@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.0.8
+Release Date: 24th March, 2020
+
+* Fixed: A serious bug where a missing syntax causes unexpected behaviour at the time of auto republish.
+* Deprecation: `wpar_supported_post_types` filter will be deprecated in the upcoming version as this plugin now supports all custom post types.
+
 ## 1.0.7
 Release Date: 20th March, 2020
 
