@@ -1,6 +1,36 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.1.0
+Release Date: 16th April, 2020
+
+### Premium Version
+
+* NEW: Unlimited Custom post types support.
+* NEW: Custom taxonomies support.
+* NEW: Individual post republishing. That means it is possible to republish any post/page/custom post on a repeated basis (can be daily, weekly, monthly and yearly) or on a particular date.
+* NEW: Now it is possible to republish posts in a particular date range (post age between 10 years to 3 years etc.).
+* NEW: This plugin will change the title of post at the time of republish automatically if specified. It will help some SEO aspects. Also post permalinks can be changed.
+* NEW: Automatically fires the publish events at the time of each republish.
+* NEW: It is now possible to clear all the caches of total site or only for a post at the time of republish of that post. No it supports most of the cache plugins and hosting platforms.
+* NEW: Previously if you have date/month/year in post permalinks, then can you still use the original info in post permalinks.
+* NEW: It is posssible to set any status for posts after repeated republishing.
+* NEW: One click instant republish from quick links and from post edit page.
+* NEW: Show all republished history in logs in post edit screen.
+* NEW: Shows all single upcoming republication in a dashboard widget.
+* NEW: Shows single republication info in a admin column.
+* NEW: Can hide last original published info from frontend.
+* NEW: Added more republish ages and republish intervals.
+
+### Free Version
+
+* Tweak: Merged post category and post tag selection button into one in plugin settings.
+* Tweak: Start time and End Time will be in seperate row from now.
+* Fixed: Property of non-object PHP error.
+* Fixed: A bug where sometimes plugin will republish two posts at a time.
+* Removed: Random Selection of posts from this plugin.
+* Minimum required WordPress version is 4.7 from now.
+
 ## 1.0.8
 Release Date: 24th March, 2020
 

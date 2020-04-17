@@ -1,9 +1,9 @@
 === WP Auto Republish ===
-Contributors: Infosatech
+Contributors: Infosatech, freemius
 Tags: republish, republishing, old posts, old post, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
-Requires at least: 4.0
+Requires at least: 4.7
 Tested up to: 5.4
-Stable tag: 1.0.8
+Stable tag: 1.1.0
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -17,7 +17,7 @@ The WP Auto Republish plugin helps revive old posts by resetting the published d
 
 Like WP Auto Republish plugin? Consider leaving a [5 star review](https://wordpress.org/support/plugin/wp-auto-republish/reviews/?rate=5#new-post).
 
-#### Why would you want to do this? Here are a few reasons:
+== Why would you want to do this? Here are a few reasons: ==
 
 1. New visitors to your site haven't seen your old content. <strong>This will help them discover it.</strong>
 2. Old content won't show up in date-based searches on search engines, but resetting the date can make them <strong>look fresh again</strong>.
@@ -26,38 +26,65 @@ Like WP Auto Republish plugin? Consider leaving a [5 star review](https://wordpr
 5. WP Auto Republish will improve your <strong>blog visibility, traffic and SEO</strong>!
 6. And also <strong>Google likes updated content</strong> if it’s done right.
 
-#### What does this plugin do?
+== What does this plugin do? ==
 
 This plugin helps revive old posts by resetting the published date to the current date and push old posts to your front page, the top of archive pages, and back into RSS feeds.
 
-* Allows you to change old posts published date to current date.
-* Allows you to set minimum republish interval and randomness interval.
-* Allows you to display original publication date Before/After post.
-* Allows you to exculde/include posts by category/tags.
-* Allows you to force exclude/include posts by their ID.
-* Allows you to set old post selection method.
-* Allows wordpress to automatically set new published time according to localtime zone.
-* Allows wordpress to automatically purge cache after republishing.
+== Key Features ==
+* Automatically republish your all posts.
+* Set minimum republish interval and randomness interval.
+* Display original publication date Before/After post.
+* Exclude or include posts by category or tags.
+* Force exclude/include posts by their ID.
+* Can select post in ASC / DESC order.
+* Compatible with any timezone.
+* Automatically purge site cache (limited) after republishing.
 
-#### Warnings
+== Premium Features ==
+* Supports all free version features.
+* Custom post types support.
+* Custom taxonomies support.
+* Individual post republishing (also supports repeated).
+* Scheduled post republishing.
+* Date & time based republishing.
+* Custom post republish interval.
+* Custom title for each republish event.
+* Trigger publish event at the time of republish.
+* Automatic Site or Single Post Cache Purge Support (supports most of the cache plugins and hosting platforms)
+* Custom date range for republishing.
+* Can use dates in post permalinks.
+* Change Post Status after Last Republish.
+* One click instant republish.
+* Show all republished history in logs.
+* Can use dates in post permalinks.
+* Can change the post name on every republish.
+* Shows all single upcoming republication in a dashboard widget.
+* Shows single republication info in a admin column.
+* Can hide last original published info from frontend.
 
-* DON'T USE THIS PLUGIN IF YOUR PERMALINKS INCLUDE DATES 
+**You can upgrade to Premium Version directly from your dashboard.**
 
-#### Compatibility
+= Warnings =
 
-* This plugin is tested with W3 Total Cache, WP Super Cache, WP Rocket, WP Fastest Cache, Cachify, Comet Cache, Zen Cache, LiteSpeed Cache, Nginx Cache (by Till Krüss), SG Optimizer, HyperCache, Cache Enabler, Swift Performance Lite, Breeze (Cloudways), Godaddy Managed WordPress Hosting and WP Engine and fully compatible with WordPress Version 4.0 and beyond and also compatible with any WordPress theme.
+* DON'T USE THIS PLUGIN IF YOUR PERMALINKS INCLUDE DATES (IN FREE VERSION)
 
-#### Support
+= Compatibility =
+
+* This plugin is tested with W3 Total Cache, WP Super Cache, WP Rocket, WP Fastest Cache, Cachify, Comet Cache, Zen Cache, LiteSpeed Cache, SG Optimizer, HyperCache, Cache Enabler, Swift Performance Lite, Nginx Cache, Proxy Cache, Nginx Helper Cache, Autoptimize, Breeze (Cloudways), Godaddy Managed WordPress Hosting and WP Engine and fully compatible with WordPress Version 4.7 and beyond and also compatible with any WordPress theme.
+
+= Support =
 
 * Community support via the [support forums](https://wordpress.org/support/plugin/wp-auto-republish) at WordPress.org.
 
-#### Contribute
+= Contribute =
 * Active development of this plugin is handled [on GitHub](https://github.com/iamsayan/wp-auto-republish/).
 * Feel free to [fork the project on GitHub](https://github.com/iamsayan/wp-auto-republish/) and submit your contributions via pull request.
 
-#### Translations
+= Translations =
 
 * Simplified Chinese (zh_CN) by [Changmeng Hu](https://profiles.wordpress.org/cmhello)
+
+**Note: We use [__Freemius__](https://freemius.com) to collect some basic data about your usage to improve the plugin. We only collect if you allow us to. You can opt out any time to stop sharing your data with us.**
 
 == Installation ==
 
@@ -77,7 +104,7 @@ To customize original post publication date, you need to add this following snip
 `function wpar_override_time_format() {
     return 'F jS, Y \a\t h:i a';
 }
-add_filter( 'wpar_published_date_format', 'wpar_override_time_format' );`
+add_filter( 'wpar/published_date_format', 'wpar_override_time_format' );`
 
 = How to customize the interval of scheduled post and old republish post? =
 
@@ -86,7 +113,7 @@ To customize the interval of scheduled post and old republish post, you need to 
 `function wpar_override_interval() {
     return '7200'; // 2 hours
 }
-add_filter( 'wpar_scheduled_post_interval', 'wpar_override_interval' );`
+add_filter( 'wpar/scheduled_post_interval', 'wpar_override_interval' );`
 
 = Are posts duplicated? =
 
@@ -94,7 +121,7 @@ No. The date on posts is updated to the current date making a post appear new. U
 
 = Doesn't changing the timestamp affect permalinks that include dates?  =
 
-Yes, permalinks with dates would be affected. This plugin shouldn't be used if your permalinks include dates since those dates will change when a post is republished.
+Yes, permalinks with dates would be affected only in free version. This plugin shouldn't be used if your permalinks include dates since those dates will change when a post is republished. But in Premium version it is possible to use dates in permalinks.
 
 == Screenshots ==
 
@@ -102,64 +129,41 @@ Yes, permalinks with dates would be affected. This plugin shouldn't be used if y
 
 == Changelog ==
 
-= 1.0.8 =
-Release Date: 24th March, 2020
+If you like WP Auto Republish, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
-* Fixed: A serious bug where a missing syntax causes unexpected behaviour at the time of auto republish.
-* Deprecation: `wpar_supported_post_types` filter will be deprecated in the upcoming version as this plugin now supports all custom post types.
+= 1.1.0 =
+Release Date: 16th April, 2020
 
-= 1.0.7 =
-Release Date: 20th March, 2020
+= Premium Version =
+* NEW: Unlimited Custom post types support.
+* NEW: Custom taxonomies support.
+* NEW: Individual post republishing. That means it is possible to republish any post/page/custom post on a repeated basis (can be daily, weekly, monthly and yearly) or on a particular date.
+* NEW: Now it is possible to republish posts in a particular date range (post age between 10 years to 3 years etc.).
+* NEW: This plugin will change the title of post at the time of republish automatically if specified. It will help some SEO aspects. Also post permalinks can be changed.
+* NEW: Automatically fires the publish events at the time of each republish.
+* NEW: It is now possible to clear all the caches of total site or only for a post at the time of republish of that post. No it supports most of the cache plugins and hosting platforms.
+* NEW: Previously if you have date/month/year in post permalinks, then can you still use the original info in post permalinks.
+* NEW: It is posssible to set any status for posts after repeated republishing.
+* NEW: One click instant republish from quick links and from post edit page.
+* NEW: Show all republished history in logs in post edit screen.
+* NEW: Shows all single upcoming republication in a dashboard widget.
+* NEW: Shows single republication info in a admin column.
+* NEW: Can hide last original published info from frontend.
+* NEW: Added more republish ages and republish intervals.
 
-* Added: Ability to select custom post types from plugin settings.
-* Added: Ability to select/get posts by decending order.
-* Added: Support for Swift Performance Lite Cache Purge.
-* Fixed: Some broken links.
-* Preparing this plugin for some upcoming major changes.
-* Tested with WordPress v5.4.
+= Free Version =
+* Tweak: Merged post category and post tag selection button into one in plugin settings.
+* Tweak: Start time and End Time will be in seperate row from now.
+* Fixed: Property of non-object PHP error.
+* Fixed: A bug where sometimes plugin will republish two posts at a time.
+* Removed: Random Selection of posts from this plugin.
+* Minimum required WordPress version is 4.7 from now.
 
-= 1.0.6 =
-Release Date: 14th January, 2019
+= Other Versions =
 
-* Added: Support for Breeze (Cloudways) Cache Purge.
-* Fixed: A bug with godaddy cache purge.
+* View the <a href="https://plugins.svn.wordpress.org/wp-auto-republish/trunk/changelog.txt" target="_blank">Changelog</a> file.
 
-= 1.0.5 =
-Release Date: 5th January, 2019
+== Upgrade Notice ==
 
-* Updated: Chinese Translations.
-* Fixed: Incorrectly translated strings.
-
-= 1.0.4 =
-Release Date: 3rd January, 2019
-
-* Fixed: A bug where "Save Settings" button is not working if at least one categories and tag is not selected.
-* Improved: Adapted ajax mechanism to save plugin settings
-* Improved: Input Validation in plugin settings.
-* Fixed: Incorrectly translated strings.
-
-= 1.0.3 =
-Release Date: 2nd January, 2019
-
-* Added: Option to set date and time for republishing.
-* Added: Chinese translation. Thanks to [@cmhello](https://profiles.wordpress.org/cmhello)
-* Tweak: This plugin does not republish you old content if you have already scheduled a post within 1 hour. This interval can be modified by `wpar_scheduled_post_interval` filter.
-* Fixed: Incorrectly translated strings.
-
-= 1.0.2 =
-Release Date: 24th December, 2018
-
-* Added: A check to show a notice if permalinks structure contains date.
-* Improved: Custom Post Types Support.
-* Fixed: An plugin activation error notice.
-
-= 1.0.1 =
-Release Date: 24th December, 2018
-
-* Added: Option to force include/exclude posts by their ID.
-* Added: Option to select old post retrive method from database.
-
-= 1.0.0 =
-Release Date: 23rd December, 2018
-
-* Initial release.
+= 1.1.0 =
+In this release, we make big changes in this plugin. Please resave all plugin settings after update.

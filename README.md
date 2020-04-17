@@ -23,14 +23,41 @@ Like WP Auto Republish plugin? Consider leaving a [5 star review](https://wordpr
 
 This plugin helps revive old posts by resetting the published date to the current date and push old posts to your front page, the top of archive pages, and back into RSS feeds.
 
-* Allows you to change old posts published date to current date.
-* Allows you to set minimum republish interval and randomness interval.
-* Allows you to display original publication date Before/After post.
-* Allows you to exculde/include posts by category/tags.
-* Allows you to force exclude/include posts by their ID.
-* Allows you to set old post selection method.
-* Allows wordpress to automatically set new published time according to localtime zone.
-* Allows wordpress to automatically purge cache after republishing.
+#### Key Features
+
+* Automatically republish your all posts.
+* Set minimum republish interval and randomness interval.
+* Display original publication date Before/After post.
+* Exclude or include posts by category or tags.
+* Force exclude/include posts by their ID.
+* Can select post in ASC / DESC order.
+* Compatible with any timezone.
+* Automatically purge site cache (limited) after republishing.
+
+#### Premium Features
+
+* Supports all free version features.
+* Custom post types support.
+* Custom taxonomies support.
+* Individual post republishing (also supports repeated).
+* Scheduled post republishing.
+* Date & time based republishing.
+* Custom post republish interval.
+* Custom title for each republish event.
+* Trigger publish event at the time of republish.
+* Automatic Site or Single Post Cache Purge Support (supports most of the cache plugins and hosting platforms)
+* Custom date range for republishing.
+* Can use dates in post permalinks.
+* Change Post Status after Last Republish.
+* One click instant republish.
+* Show all republished history in logs.
+* Can use dates in post permalinks.
+* Can change the post name on every republish.
+* Shows all single upcoming republication in a dashboard widget.
+* Shows single republication info in a admin column.
+* Can hide last original published info from frontend.
+
+**You can upgrade to Premium Version directly from your dashboard.**
 
 #### Warnings
 
@@ -38,7 +65,7 @@ This plugin helps revive old posts by resetting the published date to the curren
 
 #### Compatibility
 
-* This plugin is tested with W3 Total Cache, WP Super Cache, WP Rocket, WP Fastest Cache, Cachify, Comet Cache, Zen Cache, LiteSpeed Cache, Nginx Cache (by Till Krüss ), SG Optimizer, HyperCache, Cache Enabler, Godaddy Managed WordPress Hosting and WP Engine and fully compatible with WordPress Version 4.0 and beyond and also compatible with any WordPress theme.
+* This plugin is tested with W3 Total Cache, WP Super Cache, WP Rocket, WP Fastest Cache, Cachify, Comet Cache, Zen Cache, LiteSpeed Cache, SG Optimizer, HyperCache, Cache Enabler, Swift Performance Lite, Nginx Cache, Proxy Cache, Nginx Helper Cache, Autoptimize, Breeze (Cloudways), Godaddy Managed WordPress Hosting and WP Engine and fully compatible with WordPress Version 4.7 and beyond and also compatible with any WordPress theme.
 
 #### Support
 
@@ -78,7 +105,7 @@ To customize original post publication date, you need to add this following snip
 `function wpar_override_time_format() {
     return 'F jS, Y \a\t h:i a';
 }
-add_filter( 'wpar_published_date_format', 'wpar_override_time_format' );`
+add_filter( 'wpar/published_date_format', 'wpar_override_time_format' );`
 
 #### How to customize the interval of scheduled post and old republish post?
 
@@ -87,7 +114,7 @@ To customize the interval of scheduled post and old republish post, you need to 
 `function wpar_override_interval() {
     return '7200'; // 2 hours
 }
-add_filter( 'wpar_scheduled_post_interval', 'wpar_override_interval' );`
+add_filter( 'wpar/scheduled_post_interval', 'wpar_override_interval' );`
 
 #### Are posts duplicated?
 
@@ -95,7 +122,7 @@ No. The date on posts is updated to the current date making a post appear new. U
 
 #### Doesn't changing the timestamp affect permalinks that include dates?
 
-Yes, permalinks with dates would be affected. This plugin shouldn't be used if your permalinks include dates since those dates will change when a post is republished.
+Yes, permalinks with dates would be affected only in free version. This plugin shouldn't be used if your permalinks include dates since those dates will change when a post is republished. But in Premium version it is possible to use dates in permalinks.
 
 #### The plugin isn't working or have a bug? ####
 

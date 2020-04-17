@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Auto Republish\n"
-"POT-Creation-Date: 2020-03-24 14:48+0530\n"
+"POT-Creation-Date: 2020-04-16 21:09+0530\n"
 "PO-Revision-Date: 2019-01-05 23:35+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,7 +21,366 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: admin/donate.php:28
+#: inc/Api/Callbacks/ManagerCallbacks.php:28
+msgid "Enable this if you want to auto republish old posts of your blog."
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:36
+msgid "5 Minutes"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:37
+msgid "10 Minutes"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:38
+msgid "15 Minutes"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:39
+msgid "20 Minutes"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:40
+msgid "30 Minutes"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:41
+msgid "45 Minutes"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:42
+msgid "1 hour"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:43
+msgid "2 hours"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:44
+msgid "4 hours"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:45
+msgid "6 hours"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:46
+msgid "8 hours"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:47
+msgid "12 hours"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:48
+msgid "24 hours (1 day)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:49
+msgid "48 hours (2 days)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:50
+msgid "72 hours (3 days)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:51
+msgid "120 hours (5 days)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:52
+msgid "168 hours (7 days)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:62
+msgid "Select minimum interval between post republishing."
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:70
+msgid "Upto 1 hour"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:71
+msgid "Upto 2 hours"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:72
+msgid "Upto 4 hours"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:73
+msgid "Upto 6 hours"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:74
+msgid "Upto 8 hours"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:75
+msgid "Upto 12 hours"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:76
+msgid "Upto 24 hours"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:87
+msgid ""
+"Select randomness interval from here which will be added to minimum "
+"republish interval."
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:95
+msgid "30 Days (1 month)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:96
+msgid "45 Days (1.5 months)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:97
+msgid "60 Days (2 months)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:98
+msgid "90 Days (3 months)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:99
+msgid "120 Days (4 months)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:100
+msgid "180 Days (6 months)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:101
+msgid "240 Days (8 months)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:102
+msgid "365 Days (1 year)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:103
+msgid "730 Days (2 years)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:104
+msgid "1095 Days (3 years)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:115
+msgid "Select the post age before eligible for republishing."
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:123
+msgid "Select Old Post First (ASC)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:124
+msgid "Select New Post First (DESC)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:134
+msgid "Select the method of getting old posts from database."
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:142
+msgid "1st Position"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:143
+msgid "2nd Position"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:153
+msgid ""
+"Select the position of republished post (choosing the 2nd position will "
+"leave the most recent post in 1st place)."
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:161
+msgid "Disable"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:162
+msgid "Before Content"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:163
+msgid "After Content"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:173
+msgid ""
+"Select how you want to show original published date of the post on frontend."
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:186
+msgid "Message before original published date of the post on frontend."
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:205
+msgid "Select post types where you want to show facebook comment box."
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:213
+msgid "Ignoring all Taxonomies"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:214
+msgid "Excluding Taxonomies (Categories/Tags)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:215
+msgid "Including Taxonomies (Categories/Tags)"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:225
+msgid ""
+"Select how you want to include or exclude a post category from republishing. "
+"If you choose excluding, selected categories/post tags will be ignored and "
+"vice-versa."
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:250
+msgid ""
+"Select posts categories/tags which you want to include to republishing or "
+"exclude from republishing."
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:269
+msgid ""
+"Write the post IDs which you want to select forcefully (when you select "
+"excluding) or want to not select forcefully (when you select including)."
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:278
+msgid "Sunday"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:279
+msgid "Monday"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:280
+msgid "Tuesday"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:281
+msgid "Wednesday"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:282
+msgid "Thursday"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:283
+msgid "Friday"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:284
+msgid "Saturday"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:294
+msgid "Select the weekdays when you want to republish old posts."
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:309
+#: inc/Api/Callbacks/ManagerCallbacks.php:324
+msgid "Set the time period for republish old posts from here."
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:338
+msgid ""
+"Enable this if you want to remove all the plugin data from your website."
+msgstr ""
+
+#: inc/Base/Activate.php:35
+msgid "Originally posted on "
+msgstr ""
+
+#: inc/Base/AdminNotice.php:40
+msgid ""
+"WARNING: As it seems that your permalinks structure contain date, please "
+"disable the WP Auto Republish plugin immediately."
+msgstr ""
+
+#: inc/Base/AdminNotice.php:50
+msgid ""
+"Your version of PHP is below the minimum version of PHP required by WP Auto "
+"Republish plugin. Please contact your host and request that your version be "
+"upgraded to 5.6 or later."
+msgstr ""
+
+#: inc/Base/BaseController.php:72
+msgid "Enable Auto Republishing?"
+msgstr ""
+
+#: inc/Base/BaseController.php:73
+msgid "Minimum Republish Interval:"
+msgstr ""
+
+#: inc/Base/BaseController.php:74
+msgid "Random Republish Interval:"
+msgstr ""
+
+#: inc/Base/BaseController.php:75
+msgid "Post Republish Eligibility Age:"
+msgstr ""
+
+#: inc/Base/BaseController.php:76
+msgid "Select Old Posts Query Method:"
+msgstr ""
+
+#: inc/Base/BaseController.php:77
+msgid "Republish Post to Position:"
+msgstr ""
+
+#: inc/Base/BaseController.php:78
+msgid "Show Original Publication Date:"
+msgstr ""
+
+#: inc/Base/BaseController.php:79
+msgid "Original Publication Message:"
+msgstr ""
+
+#: inc/Base/BaseController.php:80
+msgid "Select Post Types to Republish:"
+msgstr ""
+
+#: inc/Base/BaseController.php:81
+msgid "Auto Republish Old Posts by:"
+msgstr ""
+
+#: inc/Base/BaseController.php:82
+msgid "Select Post Categories/Tags:"
+msgstr ""
+
+#: inc/Base/BaseController.php:83
+msgid "Override Category or Post Tags Filtering for these Specific Posts:"
+msgstr ""
+
+#: inc/Base/BaseController.php:84
+msgid "Select Weekdays to Republish:"
+msgstr ""
+
+#: inc/Base/BaseController.php:85
+msgid "Start Time for Republishing:"
+msgstr ""
+
+#: inc/Base/BaseController.php:86
+msgid "End Time for Republishing:"
+msgstr ""
+
+#: inc/Base/BaseController.php:87
+msgid "Remove Plugin Data on Uninstall?"
+msgstr ""
+
+#: inc/Base/DonateNotice.php:51
 msgid ""
 "Hey, I noticed you've been using WP Auto Republish for more than 2 week – "
 "that’s awesome! If you like WP Auto Republish and you are satisfied with the "
@@ -30,23 +389,43 @@ msgid ""
 "Thank you very much!"
 msgstr ""
 
-#: admin/donate.php:29
+#: inc/Base/DonateNotice.php:52
 msgid "Donate Now"
 msgstr ""
 
-#: admin/donate.php:30
+#: inc/Base/DonateNotice.php:53
 msgid "I already donated"
 msgstr ""
 
-#: admin/donate.php:31 admin/notice.php:31
+#: inc/Base/DonateNotice.php:54 inc/Base/RatingNotice.php:54
 msgid "Nope&#44; maybe later"
 msgstr ""
 
-#: admin/donate.php:32
+#: inc/Base/DonateNotice.php:55
 msgid "I don't want to donate"
 msgstr ""
 
-#: admin/notice.php:28
+#: inc/Base/Enqueue.php:99
+msgid "-- Select categories or tags --"
+msgstr ""
+
+#: inc/Base/Enqueue.php:100
+msgid "-- Select weekdays (required) --"
+msgstr ""
+
+#: inc/Base/Enqueue.php:101
+msgid "-- Select post types (required) --"
+msgstr ""
+
+#: inc/Base/Enqueue.php:102
+msgid "-- Select custom taxonomies --"
+msgstr ""
+
+#: inc/Base/Enqueue.php:103
+msgid "-- Enter post or page or custom post ids (comma separated) --"
+msgstr ""
+
+#: inc/Base/RatingNotice.php:51
 msgid ""
 "Hey, I noticed you've been using WP Auto Republish for more than 1 week – "
 "that’s awesome! Could you please do me a BIG favor and give it a <strong>5-"
@@ -54,351 +433,78 @@ msgid ""
 "my motivation."
 msgstr ""
 
-#: admin/notice.php:29
+#: inc/Base/RatingNotice.php:52
 msgid "Ok, you deserve it"
 msgstr ""
 
-#: admin/notice.php:30
+#: inc/Base/RatingNotice.php:53
 msgid "I already did"
 msgstr ""
 
-#: admin/notice.php:32
+#: inc/Base/RatingNotice.php:55
 msgid "I don't want to rate"
 msgstr ""
 
-#: admin/settings-fields.php:16
-msgid "Enable this if you want to auto republish old posts of your blog."
+#: inc/Base/SettingsLinks.php:40
+msgid "Settings"
 msgstr ""
 
-#: admin/settings-fields.php:27
-msgid "5 Minutes"
+#: inc/Base/SettingsLinks.php:51
+msgid "Try Premium"
 msgstr ""
 
-#: admin/settings-fields.php:28
-msgid "10 Minutes"
+#: inc/Base/SettingsLinks.php:52
+msgid "Support"
 msgstr ""
 
-#: admin/settings-fields.php:29
-msgid "15 Minutes"
+#: inc/Base/SettingsLinks.php:53
+msgid "Donate"
 msgstr ""
 
-#: admin/settings-fields.php:30
-msgid "20 Minutes"
+#. Plugin Name of the plugin/theme
+#: inc/Pages/Dashboard.php:70 inc/Pages/Dashboard.php:80
+msgid "WP Auto Republish"
 msgstr ""
 
-#: admin/settings-fields.php:31
-msgid "30 Minutes"
+#: inc/Pages/Dashboard.php:81
+msgid "Auto Republish"
 msgstr ""
 
-#: admin/settings-fields.php:32
-msgid "1 hour"
-msgstr ""
-
-#: admin/settings-fields.php:33
-msgid "2 hours"
-msgstr ""
-
-#: admin/settings-fields.php:34
-msgid "4 hours"
-msgstr ""
-
-#: admin/settings-fields.php:35
-msgid "6 hours"
-msgstr ""
-
-#: admin/settings-fields.php:36
-msgid "8 hours"
-msgstr ""
-
-#: admin/settings-fields.php:37
-msgid "12 hours"
-msgstr ""
-
-#: admin/settings-fields.php:38
-msgid "24 hours (1 day)"
-msgstr ""
-
-#: admin/settings-fields.php:39
-msgid "48 hours (2 days)"
-msgstr ""
-
-#: admin/settings-fields.php:40
-msgid "72 hours (3 days)"
-msgstr ""
-
-#: admin/settings-fields.php:41
-msgid "120 hours (5 days)"
-msgstr ""
-
-#: admin/settings-fields.php:42
-msgid "168 hours (7 days)"
-msgstr ""
-
-#: admin/settings-fields.php:51
-msgid "Select minimum interval between post republishing."
-msgstr ""
-
-#: admin/settings-fields.php:62
-msgid "Upto 1 hour"
-msgstr ""
-
-#: admin/settings-fields.php:63
-msgid "Upto 2 hours"
-msgstr ""
-
-#: admin/settings-fields.php:64
-msgid "Upto 4 hours"
-msgstr ""
-
-#: admin/settings-fields.php:65
-msgid "Upto 6 hours"
-msgstr ""
-
-#: admin/settings-fields.php:66
-msgid "Upto 8 hours"
-msgstr ""
-
-#: admin/settings-fields.php:67
-msgid "Upto 12 hours"
-msgstr ""
-
-#: admin/settings-fields.php:68
-msgid "Upto 24 hours"
-msgstr ""
-
-#: admin/settings-fields.php:77
-msgid ""
-"Select randomness interval from here which will be added to minimum "
-"republish interval."
-msgstr ""
-
-#: admin/settings-fields.php:88
-msgid "30 Days (1 month)"
-msgstr ""
-
-#: admin/settings-fields.php:89
-msgid "45 Days (1.5 months)"
-msgstr ""
-
-#: admin/settings-fields.php:90
-msgid "60 Days (2 months)"
-msgstr ""
-
-#: admin/settings-fields.php:91
-msgid "90 Days (3 months)"
-msgstr ""
-
-#: admin/settings-fields.php:92
-msgid "120 Days (4 months)"
-msgstr ""
-
-#: admin/settings-fields.php:93
-msgid "180 Days (6 months)"
-msgstr ""
-
-#: admin/settings-fields.php:94
-msgid "240 Days (8 months)"
-msgstr ""
-
-#: admin/settings-fields.php:95
-msgid "365 Days (1 year)"
-msgstr ""
-
-#: admin/settings-fields.php:96
-msgid "730 Days (2 years)"
-msgstr ""
-
-#: admin/settings-fields.php:97
-msgid "1095 Days (3 years)"
-msgstr ""
-
-#: admin/settings-fields.php:107
-msgid "Select the post age before eligible for republishing."
-msgstr ""
-
-#: admin/settings-fields.php:118
-msgid "Select Old Post First (ASC)"
-msgstr ""
-
-#: admin/settings-fields.php:119
-msgid "Select New Post First (DESC)"
-msgstr ""
-
-#: admin/settings-fields.php:120
-msgid "Random Selection"
-msgstr ""
-
-#: admin/settings-fields.php:129
-msgid "Select the method of getting old posts from database."
-msgstr ""
-
-#: admin/settings-fields.php:140
-msgid "1st Position"
-msgstr ""
-
-#: admin/settings-fields.php:141
-msgid "2nd Position"
-msgstr ""
-
-#: admin/settings-fields.php:150
-msgid ""
-"Select the position of republished post (choosing the 2nd position will "
-"leave the most recent post in 1st place)."
-msgstr ""
-
-#: admin/settings-fields.php:161
-msgid "Disable"
-msgstr ""
-
-#: admin/settings-fields.php:162
-msgid "Before Content"
-msgstr ""
-
-#: admin/settings-fields.php:163
-msgid "After Content"
-msgstr ""
-
-#: admin/settings-fields.php:172
-msgid ""
-"Select how you want to show original published date of the post on frontend."
-msgstr ""
-
-#: admin/settings-fields.php:179 wp-auto-republish.php:77
-msgid "Originally posted on "
-msgstr ""
-
-#: admin/settings-fields.php:182
-msgid "Message before original published date of the post on frontend."
-msgstr ""
-
-#: admin/settings-fields.php:193
-msgid "None"
-msgstr ""
-
-#: admin/settings-fields.php:194
-msgid "Excluding Categories/Tags"
-msgstr ""
-
-#: admin/settings-fields.php:195
-msgid "Including Categories/Tags"
-msgstr ""
-
-#: admin/settings-fields.php:204 admin/settings-fields.php:225
-msgid ""
-"Select how you want to include or exclude a post category from republishing. "
-"If you choose excluding, selected categories/post tags will be ignored and "
-"vice-versa."
-msgstr ""
-
-#: admin/settings-fields.php:215
-msgid "Categories"
-msgstr ""
-
-#: admin/settings-fields.php:216
-msgid "Post Tags"
-msgstr ""
-
-#: admin/settings-fields.php:249
-msgid ""
-"Select categories which you want to include to republishing or exclude from "
-"republishing."
-msgstr ""
-
-#: admin/settings-fields.php:273
-msgid ""
-"Select tags which you want to include to republishing or exclude from "
-"republishing."
-msgstr ""
-
-#: admin/settings-fields.php:285
-msgid ""
-"Write the post IDs which you want to select forcefully (when you select "
-"excluding) or want to not select forcefully (when you select including)."
-msgstr ""
-
-#: admin/settings-fields.php:307
-msgid "Select post types where you want to show facebook comment box."
-msgstr ""
-
-#: admin/settings-fields.php:319
-msgid "Sunday"
-msgstr ""
-
-#: admin/settings-fields.php:320
-msgid "Monday"
-msgstr ""
-
-#: admin/settings-fields.php:321
-msgid "Tuesday"
-msgstr ""
-
-#: admin/settings-fields.php:322
-msgid "Wednesday"
-msgstr ""
-
-#: admin/settings-fields.php:323
-msgid "Thursday"
-msgstr ""
-
-#: admin/settings-fields.php:324
-msgid "Friday"
-msgstr ""
-
-#: admin/settings-fields.php:325
-msgid "Saturday"
-msgstr ""
-
-#: admin/settings-fields.php:334
-msgid "Select the weekdays when you want to republish old posts."
-msgstr ""
-
-#: admin/settings-fields.php:348
-msgid "Start Time:"
-msgstr ""
-
-#: admin/settings-fields.php:351
-msgid "End Time:"
-msgstr ""
-
-#: admin/settings-fields.php:354
-msgid "Set the time period for republish old posts from here."
-msgstr ""
-
-#: admin/settings-page.php:16
+#: templates/admin.php:21
 msgid ""
 "This plugin helps to revive old posts by resetting the publish date to the "
 "current date."
 msgstr ""
 
-#: admin/settings-page.php:28
+#: templates/admin.php:37
 msgid "Configure Settings"
 msgstr ""
 
-#: admin/settings-page.php:35 admin/settings-page.php:56
+#: templates/admin.php:51 templates/admin.php:84
 msgid "Save Settings"
 msgstr ""
 
-#: admin/settings-page.php:38
+#: templates/admin.php:60
 msgid "Please wait..."
 msgstr ""
 
-#: admin/settings-page.php:42
+#: templates/admin.php:66
 msgid "Settings Saved Successfully!"
 msgstr ""
 
-#: admin/settings-page.php:50
+#: templates/admin.php:76
 msgid "Saving..."
 msgstr ""
 
-#: admin/settings-page.php:79
+#: templates/admin.php:112
 msgid "Custom"
 msgstr ""
 
-#: admin/settings-page.php:81 admin/settings-page.php:83
+#: templates/admin.php:116 templates/admin.php:121
 msgid "Buy me a coffee!"
 msgstr ""
 
-#: admin/settings-page.php:84
+#: templates/admin.php:126
 #, php-format
 msgid ""
 "Thank you for using %s. If you found the plugin useful buy me a coffee! Your "
@@ -406,133 +512,103 @@ msgid ""
 "via PayPal."
 msgstr ""
 
-#: admin/settings-page.php:90
+#: templates/admin.php:147
+msgid "Upgrade to Premium Now!"
+msgstr ""
+
+#: templates/admin.php:152
+msgid "Upgrade to the premium version and get the following features"
+msgstr ""
+
+#: templates/admin.php:156
+msgid "Unlimited Custom Post types Support"
+msgstr ""
+
+#: templates/admin.php:159
+msgid "Custom Taxonomies Support"
+msgstr ""
+
+#: templates/admin.php:162
+msgid "Individual Post Republishing"
+msgstr ""
+
+#: templates/admin.php:165
+msgid "Scheduled Post Republishing"
+msgstr ""
+
+#: templates/admin.php:168
+msgid "Date & Time Based Republishing"
+msgstr ""
+
+#: templates/admin.php:171
+msgid "Custom Post Republish Interval"
+msgstr ""
+
+#: templates/admin.php:174
+msgid "Custom Title for each Republish Event"
+msgstr ""
+
+#: templates/admin.php:177
+msgid "Automatic Single Cache Purge Support"
+msgstr ""
+
+#: templates/admin.php:180
+msgid "Date Range for Republishing"
+msgstr ""
+
+#: templates/admin.php:183
+msgid "Can use Dates in Post Permalinks"
+msgstr ""
+
+#: templates/admin.php:186
+msgid "Change Post Status after Republish"
+msgstr ""
+
+#: templates/admin.php:189
+msgid "One Click Instant Republish"
+msgstr ""
+
+#: templates/admin.php:192
+msgid "Priority Email Support & many more.."
+msgstr ""
+
+#: templates/admin.php:198
+msgid "Upgrade Now"
+msgstr ""
+
+#: templates/admin.php:207
 msgid "My Other Plugins!"
 msgstr ""
 
-#: admin/settings-page.php:96
+#: templates/admin.php:217
 msgid ""
 "Display last update date and time on pages and posts very easily with "
 "'dateModified' Schema Markup."
 msgstr ""
 
-#: admin/settings-page.php:104
+#: templates/admin.php:229
 msgid ""
 "Ultimate Facebook Comments Solution with instant email notification for any "
 "WordPress Website. Everything is customizable."
 msgstr ""
 
-#: admin/settings-page.php:112
+#: templates/admin.php:241
 msgid ""
 "Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to "
 "wordpress pages very easily (tested on Yoast SEO, All in One SEO Pack, Rank "
 "Math, SEOPresss and Others)."
 msgstr ""
 
-#: admin/settings-page.php:120
+#: templates/admin.php:253
 msgid ""
 "Simple Posts Ticker is a small tool that shows your most recent posts in a "
 "marquee style."
 msgstr ""
 
-#: admin/settings-page.php:128
+#: templates/admin.php:265
 msgid ""
 "Customize WP header, add custom code and enable, disable or remove the "
 "unwanted meta tags, links from the source code and many more."
-msgstr ""
-
-#: wp-auto-republish.php:108
-#, php-format
-msgid ""
-"Thanks for installing %1$s v%2$s plugin. Click <a href=\"%3$s\">here</a> to "
-"configure plugin settings."
-msgstr ""
-
-#: wp-auto-republish.php:115
-msgid ""
-"WARNING: As it seems that your permalinks structure contain date, please "
-"disable the WP Auto Republish plugin immediately."
-msgstr ""
-
-#: wp-auto-republish.php:160
-msgid "Enable Auto Republish?"
-msgstr ""
-
-#: wp-auto-republish.php:161
-msgid "Minimum Republish Interval:"
-msgstr ""
-
-#: wp-auto-republish.php:162
-msgid "Randomness Interval:"
-msgstr ""
-
-#: wp-auto-republish.php:163
-msgid "Post Republish Eligibility Age:"
-msgstr ""
-
-#: wp-auto-republish.php:164
-msgid "Select Old Posts Query Method:"
-msgstr ""
-
-#: wp-auto-republish.php:165
-msgid "Republish Post to Position:"
-msgstr ""
-
-#: wp-auto-republish.php:166
-msgid "Show Original Publication Date:"
-msgstr ""
-
-#: wp-auto-republish.php:167
-msgid "Original Publication Message:"
-msgstr ""
-
-#: wp-auto-republish.php:168
-msgid "Auto Republish Old Posts by:"
-msgstr ""
-
-#: wp-auto-republish.php:169
-msgid "Select Taxonomy (Post only):"
-msgstr ""
-
-#: wp-auto-republish.php:170
-msgid "Select Post Categories:"
-msgstr ""
-
-#: wp-auto-republish.php:171
-msgid "Select Post Tags:"
-msgstr ""
-
-#: wp-auto-republish.php:172
-msgid "Override Category or Post Tags Filtering for Specific Posts:"
-msgstr ""
-
-#: wp-auto-republish.php:173
-msgid "Select Post Types to Republish:"
-msgstr ""
-
-#: wp-auto-republish.php:174
-msgid "Select Weekdays to Republish:"
-msgstr ""
-
-#: wp-auto-republish.php:175
-msgid "Time Range for Republishing:"
-msgstr ""
-
-#. Plugin Name of the plugin/theme
-#: wp-auto-republish.php:188
-msgid "WP Auto Republish"
-msgstr ""
-
-#: wp-auto-republish.php:208
-msgid "Settings"
-msgstr ""
-
-#: wp-auto-republish.php:217
-msgid "Support"
-msgstr ""
-
-#: wp-auto-republish.php:218
-msgid "Donate"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
@@ -552,5 +628,5 @@ msgid "Sayan Datta"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://sayandatta.in"
+msgid "https://www.sayandatta.in"
 msgstr ""
