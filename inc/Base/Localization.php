@@ -33,7 +33,8 @@ class Localization extends BaseController
 	/**
 	 * Load textdomain.
 	 */
-	public function load_textdomain() {
+	public function load_textdomain()
+	{
 		load_plugin_textdomain( 'wp-auto-republish', false, dirname( $this->plugin ) . '/languages/' ); 
 	}
 }

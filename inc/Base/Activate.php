@@ -46,8 +46,8 @@ class Activate
             'fri',
             'sat'
         ],
-            'wpar_start_time'                 => '05:00',
-            'wpar_end_time'                   => '23:00',
+            'wpar_start_time'                 => '05:00:00',
+            'wpar_end_time'                   => '23:59:59',
             'wpar_post_types'                 => [ 'post' ],
         ];
         if ( get_option( 'wpar_plugin_settings' ) === false ) {

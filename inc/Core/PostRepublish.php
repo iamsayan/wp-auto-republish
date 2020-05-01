@@ -35,33 +35,20 @@ class PostRepublish
         $wpar_days = $this->get_data( 'wpar_days' );
         $cur_date = current_time( 'timestamp', 0 );
         $day = lcfirst( date( 'D', $cur_date ) );
-        $cur_time = strtotime( date( 'H:i', $cur_date ) );
-        $start_time = strtotime( ( !empty($this->get_data( 'wpar_start_time' )) ? $this->get_data( 'wpar_start_time' ) : '05:00' ) );
-        $end_time = strtotime( ( !empty($this->get_data( 'wpar_end_time' )) ? $this->get_data( 'wpar_end_time' ) : '23:00' ) );
-        $gap = $this->do_filter( 'scheduled_post_interval', 3600 );
-        $lastposts = get_posts( [
-            'numberposts' => 1,
-            'offset'      => 1,
-            'order'       => 'ASC',
-            'post_status' => 'future',
-        ] );
-        foreach ( $lastposts as $lastpost ) {
-            $post_date = strtotime( $lastpost->post_date );
-        }
-        if ( isset( $post_date ) && $cur_date > $post_date && $cur_date < $post_date + $gap ) {
-            return;
-        }
+        $cur_time = strtotime( date( 'H:i:s', $cur_date ) );
+        $start_time = ( !empty($this->get_data( 'wpar_start_time' )) ? strtotime( $this->get_data( 'wpar_start_time' ) ) : strtotime( '05:00:00' ) );
+        $end_time = ( !empty($this->get_data( 'wpar_end_time' )) ? strtotime( $this->get_data( 'wpar_end_time' ) ) : strtotime( '23:59:59' ) );
         if ( $this->check_global_republish() ) {
-            if ( !empty($wpar_days) && in_array( $day, $wpar_days ) ) {
-                if ( $cur_time >= $start_time && $cur_time <= $end_time ) {
-                    
-                    if ( $this->generate_next_schedule() ) {
-                        update_option( 'wpar_last_update', time() );
+            
+            if ( $this->generate_next_schedule() ) {
+                update_option( 'wpar_last_update', time() );
+                if ( !empty($wpar_days) && in_array( $day, $wpar_days ) ) {
+                    if ( $cur_time >= $start_time && $cur_time <= $end_time ) {
                         $this->republish_old_post();
                     }
-                
                 }
             }
+        
         }
     }
     
@@ -71,10 +58,10 @@ class PostRepublish
     private function republish_old_post()
     {
         $timestamp = current_time( 'timestamp', 0 );
-        $time = date( 'Y-m-d H:i:s', $timestamp );
-        $wpar_omit_by_type = $this->get_data( 'wpar_exclude_by_type' );
-        $wpar_age_limit = $this->get_data( 'wpar_republish_post_age' );
-        $wpar_method = $this->get_data( 'wpar_republish_method' );
+        $time = current_time( 'mysql' );
+        $wpar_overwrite = $this->get_data( 'wpar_exclude_by_type' );
+        $wpar_gap = $this->get_data( 'wpar_republish_post_age' );
+        $wpar_order = $this->get_data( 'wpar_republish_method' );
         
         if ( !empty($this->get_data( 'wpar_post_types' )) ) {
             $post_types = $this->get_data( 'wpar_post_types' );
@@ -101,7 +88,7 @@ class PostRepublish
                 'post_type'   => $post_type,
                 'numberposts' => -1,
                 'date_query'  => [ [
-                'before' => date( 'Y-m-d H:i:s', strtotime( "-{$wpar_age_limit} days", $timestamp ) ),
+                'before' => date( 'Y-m-d', strtotime( "-{$wpar_gap} days", $timestamp ) ),
             ] ],
             ];
             if ( !in_array( $post_type, [ 'post', 'page', 'attachment' ] ) ) {
@@ -125,40 +112,35 @@ class PostRepublish
                 ],
                 ];
             }
-            if ( $post_type == 'post' && $wpar_omit_by_type != 'none' ) {
+            if ( $post_type == 'post' && $wpar_overwrite != 'none' ) {
                 
                 if ( !empty($wpar_filter_taxonomy) ) {
                     foreach ( $wpar_filter_taxonomy as $category ) {
-                        $get_item = explode( ':', $category );
-                        $type = current( $get_item );
-                        $termid = end( $get_item );
-                        if ( is_object_in_taxonomy( $post_type, $type ) ) {
+                        $get_item = explode( '|', $category );
+                        $type = $get_item[0];
+                        $term_name = $get_item[1];
+                        $term_id = $get_item[2];
+                        if ( $post_type === $type && is_object_in_taxonomy( $post_type, $term_name ) ) {
                             
-                            if ( $type == 'category' ) {
-                                $cats[] = $termid;
-                            } elseif ( $type == 'post_tag' ) {
-                                $tags[] = $termid;
+                            if ( $term_name == 'category' ) {
+                                $cats[] = $term_id;
+                            } elseif ( $term_name == 'post_tag' ) {
+                                $tags[] = $term_id;
                             }
                         
                         }
                     }
                     
-                    if ( $wpar_omit_by_type == 'include' ) {
+                    if ( $wpar_overwrite == 'include' ) {
                         if ( !empty($cats) ) {
                             $args['category__in'] = $cats;
                         }
                         
                         if ( !empty($tags) ) {
-                            
-                            if ( !empty($cats) ) {
-                                unset( $args['category__in'] );
-                                $args['category__and'] = $cats;
-                            }
-                            
                             $args['tag__in'] = $tags;
                         }
                     
-                    } elseif ( $wpar_omit_by_type == 'exclude' ) {
+                    } elseif ( $wpar_overwrite == 'exclude' ) {
                         if ( !empty($cats) ) {
                             $args['category__not_in'] = $cats;
                         }
@@ -187,20 +169,20 @@ class PostRepublish
                 'numberposts' => 1,
                 'orderby'     => 'date',
             ];
-            if ( isset( $wpar_method ) ) {
+            if ( !empty($wpar_order) ) {
                 
-                if ( $wpar_method == 'new_first' ) {
+                if ( $wpar_order == 'new_first' ) {
                     $args['order'] = 'DESC';
-                } elseif ( $wpar_method == 'old_first' ) {
+                } elseif ( $wpar_order == 'old_first' ) {
                     $args['order'] = 'ASC';
                 }
             
             }
             if ( !empty($wpar_omit_override) ) {
                 
-                if ( $wpar_omit_by_type == 'include' ) {
+                if ( $wpar_overwrite == 'include' ) {
                     $args['post__in'] = array_diff( $post_ids, explode( ',', $wpar_omit_override ) );
-                } elseif ( $wpar_omit_by_type == 'exclude' ) {
+                } elseif ( $wpar_overwrite == 'exclude' ) {
                     $args['post__in'] = array_unique( array_merge( $post_ids, explode( ',', $wpar_omit_override ) ) );
                 }
             
@@ -224,10 +206,9 @@ class PostRepublish
      * @param int   $post_id Post ID
      * @param bool  $single  Check if it is single republish event
      */
-    protected function update_old_post( $post_id, $single = false )
+    protected function update_old_post( $post_id, $single = false, $instant = false )
     {
         $post = get_post( $post_id );
-        $old_title = $post->post_title;
         $timestamp = current_time( 'timestamp', 0 );
         $pub_date = $this->get_meta( $post->ID, '_wpar_original_pub_date' );
         if ( empty($pub_date) ) {
@@ -236,8 +217,7 @@ class PostRepublish
         $this->custom_post_types_events( $post );
         
         if ( $this->get_data( 'wpar_republish_post_position' ) == 1 ) {
-            $new_time = date( 'Y-m-d H:i:s', $timestamp );
-            $gmt_time = get_gmt_from_date( $new_time );
+            $new_time = current_time( 'mysql' );
         } else {
             $lastposts = get_posts( [
                 'post_type'   => $post->post_type,
@@ -251,56 +231,28 @@ class PostRepublish
                 foreach ( $lastposts as $lastpost ) {
                     $post_date = strtotime( $lastpost->post_date );
                     $new_time = date( 'Y-m-d H:i:s', mktime(
-                        date( "H", $post_date ),
-                        date( "i", $post_date ) + 5,
-                        date( "s", $post_date ),
-                        date( "m", $post_date ),
-                        date( "d", $post_date ),
-                        date( "Y", $post_date )
+                        date( 'H', $post_date ),
+                        date( 'i', $post_date ) + 5,
+                        date( 's', $post_date ),
+                        date( 'm', $post_date ),
+                        date( 'd', $post_date ),
+                        date( 'Y', $post_date )
                     ) );
-                    $gmt_time = get_gmt_from_date( $new_time );
                 }
             } else {
-                $new_time = date( 'Y-m-d H:i:s', $timestamp );
-                $gmt_time = get_gmt_from_date( $new_time );
+                $new_time = current_time( 'mysql' );
             }
         
         }
         
-        
-        if ( $single ) {
-            $slop = $this->do_filter( 'single_republish_randomness_interval', 0 );
-            $new_time = date( 'Y-m-d H:i:s', $timestamp + rand( -60, $slop ) );
-            $gmt_time = get_gmt_from_date( $new_time );
-        }
-        
         $args = [
-            'post_date'         => $new_time,
-            'post_date_gmt'     => $gmt_time,
-            'post_modified'     => $new_time,
-            'post_modified_gmt' => $gmt_time,
+            'ID'             => $post->ID,
+            'post_date'      => $new_time,
+            'post_date_gmt'  => get_gmt_from_date( $new_time )
         ];
         //error_log( print_r( $args, true ) );
-        $this->wpar_republish_post( $args, $post );
-        $this->do_action( 'clear_site_cache', $post->ID, $post );
-    }
-    
-    /**
-     * Run post republish process.
-     * 
-     * @param array   $args  Post Object items
-     * @param object  $post  WP Post Object
-     */
-    private function wpar_republish_post( $args, $post )
-    {
-        global  $wpdb ;
-        $post = get_post( $post );
-        if ( !$post ) {
-            return;
-        }
-        $wpdb->update( $wpdb->posts, $args, [
-            'ID' => $post->ID,
-        ] );
+        wp_update_post( $args );
+        $this->do_action( 'clear_site_cache' );
     }
     
     /**

@@ -37,12 +37,6 @@ class Enqueue extends BaseController
             $version = time();
         }
         wp_register_style(
-            'wpar-selectize',
-            $this->plugin_url . 'assets/css/selectize.min.css',
-            [],
-            '0.12.6'
-        );
-        wp_register_style(
             'wpar-jquery-ui-datepicker',
             $this->plugin_url . 'assets/css/jquery-ui.min.css',
             [],
@@ -55,9 +49,26 @@ class Enqueue extends BaseController
             '1.6.3'
         );
         wp_register_style(
+            'wpar-selectize',
+            $this->plugin_url . 'assets/css/selectize.min.css',
+            [],
+            '0.12.6'
+        );
+        wp_register_style(
+            'wpar-confirm',
+            $this->plugin_url . 'assets/css/jquery-confirm.min.css',
+            [],
+            '3.3.4'
+        );
+        wp_register_style(
             'wpar-styles',
             $this->plugin_url . 'assets/css/admin.min.css',
-            [ 'wpar-selectize', 'wpar-jquery-ui-datepicker', 'wpar-jquery-ui-datetimepicker' ],
+            [
+            'wpar-jquery-ui-datepicker',
+            'wpar-jquery-ui-datetimepicker',
+            'wpar-selectize',
+            'wpar-confirm'
+        ],
             $version
         );
         wp_register_script(
@@ -70,14 +81,26 @@ class Enqueue extends BaseController
         wp_register_script(
             'wpar-selectize-js',
             $this->plugin_url . 'assets/js/selectize.min.js',
-            [],
+            [ 'jquery' ],
             '0.12.6',
+            true
+        );
+        wp_register_script(
+            'wpar-confirm-js',
+            $this->plugin_url . 'assets/js/jquery-confirm.min.js',
+            [ 'jquery' ],
+            '3.3.4',
             true
         );
         wp_register_script(
             'wpar-admin-js',
             $this->plugin_url . 'assets/js/admin.min.js',
-            [ 'jquery', 'wpar-datetimepicker-js', 'wpar-selectize-js' ],
+            [
+            'jquery',
+            'wpar-datetimepicker-js',
+            'wpar-selectize-js',
+            'wpar-confirm-js'
+        ],
             $version,
             true
         );
@@ -94,13 +117,32 @@ class Enqueue extends BaseController
             wp_enqueue_script( 'jquery-ui-sortable' );
             wp_enqueue_script( 'wpar-datetimepicker-js' );
             wp_enqueue_script( 'wpar-selectize-js' );
+            wp_enqueue_script( 'wpar-confirm-js' );
             wp_enqueue_script( 'wpar-admin-js' );
             wp_localize_script( 'wpar-admin-js', 'wpar_admin_i10n', [
-                'select_category'   => __( '-- Select categories or tags --', 'wp-auto-republish' ),
-                'select_weekdays'   => __( '-- Select weekdays (required) --', 'wp-auto-republish' ),
-                'select_post_types' => __( '-- Select post types (required) --', 'wp-auto-republish' ),
-                'select_taxonomies' => __( '-- Select custom taxonomies --', 'wp-auto-republish' ),
-                'post_ids'          => __( '-- Enter post or page or custom post ids (comma separated) --', 'wp-auto-republish' ),
+                'ajaxurl'           => admin_url( 'admin-ajax.php' ),
+                'select_category'   => __( 'Select categories or tags', 'wp-auto-republish' ),
+                'select_weekdays'   => __( 'Select weekdays (required)', 'wp-auto-republish' ),
+                'select_post_types' => __( 'Select post types (required)', 'wp-auto-republish' ),
+                'select_taxonomies' => __( 'Select custom taxonomies', 'wp-auto-republish' ),
+                'post_ids'          => __( 'Enter post or page or custom post ids (comma separated)', 'wp-auto-republish' ),
+                'saving'            => __( 'Saving...', 'wp-auto-republish' ),
+                'saving_text'       => __( 'Please wait while we are saving your settings.', 'wp-auto-republish' ),
+                'done'              => __( 'Done!', 'wp-auto-republish' ),
+                'error'             => __( 'Error!', 'wp-auto-republish' ),
+                'deleting'          => __( 'Deleting...', 'wp-auto-republish' ),
+                'warning'           => __( 'Warning!', 'wp-auto-republish' ),
+                'process_success'   => __( 'Please wait while we are saving your settings.', 'wp-auto-republish' ),
+                'process_delete'    => __( 'Please wait while we are processing your request.', 'wp-auto-republish' ),
+                'save_button'       => __( 'Save Settings', 'wp-auto-republish' ),
+                'save_success'      => __( 'Settings saved successfully!', 'wp-auto-republish' ),
+                'delete_success'    => __( 'All post data deleted successfully!', 'wp-auto-republish' ),
+                'delete_confirm'    => __( 'It will delete all the data relating to single post republishing. Do you want to continue?', 'wp-auto-republish' ),
+                'process_failed'    => __( 'We could not process your request.', 'wp-auto-republish' ),
+                'ok_button'         => __( 'OK', 'wp-auto-republish' ),
+                'confirm_button'    => __( 'Confirm', 'wp-auto-republish' ),
+                'cancel_button'     => __( 'Cancel', 'wp-auto-republish' ),
+                'security'          => wp_create_nonce( 'wpar_delete_post_meta' ),
             ] );
         }
     

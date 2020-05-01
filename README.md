@@ -57,11 +57,15 @@ This plugin helps revive old posts by resetting the published date to the curren
 * Shows single republication info in a admin column.
 * Can hide last original published info from frontend.
 
-**You can upgrade to Premium Version directly from your dashboard.**
+<strong>[Upgrade to WP Auto Republish Premium](https://sayandatta.in/wp-auto-republish/purchase) now. You can also upgrade to Premium Version directly from your dashboard.</strong>
 
-#### Warnings
+### Free and Premium Support
 
-* **DON'T USE THIS PLUGIN IF YOUR PERMALINKS INCLUDE DATES**
+Support for the WP Auto Republish plugin on the WordPress forums is free.
+
+Premium world-class support is available via email to all [WP Auto Republish Premium](https://sayandatta.in/wp-auto-republish/purchase) customers.
+
+> <strong>Note</strong>: Paid customers support is always given priority over free support. Paid customers support is provided via one-to-one email. [Upgrade to Premium](https://sayandatta.in/wp-auto-republish/purchase) to benefit from priority support.
 
 #### Compatibility
 

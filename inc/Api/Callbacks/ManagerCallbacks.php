@@ -12,10 +12,11 @@ namespace Inc\Api\Callbacks;
 
 use  Inc\Helpers\Hooker ;
 use  Inc\Helpers\SettingsData ;
+use  Inc\Helpers\HelperFunctions ;
 defined( 'ABSPATH' ) || exit;
 class ManagerCallbacks
 {
-    use  Hooker, SettingsData ;
+    use  Hooker, SettingsData, HelperFunctions ;
     public function enable_plugin( $args )
     {
         ?>  <label class="switch">
@@ -117,7 +118,7 @@ class ManagerCallbacks
 		<?php 
     }
     
-    public function republish_method( $args )
+    public function republish_order( $args )
     {
         $items = [
             'old_first' => __( 'Select Old Post First (ASC)', 'wp-auto-republish' ),
@@ -191,18 +192,16 @@ class ManagerCallbacks
     public function post_types_list( $args )
     {
         $data = ( !is_array( $this->get_data( 'wpar_post_types' ) ) ? [] : $this->get_data( 'wpar_post_types' ) );
-        $post_types = get_post_types( [
-            'public' => true,
-        ], 'names' );
+        $post_types = $this->get_post_types();
         echo  '<select id="' . $args['label_for'] . '" name="wpar_plugin_settings[wpar_post_types][]" multiple="multiple" required style="width:90%;">' ;
-        foreach ( $post_types as $post_type ) {
+        foreach ( $post_types as $post_type => $label ) {
             $selected = ( in_array( $post_type, $data ) ? ' selected="selected"' : '' );
-            echo  '<option value="' . $post_type . '"' . $selected . '>' . $post_type . '</option>' ;
+            echo  '<option value="' . $post_type . '"' . $selected . '>' . $label . '</option>' ;
         }
         echo  '</select>' ;
         ?>
 		&nbsp;&nbsp;<span class="tooltip" title="<?php 
-        _e( 'Select post types where you want to show facebook comment box.', 'ultimate-facebook-comments' );
+        _e( 'Select post types of which you want to republish.', 'wp-auto-republish' );
         ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
 		<?php 
     }
@@ -211,10 +210,10 @@ class ManagerCallbacks
     {
         $items = [
             'none'    => __( 'Ignoring all Taxonomies', 'wp-auto-republish' ),
-            'exclude' => __( 'Excluding Taxonomies (Categories/Tags)', 'wp-auto-republish' ),
-            'include' => __( 'Including Taxonomies (Categories/Tags)', 'wp-auto-republish' ),
+            'exclude' => __( 'Excluding Taxonomies', 'wp-auto-republish' ),
+            'include' => __( 'Including Taxonomies', 'wp-auto-republish' ),
         ];
-        echo  '<select id="' . $args['label_for'] . '" name="wpar_plugin_settings[wpar_exclude_by_type]" style="width:55%;">' ;
+        echo  '<select id="' . $args['label_for'] . '" name="wpar_plugin_settings[wpar_exclude_by_type]" style="width:40%;">' ;
         foreach ( $items as $item => $label ) {
             $selected = ( $this->get_data( 'wpar_exclude_by_type' ) == $item ? ' selected="selected"' : '' );
             echo  '<option value="' . $item . '"' . $selected . '>' . $label . '</option>' ;
@@ -230,19 +229,19 @@ class ManagerCallbacks
     public function post_taxonomy( $args )
     {
         $data = ( !is_array( $this->get_data( 'wpar_post_taxonomy' ) ) ? [] : $this->get_data( 'wpar_post_taxonomy' ) );
-        $categories = get_terms( [
-            'taxonomy' => 'category',
-            'orderby'  => 'count',
-        ] );
-        $tags = get_terms( [
-            'taxonomy' => 'post_tag',
-            'orderby'  => 'count',
-        ] );
-        $items = array_merge( $categories, $tags );
         echo  '<select id="' . $args['label_for'] . '" name="wpar_plugin_settings[wpar_post_taxonomy][]" multiple="multiple" style="width:90%;">' ;
-        foreach ( $items as $item ) {
-            $selected = ( in_array( $item->taxonomy . ':' . $item->term_id, $data ) ? ' selected="selected"' : '' );
-            echo  '<option value="' . $item->taxonomy . ':' . $item->term_id . '"' . $selected . '>' . ucwords( str_replace( '_', ' ', $item->taxonomy ) ) . ': ' . $item->name . '</option>' ;
+        $post_type_categories = $this->get_all_taxonomies( true );
+        if ( !empty($post_type_categories) ) {
+            foreach ( $post_type_categories as $post_type => $post_data ) {
+                echo  '<optgroup label="' . $post_data['label'] . '">' ;
+                if ( isset( $post_data['categories'] ) && !empty($post_data['categories']) && is_array( $post_data['categories'] ) ) {
+                    foreach ( $post_data['categories'] as $cat_slug => $cat_name ) {
+                        $selected = ( in_array( $cat_slug, $data ) ? ' selected="selected"' : '' );
+                        echo  '<option value="' . $cat_slug . '" ' . $selected . '>' . $cat_name . '</option>' ;
+                    }
+                }
+                echo  '</optgroup>' ;
+            }
         }
         echo  '</select>' ;
         ?>
@@ -298,11 +297,11 @@ class ManagerCallbacks
     
     public function republish_time_start( $args )
     {
-        $wpar_starttime = ( !empty($this->get_data( 'wpar_start_time' )) ? $this->get_data( 'wpar_start_time' ) : '05:00' );
+        $wpar_starttime = ( !empty($this->get_data( 'wpar_start_time' )) ? $this->get_data( 'wpar_start_time' ) : '05:00:00' );
         ?>
         <input id="<?php 
         echo  $args['label_for'] ;
-        ?>" name="wpar_plugin_settings[wpar_start_time]" type="text" class="wpar-timepicker" size="40" style="width:40%;" placeholder="05:00" required readonly="readonly" value="<?php 
+        ?>" name="wpar_plugin_settings[wpar_start_time]" type="text" class="wpar-timepicker" size="40" style="width:40%;" placeholder="05:00:00" required readonly="readonly" value="<?php 
         echo  $wpar_starttime ;
         ?>" />
         &nbsp;&nbsp;<span class="tooltip" title="<?php 
@@ -313,11 +312,11 @@ class ManagerCallbacks
     
     public function republish_time_end( $args )
     {
-        $wpar_endtime = ( !empty($this->get_data( 'wpar_end_time' )) ? $this->get_data( 'wpar_end_time' ) : '23:00' );
+        $wpar_endtime = ( !empty($this->get_data( 'wpar_end_time' )) ? $this->get_data( 'wpar_end_time' ) : '23:59:59' );
         ?>
         <input id="<?php 
         echo  $args['label_for'] ;
-        ?>" name="wpar_plugin_settings[wpar_end_time]" type="text" class="wpar-timepicker" size="40" style="width:40%;" placeholder="05:00" required readonly="readonly" value="<?php 
+        ?>" name="wpar_plugin_settings[wpar_end_time]" type="text" class="wpar-timepicker" size="40" style="width:40%;" placeholder="23:59:59" required readonly="readonly" value="<?php 
         echo  $wpar_endtime ;
         ?>" />
         &nbsp;&nbsp;<span class="tooltip" title="<?php 

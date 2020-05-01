@@ -48,8 +48,10 @@ class SettingsLinks extends BaseController
 	public function meta_links( $links, $file ) {
 		if ( $file === $this->plugin ) { // only for this plugin
 			if ( wpar_load_fs_sdk()->is_not_paying() && ! wpar_load_fs_sdk()->is_trial() ) {
-				$links[] = '<a href="' . wpar_load_fs_sdk()->get_trial_url() . '" target="_blank" style="font-weight: 700;">' . __( 'Try Premium', 'wp-auto-republish' ) . '</a>';
-			    $links[] = '<a href="https://wordpress.org/support/plugin/wp-auto-republish" target="_blank">' . __( 'Support', 'wp-auto-republish' ) . '</a>';
+				if ( ! wpar_load_fs_sdk()->is_trial_utilized() ) {
+				    $links[] = '<a href="' . wpar_load_fs_sdk()->get_trial_url() . '" target="_blank" style="font-weight: 700;">' . __( 'Try Premium', 'wp-auto-republish' ) . '</a>';
+				}
+				$links[] = '<a href="https://wordpress.org/support/plugin/wp-auto-republish" target="_blank">' . __( 'Support', 'wp-auto-republish' ) . '</a>';
 				$links[] = '<a href="https://www.paypal.me/iamsayan/" target="_blank">' . __( 'Donate', 'wp-auto-republish' ) . '</a>';
 			}
 		}

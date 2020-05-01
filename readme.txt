@@ -1,9 +1,9 @@
 === WP Auto Republish ===
-Contributors: Infosatech, freemius
+Contributors: Infosatech
 Tags: republish, republishing, old posts, old post, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 4.7
 Tested up to: 5.4
-Stable tag: 1.1.0
+Stable tag: 1.1.3
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -30,7 +30,10 @@ Like WP Auto Republish plugin? Consider leaving a [5 star review](https://wordpr
 
 This plugin helps revive old posts by resetting the published date to the current date and push old posts to your front page, the top of archive pages, and back into RSS feeds.
 
-== Key Features ==
+> <strong>Note</strong>: All basic functionality is FREE. Features such as single post republishing, repeated republishing & triggering publish events are available in the <Strong>[Premium Edition](https://sayandatta.in/wp-auto-republish/purchase)</strong>.
+
+### Key Features
+
 * Automatically republish your all posts.
 * Set minimum republish interval and randomness interval.
 * Display original publication date Before/After post.
@@ -40,7 +43,8 @@ This plugin helps revive old posts by resetting the published date to the curren
 * Compatible with any timezone.
 * Automatically purge site cache (limited) after republishing.
 
-== Premium Features ==
+### Premium Features
+
 * Supports all free version features.
 * Custom post types support.
 * Custom taxonomies support.
@@ -62,11 +66,15 @@ This plugin helps revive old posts by resetting the published date to the curren
 * Shows single republication info in a admin column.
 * Can hide last original published info from frontend.
 
-**You can upgrade to Premium Version directly from your dashboard.**
+<strong>[Upgrade to WP Auto Republish Premium](https://sayandatta.in/wp-auto-republish/purchase) now. You can also upgrade to Premium Version directly from your dashboard.</strong>
 
-= Warnings =
+### Free and Premium Support
 
-* DON'T USE THIS PLUGIN IF YOUR PERMALINKS INCLUDE DATES (IN FREE VERSION)
+Support for the WP Auto Republish plugin on the WordPress forums is free.
+
+Premium world-class support is available via email to all [WP Auto Republish Premium](https://sayandatta.in/wp-auto-republish/purchase) customers.
+
+> <strong>Note</strong>: Paid customers support is always given priority over free support. Paid customers support is provided via one-to-one email. [Upgrade to Premium](https://sayandatta.in/wp-auto-republish/purchase) to benefit from priority support.
 
 = Compatibility =
 
@@ -84,16 +92,13 @@ This plugin helps revive old posts by resetting the published date to the curren
 
 * Simplified Chinese (zh_CN) by [Changmeng Hu](https://profiles.wordpress.org/cmhello)
 
-**Note: We use [__Freemius__](https://freemius.com) to collect some basic data about your usage to improve the plugin. We only collect if you allow us to. You can opt out any time to stop sharing your data with us.**
-
 == Installation ==
 
-1. Visit 'Plugins > Add New'
-1. Search for 'WP Auto Republish' and install it.
-1. Or you can upload the `wp-auto-republish` folder to the `/wp-content/plugins/` directory manually.
-1. Activate WP Auto Republish from your Plugins page.
-1. After activation go to 'Settings > WP Auto Republish'.
-1. Configure settings according to your need and save changes.
+1. Visit 'Plugins > Add New'.
+2. Search for 'WP Auto Republish' and install it.
+3. Or you can upload the `wp-auto-republish` folder to the `/wp-content/plugins/` directory manually.
+4. Activate WP Auto Republish from your Plugins page.
+5. After activation go to 'Settings > WP Auto Republish'.
 
 == Frequently Asked Questions ==
 
@@ -106,14 +111,9 @@ To customize original post publication date, you need to add this following snip
 }
 add_filter( 'wpar/published_date_format', 'wpar_override_time_format' );`
 
-= How to customize the interval of scheduled post and old republish post? =
+= Will it work with my theme? =
 
-To customize the interval of scheduled post and old republish post, you need to add this following snippet to the end of your active theme's functions.php file:
-
-`function wpar_override_interval() {
-    return '7200'; // 2 hours
-}
-add_filter( 'wpar/scheduled_post_interval', 'wpar_override_interval' );`
+Yes, our plugins work independently of themes you are using. As long as your website is running on WordPress, it will work.
 
 = Are posts duplicated? =
 
@@ -126,32 +126,33 @@ Yes, permalinks with dates would be affected only in free version. This plugin s
 == Screenshots ==
 
 1. This is the admin area of WP Auto Republish.
+2. Premium Version Single Post Settings.
 
 == Changelog ==
 
 If you like WP Auto Republish, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
+= 1.1.3 =
+Release Date: 26th April, 2020
+
+* Other minor improvemnts.
+
+= 1.1.2 =
+Release Date: 20th April, 2020
+
+* Added: Second for time fields.
+* Improved: Plugin settings saving process.
+* Fixed: Duplicate query output.
+* Fixed: Background process running mechanism.
+
+= 1.1.1 =
+Release Date: 18th April, 2020
+
+* Code Cleanup.
+
 = 1.1.0 =
 Release Date: 16th April, 2020
 
-= Premium Version =
-* NEW: Unlimited Custom post types support.
-* NEW: Custom taxonomies support.
-* NEW: Individual post republishing. That means it is possible to republish any post/page/custom post on a repeated basis (can be daily, weekly, monthly and yearly) or on a particular date.
-* NEW: Now it is possible to republish posts in a particular date range (post age between 10 years to 3 years etc.).
-* NEW: This plugin will change the title of post at the time of republish automatically if specified. It will help some SEO aspects. Also post permalinks can be changed.
-* NEW: Automatically fires the publish events at the time of each republish.
-* NEW: It is now possible to clear all the caches of total site or only for a post at the time of republish of that post. No it supports most of the cache plugins and hosting platforms.
-* NEW: Previously if you have date/month/year in post permalinks, then can you still use the original info in post permalinks.
-* NEW: It is posssible to set any status for posts after repeated republishing.
-* NEW: One click instant republish from quick links and from post edit page.
-* NEW: Show all republished history in logs in post edit screen.
-* NEW: Shows all single upcoming republication in a dashboard widget.
-* NEW: Shows single republication info in a admin column.
-* NEW: Can hide last original published info from frontend.
-* NEW: Added more republish ages and republish intervals.
-
-= Free Version =
 * Tweak: Merged post category and post tag selection button into one in plugin settings.
 * Tweak: Start time and End Time will be in seperate row from now.
 * Fixed: Property of non-object PHP error.
@@ -164,6 +165,5 @@ Release Date: 16th April, 2020
 * View the <a href="https://plugins.svn.wordpress.org/wp-auto-republish/trunk/changelog.txt" target="_blank">Changelog</a> file.
 
 == Upgrade Notice ==
-
-= 1.1.0 =
-In this release, we make big changes in this plugin. Please resave all plugin settings after update.
+= 1.1.3 =
+In the v1.1, we make big changes in this plugin. Please resave all plugin settings after update. Please resave all your configuration to make this plugin work again.

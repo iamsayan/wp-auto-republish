@@ -49,46 +49,14 @@ do_settings_sections( 'wpar_plugin_option' );
                             <p><?php 
 submit_button(
     __( 'Save Settings', 'wp-auto-republish' ),
-    'primary save-settings',
+    'primary wpar-save',
     '',
     false
 );
-?></p>
-                        </form>
-                        <div id="progressMessage" class="progressModal" style="display:none;">
+?>
                             <?php 
-_e( 'Please wait...', 'wp-auto-republish' );
 ?>
-                        </div>
-                        <div id="saveMessage" class="successModal" style="display:none;">
-                            <p class="spt-success-msg">
-                                <?php 
-_e( 'Settings Saved Successfully!', 'wp-auto-republish' );
-?>
-                            </p>
-                        </div>
-                        <script type="text/javascript">
-                            jQuery(document).ready(function($) {
-                                $('#saveForm').submit(function() {
-                                    $('#progressMessage').show();
-                                    $(".save-settings").addClass("disabled");
-                                    $(".save-settings").val("<?php 
-_e( 'Saving...', 'wp-auto-republish' );
-?>");
-                                    $(this).ajaxSubmit({
-                                        success: function() {
-                                            $('#progressMessage').fadeOut();
-                                            $('#saveMessage').show().delay(4000).fadeOut();
-                                            $(".save-settings").removeClass("disabled");
-                                            $(".save-settings").val("<?php 
-_e( 'Save Settings', 'wp-auto-republish' );
-?>");
-                                        }
-                                    });
-                                    return false;
-                                });
-                            });
-                        </script>
+                        </form>
                     </div>
                 </div>
                 <!-- todo: email -->
@@ -127,7 +95,7 @@ printf( __( 'Thank you for using %s. If you found the plugin useful buy me a cof
 ?></strong>
                         </p>
                         <p style="text-align: justify;font-size: 12px;font-style: italic;">
-                            Developed with <span style="color:#e25555;">♥</span> by <a href="https://www.sayandatta.in" target="_blank" style="font-weight: 500;">Sayan Datta</a> | 
+                            Developed with <span style="color:#e25555;">♥</span> by <a href="https://sayandatta.in" target="_blank" style="font-weight: 500;">Sayan Datta</a> | 
                             <a href="mailto:iamsayan@pm.me" style="font-weight: 500;">Hire Me</a> | 
                             <a href="https://github.com/iamsayan/wp-auto-republish" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-auto-republish" target="_blank" style="font-weight: 500;">Support</a> | 
                             <a href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.
@@ -192,7 +160,20 @@ _e( 'One Click Instant Republish', 'wp-auto-republish' );
 _e( 'Priority Email Support & many more..', 'wp-auto-republish' );
 ?></li>
 				            </ul>
-				            <a class="button button-primary" href="<?php 
+				            <?php 
+
+if ( wpar_load_fs_sdk()->is_not_paying() && !wpar_load_fs_sdk()->is_trial() && !wpar_load_fs_sdk()->is_trial_utilized() ) {
+    ?>
+                                <a class="button button-primary" href="<?php 
+    echo  wpar_load_fs_sdk()->get_trial_url() ;
+    ?>"><?php 
+    _e( 'Start Trial', 'wp-auto-republish' );
+    ?></a>&nbsp;
+                            <?php 
+}
+
+?>
+                            <a class="button button-primary" href="<?php 
 echo  wpar_load_fs_sdk()->get_upgrade_url() ;
 ?>"><?php 
 _e( 'Upgrade Now', 'wp-auto-republish' );

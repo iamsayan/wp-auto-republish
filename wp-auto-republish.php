@@ -4,9 +4,9 @@
  * Plugin Name: WP Auto Republish
  * Plugin URI: https://wordpress.org/plugins/wp-auto-republish/
  * Description: The WP Auto Republish plugin helps revive old posts by resetting the publish date to the current date. This will push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
- * Version: 1.1.0
+ * Version: 1.1.3
  * Author: Sayan Datta
- * Author URI: https://www.sayandatta.in
+ * Author URI: https://sayandatta.in
  * License: GPLv3
  * Text Domain: wp-auto-republish
  * Domain Path: /languages
@@ -114,42 +114,6 @@ function wpar_plugin_uninstallation()
 }
 
 wpar_load_fs_sdk()->add_action( 'after_uninstall', 'wpar_plugin_uninstallation' );
-/**
- * Filter the time period to show the first trial message.
- * Display it after 3 days.
- *
- * @param int $day_in_sec – Time period in seconds.
- * @return int
- */
-function wpar_change_show_first_trial_period( $day_in_sec )
-{
-    return 3 * DAY_IN_SECONDS;
-}
-
-wpar_load_fs_sdk()->add_filter(
-    'show_first_trial_after_n_sec',
-    'wpar_change_show_first_trial_period',
-    10,
-    1
-);
-/**
- * Filter the time period to re-show the trial message.
- * Display it after 10 days.
- *
- * @param int $days_in_sec – Time period in seconds.
- * @return int
- */
-function wpar_change_reshow_first_trial_period( $day_in_sec )
-{
-    return 10 * DAY_IN_SECONDS;
-}
-
-wpar_load_fs_sdk()->add_filter(
-    'reshow_trial_after_every_n_sec',
-    'wpar_change_reshow_first_trial_period',
-    10,
-    1
-);
 /**
  * Initialize all the core classes of the plugin
  */

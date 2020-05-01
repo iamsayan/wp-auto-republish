@@ -1,6 +1,65 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+= 1.1.3 =
+Release Date: 1st May, 2020
+
+### Premium Version
+
+* Added: Option to disable publish event triggering.
+* Tweak: Plugin will show notices on block editor if post type is Post.
+* Fixed: Global republishing not working when Single republishing with taxonomies is enabled.
+* Added: Order by fields to sort posts.
+* And all free versions fixes and improvemnts.
+
+### Free Version
+
+* Fixed: Wrong date in RSS feeds.
+* Fixed: Republishing is not working if both Category and tags are selected.
+* Other minor improvemnts.
+
+= 1.1.2 =
+Release Date: 20th April, 2020
+
+### Premium Version
+
+* Tweak: Plugin will show notices on block editor as well.
+* Tweak: All metadatas related to Single Republishing can be removed from plugin settings directly.
+* Tweak: This plugin will republish single posts at a time with a random interval for SEO purposes. By default it is 5 minutes. I can be changed via filter.
+* Tweak: Meta boxes will be displayed if a post is actually published.
+* Tweak: One click Republish will work as expected except auto-draft post status.
+* Fixed: An issue with repeated single republishing.
+* Tweak: Plugin will regerate post permalinks at the time of activation and deactivation.
+* Fixed: A wrong argument input which causes unexpected issues in single republishing.
+* Fixed: An error in nonce check in One Click Republish from post meta box.
+* Fixed: Some untranslated strings.
+* Removed: `wp_publish_post()` is replaced with custom function.
+* Removed: Cache option from plugin settings as this plugin will triggers publish events automatically. So, all cache plugins will work as expected.
+* WPML Compatibility.
+* And all free versions fixes and improvemnts.
+
+### Free Version
+
+* Added: Second for time fields.
+* Improved: Plugin settings saving process.
+* Fixed: Duplicate query output.
+* Fixed: Background process running mechanism.
+
+= 1.1.1 =
+Release Date: 18th April, 2020
+
+### Premium Version
+
+* NEW: Triggers `wp_publish_post()` at the time of republish.
+* Fixed: Post Meta generation issue.
+* Fixed: One Click Republish is not working right after post status is changed to publish from quick links.
+* Fixed: Some untranslated strings.
+* And all free versions fixes and improvemnts.
+
+### Free Version
+
+* Code Cleanup.
+
 ## 1.1.0
 Release Date: 16th April, 2020
 
@@ -21,6 +80,7 @@ Release Date: 16th April, 2020
 * NEW: Shows single republication info in a admin column.
 * NEW: Can hide last original published info from frontend.
 * NEW: Added more republish ages and republish intervals.
+* And all free versions fixes and improvemnts.
 
 ### Free Version
 
