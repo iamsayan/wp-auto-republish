@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-= 1.1.3 =
+## 1.1.3
 Release Date: 1st May, 2020
 
 ### Premium Version
@@ -18,7 +18,7 @@ Release Date: 1st May, 2020
 * Fixed: Republishing is not working if both Category and tags are selected.
 * Other minor improvemnts.
 
-= 1.1.2 =
+## 1.1.2
 Release Date: 20th April, 2020
 
 ### Premium Version
@@ -45,7 +45,7 @@ Release Date: 20th April, 2020
 * Fixed: Duplicate query output.
 * Fixed: Background process running mechanism.
 
-= 1.1.1 =
+## 1.1.1
 Release Date: 18th April, 2020
 
 ### Premium Version
