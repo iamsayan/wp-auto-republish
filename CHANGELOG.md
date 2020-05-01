@@ -1,21 +1,28 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 1.1.3
+## 1.1.4
 Release Date: 1st May, 2020
 
 ### Premium Version
+* Improved: Next republish status will be hidden from columns if single republishing is disabled in plugin settings.
+* All free versions fixes and improvemnts.
 
+### Free Version
+* Fixed: Wrong date in RSS feeds.
+* Fixed: Republishing is not working if both Category and tags are selected.
+
+## 1.1.3
+Release Date: 26th April, 2020
+
+### Premium Version
 * Added: Option to disable publish event triggering.
 * Tweak: Plugin will show notices on block editor if post type is Post.
 * Fixed: Global republishing not working when Single republishing with taxonomies is enabled.
 * Added: Order by fields to sort posts.
 * And all free versions fixes and improvemnts.
 
-### Free Version
-
-* Fixed: Wrong date in RSS feeds.
-* Fixed: Republishing is not working if both Category and tags are selected.
+## Free Version
 * Other minor improvemnts.
 
 ## 1.1.2

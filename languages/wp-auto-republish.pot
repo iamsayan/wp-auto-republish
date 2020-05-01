@@ -3,10 +3,10 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Auto Republish\n"
-"POT-Creation-Date: 2020-05-01 08:08+0530\n"
+"POT-Creation-Date: 2020-05-01 09:35+0530\n"
 "PO-Revision-Date: 2019-01-05 23:35+0530\n"
 "Last-Translator: \n"
-"Language-Team: hello@sayandatta.in\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -459,7 +459,6 @@ msgstr ""
 msgid "Donate"
 msgstr ""
 
-#. Plugin Name of the plugin/theme
 #: inc/Pages/Dashboard.php:60 inc/Pages/Dashboard.php:69
 msgid "WP Auto Republish"
 msgstr ""
@@ -659,6 +658,10 @@ msgstr ""
 msgid ""
 "Customize WP header, add custom code and enable, disable or remove the "
 "unwanted meta tags, links from the source code and many more."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WP Auto Republish Premium"
 msgstr ""
 
 #. Plugin URI of the plugin/theme

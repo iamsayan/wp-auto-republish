@@ -135,11 +135,9 @@ class PostRepublish
                         if ( !empty($cats) ) {
                             $args['category__in'] = $cats;
                         }
-                        
                         if ( !empty($tags) ) {
                             $args['tag__in'] = $tags;
                         }
-                    
                     } elseif ( $wpar_overwrite == 'exclude' ) {
                         if ( !empty($cats) ) {
                             $args['category__not_in'] = $cats;
@@ -246,9 +244,9 @@ class PostRepublish
         }
         
         $args = [
-            'ID'             => $post->ID,
-            'post_date'      => $new_time,
-            'post_date_gmt'  => get_gmt_from_date( $new_time )
+            'ID'            => $post->ID,
+            'post_date'     => $new_time,
+            'post_date_gmt' => get_gmt_from_date( $new_time ),
         ];
         //error_log( print_r( $args, true ) );
         wp_update_post( $args );

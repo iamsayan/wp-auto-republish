@@ -59,7 +59,7 @@ class BaseController
         $this->plugin_path = plugin_dir_path( dirname( __FILE__, 2 ) );
         $this->plugin_url = plugin_dir_url( dirname( __FILE__, 2 ) );
         $this->plugin = plugin_basename( dirname( __FILE__, 3 ) ) . '/wp-auto-republish.php';
-        $this->version = '1.1.3';
+        $this->version = '1.1.4';
         $this->debug = false;
         $this->name = 'WP Auto Republish';
     }
