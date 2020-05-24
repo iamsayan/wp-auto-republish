@@ -7,41 +7,41 @@ namespace Composer\Autoload;
 class ComposerStaticInitd5699dfd0ed62714b22c430580475703
 {
     public static $prefixLengthsPsr4 = array (
-        'I' => 
+        'W' => 
         array (
-            'Inc\\' => 4,
+            'Wpar\\' => 5,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Inc\\' => 
+        'Wpar\\' => 
         array (
             0 => __DIR__ . '/../..' . '/inc',
         ),
     );
 
     public static $classMap = array (
-        'Inc\\Api\\Callbacks\\AdminCallbacks' => __DIR__ . '/../..' . '/inc/Api/Callbacks/AdminCallbacks.php',
-        'Inc\\Api\\Callbacks\\ManagerCallbacks' => __DIR__ . '/../..' . '/inc/Api/Callbacks/ManagerCallbacks.php',
-        'Inc\\Api\\SettingsApi' => __DIR__ . '/../..' . '/inc/Api/SettingsApi.php',
-        'Inc\\Base\\Activate' => __DIR__ . '/../..' . '/inc/Base/Activate.php',
-        'Inc\\Base\\AdminNotice' => __DIR__ . '/../..' . '/inc/Base/AdminNotice.php',
-        'Inc\\Base\\BaseController' => __DIR__ . '/../..' . '/inc/Base/BaseController.php',
-        'Inc\\Base\\Deactivate' => __DIR__ . '/../..' . '/inc/Base/Deactivate.php',
-        'Inc\\Base\\DonateNotice' => __DIR__ . '/../..' . '/inc/Base/DonateNotice.php',
-        'Inc\\Base\\Enqueue' => __DIR__ . '/../..' . '/inc/Base/Enqueue.php',
-        'Inc\\Base\\Localization' => __DIR__ . '/../..' . '/inc/Base/Localization.php',
-        'Inc\\Base\\RatingNotice' => __DIR__ . '/../..' . '/inc/Base/RatingNotice.php',
-        'Inc\\Base\\SettingsLinks' => __DIR__ . '/../..' . '/inc/Base/SettingsLinks.php',
-        'Inc\\Base\\Uninstall' => __DIR__ . '/../..' . '/inc/Base/Uninstall.php',
-        'Inc\\Core\\PostRepublish' => __DIR__ . '/../..' . '/inc/Core/PostRepublish.php',
-        'Inc\\Core\\RepublishInfo' => __DIR__ . '/../..' . '/inc/Core/RepublishInfo.php',
-        'Inc\\Core\\SiteCache' => __DIR__ . '/../..' . '/inc/Core/SiteCache.php',
-        'Inc\\Helpers\\HelperFunctions' => __DIR__ . '/../..' . '/inc/Helpers/HelperFunctions.php',
-        'Inc\\Helpers\\Hooker' => __DIR__ . '/../..' . '/inc/Helpers/Hooker.php',
-        'Inc\\Helpers\\SettingsData' => __DIR__ . '/../..' . '/inc/Helpers/SettingsData.php',
-        'Inc\\Pages\\Dashboard' => __DIR__ . '/../..' . '/inc/Pages/Dashboard.php',
-        'Inc\\WPARLoader' => __DIR__ . '/../..' . '/inc/WPARLoader.php',
+        'Wpar\\Api\\Callbacks\\AdminCallbacks' => __DIR__ . '/../..' . '/inc/Api/Callbacks/AdminCallbacks.php',
+        'Wpar\\Api\\Callbacks\\ManagerCallbacks' => __DIR__ . '/../..' . '/inc/Api/Callbacks/ManagerCallbacks.php',
+        'Wpar\\Api\\SettingsApi' => __DIR__ . '/../..' . '/inc/Api/SettingsApi.php',
+        'Wpar\\Base\\Activate' => __DIR__ . '/../..' . '/inc/Base/Activate.php',
+        'Wpar\\Base\\AdminNotice' => __DIR__ . '/../..' . '/inc/Base/AdminNotice.php',
+        'Wpar\\Base\\BaseController' => __DIR__ . '/../..' . '/inc/Base/BaseController.php',
+        'Wpar\\Base\\Deactivate' => __DIR__ . '/../..' . '/inc/Base/Deactivate.php',
+        'Wpar\\Base\\DonateNotice' => __DIR__ . '/../..' . '/inc/Base/DonateNotice.php',
+        'Wpar\\Base\\Enqueue' => __DIR__ . '/../..' . '/inc/Base/Enqueue.php',
+        'Wpar\\Base\\Localization' => __DIR__ . '/../..' . '/inc/Base/Localization.php',
+        'Wpar\\Base\\RatingNotice' => __DIR__ . '/../..' . '/inc/Base/RatingNotice.php',
+        'Wpar\\Base\\SettingsLinks' => __DIR__ . '/../..' . '/inc/Base/SettingsLinks.php',
+        'Wpar\\Base\\Uninstall' => __DIR__ . '/../..' . '/inc/Base/Uninstall.php',
+        'Wpar\\Core\\PostRepublish' => __DIR__ . '/../..' . '/inc/Core/PostRepublish.php',
+        'Wpar\\Core\\RepublishInfo' => __DIR__ . '/../..' . '/inc/Core/RepublishInfo.php',
+        'Wpar\\Core\\SiteCache' => __DIR__ . '/../..' . '/inc/Core/SiteCache.php',
+        'Wpar\\Helpers\\HelperFunctions' => __DIR__ . '/../..' . '/inc/Helpers/HelperFunctions.php',
+        'Wpar\\Helpers\\Hooker' => __DIR__ . '/../..' . '/inc/Helpers/Hooker.php',
+        'Wpar\\Helpers\\SettingsData' => __DIR__ . '/../..' . '/inc/Helpers/SettingsData.php',
+        'Wpar\\Pages\\Dashboard' => __DIR__ . '/../..' . '/inc/Pages/Dashboard.php',
+        'Wpar\\WPARLoader' => __DIR__ . '/../..' . '/inc/WPARLoader.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

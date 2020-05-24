@@ -4,11 +4,11 @@
  *
  * @since      1.1.0
  * @package    WP Auto Republish
- * @subpackage Inc\Helpers
+ * @subpackage Wpar\Helpers
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 
-namespace Inc\Helpers;
+namespace Wpar\Helpers;
 
 defined( 'ABSPATH' ) || exit;
 

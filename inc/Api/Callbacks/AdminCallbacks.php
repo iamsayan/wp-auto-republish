@@ -4,13 +4,13 @@
  *
  * @since      1.1.0
  * @package    WP Auto Republish
- * @subpackage Inc\Api\Callbacks
+ * @subpackage Wpar\Api\Callbacks
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 
-namespace Inc\Api\Callbacks;
+namespace Wpar\Api\Callbacks;
 
-use Inc\Base\BaseController;
+use Wpar\Base\BaseController;
 
 defined( 'ABSPATH' ) || exit;
 

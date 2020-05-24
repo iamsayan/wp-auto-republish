@@ -5,13 +5,13 @@
  *
  * @since      1.1.0
  * @package    WP Auto Republish
- * @subpackage Inc\Core
+ * @subpackage Wpar\Core
  * @author     Sayan Datta <hello@sayandatta.in>
  */
-namespace Inc\Core;
+namespace Wpar\Core;
 
-use  Inc\Helpers\Hooker ;
-use  Inc\Helpers\SettingsData ;
+use  Wpar\Helpers\Hooker ;
+use  Wpar\Helpers\SettingsData ;
 defined( 'ABSPATH' ) || exit;
 /**
  * Republication class.
@@ -39,16 +39,16 @@ class PostRepublish
         $start_time = ( !empty($this->get_data( 'wpar_start_time' )) ? strtotime( $this->get_data( 'wpar_start_time' ) ) : strtotime( '05:00:00' ) );
         $end_time = ( !empty($this->get_data( 'wpar_end_time' )) ? strtotime( $this->get_data( 'wpar_end_time' ) ) : strtotime( '23:59:59' ) );
         if ( $this->check_global_republish() ) {
-            
             if ( $this->generate_next_schedule() ) {
-                update_option( 'wpar_last_update', time() );
                 if ( !empty($wpar_days) && in_array( $day, $wpar_days ) ) {
+                    
                     if ( $cur_time >= $start_time && $cur_time <= $end_time ) {
+                        update_option( 'wpar_last_update', time() );
                         $this->republish_old_post();
                     }
+                
                 }
             }
-        
         }
     }
     
@@ -61,6 +61,7 @@ class PostRepublish
         $time = current_time( 'mysql' );
         $wpar_overwrite = $this->get_data( 'wpar_exclude_by_type' );
         $wpar_gap = $this->get_data( 'wpar_republish_post_age' );
+        $wpar_orderby = $this->get_data( 'wpar_republish_orderby' );
         $wpar_order = $this->get_data( 'wpar_republish_method' );
         
         if ( !empty($this->get_data( 'wpar_post_types' )) ) {
@@ -88,7 +89,7 @@ class PostRepublish
                 'post_type'   => $post_type,
                 'numberposts' => -1,
                 'date_query'  => [ [
-                'before' => date( 'Y-m-d', strtotime( "-{$wpar_gap} days", $timestamp ) ),
+                'before' => $this->do_filter( 'post_before_date', date( 'Y-m-d', strtotime( "-{$wpar_gap} days", $timestamp ) ), $timestamp ),
             ] ],
             ];
             if ( !in_array( $post_type, [ 'post', 'page', 'attachment' ] ) ) {
@@ -175,6 +176,9 @@ class PostRepublish
                     $args['order'] = 'ASC';
                 }
             
+            }
+            if ( !empty($wpar_orderby) ) {
+                $args['orderby'] = $wpar_orderby;
             }
             if ( !empty($wpar_omit_override) ) {
                 
@@ -267,7 +271,7 @@ class PostRepublish
             $ret = true;
         } elseif ( is_numeric( $last ) ) {
             
-            if ( $time - $last > $interval + rand( 0, $slop ) ) {
+            if ( $time - $last > $interval + mt_rand( 0, $slop ) ) {
                 $ret = true;
             } else {
                 $ret = false;

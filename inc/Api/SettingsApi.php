@@ -4,13 +4,13 @@
  *
  * @since      1.1.0
  * @package    WP Auto Republish
- * @subpackage Inc\Api
+ * @subpackage Wpar\Api
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 
-namespace Inc\Api;
+namespace Wpar\Api;
 
-use Inc\Helpers\Hooker;
+use Wpar\Helpers\Hooker;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -80,7 +80,7 @@ class SettingsApi
 	/**
 	 * Register sub menu pages.
 	 */
-	public function withSubPage( string $title = null ) 
+	public function withSubPage( $title = null ) 
 	{
 		if ( empty( $this->admin_pages ) ) {
 			return $this;

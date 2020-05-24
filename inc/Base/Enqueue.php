@@ -5,13 +5,13 @@
  *
  * @since      1.1.0
  * @package    WP Auto Republish
- * @subpackage Inc\Base
+ * @subpackage Wpar\Base
  * @author     Sayan Datta <hello@sayandatta.in>
  */
-namespace Inc\Base;
+namespace Wpar\Base;
 
-use  Inc\Helpers\Hooker ;
-use  Inc\Base\BaseController ;
+use  Wpar\Helpers\Hooker ;
+use  Wpar\Base\BaseController ;
 defined( 'ABSPATH' ) || exit;
 /**
  * Script class.

@@ -4,11 +4,11 @@
  *
  * @since      1.1.0
  * @package    WP Auto Republish
- * @subpackage Inc\Base
+ * @subpackage Wpar\Base
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 
-namespace Inc\Base;
+namespace Wpar\Base;
 
 /**
  * Uninstall class.
@@ -24,7 +24,7 @@ class Uninstall
 			$options = get_option( $option_name );
 			if( isset( $options['wpar_remove_plugin_data'] ) && ( $options['wpar_remove_plugin_data'] == 1 ) ) {
 				// delete plugin settings
-			    delete_option( $option );
+			    delete_option( $option_name );
 			    // uninstall action
 			    do_action( 'wpar/plugin_uninstall_action' );
 			}
@@ -38,7 +38,7 @@ class Uninstall
 				$options = get_option( $option_name );
 				if( isset( $options['wpar_remove_plugin_data'] ) && ( $options['wpar_remove_plugin_data'] == 1 ) ) {
 					// delete plugin settings
-					delete_option( $option );
+					delete_option( $option_name );
 					// uninstall action
 					do_action( 'wpar/plugin_uninstall_action' );
 				}

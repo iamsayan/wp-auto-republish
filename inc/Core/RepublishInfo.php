@@ -5,13 +5,13 @@
  *
  * @since      1.1.0
  * @package    WP Auto Republish
- * @subpackage Inc\Core
+ * @subpackage Wpar\Core
  * @author     Sayan Datta <hello@sayandatta.in>
  */
-namespace Inc\Core;
+namespace Wpar\Core;
 
-use  Inc\Helpers\Hooker ;
-use  Inc\Helpers\SettingsData ;
+use  Wpar\Helpers\Hooker ;
+use  Wpar\Helpers\SettingsData ;
 defined( 'ABSPATH' ) || exit;
 /**
  * Republish info class.

@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: republish, republishing, old posts, old post, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 4.7
 Tested up to: 5.4
-Stable tag: 1.1.4
+Stable tag: 1.1.6
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -95,10 +95,11 @@ Premium world-class support is available via email to all [WP Auto Republish Pre
 == Installation ==
 
 1. Visit 'Plugins > Add New'.
-2. Search for 'WP Auto Republish' and install it.
-3. Or you can upload the `wp-auto-republish` folder to the `/wp-content/plugins/` directory manually.
-4. Activate WP Auto Republish from your Plugins page.
-5. After activation go to 'Settings > WP Auto Republish'.
+2. Download the plugin file from your email inbox.
+3. Upload the `wp-auto-republish-premium` folder to the `/wp-content/plugins/` directory manually.
+4. Activate WP Auto Republish Premium from your Plugins page.
+5. After activation go to 'Settings > WP Auto Republish Premium'.
+
 6. Configure plugins settings according to your need and save changes.
 
 == Frequently Asked Questions ==
@@ -132,6 +133,21 @@ Yes, permalinks with dates would be affected only in free version. This plugin s
 == Changelog ==
 
 If you like WP Auto Republish, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.1.6 =
+Release Date: 24th May, 2020
+
+= All Versions =
+* Fixed: A bug where plugin causes multiple republish at a same time.
+* Fixed: Plugin data can'tbe removed at the time of uninstallation.
+
+= 1.1.5 =
+Release Date: 8th May, 2020
+
+= All Versions =
+* Added: Republish event time in plugin settings page.
+* Fixed: Fatal errors in less than PHP version 7.0.0. Please update your website's PHP version to 7.0.0 or higher. Support for less than PHP v7.0 will be removed in the upcoming versions.
+* Fixed: A bug where global republishing is not working.
 
 = 1.1.4 =
 Release Date: 1st May, 2020

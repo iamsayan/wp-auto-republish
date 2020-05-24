@@ -109,6 +109,42 @@ printf( __( 'Thank you for using %s. If you found the plugin useful buy me a cof
             <?php 
 ?> 
             <?php 
+$last = get_option( 'wpar_last_update' );
+
+if ( $last !== false ) {
+    ?>
+                <div class="postbox">
+                    <h3 class="hndle" style="cursor:default;text-align: center;"><?php 
+    _e( 'Post Republish Schedule', 'wp-auto-republish' );
+    ?></h3>
+                    <div class="inside">
+                        <div class="misc-pub-section" style="text-align:center;">
+                            <div style="font-style: italic;font-size:12px;line-height:1.4">
+                                <?php 
+    $format = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
+    $options = get_option( 'wpar_plugin_settings' );
+    $interval = $options['wpar_minimun_republish_interval'];
+    $slop = $options['wpar_random_republish_interval'];
+    ?>
+                                    <?php 
+    _e( 'Last Republished:', 'wp-auto-republish' );
+    ?> <?php 
+    echo  get_date_from_gmt( date( 'Y-m-d H:i:s', $last ), $format ) . '<br>' ;
+    ?>
+                                    <?php 
+    _e( 'Next Republish occurs after:', 'wp-auto-republish' );
+    ?> <?php 
+    echo  get_date_from_gmt( date( 'Y-m-d H:i:s', $last + $interval ), $format ) ;
+    ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php 
+}
+
+?> 
+            <?php 
 ?>
                 <div class="postbox">
                     <h3 class="hndle" style="cursor:default;text-align: center;"><?php 
@@ -168,7 +204,7 @@ if ( wpar_load_fs_sdk()->is_not_paying() && !wpar_load_fs_sdk()->is_trial() && !
     echo  wpar_load_fs_sdk()->get_trial_url() ;
     ?>"><?php 
     _e( 'Start Trial', 'wp-auto-republish' );
-    ?></a>&nbsp;
+    ?></a>
                             <?php 
 }
 

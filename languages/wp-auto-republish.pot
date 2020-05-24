@@ -3,10 +3,10 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Auto Republish\n"
-"POT-Creation-Date: 2020-05-01 09:35+0530\n"
+"POT-Creation-Date: 2020-05-24 20:05+0530\n"
 "PO-Revision-Date: 2019-01-05 23:35+0530\n"
 "Last-Translator: \n"
-"Language-Team: \n"
+"Language-Team: Sayan Datta <hello@sayandatta.in>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -459,6 +459,7 @@ msgstr ""
 msgid "Donate"
 msgstr ""
 
+#. Plugin Name of the plugin/theme
 #: inc/Pages/Dashboard.php:60 inc/Pages/Dashboard.php:69
 msgid "WP Auto Republish"
 msgstr ""
@@ -557,111 +558,119 @@ msgid ""
 "via PayPal."
 msgstr ""
 
-#: templates/admin.php:115
-msgid "Upgrade to Premium Now!"
-msgstr ""
-
-#: templates/admin.php:120
-msgid "Upgrade to the premium version and get the following features"
-msgstr ""
-
-#: templates/admin.php:124
-msgid "Unlimited Custom Post types Support"
-msgstr ""
-
-#: templates/admin.php:127
-msgid "Custom Taxonomies Support"
+#: templates/admin.php:118
+msgid "Post Republish Schedule"
 msgstr ""
 
 #: templates/admin.php:130
-msgid "Individual Post Republishing"
+msgid "Last Republished:"
 msgstr ""
 
-#: templates/admin.php:133
-msgid "Scheduled Post Republishing"
-msgstr ""
-
-#: templates/admin.php:136
-msgid "Date & Time Based Republishing"
-msgstr ""
-
-#: templates/admin.php:139
-msgid "Custom Post Republish Interval"
-msgstr ""
-
-#: templates/admin.php:142
-msgid "Custom Title for each Republish Event"
-msgstr ""
-
-#: templates/admin.php:145
-msgid "Automatic Single Cache Purge Support"
-msgstr ""
-
-#: templates/admin.php:148
-msgid "Date Range for Republishing"
+#: templates/admin.php:135
+msgid "Next Republish occurs after:"
 msgstr ""
 
 #: templates/admin.php:151
-msgid "Can use Dates in Post Permalinks"
+msgid "Upgrade to Premium Now!"
 msgstr ""
 
-#: templates/admin.php:154
-msgid "Change Post Status after Republish"
-msgstr ""
-
-#: templates/admin.php:157
-msgid "One Click Instant Republish"
+#: templates/admin.php:156
+msgid "Upgrade to the premium version and get the following features"
 msgstr ""
 
 #: templates/admin.php:160
+msgid "Unlimited Custom Post types Support"
+msgstr ""
+
+#: templates/admin.php:163
+msgid "Custom Taxonomies Support"
+msgstr ""
+
+#: templates/admin.php:166
+msgid "Individual Post Republishing"
+msgstr ""
+
+#: templates/admin.php:169
+msgid "Scheduled Post Republishing"
+msgstr ""
+
+#: templates/admin.php:172
+msgid "Date & Time Based Republishing"
+msgstr ""
+
+#: templates/admin.php:175
+msgid "Custom Post Republish Interval"
+msgstr ""
+
+#: templates/admin.php:178
+msgid "Custom Title for each Republish Event"
+msgstr ""
+
+#: templates/admin.php:181
+msgid "Automatic Single Cache Purge Support"
+msgstr ""
+
+#: templates/admin.php:184
+msgid "Date Range for Republishing"
+msgstr ""
+
+#: templates/admin.php:187
+msgid "Can use Dates in Post Permalinks"
+msgstr ""
+
+#: templates/admin.php:190
+msgid "Change Post Status after Republish"
+msgstr ""
+
+#: templates/admin.php:193
+msgid "One Click Instant Republish"
+msgstr ""
+
+#: templates/admin.php:196
 msgid "Priority Email Support & many more.."
 msgstr ""
 
-#: templates/admin.php:170
+#: templates/admin.php:206
 msgid "Start Trial"
 msgstr ""
 
-#: templates/admin.php:179
+#: templates/admin.php:215
 msgid "Upgrade Now"
 msgstr ""
 
-#: templates/admin.php:188
+#: templates/admin.php:224
 msgid "My Other Plugins!"
 msgstr ""
 
-#: templates/admin.php:198
+#: templates/admin.php:234
 msgid ""
 "Display last update date and time on pages and posts very easily with "
 "'dateModified' Schema Markup."
 msgstr ""
 
-#: templates/admin.php:210
+#: templates/admin.php:246
 msgid ""
 "Ultimate Facebook Comments Solution with instant email notification for any "
 "WordPress Website. Everything is customizable."
 msgstr ""
 
-#: templates/admin.php:222
+#: templates/admin.php:258
 msgid ""
 "Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to "
 "wordpress pages very easily (tested on Yoast SEO, All in One SEO Pack, Rank "
 "Math, SEOPresss and Others)."
 msgstr ""
 
-#: templates/admin.php:234
+#: templates/admin.php:270
 msgid ""
 "Simple Posts Ticker is a small tool that shows your most recent posts in a "
 "marquee style."
 msgstr ""
 
-#: templates/admin.php:246
+#: templates/admin.php:282
 msgid ""
 "Customize WP header, add custom code and enable, disable or remove the "
 "unwanted meta tags, links from the source code and many more."
-msgstr ""
-
-#. Plugin Name of the plugin/theme
-msgid "WP Auto Republish Premium"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
@@ -681,5 +690,5 @@ msgid "Sayan Datta"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://sayandatta.in"
+msgid "https://www.sayandatta.in"
 msgstr ""

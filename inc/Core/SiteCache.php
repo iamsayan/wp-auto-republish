@@ -4,13 +4,13 @@
  *
  * @since      1.0.0
  * @package    WP Auto Republish
- * @subpackage Inc\Core
+ * @subpackage Wpar\Core
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 
-namespace Inc\Core;
+namespace Wpar\Core;
 
-use Inc\Helpers\Hooker;
+use Wpar\Helpers\Hooker;
 
 defined( 'ABSPATH' ) || exit;
 

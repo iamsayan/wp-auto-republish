@@ -5,10 +5,10 @@
  *
  * @since      1.1.0
  * @package    WP Auto Republish
- * @subpackage Inc\Core
+ * @subpackage Wpar\Core
  * @author     Sayan Datta <hello@sayandatta.in>
  */
-namespace Inc;
+namespace Wpar;
 
 /**
  * WPAR Main Class.

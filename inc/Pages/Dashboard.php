@@ -5,15 +5,15 @@
  *
  * @since      1.1.0
  * @package    WP Auto Republish
- * @subpackage Inc\Pages
+ * @subpackage Wpar\Pages
  * @author     Sayan Datta <hello@sayandatta.in>
  */
-namespace Inc\Pages;
+namespace Wpar\Pages;
 
-use  Inc\Api\SettingsApi ;
-use  Inc\Helpers\HelperFunctions ;
-use  Inc\Api\Callbacks\AdminCallbacks ;
-use  Inc\Api\Callbacks\ManagerCallbacks ;
+use  Wpar\Api\SettingsApi ;
+use  Wpar\Helpers\HelperFunctions ;
+use  Wpar\Api\Callbacks\AdminCallbacks ;
+use  Wpar\Api\Callbacks\ManagerCallbacks ;
 defined( 'ABSPATH' ) || exit;
 /**
  * Dashboard class.

@@ -1,6 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.1.6
+Release Date: 24th May, 2020
+
+= All Versions =
+* Fixed: A bug where plugin causes multiple republish at a same time.
+* Fixed: Plugin data can'tbe removed at the time of uninstallation.
+
+## 1.1.5
+Release Date: 8th May, 2020
+
+= All Versions =
+* Added: Republish event time in plugin settings page.
+* Fixed: Fatal errors in less than PHP version 7.0.0. Please update your website's PHP version to 7.0.0 or higher. Support for less than PHP v7.0 will be removed in the upcoming versions.
+* Fixed: A bug where global republishing is not working.
+
 ## 1.1.4
 Release Date: 1st May, 2020
 

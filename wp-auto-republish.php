@@ -4,9 +4,9 @@
  * Plugin Name: WP Auto Republish
  * Plugin URI: https://wordpress.org/plugins/wp-auto-republish/
  * Description: The WP Auto Republish plugin helps revive old posts by resetting the publish date to the current date. This will push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
- * Version: 1.1.4
+ * Version: 1.1.6
  * Author: Sayan Datta
- * Author URI: https://sayandatta.in
+ * Author URI: https://www.sayandatta.in
  * License: GPLv3
  * Text Domain: wp-auto-republish
  * Domain Path: /languages
@@ -61,7 +61,7 @@ if ( function_exists( 'wpar_load_fs_sdk' ) ) {
                     'has_addons'     => false,
                     'has_paid_plans' => true,
                     'trial'          => [
-                    'days'               => 7,
+                    'days'               => 14,
                     'is_require_payment' => false,
                 ],
                     'menu'           => [
@@ -92,7 +92,7 @@ if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
  */
 function wpar_plugin_activation()
 {
-    Inc\Base\Activate::activate();
+    Wpar\Base\Activate::activate();
 }
 
 register_activation_hook( __FILE__, 'wpar_plugin_activation' );
@@ -101,7 +101,7 @@ register_activation_hook( __FILE__, 'wpar_plugin_activation' );
  */
 function wpar_plugin_deactivation()
 {
-    Inc\Base\Deactivate::deactivate();
+    Wpar\Base\Deactivate::deactivate();
 }
 
 register_deactivation_hook( __FILE__, 'wpar_plugin_deactivation' );
@@ -110,13 +110,13 @@ register_deactivation_hook( __FILE__, 'wpar_plugin_deactivation' );
  */
 function wpar_plugin_uninstallation()
 {
-    Inc\Base\Uninstall::uninstall();
+    Wpar\Base\Uninstall::uninstall();
 }
 
 wpar_load_fs_sdk()->add_action( 'after_uninstall', 'wpar_plugin_uninstallation' );
 /**
  * Initialize all the core classes of the plugin
  */
-if ( class_exists( 'Inc\\WPARLoader' ) ) {
-    Inc\WPARLoader::register_services();
+if ( class_exists( 'Wpar\\WPARLoader' ) ) {
+    Wpar\WPARLoader::register_services();
 }
