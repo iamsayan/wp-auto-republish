@@ -24,6 +24,7 @@ return array(
     'Wpar\\Core\\SiteCache' => $baseDir . '/inc/Core/SiteCache.php',
     'Wpar\\Helpers\\HelperFunctions' => $baseDir . '/inc/Helpers/HelperFunctions.php',
     'Wpar\\Helpers\\Hooker' => $baseDir . '/inc/Helpers/Hooker.php',
+    'Wpar\\Helpers\\Logger' => $baseDir . '/inc/Helpers/Logger.php',
     'Wpar\\Helpers\\SettingsData' => $baseDir . '/inc/Helpers/SettingsData.php',
     'Wpar\\Pages\\Dashboard' => $baseDir . '/inc/Pages/Dashboard.php',
     'Wpar\\WPARLoader' => $baseDir . '/inc/WPARLoader.php',

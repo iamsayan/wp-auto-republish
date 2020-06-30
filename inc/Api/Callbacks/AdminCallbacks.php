@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 /**
  * Admin callbacks.
  *
@@ -7,23 +8,23 @@
  * @subpackage Wpar\Api\Callbacks
  * @author     Sayan Datta <hello@sayandatta.in>
  */
-
 namespace Wpar\Api\Callbacks;
 
-use Wpar\Base\BaseController;
-
+use  Wpar\Helpers\Logger ;
+use  Wpar\Base\BaseController ;
 defined( 'ABSPATH' ) || exit;
-
 /**
  * Admin callbacks class.
  */
 class AdminCallbacks extends BaseController
 {
-	/**
-	 * Call dashboard template.
-	 */
-	public function adminDashboard()
-	{
-		return require_once( "$this->plugin_path/templates/admin.php" );
-	}
+    use  Logger ;
+    /**
+     * Call dashboard template.
+     */
+    public function adminDashboard()
+    {
+        return require_once "{$this->plugin_path}/templates/admin.php";
+    }
+
 }

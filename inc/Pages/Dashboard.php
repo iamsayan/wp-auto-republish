@@ -93,12 +93,24 @@ class Dashboard
      */
     public function setSections()
     {
-        $args = [ [
-            'id'       => 'wpar_plugin_section',
-            'title'    => '',
-            'callback' => null,
-            'page'     => 'wpar_plugin_option',
-        ] ];
+        $sections = [
+            'default',
+            'single_republish',
+            'post_query',
+            'post_type',
+            'republish_info',
+            'email_notify',
+            'tools'
+        ];
+        $args = [];
+        foreach ( $sections as $section ) {
+            $args[] = [
+                'id'       => 'wpar_plugin_' . $section . '_section',
+                'title'    => '',
+                'callback' => null,
+                'page'     => 'wpar_plugin_' . $section . '_option',
+            ];
+        }
         $this->settings->setSections( $args );
     }
     
@@ -109,17 +121,19 @@ class Dashboard
     {
         $args = [];
         foreach ( $this->build_settings_fields() as $key => $value ) {
-            $args[] = [
-                'id'       => $key,
-                'title'    => $value,
-                'callback' => [ $this->callbacks_manager, $key ],
-                'page'     => 'wpar_plugin_option',
-                'section'  => 'wpar_plugin_section',
-                'args'     => [
-                'label_for' => 'wpar_' . $key,
-                'class'     => 'wpar_css_' . $key,
-            ],
-            ];
+            foreach ( $value as $type => $settings ) {
+                $args[] = [
+                    'id'       => $type,
+                    'title'    => $settings,
+                    'callback' => [ $this->callbacks_manager, $type ],
+                    'page'     => 'wpar_plugin_' . $key . '_option',
+                    'section'  => 'wpar_plugin_' . $key . '_section',
+                    'args'     => [
+                    'label_for' => 'wpar_' . str_replace( '__premium_only', '', $type ),
+                    'class'     => 'wpar_css_' . str_replace( '__premium_only', '', $type ),
+                ],
+                ];
+            }
         }
         $this->settings->setFields( $args );
     }
@@ -130,22 +144,32 @@ class Dashboard
     private function build_settings_fields()
     {
         $managers = [
+            'default'        => [
             'enable_plugin'              => __( 'Enable Auto Republishing?', 'wp-auto-republish' ),
-            'minimun_republish_interval' => __( 'Minimum Republish Interval:', 'wp-auto-republish' ),
-            'random_republish_interval'  => __( 'Random Republish Interval:', 'wp-auto-republish' ),
-            'republish_post_age'         => __( 'Post Republish Eligibility Age:', 'wp-auto-republish' ),
-            'republish_order'            => __( 'Select Old Posts Order:', 'wp-auto-republish' ),
+            'minimun_republish_interval' => __( 'Run Republish Process in Every:', 'wp-auto-republish' ),
+            'random_republish_interval'  => __( 'New Date Time Randomness:', 'wp-auto-republish' ),
             'republish_post_position'    => __( 'Republish Post to Position:', 'wp-auto-republish' ),
-            'republish_info'             => __( 'Show Original Publication Date:', 'wp-auto-republish' ),
-            'republish_info_text'        => __( 'Original Publication Message:', 'wp-auto-republish' ),
-            'post_types_list'            => __( 'Select Post Types to Republish:', 'wp-auto-republish' ),
-            'exclude_by_type'            => __( 'Auto Republish Old Posts by:', 'wp-auto-republish' ),
-            'post_taxonomy'              => __( 'Select Post Categories/Tags:', 'wp-auto-republish' ),
-            'override_category_tag'      => __( 'Override Category or Post Tags Filtering for these Specific Posts:', 'wp-auto-republish' ),
-            'republish_days'             => __( 'Select Weekdays to Republish:', 'wp-auto-republish' ),
             'republish_time_start'       => __( 'Start Time for Republishing:', 'wp-auto-republish' ),
             'republish_time_end'         => __( 'End Time for Republishing:', 'wp-auto-republish' ),
-            'remove_plugin_data'         => __( 'Remove Plugin Data on Uninstall?', 'wp-auto-republish' ),
+            'republish_days'             => __( 'Select Weekdays to Republish:', 'wp-auto-republish' ),
+        ],
+            'republish_info' => [
+            'republish_info'      => __( 'Show Original Publication Date:', 'wp-auto-republish' ),
+            'republish_info_text' => __( 'Original Publication Message:', 'wp-auto-republish' ),
+        ],
+            'post_query'     => [
+            'republish_post_age' => __( 'Post Republish Eligibility Age:', 'wp-auto-republish' ),
+            'republish_order'    => __( 'Select Old Posts Order:', 'wp-auto-republish' ),
+        ],
+            'post_type'      => [
+            'post_types_list'       => __( 'Select Post Types to Republish:', 'wp-auto-republish' ),
+            'exclude_by_type'       => __( 'Auto Republish Old Posts by:', 'wp-auto-republish' ),
+            'post_taxonomy'         => __( 'Select Post Categories/Tags:', 'wp-auto-republish' ),
+            'override_category_tag' => __( 'Override Category or Post Tags Filtering for these Specific Posts:', 'wp-auto-republish' ),
+        ],
+            'tools'          => [
+            'remove_plugin_data' => __( 'Remove Plugin Data on Uninstall?', 'wp-auto-republish' ),
+        ],
         ];
         return $managers;
     }

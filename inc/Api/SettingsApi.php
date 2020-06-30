@@ -92,7 +92,7 @@ class SettingsApi
 			[
 				'parent_slug' => $admin_page['menu_slug'], 
 				'page_title' => $admin_page['page_title'], 
-				'menu_title' => ($title) ? $title : $admin_page['menu_title'], 
+				'menu_title' => ( $title ) ? $title : $admin_page['menu_title'], 
 				'capability' => $admin_page['capability'], 
 				'menu_slug' => $admin_page['menu_slug'], 
 				'callback' => $admin_page['callback']

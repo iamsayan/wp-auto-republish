@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: republish, republishing, old posts, old post, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 4.7
 Tested up to: 5.4
-Stable tag: 1.1.6
+Stable tag: 1.1.7
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -64,6 +64,7 @@ This plugin helps revive old posts by resetting the published date to the curren
 * Can change the post name on every republish.
 * Shows all single upcoming republication in a dashboard widget.
 * Shows single republication info in a admin column.
+* Get Email Notification after Republish.
 * Can hide last original published info from frontend.
 
 <strong>[Upgrade to WP Auto Republish Premium](https://sayandatta.in/wp-auto-republish/purchase) now. You can also upgrade to Premium Version directly from your dashboard.</strong>
@@ -95,11 +96,10 @@ Premium world-class support is available via email to all [WP Auto Republish Pre
 == Installation ==
 
 1. Visit 'Plugins > Add New'.
-2. Download the plugin file from your email inbox.
-3. Upload the `wp-auto-republish-premium` folder to the `/wp-content/plugins/` directory manually.
-4. Activate WP Auto Republish Premium from your Plugins page.
-5. After activation go to 'Settings > WP Auto Republish Premium'.
-
+2. Search for 'WP Auto Republish' and install it.
+3. Or you can upload the `wp-auto-republish` folder to the `/wp-content/plugins/` directory manually.
+4. Activate WP Auto Republish from your Plugins page.
+5. After activation go to 'Settings > WP Auto Republish'.
 6. Configure plugins settings according to your need and save changes.
 
 == Frequently Asked Questions ==
@@ -119,7 +119,7 @@ Yes, our plugins work independently of themes you are using. As long as your web
 
 = Are posts duplicated? =
 
-No. The date on posts is updated to the current date making a post appear new. URLs don't change and comments continue to display with the post.
+By default, no. The date on posts is updated to the current date making a post appear new. URLs don't change and comments continue to display with the post. But in Premium Version, it is posssible to clone posts.
 
 = Doesn't changing the timestamp affect permalinks that include dates?  =
 
@@ -127,12 +127,36 @@ Yes, permalinks with dates would be affected only in free version. This plugin s
 
 == Screenshots ==
 
-1. This is the admin area of WP Auto Republish.
-2. Premium Version Single Post Settings.
+1. WP Auto Republish - General Tab (Free).
+2. WP Auto Republish - Post Options Tab (Free).
 
 == Changelog ==
 
 If you like WP Auto Republish, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.1.7 =
+Release Date: 30th June, 2020
+
+= Premium Version =
+* Added: Option to Set Post Republish Action. It is now possible to clone old posts automatically.
+* Added: Option to Set Post types on which you want to display origianl publication date.
+* Added: Some checks to handle time restriction properly.
+* Added: It is now possible to restrict users from accessing Single Republish Settings via plugin settings.
+* Added: It is now possible to show single metabox on particular post types via plugin settings.
+* Added: You can get Email Notification after republication is done.
+* Added: Post Republication Logs in plugin settings.
+* Added: Automatic Single Post Cache clear if Republish Trigger is disabled.
+* Added: Hourly and Minutes option to Single Repeat Republishing option. By default, Minutes is disabled, but it can be enabled via filter.
+* Added: Time Restriction from Single Republishing for Hourly and Minutes Interval on Post Meta Box also.
+* Added: Global Republishing Scheduled will show on admin colums.
+* Improved: Added some checks to fix the over memory usage issues.
+* And all free versions features & Other many fixes and improvemnts.
+
+= Free Version =
+* Added: Modular UI to enhance User Experience.
+* Improved: Background Process Mechanism (currently using cron) to ensure that Post Republish Process runs without any multiple republication issues.
+* Optmized: Some unused & duplicates codes.
+* Tweak: Cron Schedules is displayed on plugin settings page.
 
 = 1.1.6 =
 Release Date: 24th May, 2020
@@ -243,3 +267,8 @@ Release Date: 16th April, 2020
 = Other Versions =
 
 * View the <a href="https://plugins.svn.wordpress.org/wp-auto-republish/trunk/changelog.txt" target="_blank">Changelog</a> file.
+
+== Upgrade Notice ==
+
+= 1.1.7 =
+In this release we have introduced several changese. Please review the changes after updating the plugin. Otherwise plugin may stop working.

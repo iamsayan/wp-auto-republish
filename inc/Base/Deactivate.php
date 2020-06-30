@@ -25,7 +25,6 @@ class Deactivate
 
 		flush_rewrite_rules();
 
-		delete_option( 'wpar_last_update' );
 		delete_option( 'wpar_plugin_dismiss_rating_notice' );
 		delete_option( 'wpar_plugin_no_thanks_rating_notice' );
 		delete_option( 'wpar_plugin_installed_time' );

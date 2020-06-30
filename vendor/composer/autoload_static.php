@@ -39,6 +39,7 @@ class ComposerStaticInitd5699dfd0ed62714b22c430580475703
         'Wpar\\Core\\SiteCache' => __DIR__ . '/../..' . '/inc/Core/SiteCache.php',
         'Wpar\\Helpers\\HelperFunctions' => __DIR__ . '/../..' . '/inc/Helpers/HelperFunctions.php',
         'Wpar\\Helpers\\Hooker' => __DIR__ . '/../..' . '/inc/Helpers/Hooker.php',
+        'Wpar\\Helpers\\Logger' => __DIR__ . '/../..' . '/inc/Helpers/Logger.php',
         'Wpar\\Helpers\\SettingsData' => __DIR__ . '/../..' . '/inc/Helpers/SettingsData.php',
         'Wpar\\Pages\\Dashboard' => __DIR__ . '/../..' . '/inc/Pages/Dashboard.php',
         'Wpar\\WPARLoader' => __DIR__ . '/../..' . '/inc/WPARLoader.php',

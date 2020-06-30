@@ -24,7 +24,7 @@ class RepublishInfo
      */
     public function register()
     {
-        $this->filter( 'the_content', 'show_republish_info', $this->do_filter( 'pub_date_priority', 10 ) );
+        $this->filter( 'the_content', 'show_republish_info', $this->do_filter( 'published_date_priority', 10 ) );
     }
     
     /**

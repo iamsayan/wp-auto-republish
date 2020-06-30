@@ -31,6 +31,20 @@ trait SettingsData
     }
     
     /**
+     * Add new meta by post id.
+     *
+     * @param int    $post_id     Post id for destination where to save.
+     * @param string $key         Metadata key.
+     * @param mixed  $value       Metadata value.
+     *
+     * @return mixed
+     */
+    protected function add_meta( $post_id, $key, $value )
+    {
+        return \add_post_meta( $post_id, $key, $value );
+    }
+    
+    /**
      * Update meta by post id.
      *
      * @param int    $post_id     Post id for destination where to save.
@@ -68,8 +82,8 @@ trait SettingsData
      */
     protected function get_data( $key, $default = false )
     {
-        $settings = get_option( 'wpar_plugin_settings', $default );
-        return ( isset( $settings[$key] ) ? $settings[$key] : '' );
+        $settings = get_option( 'wpar_plugin_settings' );
+        return ( isset( $settings[$key] ) ? $settings[$key] : $default );
     }
     
     /**
@@ -77,9 +91,8 @@ trait SettingsData
      * 
      * @return bool
      */
-    protected function check_global_republish()
+    protected function check_global_republish_enabled()
     {
-        $wpar_settings = get_option( 'wpar_plugin_settings' );
         if ( $this->get_data( 'wpar_enable_plugin' ) == 1 ) {
             return true;
         }

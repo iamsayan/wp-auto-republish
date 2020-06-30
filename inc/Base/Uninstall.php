@@ -24,7 +24,9 @@ class Uninstall
 			$options = get_option( $option_name );
 			if( isset( $options['wpar_remove_plugin_data'] ) && ( $options['wpar_remove_plugin_data'] == 1 ) ) {
 				// delete plugin settings
-			    delete_option( $option_name );
+				delete_option( $option_name );
+				delete_option( 'wpar_global_republish_scheduled' );
+				delete_option( 'wpar_republish_log_data' );
 			    // uninstall action
 			    do_action( 'wpar/plugin_uninstall_action' );
 			}
@@ -39,6 +41,8 @@ class Uninstall
 				if( isset( $options['wpar_remove_plugin_data'] ) && ( $options['wpar_remove_plugin_data'] == 1 ) ) {
 					// delete plugin settings
 					delete_option( $option_name );
+					delete_option( 'wpar_global_republish_scheduled' );
+					delete_option( 'wpar_republish_log_data' );
 					// uninstall action
 					do_action( 'wpar/plugin_uninstall_action' );
 				}

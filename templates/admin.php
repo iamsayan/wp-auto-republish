@@ -19,7 +19,7 @@ echo  $this->version ;
 ?></span></h1>
         <div><?php 
 _e( 'This plugin helps to revive old posts by resetting the publish date to the current date.', 'wp-auto-republish' );
-?></div><hr>
+?></div><hgfr>
         <div class="top-sharebar">
             <a class="share-btn rate-btn" href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" title="Please rate 5 stars if you like <?php 
 echo  $this->name ;
@@ -27,24 +27,153 @@ echo  $this->name ;
             <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Check%20out%20WP%20Auto%20Republish,%20a%20%23WordPress%20%23plugin%20that%20revive%20your%20old%20posts%20by%20resetting%20the%20published%20date%20to%20the%20current%20date%20https%3A//wordpress.org/plugins/wp-auto-republish/%20via%20%40im_sayaan" target="_blank"><span class="dashicons dashicons-twitter"></span> Tweet about WP Auto Republish</a>
         </div>
     </div>
-    <div id="poststuff" style="padding-top: 0;">
+    <div id="nav-container" class="nav-tab-wrapper" style="border-bottggom: none;">
+        <a href="#general" class="nav-tab nav-tab-active" id="btn1"><span class="dashicons dashicons-admin-generic" style="padding-top: 2px;"></span> <?php 
+_e( 'General', 'wp-auto-republish' );
+?></a>
+        <a href="#post" class="nav-tab" id="btn2"><span class="dashicons dashicons-admin-post" style="padding-top: 2px;"></span> <?php 
+_e( 'Post Options', 'wp-auto-republish' );
+?></a>
+        <!--a href="#single" class="nav-tab" id="btn3"><span class="dashicons dashicons-share" style="padding-top: 2px;"></span> <?php 
+//_e( 'Single Post', 'wp-auto-republish' );
+?></a-->
+        <?php 
+?>
+        <a href="#tools" class="nav-tab" id="btn5"><span class="dashicons dashicons-admin-tools" style="padding-top: 2px;"></span> <?php 
+_e( 'Tools', 'wp-auto-republish' );
+?></a>
+        <!--a href="#help" class="nav-tab" id="btn6"><span class="dashicons dashicons-editor-help" style="padding-top: 2px;"></span> <?php 
+//_e( 'Help', 'wp-auto-republish' );
+?></a-->
+        <?php 
+?>
+        <a href="<?php 
+echo  wpar_load_fs_sdk()->get_upgrade_url() ;
+?>" class="nav-tab" id="btn6" styfle="background-color: orange;color: red;"><span class="dashicons dashicons-arrow-up-alt" style="padding-top: 2px;"></span> <?php 
+_e( 'Upgrade', 'wp-auto-republish' );
+?></a>
+        <?php 
+?>
+    </div>
+    <script>
+        var header = document.getElementById("nav-container");
+        var btns = header.getElementsByClassName("nav-tab");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function() {
+            var current = document.getElementsByClassName("nav-tab-active");
+            current[0].className = current[0].className.replace(" nav-tab-active", "");
+            this.className += " nav-tab-active";
+            });
+        }
+    </script>
+    <div id="poststuff">
         <div id="post-body" class="metabox-holder columns-2">
             <div id="post-body-content">
-                <div class="postbox">
-                    <h3 class="hndle" style="cursor:default;">
-                        <span class="wpar-heading">
-                            <?php 
-_e( 'Configure Settings', 'wp-auto-republish' );
-?>
-                        </span>
-                    </h3>
-                    <div class="inside">
-                        <form id="saveForm" method="post" action="options.php" style="padding-left: 8px;">
-                            <?php 
+                <form id="saveForm" method="post" action="options.php" stylce="padding-left: 8px;">
+                <?php 
 settings_fields( 'wpar_plugin_settings_fields' );
 ?>
+                    <div id="wpar-general" class="postbox">
+                        <h3 class="hndle" style="cursor:default;">
+                            <span class="wpar-heading">
+                                <?php 
+_e( 'Configure Settings', 'wp-auto-republish' );
+?>
+                            </span>
+                        </h3>
+                        <div class="inside">
                             <?php 
-do_settings_sections( 'wpar_plugin_option' );
+do_settings_sections( 'wpar_plugin_default_option' );
+?>
+                            <p><?php 
+submit_button(
+    __( 'Save Settings', 'wp-auto-republish' ),
+    'primary wpar-save',
+    '',
+    false
+);
+?>
+                        </div>
+                    </div>
+                    <div id="wpar-display" class="postbox">
+                        <h3 class="hndle" style="cursor:default;">
+                            <span class="wpar-heading">
+                                <?php 
+_e( 'Display Settings', 'wp-auto-republish' );
+?>
+                            </span>
+                        </h3>
+                        <div class="inside">
+                            <?php 
+do_settings_sections( 'wpar_plugin_republish_info_option' );
+?>
+                            <p><?php 
+submit_button(
+    __( 'Save Settings', 'wp-auto-republish' ),
+    'primary wpar-save',
+    '',
+    false
+);
+?>
+                        </div>
+                    </div>
+                    <div id="wpar-query" class="postbox">
+                        <h3 class="hndle" style="cursor:default;">
+                            <span class="wpar-heading">
+                                <?php 
+_e( 'Old Posts Settings', 'wp-auto-republish' );
+?>
+                            </span>
+                        </h3>
+                        <div class="inside">
+                            <?php 
+do_settings_sections( 'wpar_plugin_post_query_option' );
+?>
+                            <p><?php 
+submit_button(
+    __( 'Save Settings', 'wp-auto-republish' ),
+    'primary wpar-save',
+    '',
+    false
+);
+?>
+                        </div>
+                    </div>
+                    <div id="wpar-post-types" class="postbox">
+                        <h3 class="hndle" style="cursor:default;">
+                            <span class="wpar-heading">
+                                <?php 
+_e( 'Post Types Settings', 'wp-auto-republish' );
+?>
+                            </span>
+                        </h3>
+                        <div class="inside">
+                            <?php 
+do_settings_sections( 'wpar_plugin_post_type_option' );
+?>
+                            <p><?php 
+submit_button(
+    __( 'Save Settings', 'wp-auto-republish' ),
+    'primary wpar-save',
+    '',
+    false
+);
+?>
+                        </div>
+                    </div>
+                    <?php 
+?>
+                    <div id="wpar-tools" class="postbox">
+                        <h3 class="hndle" style="cursor:default;">
+                            <span class="wpar-heading">
+                                <?php 
+_e( 'Plugin Tools', 'wp-auto-republish' );
+?>
+                            </span>
+                        </h3>
+                        <div class="inside">
+                            <?php 
+do_settings_sections( 'wpar_plugin_tools_option' );
 ?>
                             <p><?php 
 submit_button(
@@ -55,11 +184,12 @@ submit_button(
 );
 ?>
                             <?php 
-?>
-                        </form>
+?></p>
+                        </div>
                     </div>
-                </div>
-                <!-- todo: email -->
+                </form>
+                <?php 
+?>
                 <?php 
 ?>
                     <div class="coffee-box">
@@ -95,8 +225,8 @@ printf( __( 'Thank you for using %s. If you found the plugin useful buy me a cof
 ?></strong>
                         </p>
                         <p style="text-align: justify;font-size: 12px;font-style: italic;">
-                            Developed with <span style="color:#e25555;">♥</span> by <a href="https://sayandatta.in" target="_blank" style="font-weight: 500;">Sayan Datta</a> | 
-                            <a href="mailto:iamsayan@pm.me" style="font-weight: 500;">Hire Me</a> | 
+                            Developed with <span style="color:#e25555;">♥</span> by <a href="https://www.sayandatta.in" target="_blank" style="font-weight: 500;">Sayan Datta</a> | 
+                            <a href="https://www.sayandatta.in/contact/" style="font-weight: 500;">Hire Me</a> | 
                             <a href="https://github.com/iamsayan/wp-auto-republish" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-auto-republish" target="_blank" style="font-weight: 500;">Support</a> | 
                             <a href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.
                         </p>
@@ -107,42 +237,6 @@ printf( __( 'Thank you for using %s. If you found the plugin useful buy me a cof
            
             <div id="postbox-container-1" class="postbox-container">
             <?php 
-?> 
-            <?php 
-$last = get_option( 'wpar_last_update' );
-
-if ( $last !== false ) {
-    ?>
-                <div class="postbox">
-                    <h3 class="hndle" style="cursor:default;text-align: center;"><?php 
-    _e( 'Post Republish Schedule', 'wp-auto-republish' );
-    ?></h3>
-                    <div class="inside">
-                        <div class="misc-pub-section" style="text-align:center;">
-                            <div style="font-style: italic;font-size:12px;line-height:1.4">
-                                <?php 
-    $format = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
-    $options = get_option( 'wpar_plugin_settings' );
-    $interval = $options['wpar_minimun_republish_interval'];
-    $slop = $options['wpar_random_republish_interval'];
-    ?>
-                                    <?php 
-    _e( 'Last Republished:', 'wp-auto-republish' );
-    ?> <?php 
-    echo  get_date_from_gmt( date( 'Y-m-d H:i:s', $last ), $format ) . '<br>' ;
-    ?>
-                                    <?php 
-    _e( 'Next Republish occurs after:', 'wp-auto-republish' );
-    ?> <?php 
-    echo  get_date_from_gmt( date( 'Y-m-d H:i:s', $last + $interval ), $format ) ;
-    ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <?php 
-}
-
 ?> 
             <?php 
 ?>
@@ -193,6 +287,9 @@ _e( 'Change Post Status after Republish', 'wp-auto-republish' );
 _e( 'One Click Instant Republish', 'wp-auto-republish' );
 ?></li>
                                 <li>• <?php 
+_e( 'Email Notification upon Republishing', 'wp-auto-republish' );
+?></li>
+                                <li>• <?php 
 _e( 'Priority Email Support & many more..', 'wp-auto-republish' );
 ?></li>
 				            </ul>
@@ -204,7 +301,7 @@ if ( wpar_load_fs_sdk()->is_not_paying() && !wpar_load_fs_sdk()->is_trial() && !
     echo  wpar_load_fs_sdk()->get_trial_url() ;
     ?>"><?php 
     _e( 'Start Trial', 'wp-auto-republish' );
-    ?></a>
+    ?></a>&nbsp;
                             <?php 
 }
 

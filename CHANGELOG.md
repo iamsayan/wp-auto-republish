@@ -1,6 +1,30 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.1.7
+Release Date: 30th June, 2020
+
+= Premium Version =
+* Added: Option to Set Post Republish Action. It is now possible to clone old posts automatically.
+* Added: Option to Set Post types on which you want to display origianl publication date.
+* Added: Some checks to handle time restriction properly.
+* Added: It is now possible to restrict users from accessing Single Republish Settings via plugin settings.
+* Added: It is now possible to show single metabox on particular post types via plugin settings.
+* Added: You can get Email Notification after republication is done.
+* Added: Post Republication Logs in plugin settings.
+* Added: Automatic Single Post Cache clear if Republish Trigger is disabled.
+* Added: Hourly and Minutes option to Single Repeat Republishing option. By default, Minutes is disabled, but it can be enabled via filter.
+* Added: Time Restriction from Single Republishing for Hourly and Minutes Interval on Post Meta Box also.
+* Added: Global Republishing Scheduled will show on admin colums.
+* Improved: Added some checks to fix the over memory usage issues.
+* And all free versions features & Other many fixes and improvemnts.
+
+= Free Version =
+* Added: Modular UI to enhance User Experience.
+* Improved: Background Process Mechanism (currently using cron) to ensure that Post Republish Process runs without any multiple republication issues.
+* Optmized: Some unused & duplicates codes.
+* Tweak: Cron Schedules is displayed on plugin settings page.
+
 ## 1.1.6
 Release Date: 24th May, 2020
 
