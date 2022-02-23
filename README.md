@@ -1,14 +1,14 @@
 ![alt text](https://github.com/iamsayan/wp-auto-republish/raw/master/banner.png "Plugin Banner")
 
-# WP Auto Republish
-The WP Auto Republish plugin helps revive old posts by resetting the published date to the current date.
+# RevivePress
+The RevivePress (formerly WP Auto Republish) plugin helps revive old posts by resetting the published date to the current date.
 Republish your old posts automatically by resetting the date to the current date. Revive old posts to users that haven't seen them.
 
 ## Description
 
-The WP Auto Republish plugin helps revive old posts by resetting the published date to the current date. This will push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
+The RevivePress (formerly WP Auto Republish) plugin helps revive old posts by resetting the published date to the current date. This will push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
 
-Like WP Auto Republish plugin? Consider leaving a [5 star review](https://wordpress.org/support/plugin/wp-auto-republish/reviews/?rate=5#new-post).
+Like RevivePress plugin? Consider leaving a [5 star review](https://wordpress.org/support/plugin/wp-auto-republish/reviews/?rate=5#new-post).
 
 ### Why would you want to do this? Here are a few reasons:
 
@@ -16,7 +16,7 @@ Like WP Auto Republish plugin? Consider leaving a [5 star review](https://wordpr
 2. Old content won't show up in date-based searches on search engines, but resetting the date can make them <strong>look fresh again</strong>.
 3. People <strong>like to share and link to new content, </strong>and they determine that by looking at the publication date.
 4. It will highlight older posts by moving them back to <strong>front page and in the RSS feed</strong>.
-5. WP Auto Republish will improve your <strong>blog visibility, traffic and SEO</strong>!
+5. RevivePress will improve your <strong>blog visibility, traffic and SEO</strong>!
 6. And also <strong>Google likes updated content</strong> if it’s done right.
 
 #### What does this plugin do?
@@ -57,13 +57,13 @@ This plugin helps revive old posts by resetting the published date to the curren
 * Shows single republication info in a admin column.
 * Can hide last original published info from frontend.
 
-<strong>[Upgrade to WP Auto Republish Premium](https://sayandatta.in/wp-auto-republish/purchase) now. You can also upgrade to Premium Version directly from your dashboard.</strong>
+<strong>[Upgrade to RevivePress Premium](https://sayandatta.in/wp-auto-republish/purchase) now. You can also upgrade to Premium Version directly from your dashboard.</strong>
 
 ### Free and Premium Support
 
-Support for the WP Auto Republish plugin on the WordPress forums is free.
+Support for the RevivePress plugin on the WordPress forums is free.
 
-Premium world-class support is available via email to all [WP Auto Republish Premium](https://sayandatta.in/wp-auto-republish/purchase) customers.
+Premium world-class support is available via email to all [RevivePress Premium](https://sayandatta.in/wp-auto-republish/purchase) customers.
 
 > <strong>Note</strong>: Paid customers support is always given priority over free support. Paid customers support is provided via one-to-one email. [Upgrade to Premium](https://sayandatta.in/wp-auto-republish/purchase) to benefit from priority support.
 
@@ -87,17 +87,17 @@ Premium world-class support is available via email to all [WP Auto Republish Pre
 
 ### From within WordPress
 1. Visit 'Plugins > Add New'.
-1. Search for 'WP Auto Republish'.
+1. Search for 'RevivePress'.
 1. Activate WP Last Modified Info from your Plugins page.
 1. Go to "after activation" below.
 
 ### Manually
 1. Upload the `wp-auto-republish` folder to the `/wp-content/plugins/` directory.
-1. Activate WP Auto Republish plugin through the 'Plugins' menu in WordPress.
+1. Activate RevivePress plugin through the 'Plugins' menu in WordPress.
 1. Go to "after activation" below.
 
 ### After activation
-1. After activation go to 'Settings > WP Auto Republish'.
+1. After activation go to 'Settings > RevivePress'.
 1. Enable/disable options and save changes.
 
 ### Frequently Asked Questions

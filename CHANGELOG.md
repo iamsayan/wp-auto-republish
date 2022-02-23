@@ -1,10 +1,171 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.3.0
+Release Date: 22th March, 2022
+
+#### Rebranded to RevivePress
+
+### Premium Version
+* Added: Ability to republish posts basted on Thumbnail.
+* Added: Ability to republish posts basted on Authors.
+* Added: Option to restrict the number of posts allowed to republish within a day.
+* Improvement: Added String base interval support. It means you can use postfixes of Year, Month, Week, Day, Hour, Minutes like 1y, 2m, 3w, 4d, 5h, 6i respectively. 
+* Improvemnet: Added a swtich under Misc. Options to enable/disable Republish Rules module.
+* Improvement: We have added tab based navigation in per post metabox.
+* Improvement: Instant Republish settings is not seperated from single republish settings. It has its own control settings.
+* Improvement: Social Accounts credentials will be stored on your website so that you don't need to add that evertime when you authorizes your social accounts.
+* Improvement: Social Accounts verification system.
+* Improvement: Added an option to include the start date in post republish metabox if starts date is greater than today.
+* Improvement: Added Order by name in post query setion.
+* Removed: Month Specific republish due to some issues. Will be added in the future versions.
+* Fixed: A bug where checkboxes in post metabox can't be saved.
+* And all Free Version Improvements and Fixes.
+
+### Free Version
+* NEW: Redesigned UI.
+* Improvement: Optimized republish process to handle Memory limit.
+* Improvement: Added proper guide in every settings.
+* Improvement: Modular Settings to handle code in efficient way.
+* Improvement: Optimize Post Republish process by doing event segmentation.
+* Improvement: Introduces an Updater class to handle upgradation more efficiently.
+* Improvement: Added Public Roadmap link in menu item.
+* Improvement: Changed default runner interval to 3 minutes from 1 minutes thought it can be modified by filter. We don't recommend to do so.
+* Improvement: Optimize plugin to handle large scale republish events.
+* Improvement: Added Escaping and WPCS checks.
+* Updated: jQuery UI CSS Library annd Timepicker Library.
+* Removed: Health Check system which sometimes causes overload.
+* Removed: Unused Migration scripts.
+* Fixed: Fix for Database Table will run if WooCommerce not active.
+* Fixed: Fatal error caused by Action Schedular.
+* Fixed: Several typos.
+* Tested with WordPress 5.9 and minumum required WordPress version is 5.2.
+* PHP 8.0 Compatibility.
+
+## 1.2.6.1
+Release Date: 25th December, 2021
+
+* Fixed: Republish not working after last update.
+
+## 1.2.6
+Release Date: 23rd December, 2021
+
+* Fixed: Activation issue.
+* Updated Libraries.
+* Bug Fixes.
+
+## 1.2.5.1
+Release Date: 24th March, 2021
+
+### Premium Version =
+* Fixed: Twitter invalid image path issue.
+* Fixed: PHP Fatal error on some installations.
+
+## 1.2.5
+Release Date: 18th March, 2021
+
+### Premium Version
+* Added: Option to use Republish Rules.
+* Added: Option to set per social account sharing template.
+* Fixed: A bug where sometimes required post metas got deleted upon post save.
+
+### Free Version
+* Other improvements and fixes.
+
+## 1.2.4
+Release Date: 6th March, 2021
+
+* Added: Improvements and fixes.
+
+## 1.2.3
+Release Date: 28th February, 2021
+
+* Fixed: Database Table not found error.
+
+## 1.2.2
+Release Date: 23rd February, 2021
+
+### Premium Version
+* Added: Social Media Share Feature is added.
+* Added: Compatibility with Jetpack auto social share.
+* Fixed: PHP error in Dashboard Widget if this plugin is installed on Wordpress version < 5.3.0.
+* Fixed: Wrong date showing if Weekly republish is set on post edit screen.
+* Tweak: Added some CSS imporvements.
+* Tweak: Moved Single Republish Settings to a new seperate tab.
+* Other Free version & Misc improvements and fixes.
+
+### Free Version
+* Added: Action Schedular to Handle Post republishing more efficiently.
+* Added: A Health Check mechanism to properly handle the missed schedule issue.
+* Added: A Documentation and Faqs link as Plugin Tab.
+* Properly handled the plugin uninstall actions to reduce the server load.
+* Remove filter for 5 star rating from review link.
+* Other improvements and fixes.
+* Tested with WordPress v5.7.
+* Freemius SDK update.
+
+## 1.2.1
+Release Date: 11th Novemober, 2020
+
+* Fixed: Mising variable bug and date calculation.
+* Freemius SDK update.
+
+## 1.2.0 / 1.2.0.1
+Release Date: 9th October, 2020
+
+### Premium Version
+* Added: Option to set custom republish interval.
+* Added: Option to disable republish randomness interval.
+* Added: Option to remove post age and to set custom post age.
+* Fixed: Orderby query is not working if Random Selection was selected.
+* Added: Ability to last hours to get most recent published posts.
+* Fixed: Taxonomies were showing wrong in plugin dropdown settings.
+* Added: Option to enable/disable post row action republish links.
+* Added: Scheduled republishing feature. Please check tahp tab for more details.
+* Added: Advanced republish log feature to track every event more efficiently.
+* Added: An option to view pending republish posts from All Posts page.
+* Fixed: Admin column was not showing proper republish infomation.
+* Fixed: High memory usage and freeze issue if republish start date is very far than current date.
+* Tweak: Single republishing with 1 to 4 minutes interval is removed by default. But it can be enabled by filter.
+* Added: Option to clear post metas for debug purposes and to copy/paste plugin settings.
+* Preparing for upcoming Features to handle Post Republish more efficiently. And Social Share is coming soon in the Premium Version :)
+
+### Free Version
+* Added: A guide to help users to configure the plugin easily.
+* Tweak: It is now designed in a way to easily work with any server enviroment.
+* Optimized codes to handle republish process more efficiently to avoid event missing issue.
+* Remove filter for 5 star rating from review link.
+* Other improvements and fixes.
+
+## 1.1.10
+Release Date: 6th August, 2020
+
+* Fixed: Multiple Republish issues.
+
+## 1.1.9
+Release Date: 3rd August, 2020
+
+* Fixed: An undefined variable error.
+* Fixed: Minor JS issues.
+* Tested with WordPress v5.5.
+
+## 1.1.8
+Release Date: 23rd July, 2020
+
+### Premium Version
+* Added: It is now possible to republish posts with a custom ordering plugin.
+* Fixed: Custom Taxonimies attached to WP Core Post Types is not republishing. Please select taxonomies from plugin settings again. Otherwise plugin may not respect taxonomies.
+* Preparing for upcoming Features to handle Post Republish more efficiently. And also something new is coming in Premium Version :)
+
+### Free Version
+* Tweak: Post republish will be forwarded to the next available dates (at random time) if there are not slots available on current day.
+* Fixed: A bug some HTML Tags are removed automatically after republish from post content on some cases.
+* Fixed: Unclosed HTML Tag issues.
+
 ## 1.1.7
 Release Date: 30th June, 2020
 
-= Premium Version =
+### Premium Version
 * Added: Option to Set Post Republish Action. It is now possible to clone old posts automatically.
 * Added: Option to Set Post types on which you want to display origianl publication date.
 * Added: Some checks to handle time restriction properly.
@@ -19,7 +180,7 @@ Release Date: 30th June, 2020
 * Improved: Added some checks to fix the over memory usage issues.
 * And all free versions features & Other many fixes and improvemnts.
 
-= Free Version =
+### Free Version
 * Added: Modular UI to enhance User Experience.
 * Improved: Background Process Mechanism (currently using cron) to ensure that Post Republish Process runs without any multiple republication issues.
 * Optmized: Some unused & duplicates codes.
