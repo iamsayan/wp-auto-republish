@@ -4,385 +4,373 @@
  * The Main dashboard file.
  *
  * @since      1.1.0
- * @package    WP Auto Republish
+ * @package    RevivePress
  * @subpackage Templates
- * @author     Sayan Datta <hello@sayandatta.in>
+ * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 ?>
 
-<div class="wrap">
-    <div class="head-wrap">
-        <h1 class="title"><?php 
-echo  $this->name ;
-?><span class="title-count"><?php 
-echo  $this->version ;
-?></span></h1>
-        <div><?php 
-_e( 'This plugin helps to revive old posts by resetting the publish date to the current date.', 'wp-auto-republish' );
-?></div><hgfr>
-        <div class="top-sharebar">
-            <a class="share-btn rate-btn" href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" title="Please rate 5 stars if you like <?php 
-echo  $this->name ;
-?>"><span class="dashicons dashicons-star-filled"></span> Rate 5 stars</a>
-            <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Check%20out%20WP%20Auto%20Republish,%20a%20%23WordPress%20%23plugin%20that%20revive%20your%20old%20posts%20by%20resetting%20the%20published%20date%20to%20the%20current%20date%20https%3A//wordpress.org/plugins/wp-auto-republish/%20via%20%40im_sayaan" target="_blank"><span class="dashicons dashicons-twitter"></span> Tweet about WP Auto Republish</a>
-        </div>
-    </div>
-    <div id="nav-container" class="nav-tab-wrapper" style="border-bottggom: none;">
-        <a href="#general" class="nav-tab nav-tab-active" id="btn1"><span class="dashicons dashicons-admin-generic" style="padding-top: 2px;"></span> <?php 
-_e( 'General', 'wp-auto-republish' );
+<div id="wpar-nav-container" class="wpar-admin-toolbar">
+	<h2>RevivePress<span class="title-count<?php 
+echo  esc_attr( $class_name ) ;
+?>"><?php 
+echo  esc_html( $this->tag ) ;
+?> <?php 
+echo  esc_html( $this->version ) ;
+?></span></h2>
+    <a href="#general" class="wpar-tab is-active" id="wpar-tab-general"><?php 
+esc_html_e( 'General', 'wp-auto-republish' );
 ?></a>
-        <a href="#post" class="nav-tab" id="btn2"><span class="dashicons dashicons-admin-post" style="padding-top: 2px;"></span> <?php 
-_e( 'Post Options', 'wp-auto-republish' );
+    <a href="#post" class="wpar-tab" id="wpar-tab-post"><?php 
+esc_html_e( 'Posts', 'wp-auto-republish' );
 ?></a>
-        <!--a href="#single" class="nav-tab" id="btn3"><span class="dashicons dashicons-share" style="padding-top: 2px;"></span> <?php 
-//_e( 'Single Post', 'wp-auto-republish' );
-?></a-->
-        <?php 
+    <?php 
 ?>
-        <a href="#tools" class="nav-tab" id="btn5"><span class="dashicons dashicons-admin-tools" style="padding-top: 2px;"></span> <?php 
-_e( 'Tools', 'wp-auto-republish' );
+    <a href="#misc" class="wpar-tab" id="wpar-tab-misc"><?php 
+esc_html_e( 'Misc.', 'wp-auto-republish' );
 ?></a>
-        <!--a href="#help" class="nav-tab" id="btn6"><span class="dashicons dashicons-editor-help" style="padding-top: 2px;"></span> <?php 
-//_e( 'Help', 'wp-auto-republish' );
-?></a-->
-        <?php 
+    <a href="#tools" class="wpar-tab" id="wpar-tab-tools"><?php 
+esc_html_e( 'Tools', 'wp-auto-republish' );
+?></a>
+    <a href="#help" class="wpar-tab" id="wpar-tab-help"><?php 
+esc_html_e( 'Help', 'wp-auto-republish' );
+?></a>
+    <?php 
 ?>
         <a href="<?php 
-echo  wpar_load_fs_sdk()->get_upgrade_url() ;
-?>" class="nav-tab" id="btn6" styfle="background-color: orange;color: red;"><span class="dashicons dashicons-arrow-up-alt" style="padding-top: 2px;"></span> <?php 
-_e( 'Upgrade', 'wp-auto-republish' );
+echo  esc_url( wpar_load_fs_sdk()->get_upgrade_url() ) ;
+?>" target="_blank" class="wpar-tab type-link btn-upgrade wpar-upgrade" id="wpar-tab-upgrade">
+            <span class="dashicons dashicons-admin-plugins"></span>
+            <p><?php 
+esc_html_e( 'Upgrade to Premium', 'wp-auto-republish' );
+?></p>
+        </a>
+    <?php 
+?>
+    <div class="top-sharebar">
+        <a class="share-btn rate-btn no-popup" href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" title="<?php 
+esc_html_e( 'Please rate 5 stars if you like RevivePress', 'wp-auto-republish' );
+?>"><span class="dashicons dashicons-star-filled"></span> <?php 
+esc_html_e( 'Rate 5 stars', 'wp-auto-republish' );
 ?></a>
         <?php 
 ?>
-    </div>
-    <script>
-        var header = document.getElementById("nav-container");
-        var btns = header.getElementsByClassName("nav-tab");
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function() {
-            var current = document.getElementsByClassName("nav-tab-active");
-            current[0].className = current[0].className.replace(" nav-tab-active", "");
-            this.className += " nav-tab-active";
-            });
-        }
-    </script>
-    <div id="poststuff">
-        <div id="post-body" class="metabox-holder columns-2">
-            <div id="post-body-content">
-                <form id="saveForm" method="post" action="options.php" stylce="padding-left: 8px;">
-                <?php 
-settings_fields( 'wpar_plugin_settings_fields' );
-?>
-                    <div id="wpar-general" class="postbox">
-                        <h3 class="hndle" style="cursor:default;">
-                            <span class="wpar-heading">
-                                <?php 
-_e( 'Configure Settings', 'wp-auto-republish' );
-?>
-                            </span>
-                        </h3>
-                        <div class="inside">
-                            <?php 
-do_settings_sections( 'wpar_plugin_default_option' );
-?>
-                            <p><?php 
-submit_button(
-    __( 'Save Settings', 'wp-auto-republish' ),
-    'primary wpar-save',
-    '',
-    false
-);
-?>
-                        </div>
-                    </div>
-                    <div id="wpar-display" class="postbox">
-                        <h3 class="hndle" style="cursor:default;">
-                            <span class="wpar-heading">
-                                <?php 
-_e( 'Display Settings', 'wp-auto-republish' );
-?>
-                            </span>
-                        </h3>
-                        <div class="inside">
-                            <?php 
-do_settings_sections( 'wpar_plugin_republish_info_option' );
-?>
-                            <p><?php 
-submit_button(
-    __( 'Save Settings', 'wp-auto-republish' ),
-    'primary wpar-save',
-    '',
-    false
-);
-?>
-                        </div>
-                    </div>
-                    <div id="wpar-query" class="postbox">
-                        <h3 class="hndle" style="cursor:default;">
-                            <span class="wpar-heading">
-                                <?php 
-_e( 'Old Posts Settings', 'wp-auto-republish' );
-?>
-                            </span>
-                        </h3>
-                        <div class="inside">
-                            <?php 
-do_settings_sections( 'wpar_plugin_post_query_option' );
-?>
-                            <p><?php 
-submit_button(
-    __( 'Save Settings', 'wp-auto-republish' ),
-    'primary wpar-save',
-    '',
-    false
-);
-?>
-                        </div>
-                    </div>
-                    <div id="wpar-post-types" class="postbox">
-                        <h3 class="hndle" style="cursor:default;">
-                            <span class="wpar-heading">
-                                <?php 
-_e( 'Post Types Settings', 'wp-auto-republish' );
-?>
-                            </span>
-                        </h3>
-                        <div class="inside">
-                            <?php 
-do_settings_sections( 'wpar_plugin_post_type_option' );
-?>
-                            <p><?php 
-submit_button(
-    __( 'Save Settings', 'wp-auto-republish' ),
-    'primary wpar-save',
-    '',
-    false
-);
-?>
-                        </div>
-                    </div>
-                    <?php 
-?>
-                    <div id="wpar-tools" class="postbox">
-                        <h3 class="hndle" style="cursor:default;">
-                            <span class="wpar-heading">
-                                <?php 
-_e( 'Plugin Tools', 'wp-auto-republish' );
-?>
-                            </span>
-                        </h3>
-                        <div class="inside">
-                            <?php 
-do_settings_sections( 'wpar_plugin_tools_option' );
-?>
-                            <p><?php 
-submit_button(
-    __( 'Save Settings', 'wp-auto-republish' ),
-    'primary wpar-save',
-    '',
-    false
-);
-?>
-                            <?php 
-?></p>
-                        </div>
-                    </div>
-                </form>
-                <?php 
-?>
-                <?php 
-?>
-                    <div class="coffee-box">
-                        <div class="coffee-amt-wrap">
-                            <p><select class="coffee-amt">
-                                <option value="5usd">$5</option>
-                                <option value="6usd">$6</option>
-                                <option value="7usd">$7</option>
-                                <option value="8usd">$8</option>
-                                <option value="9usd">$9</option>
-                                <option value="10usd" selected="selected">$10</option>
-                                <option value="11usd">$11</option>
-                                <option value="12usd">$12</option>
-                                <option value="13usd">$13</option>
-                                <option value="14usd">$14</option>
-                                <option value="15usd">$15</option>
-                                <option value=""><?php 
-_e( 'Custom', 'wp-auto-republish' );
-?></option>
-                            </select></p>
-                            <a class="button button-primary buy-coffee-btn" style="margin-left: 2px;" href="https://www.paypal.me/iamsayan/10usd" data-link="https://www.paypal.me/iamsayan/" target="_blank"><?php 
-_e( 'Buy me a coffee!', 'wp-auto-republish' );
+            <a class="share-btn donate no-popup" href="https://www.paypal.me/iamsayan/" target="_blank"><span class="dashicons dashicons-money-alt"></span> <?php 
+esc_html_e( 'Donate', 'wp-auto-republish' );
 ?></a>
-                        </div>
-                        <span class="coffee-heading">
-                            <?php 
-_e( 'Buy me a coffee!', 'wp-auto-republish' );
+        <?php 
 ?>
-                        </span>
-                        <p style="text-align: justify;">
-                            <?php 
-printf( __( 'Thank you for using %s. If you found the plugin useful buy me a coffee! Your donation will motivate and make me happy for all the efforts. You can donate via PayPal.', 'wp-auto-republish' ), '<strong>' . $this->name . ' v' . $this->version . '</strong>' );
-?></strong>
-                        </p>
-                        <p style="text-align: justify;font-size: 12px;font-style: italic;">
-                            Developed with <span style="color:#e25555;">♥</span> by <a href="https://www.sayandatta.in" target="_blank" style="font-weight: 500;">Sayan Datta</a> | 
-                            <a href="https://www.sayandatta.in/contact/" style="font-weight: 500;">Hire Me</a> | 
-                            <a href="https://github.com/iamsayan/wp-auto-republish" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-auto-republish" target="_blank" style="font-weight: 500;">Support</a> | 
-                            <a href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.
+        <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Check%20out%20RevivePress,%20a%20%23WordPress%20%23Plugin%20that%20revive%20your%20old%20evergreen%20content%20by%20republishing%20them%20and%20sharing%20them%20on%20Social%20Media%20https%3A//wordpress.org/plugins/wp-auto-republish/%20via%20%40im_sayaan%20" target="_blank"><span class="dashicons dashicons-twitter"></span> <?php 
+esc_html_e( 'Tweet', 'wp-auto-republish' );
+?></a>
+        <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://wordpress.org/plugins/wp-auto-republish/&quote=Check%20out%20RevivePress,%20a%20%23WordPress%20%23Plugin%20that%20revive%20your%20old%20evergreen%20content%20by%20republishing%20them%20and%20sharing%20them%20on%20Social%20Media%20https%3A//wordpress.org/plugins/wp-auto-republish/" target="_blank"><span class="dashicons dashicons-facebook"></span> <?php 
+esc_html_e( 'Share', 'wp-auto-republish' );
+?></a>
+    </div>
+</div>
+<div class="wrap wpar-wrap" data-reload="no">
+    <h2 style="display: none;"></h2>
+    <div id="poststuff">
+        <div id="post-body" class="metabox-holder">
+            <div id="post-body-content" class="wpar-metabox">
+                <?php 
+?>
+                    <div class="wpar-upgrade-notice" id="wpar-upgrade-notice">
+                        <p>
+                            Republish & Share your Evergreen Content with more controls. Get <strong>RevivePress Premium</strong>!
+                            <a class="wpar-upgrade" href="<?php 
+echo  esc_url( wpar_load_fs_sdk()->get_upgrade_url() ) ;
+?>" target="_blank">Click here to see all the exciting features.</a>
                         </p>
                     </div>
                 <?php 
 ?>
-            </div>
-           
-            <div id="postbox-container-1" class="postbox-container">
-            <?php 
-?> 
-            <?php 
+                <form id="wpar-settings-form" method="post" action="options.php">
+                    <?php 
+settings_fields( 'wpar_plugin_settings_fields' );
+$this->doSettingsSection( [
+    'id'          => 'wpar-configure',
+    'class'       => 'wpar-general',
+    'title'       => __( 'General Settings', 'wp-auto-republish' ),
+    'description' => __( 'Configure the Global Republish settings from here. Last run: ' . date_i18n( $format, $last ), 'wp-auto-republish' ),
+    'name'        => 'wpar_plugin_default_option',
+] );
+$this->doSettingsSection( [
+    'id'          => 'wpar-display',
+    'class'       => 'wpar-general',
+    'title'       => __( 'Display Settings', 'wp-auto-republish' ),
+    'description' => __( 'You can control frontend republish info visiblity from here.', 'wp-auto-republish' ),
+    'name'        => 'wpar_plugin_republish_info_option',
+] );
+$this->doSettingsSection( [
+    'id'          => 'wpar-query',
+    'class'       => 'wpar-post d-none',
+    'title'       => __( 'Old Posts Settings', 'wp-auto-republish' ),
+    'description' => __( 'Control the WP_Query of Post Republish Process for Global Republish.', 'wp-auto-republish' ),
+    'name'        => 'wpar_plugin_post_query_option',
+] );
+$this->doSettingsSection( [
+    'id'          => 'wpar-post-types',
+    'class'       => 'wpar-post d-none',
+    'title'       => __( 'Post Types Settings', 'wp-auto-republish' ),
+    'description' => __( 'Control Post Types, Taxonomies and Author Based Republish from here.', 'wp-auto-republish' ),
+    'name'        => 'wpar_plugin_post_type_option',
+] );
+$this->doSettingsSection( [
+    'id'          => 'wpar-misc',
+    'class'       => 'wpar-misc',
+    'title'       => __( 'Misc. Options', 'wp-auto-republish' ),
+    'description' => __( 'Change some uncommon but essential settings here.', 'wp-auto-republish' ),
+    'name'        => 'wpar_plugin_tools_option',
+] );
 ?>
-                <div class="postbox">
-                    <h3 class="hndle" style="cursor:default;text-align: center;"><?php 
-_e( 'Upgrade to Premium Now!', 'wp-auto-republish' );
-?></h3>
-                    <div class="inside">
-                        <div class="misc-pub-section" style="text-align:center;">
-                            <i><?php 
-_e( 'Upgrade to the premium version and get the following features', 'wp-auto-republish' );
-?></i>:<br>
-				            <ul>
-				            	<li>• <?php 
-_e( 'Unlimited Custom Post types Support', 'wp-auto-republish' );
-?></li>
-				            	<li>• <?php 
-_e( 'Custom Taxonomies Support', 'wp-auto-republish' );
-?></li>
-				            	<li>• <?php 
-_e( 'Individual Post Republishing', 'wp-auto-republish' );
-?></li>
-				            	<li>• <?php 
-_e( 'Scheduled Post Republishing', 'wp-auto-republish' );
-?></li>
-				            	<li>• <?php 
-_e( 'Date & Time Based Republishing', 'wp-auto-republish' );
-?></li>
-				            	<li>• <?php 
-_e( 'Custom Post Republish Interval', 'wp-auto-republish' );
-?></li>
-				            	<li>• <?php 
-_e( 'Custom Title for each Republish Event', 'wp-auto-republish' );
-?></li>
-                                <li>• <?php 
-_e( 'Automatic Single Cache Purge Support', 'wp-auto-republish' );
-?></li>
-                                <li>• <?php 
-_e( 'Date Range for Republishing', 'wp-auto-republish' );
-?></li>
-                                <li>• <?php 
-_e( 'Can use Dates in Post Permalinks', 'wp-auto-republish' );
-?></li>
-                                <li>• <?php 
-_e( 'Change Post Status after Republish', 'wp-auto-republish' );
-?></li>
-                                <li>• <?php 
-_e( 'One Click Instant Republish', 'wp-auto-republish' );
-?></li>
-                                <li>• <?php 
-_e( 'Email Notification upon Republishing', 'wp-auto-republish' );
-?></li>
-                                <li>• <?php 
-_e( 'Priority Email Support & many more..', 'wp-auto-republish' );
-?></li>
-				            </ul>
-				            <?php 
+                </form>
 
-if ( wpar_load_fs_sdk()->is_not_paying() && !wpar_load_fs_sdk()->is_trial() && !wpar_load_fs_sdk()->is_trial_utilized() ) {
+                <?php 
+?>
+
+                <div id="wpar-tools" class="postbox wpar-tools d-none">
+                    <?php 
+$this->sectionHeader( 'Plugin Tools', __( 'Perform database related actions from here.', 'wp-auto-republish' ) );
+?>
+				    <div class="inside wpar-inside" style="padding: 10px 20px;">
+                        <div class="wpar-tools-box">
+                            <span><?php 
+esc_html_e( 'Export Settings', 'wp-auto-republish' );
+?></span>
+		    	        	<p><?php 
+esc_html_e( 'Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'wp-auto-republish' );
+?></p>
+		    	        	<form method="post">
+		    	        		<p><input type="hidden" name="wpar_export_action" value="wpar_export_settings" /></p>
+		    	        		<p>
+		    	        			<?php 
+wp_nonce_field( 'wpar_export_nonce', 'wpar_export_nonce' );
+?>
+		    	        			<?php 
+submit_button(
+    __( 'Export Settings', 'wp-auto-republish' ),
+    'secondary',
+    'wpar-export',
+    false
+);
+?>
+                                    <input type="button" class="button wpar-copy" value="<?php 
+esc_attr_e( 'Copy', 'wp-auto-republish' );
+?>" style="margin-left: -1px;">
+                                    <span class="wpar-copied" style="padding-left: 6px;display: none;color: #068611;"><?php 
+esc_html_e( 'Copied!', 'wp-auto-republish' );
+?></span>
+                                </p>
+		    	        	</form>
+                        </div>
+                        <div class="wpar-tools-box">
+                            <span><?php 
+esc_html_e( 'Import Settings', 'wp-auto-republish' );
+?></span>
+		    	        	<p><?php 
+esc_html_e( 'Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'wp-auto-republish' );
+?></p>
+		    	        	<form method="post" enctype="multipart/form-data">
+		    	        		<p><input type="file" name="import_file" accept=".json"/></p>
+		    	        		<p>
+		    	        			<input type="hidden" name="wpar_import_action" value="wpar_import_settings" />
+		    	        			<?php 
+wp_nonce_field( 'wpar_import_nonce', 'wpar_import_nonce' );
+?>
+		    	        			<?php 
+submit_button(
+    __( 'Import Settings', 'wp-auto-republish' ),
+    'secondary',
+    'wpar-import',
+    false
+);
+?>
+                                    <input type="button" class="button wpar-paste" value="<?php 
+esc_attr_e( 'Paste', 'wp-auto-republish' );
+?>">
+                                </p>
+		    	        	</form>
+                        </div>
+                        <div class="wpar-tools-box">
+                            <span><?php 
+esc_html_e( 'Reset Settings', 'wp-auto-republish' );
+?></span>
+		    	        	<p style="color: #ff0000;"><strong><?php 
+esc_html_e( 'WARNING:', 'wp-auto-republish' );
+?> </strong><?php 
+esc_html_e( 'Resetting will delete all custom options to the default settings of the plugin in your database.', 'wp-auto-republish' );
+?></p>
+		    	        	<p><input type="button" class="button button-primary wpar-reset" data-action="wpar_process_delete_plugin_data" data-reload="true" data-notice="<?php 
+esc_attr_e( 'It will delete all the data relating to this plugin settings. You have to re-configure this plugin again. Do you want to still continue?', 'wp-auto-republish' );
+?>" data-success="<?php 
+esc_attr_e( 'Success! Plugin Settings reset successfully.', 'wp-auto-republish' );
+?>" value="<?php 
+esc_attr_e( 'Reset Settings', 'wp-auto-republish' );
+?>"></p>
+                        </div>
+                        <div class="wpar-tools-box">
+                            <span><?php 
+esc_html_e( 'Remove Post Meta & Actions', 'wp-auto-republish' );
+?></span>
+		    	        	<p style="color: #ff0000;"><strong><?php 
+esc_html_e( 'WARNING:', 'wp-auto-republish' );
+?> </strong><?php 
+esc_html_e( 'Resetting will delete all post metadatas and future action events associated with Post Republish.', 'wp-auto-republish' );
+?></p>
+		    	        	<p><input type="button" class="button button-primary wpar-reset" data-action="wpar_process_delete_post_metas" data-reload="false" data-notice="<?php 
+esc_attr_e( 'It will delete all the post meta data & action events relating to global and single post republishing. It may stop previous scheduled republished event. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' );
+?>" data-success="<?php 
+esc_attr_e( 'Success! All post meta datas and republish events deleted successfully!', 'wp-auto-republish' );
+?>" value="<?php 
+esc_attr_e( 'Clear Post Metas & Events', 'wp-auto-republish' );
+?>"></p>
+                        </div>
+                        <div class="wpar-tools-box">
+                            <span><?php 
+esc_html_e( 'De-Schedule Posts', 'wp-auto-republish' );
+?></span>
+		    	        	<p style="color: #ff0000;"><strong><?php 
+esc_html_e( 'WARNING:', 'wp-auto-republish' );
+?> </strong><?php 
+esc_html_e( 'It will change the republish date to the original post published date on all posts.', 'wp-auto-republish' );
+?></p>
+		    	        	<p><input type="button" class="button button-primary wpar-reset" data-action="wpar_process_deschedule_posts" data-reload="false" data-notice="<?php 
+esc_attr_e( 'It will change the republish date to the original post published date on all posts. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' );
+?>" data-success="<?php 
+esc_attr_e( 'Success! All posts de-scheduled successfully!', 'wp-auto-republish' );
+?>" value="<?php 
+esc_attr_e( 'De-Schedule Posts', 'wp-auto-republish' );
+?>"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="wpar-help" class="postbox wpar-help d-none">
+                    <?php 
+$this->sectionHeader( 'Plugin Help', sprintf( __( 'Do you need help any other help with this plugin?  Checkout %s for more.', 'wp-auto-republish' ), sprintf( '<a href="https://wpautorepublish.com/docs/" target="_blank">%s</a>', __( 'Documentation', 'wp-auto-republish' ) ) ) );
+?>
+                    <div class="inside">
+                        <?php 
+
+if ( defined( 'DISABLE_WP_CRON' ) && DISABLE_WP_CRON !== false ) {
     ?>
-                                <a class="button button-primary" href="<?php 
-    echo  wpar_load_fs_sdk()->get_trial_url() ;
-    ?>"><?php 
-    _e( 'Start Trial', 'wp-auto-republish' );
-    ?></a>&nbsp;
-                            <?php 
+                            <div class="notice inline notice-error notice-alt">
+                                <p class="cron-warning"><?php 
+    esc_html_e( 'WP Cron is currently disabled. Use Server Level Cron or use external cron services to get it working. Visit our docs for more information regading this.', 'wp-auto-republish' );
+    ?></p>
+                            </div>
+                        <?php 
 }
 
 ?>
-                            <a class="button button-primary" href="<?php 
-echo  wpar_load_fs_sdk()->get_upgrade_url() ;
-?>"><?php 
-_e( 'Upgrade Now', 'wp-auto-republish' );
-?></a>
-                        </div>
+                        <ol class="help-faq">
+                            <li><?php 
+printf( __( 'How this %s plugin works?', 'wp-auto-republish' ), $this->name );
+?></li>
+                            <p><?php 
+esc_html_e( 'This plugin is mainly based on WordPress Cron system to republish your old evergreen posts. It will generate republish events when plugin is instructed to republish a post. It is designed in a way to easily work with any server enviroment. If still it not works, please contact your hosting provider to increase server resources.', 'wp-auto-republish' );
+?></p>
+                        
+                            <li><?php 
+esc_html_e( 'WordPress Cron is disabled on my website. What can I do?', 'wp-auto-republish' );
+?></li>
+                            <p><?php 
+printf( __( 'This plugin is heavily based on WP Cron. If it is disabled on your website which is required by %1$s plugin, please enable native WP Cron or follow this <a href="%2$s" target="_blank">tutorial</a> to enable server level PHP Cron instead with an interval of less than Republish Interval option.', 'wp-auto-republish' ), $this->name, 'https://wpautorepublish.com/docs/how-to-replace-wp-cron-with-a-real-cron-job/' );
+?></p>
+                                 
+                            <li><?php 
+esc_html_e( 'Plugin sometimes fails or misses to republish a particular post at a specified time. What is the reason?', 'wp-auto-republish' );
+?></li>
+                            <p><?php 
+printf( __( 'This plugin is based on WP Cron which depends on the traffic volume of your website. If you have low traffic, there may be chances to miss any republish job. To avoid this, please disable native WP Cron and follow this <a href="%s" target="_blank">tutorial</a> to enable server level PHP Cron instead with an interval of less than Republish Interval option.', 'wp-auto-republish' ), 'https://wpautorepublish.com/docs/how-to-replace-wp-cron-with-a-real-cron-job/' );
+?></p>
+                        
+                            <li><?php 
+esc_html_e( 'Doesn’t changing the timestamp affect permalinks that include dates using this plugin?', 'wp-auto-republish' );
+?></li>
+                            <p><?php 
+printf( __( 'If your permalinks structure contains date, please use %1$s instead of %2$s respectively if you are using premium version. If you are using free version then please disable this plugin or upgrade to Premium version to avoid SEO issues.', 'wp-auto-republish' ), '<code>%wpar_year%</code>, <code>%wpar_monthnum%</code>, <code>%wpar_day%</code>, <code>%wpar_hour%</code>, <code>%wpar_minute%</code>, <code>%wpar_second%</code>', '<code>%year%</code>, <code>%monthnum%</code>, <code>%day%</code>, <code>%hour%</code>, <code>%minute%</code>, <code>%second%</code>' );
+?></p>
+                            
+                            <?php 
+?>
+                        
+                            <li><?php 
+esc_html_e( 'I have some custom taxonomies associated with posts or pages or any custom post types but they are not showing on settings dropdown. OR, Somehow custom post types republishing are now stopped suddenly.', 'wp-auto-republish' );
+?></li>
+                            <p><?php 
+esc_html_e( 'Free version of this plugin has some limitation. You can republish a particular post of a custom post type upto 3 times. After that plugin doesn\'t republish those posts anymore. You have to use Premium version of this plugin to use it more than 3 times for custom post types. Also, Post and Page do not have such limitations in the free version. Taxonomies, other than Category and Post Tags, are available only on premium version.', 'wp-auto-republish' );
+?></p>
+                        
+                            <li><?php 
+esc_html_e( 'I am using GoDaddy managed hosting and plugin is not working properly. OR, My Hosting Company does not support Server Level Cron Jobs. What to do next?', 'wp-auto-republish' );
+?></li>
+                            <p><?php 
+printf( __( 'As if your Hosting does not allow to use server level cron, you have to use WordPress Native Cron method, to get it properly woking. Just follow the FAQ no. 2. Otherwise you can use other external cron services like %1$s with 1 minute interval and use this URL: %2$s to solve this issue.', 'wp-auto-republish' ), '<a href="https://cron-job.org" target="_blank">https://cron-job.org</a>', '<code>' . home_url( 'wp-cron.php?doing_wp_cron' ) . '</code>' );
+?></p>
+                        
+                            <li><?php 
+esc_html_e( 'I have just installed this plugin and followed all previous guides but still it is not working properly. What to do?', 'wp-auto-republish' );
+?></li>
+                            <p><?php 
+printf( __( 'At first, properly configure plugin settings. You can know more details about every settings hovering the mouse over the question mark icon next to the settings option. After that, Please wait some time to allow plugin to run republish process with an interval configured by you from plugin settings. If still not working, go to Tools > Plugins Tools > Import Settings > Copy and then open Pastebin.com or GitHub Gist and create a paste or gist with the copied data and send me the link using Contact page or open a support on WordPress.org forums (only for free version users). Here are some common <a href="%s" target="_blank">cron problems</a> related to WordPress.', 'wp-auto-republish' ), 'https://github.com/johnbillion/wp-crontrol/wiki/Cron-events-that-have-missed-their-schedule' );
+?></p>
+                        
+                            <li><?php 
+esc_html_e( 'Plugin is showing a warning notice to disable the plugin after activation. What is the reason?', 'wp-auto-republish' );
+?></li>
+                            <p><?php 
+printf( __( 'Currently you are using original post published information in your post permalinks (Settings > Permalinks). But this plugin reassign a current date to republish a post. So, the permalink will be changed after republish. It may cause SEO issues. It will be safe not to use free version of this plugin in such situation. But in the Premium version you can use %1$s instead of %2$s to solve this issue.', 'wp-auto-republish' ), '<code>%wpar_year%</code>, <code>%wpar_monthnum%</code>, <code>%wpar_day%</code>, <code>%wpar_hour%</code>, <code>%wpar_minute%</code>, <code>%wpar_second%</code>', '<code>%year%</code>, <code>%monthnum%</code>, <code>%day%</code>, <code>%hour%</code>, <code>%minute%</code>, <code>%second%</code>' );
+?></p>
+                        </ol>
                     </div>
                 </div>
-            <?php 
-?> 
-                <div class="postbox">
-                    <h3 class="hndle" style="cursor:default;text-align: center;"><?php 
-_e( 'My Other Plugins!', 'wp-auto-republish' );
-?></h3>
-                    <div class="inside">
-                        <div class="misc-pub-section">
-                            <div style="text-align: center;">
-                                <span class="dashicons dashicons-clock" style="font-size: 16px;vertical-align: middle;"></span>
-                                <strong><a href="https://wordpress.org/plugins/wp-last-modified-info/" target="_blank">WP Last Modified Info</a></strong>
-                            </div>
-                            <div style="text-align: center;">
-                                <?php 
-_e( 'Display last update date and time on pages and posts very easily with \'dateModified\' Schema Markup.', 'wp-auto-republish' );
-?>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="misc-pub-section">
-                            <div style="text-align: center;">
-                                <span class="dashicons dashicons-admin-comments" style="font-size: 16px;vertical-align: middle;"></span>
-                                <strong><a href="https://wordpress.org/plugins/ultimate-facebook-comments/" target="_blank">Ultimate Social Comments</a></strong>
-                            </div>
-                            <div style="text-align: center;">
-                                <?php 
-_e( 'Ultimate Facebook Comments Solution with instant email notification for any WordPress Website. Everything is customizable.', 'wp-auto-republish' );
-?>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="misc-pub-section">
-                            <div style="text-align: center;">
-                                <span class="dashicons dashicons-admin-links" style="font-size: 16px;vertical-align: middle;"></span>
-                                <strong><a href="https://wordpress.org/plugins/change-wp-page-permalinks/" target="_blank">WP Page Permalink Extension</a></strong>
-                            </div>
-                            <div style="text-align: center;">
-                                <?php 
-_e( 'Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to wordpress pages very easily (tested on Yoast SEO, All in One SEO Pack, Rank Math, SEOPresss and Others).', 'wp-auto-republish' );
-?>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="misc-pub-section">
-                            <div style="text-align: center;">
-                                <span class="dashicons dashicons-megaphone" style="font-size: 16px;vertical-align: middle;"></span>
-                                <strong><a href="https://wordpress.org/plugins/simple-posts-ticker/" target="_blank">Simple Posts Ticker</a></strong>
-                            </div>
-                            <div style="text-align: center;">
-                                <?php 
-_e( 'Simple Posts Ticker is a small tool that shows your most recent posts in a marquee style.', 'wp-auto-republish' );
-?>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="misc-pub-section">
-                            <div style="text-align: center;">
-                                <span class="dashicons dashicons-admin-generic" style="font-size: 16px;vertical-align: middle;"></span>
-                                <strong><a href="https://wordpress.org/plugins/remove-wp-meta-tags/" target="_blank">Easy Header Footer</a></strong>
-                            </div>
-                            <div style="text-align: center;">
-                                <?php 
-_e( 'Customize WP header, add custom code and enable, disable or remove the unwanted meta tags, links from the source code and many more.', 'wp-auto-republish' );
-?>
-                            </div>
-                        </div>
+
+                <div class="wpar-premium-popup" style="display: none !important;">
+                    <div class="wpar-feature-title"><?php 
+esc_html_e( 'Upgrade to the premium version and get the following features:', 'wp-auto-republish' );
+?></div>
+                    <div class="wpar-premium-features">
+                        <p><span class="dashicons dashicons-yes"></span><?php 
+esc_html_e( 'Custom Post types & Taxonomies', 'wp-auto-republish' );
+?></p>
+                        <p><span class="dashicons dashicons-yes"></span><?php 
+esc_html_e( 'Individual & Scheduled Republishing', 'wp-auto-republish' );
+?></p>
+                        <p><span class="dashicons dashicons-yes"></span><?php 
+esc_html_e( 'Date Time Range Based Republishing', 'wp-auto-republish' );
+?></p>
+                        <p><span class="dashicons dashicons-yes"></span><?php 
+esc_html_e( 'Custom Post Republish Interval & Title', 'wp-auto-republish' );
+?></p>
+                        <p><span class="dashicons dashicons-yes"></span><?php 
+esc_html_e( 'Automatic Social Media Share', 'wp-auto-republish' );
+?></p>
+                        <p><span class="dashicons dashicons-yes"></span><?php 
+esc_html_e( 'Automatic Cache Plugin Purge Support', 'wp-auto-republish' );
+?></p>
+                        <p><span class="dashicons dashicons-yes"></span><?php 
+esc_html_e( 'Can use New Dates in Post Permalinks', 'wp-auto-republish' );
+?></p>
+                        <p><span class="dashicons dashicons-yes"></span><?php 
+esc_html_e( 'Change Post Status after Republish', 'wp-auto-republish' );
+?></p>
+                        <p><span class="dashicons dashicons-yes"></span><?php 
+esc_html_e( 'One Click Instant Republish & Clone', 'wp-auto-republish' );
+?></p>
+                        <p><span class="dashicons dashicons-yes"></span><?php 
+esc_html_e( 'Custom Post Republish Rulesets', 'wp-auto-republish' );
+?></p>
+                        <p><span class="dashicons dashicons-yes"></span><?php 
+esc_html_e( 'Email Notification upon Republishing', 'wp-auto-republish' );
+?></p>
+                        <p><span class="dashicons dashicons-yes"></span><?php 
+esc_html_e( 'Priority Email Support & many more..', 'wp-auto-republish' );
+?></p>
                     </div>
                 </div>
-            </diV>
+            </div>
         </div>
     </div>
 </div>

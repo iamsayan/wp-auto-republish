@@ -1,5 +1,255 @@
 == Changelog ==
 
+= 1.2.6.1 =
+Release Date: 25th December, 2021
+
+* Fixed: Republish not working after last update.
+
+= 1.2.6 =
+Release Date: 23rd December, 2021
+
+* Fixed: Activation issue.
+* Updated Libraries.
+* Bug Fixes.
+
+= 1.2.5.1 =
+Release Date: 24th March, 2021
+
+= Premium Version =
+* Fixed: Twitter invalid image path issue.
+* Fixed: PHP Fatal error on some installations.
+
+= 1.2.5 =
+Release Date: 18th March, 2021
+
+= Premium Version =
+* Added: Option to use Republish Rules.
+* Added: Option to set per social account sharing template.
+* Fixed: A bug where sometimes required post metas got deleted upon post save.
+
+= Free Version =
+* Other improvements and fixes.
+
+= 1.2.4 =
+Release Date: 6th March, 2021
+
+* Added: Improvements and fixes.
+
+= 1.2.3 =
+Release Date: 28th February, 2021
+
+* Fixed: Database Table not found error.
+
+= 1.2.2 =
+Release Date: 23rd February, 2021
+
+= Premium Version =
+* Added: Social Media Share Feature is added.
+* Added: Compatibility with Jetpack auto social share.
+* Fixed: PHP error in Dashboard Widget if this plugin is installed on Wordpress version < 5.3.0.
+* Fixed: Wrong date showing if Weekly republish is set on post edit screen.
+* Tweak: Added some CSS imporvements.
+* Tweak: Moved Single Republish Settings to a new seperate tab.
+* Other Free version & Misc improvements and fixes.
+
+= Free Version =
+* Added: Action Schedular to Handle Post republishing more efficiently.
+* Added: A Health Check mechanism to properly handle the missed schedule issue.
+* Added: A Documentation and Faqs link as Plugin Tab.
+* Properly handled the plugin uninstall actions to reduce the server load.
+* Remove filter for 5 star rating from review link.
+* Other improvements and fixes.
+* Tested with WordPress v5.7.
+* Freemius SDK update.
+
+= 1.2.1 =
+Release Date: 11th Novemober, 2020
+
+* Fixed: Mising variable bug and date calculation.
+* Freemius SDK update.
+
+= 1.2.0 / 1.2.0.1 =
+Release Date: 9th October, 2020
+
+= Premium Version =
+* Added: Option to set custom republish interval.
+* Added: Option to disable republish randomness interval.
+* Added: Option to remove post age and to set custom post age.
+* Fixed: Orderby query is not working if Random Selection was selected.
+* Added: Ability to last hours to get most recent published posts.
+* Fixed: Taxonomies were showing wrong in plugin dropdown settings.
+* Added: Option to enable/disable post row action republish links.
+* Added: Scheduled republishing feature. Please check tahp tab for more details.
+* Added: Advanced republish log feature to track every event more efficiently.
+* Added: An option to view pending republish posts from All Posts page.
+* Fixed: Admin column was not showing proper republish infomation.
+* Fixed: High memory usage and freeze issue if republish start date is very far than current date.
+* Tweak: Single republishing with 1 to 4 minutes interval is removed by default. But it can be enabled by filter.
+* Added: Option to clear post metas for debug purposes and to copy/paste plugin settings.
+* Preparing for upcoming Features to handle Post Republish more efficiently. And Social Share is coming soon in the Premium Version :)
+
+= Free Version =
+* Added: A guide to help users to configure the plugin easily.
+* Tweak: It is now designed in a way to easily work with any server enviroment.
+* Optimized codes to handle republish process more efficiently to avoid event missing issue.
+* Remove filter for 5 star rating from review link.
+* Other improvements and fixes.
+
+= 1.1.10 =
+Release Date: 6th August, 2020
+
+* Fixed: Multiple Republish issues.
+
+= 1.1.9 =
+Release Date: 3rd August, 2020
+
+* Fixed: An undefined variable error.
+* Fixed: Minor JS issues.
+* Tested with WordPress v5.5.
+
+= 1.1.8 =
+Release Date: 23rd July, 2020
+
+= Premium Version =
+* Added: It is now possible to republish posts with a custom ordering plugin.
+* Fixed: Custom Taxonimies attached to WP Core Post Types is not republishing. Please select taxonomies from plugin settings again. Otherwise plugin may not respect taxonomies.
+* Preparing for upcoming Features to handle Post Republish more efficiently. And also something new is coming in Premium Version :)
+
+= Free Version =
+* Tweak: Post republish will be forwarded to the next available dates (at random time) if there are not slots available on current day.
+* Fixed: A bug some HTML Tags are removed automatically after republish from post content on some cases.
+* Fixed: Unclosed HTML Tag issues.
+
+= 1.1.7 =
+Release Date: 30th June, 2020
+
+= Premium Version =
+* Added: Option to Set Post Republish Action. It is now possible to clone old posts automatically.
+* Added: Option to Set Post types on which you want to display origianl publication date.
+* Added: Some checks to handle time restriction properly.
+* Added: It is now possible to restrict users from accessing Single Republish Settings via plugin settings.
+* Added: It is now possible to show single metabox on particular post types via plugin settings.
+* Added: You can get Email Notification after republication is done.
+* Added: Post Republication Logs in plugin settings.
+* Added: Automatic Single Post Cache clear if Republish Trigger is disabled.
+* Added: Hourly and Minutes option to Single Repeat Republishing option. By default, Minutes is disabled, but it can be enabled via filter.
+* Added: Time Restriction from Single Republishing for Hourly and Minutes Interval on Post Meta Box also.
+* Added: Global Republishing Scheduled will show on admin colums.
+* Improved: Added some checks to fix the over memory usage issues.
+* And all free versions features & Other many fixes and improvemnts.
+
+= Free Version =
+* Added: Modular UI to enhance User Experience.
+* Improved: Background Process Mechanism (currently using cron) to ensure that Post Republish Process runs without any multiple republication issues.
+* Optmized: Some unused & duplicates codes.
+* Tweak: Cron Schedules is displayed on plugin settings page.
+
+= 1.1.6 =
+Release Date: 24th May, 2020
+
+= All Versions =
+* Fixed: A bug where plugin causes multiple republish at a same time.
+* Fixed: Plugin data can'tbe removed at the time of uninstallation.
+
+= 1.1.5 =
+Release Date: 8th May, 2020
+
+= All Versions =
+* Added: Republish event time in plugin settings page.
+* Fixed: Fatal errors in less than PHP version 7.0.0. Please update your website's PHP version to 7.0.0 or higher. Support for less than PHP v7.0 will be removed in the upcoming versions.
+* Fixed: A bug where global republishing is not working.
+
+= 1.1.4 =
+Release Date: 1st May, 2020
+
+= Premium Version =
+* Improved: Next republish status will be hidden from columns if single republishing is disabled in plugin settings.
+* All free versions fixes and improvemnts.
+
+= Free Version =
+* Fixed: Wrong date in RSS feeds.
+* Fixed: Republishing is not working if both Category and tags are selected.
+
+= 1.1.3 =
+Release Date: 26th April, 2020
+
+= Premium Version =
+* Added: Option to disable publish event triggering.
+* Tweak: Plugin will show notices on block editor if post type is Post.
+* Fixed: Global republishing not working when Single republishing with taxonomies is enabled.
+* Added: Order by fields to sort posts.
+* And all free versions fixes and improvemnts.
+
+= Free Version =
+* Other minor improvemnts.
+
+= 1.1.2 =
+Release Date: 20th April, 2020
+
+= Premium Version =
+* Tweak: Plugin will show notices on block editor as well.
+* Tweak: All metadatas related to Single Republishing can be removed from plugin settings directly.
+* Tweak: This plugin will republish single posts at a time with a random interval for SEO purposes. By default it is 5 minutes. I can be changed via filter.
+* Tweak: Meta boxes will be displayed if a post is actually published.
+* Tweak: One click Republish will work as expected except auto-draft post status.
+* Fixed: An issue with repeated single republishing.
+* Tweak: Plugin will regerate post permalinks at the time of activation and deactivation.
+* Fixed: A wrong argument input which causes unexpected issues in single republishing.
+* Fixed: An error in nonce check in One Click Republish from post meta box.
+* Fixed: Some untranslated strings.
+* Removed: `wp_publish_post()` is replaced with custom function.
+* Removed: Cache option from plugin settings as this plugin will triggers publish events automatically. So, all cache plugins will work as expected.
+* WPML Compatibility.
+* And all free versions fixes and improvemnts.
+
+= Free Version =
+* Added: Second for time fields.
+* Improved: Plugin settings saving process.
+* Improved: Background process running mechanism.
+* Fixed: Duplicate query output.
+
+= 1.1.1 =
+Release Date: 18th April, 2020
+
+= Premium Version =
+* NEW: Triggers `wp_publish_post()` at the time of republish.
+* Fixed: Post Meta generation issue.
+* Fixed: One Click Republish is not working right after post status is changed to publish from quick links.
+* Fixed: Some untranslated strings.
+* And all free versions fixes and improvemnts.
+
+= Free Version =
+* Code Cleanup.
+
+= 1.1.0 =
+Release Date: 16th April, 2020
+
+= Premium Version =
+* NEW: Unlimited Custom post types support.
+* NEW: Custom taxonomies support.
+* NEW: Individual post republishing. That means it is possible to republish any post/page/custom post on a repeated basis (can be daily, weekly, monthly and yearly) or on a particular date.
+* NEW: Now it is possible to republish posts in a particular date range (post age between 10 years to 3 years etc.).
+* NEW: This plugin will change the title of post at the time of republish automatically if specified. It will help some SEO aspects. Also post permalinks can be changed.
+* NEW: Automatically fires the publish events at the time of each republish.
+* NEW: It is now possible to clear all the caches of total site or only for a post at the time of republish of that post. No it supports most of the cache plugins and hosting platforms.
+* NEW: Previously if you have date/month/year in post permalinks, then can you still use the original info in post permalinks.
+* NEW: It is posssible to set any status for posts after repeated republishing.
+* NEW: One click instant republish from quick links and from post edit page.
+* NEW: Show all republished history in logs in post edit screen.
+* NEW: Shows all single upcoming republication in a dashboard widget.
+* NEW: Shows single republication info in a admin column.
+* NEW: Can hide last original published info from frontend.
+* NEW: Added more republish ages and republish intervals.
+* And all free versions fixes and improvemnts.
+
+= Free Version =
+* Tweak: Merged post category and post tag selection button into one in plugin settings.
+* Tweak: Start time and End Time will be in seperate row from now.
+* Fixed: Property of non-object PHP error.
+* Fixed: A bug where sometimes plugin will republish two posts at a time.
+* Removed: Random Selection of posts from this plugin.
+* Minimum required WordPress version is 4.7 from now.
+
 = 1.0.8 =
 Release Date: 24th March, 2020
 

@@ -1,9 +1,9 @@
-=== WP Auto Republish ===
+=== RevivePress – Keep your Old Content Evergreen ===
 Contributors: Infosatech
-Tags: republish, republishing, old posts, old post, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
-Requires at least: 4.7
-Tested up to: 5.4
-Stable tag: 1.1.7
+Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
+Requires at least: 5.2
+Tested up to: 5.9
+Stable tag: 1.3.0
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -13,9 +13,9 @@ Republish your old posts automatically by resetting the date to the current date
 
 == Description ==
 
-The WP Auto Republish plugin helps revive old posts by resetting the published date to the current date. This will push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
+The RevivePress (formerly WP Auto Republish) plugin helps revive old posts by resetting the published date to the current date. This will push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
 
-Like WP Auto Republish plugin? Consider leaving a [5 star review](https://wordpress.org/support/plugin/wp-auto-republish/reviews/?rate=5#new-post).
+Like the RevivePress plugin? Consider leaving a [5 star review](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post).
 
 == Why would you want to do this? Here are a few reasons: ==
 
@@ -23,14 +23,14 @@ Like WP Auto Republish plugin? Consider leaving a [5 star review](https://wordpr
 2. Old content won't show up in date-based searches on search engines, but resetting the date can make them <strong>look fresh again</strong>.
 3. People <strong>like to share and link to new content, </strong>and they determine that by looking at the publication date.
 4. It will highlight older posts by moving them back to <strong>front page and in the RSS feed</strong>.
-5. WP Auto Republish will improve your <strong>blog visibility, traffic and SEO</strong>!
+5. RevivePress (formerly WP Auto Republish) will improve your <strong>blog visibility, traffic and SEO</strong>!
 6. And also <strong>Google likes updated content</strong> if it’s done right.
 
 == What does this plugin do? ==
 
 This plugin helps revive old posts by resetting the published date to the current date and push old posts to your front page, the top of archive pages, and back into RSS feeds.
 
-> <strong>Note</strong>: All basic functionality is FREE. Features such as single post republishing, repeated republishing & triggering publish events are available in the <Strong>[Premium Edition](https://sayandatta.in/wp-auto-republish/purchase)</strong>.
+> <strong>Note</strong>: All basic functionality is FREE. Features such as single post republishing, auto social share, repeated republishing & triggering publish events are available in the <Strong>[Premium Edition](https://wpautorepublish.com)</strong>.
 
 ### Key Features
 
@@ -46,9 +46,10 @@ This plugin helps revive old posts by resetting the published date to the curren
 ### Premium Features
 
 * Supports all free version features.
+* **Automatic Social Media Share**.
 * Custom post types support.
 * Custom taxonomies support.
-* Individual post republishing (also supports repeated).
+* **Individual post republishing (also supports repeated)**.
 * Scheduled post republishing.
 * Date & time based republishing.
 * Custom post republish interval.
@@ -64,18 +65,17 @@ This plugin helps revive old posts by resetting the published date to the curren
 * Can change the post name on every republish.
 * Shows all single upcoming republication in a dashboard widget.
 * Shows single republication info in a admin column.
-* Get Email Notification after Republish.
 * Can hide last original published info from frontend.
 
-<strong>[Upgrade to WP Auto Republish Premium](https://sayandatta.in/wp-auto-republish/purchase) now. You can also upgrade to Premium Version directly from your dashboard.</strong>
+<strong>[Upgrade to RevivePress Premium](https://wpautorepublish.com) now. You can also upgrade to Premium Version directly from your dashboard.</strong>
 
 ### Free and Premium Support
 
-Support for the WP Auto Republish plugin on the WordPress forums is free.
+Support for the RevivePress (formerly WP Auto Republish) plugin on the WordPress forums is free.
 
-Premium world-class support is available via email to all [WP Auto Republish Premium](https://sayandatta.in/wp-auto-republish/purchase) customers.
+Premium world-class support is available via email to all [RevivePress Premium](https://wpautorepublish.com) customers.
 
-> <strong>Note</strong>: Paid customers support is always given priority over free support. Paid customers support is provided via one-to-one email. [Upgrade to Premium](https://sayandatta.in/wp-auto-republish/purchase) to benefit from priority support.
+> <strong>Note</strong>: Paid customers support is always given priority over free support. Paid customers support is provided via one-to-one email. [Upgrade to Premium](https://wpautorepublish.com) to benefit from priority support.
 
 = Compatibility =
 
@@ -95,16 +95,18 @@ Premium world-class support is available via email to all [WP Auto Republish Pre
 
 == Installation ==
 
-1. Visit 'Plugins > Add New'.
-2. Search for 'WP Auto Republish' and install it.
+1. Visit 'Plugins > Add New'
+2. Search for 'RevivePress' and install it.
 3. Or you can upload the `wp-auto-republish` folder to the `/wp-content/plugins/` directory manually.
-4. Activate WP Auto Republish from your Plugins page.
-5. After activation go to 'Settings > WP Auto Republish'.
+4. Activate RevivePress from your Plugins page.
+5. After activation go to 'Settings > RevivePress'.
+6. Configure settings according to your need and save changes.
+
 6. Configure plugins settings according to your need and save changes.
 
 == Frequently Asked Questions ==
 
-= How to customize original post publication date format? =
+= How to customize original post publication date format on frontend? =
 
 To customize original post publication date, you need to add this following snippet to the end of your active theme's functions.php file:
 
@@ -119,7 +121,7 @@ Yes, our plugins work independently of themes you are using. As long as your web
 
 = Are posts duplicated? =
 
-By default, no. The date on posts is updated to the current date making a post appear new. URLs don't change and comments continue to display with the post. But in Premium Version, it is posssible to clone posts.
+By default, no. But you can configure it from plugin settings. The date on posts is updated to the current date making a post appear new. URLs don't change and comments continue to display with the post.
 
 = Doesn't changing the timestamp affect permalinks that include dates?  =
 
@@ -127,142 +129,53 @@ Yes, permalinks with dates would be affected only in free version. This plugin s
 
 == Screenshots ==
 
-1. WP Auto Republish - General Tab (Free).
-2. WP Auto Republish - Post Options Tab (Free).
+1. RevivePress - General Tab.
+2. RevivePress - Post Options Tab.
 
 == Changelog ==
 
-If you like WP Auto Republish, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
+If you like RevivePress (formerly WP Auto Republish), please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
 
-= 1.1.7 =
-Release Date: 30th June, 2020
+= 1.3.0 =
+Release Date: 22th March, 2022
 
-= Premium Version =
-* Added: Option to Set Post Republish Action. It is now possible to clone old posts automatically.
-* Added: Option to Set Post types on which you want to display origianl publication date.
-* Added: Some checks to handle time restriction properly.
-* Added: It is now possible to restrict users from accessing Single Republish Settings via plugin settings.
-* Added: It is now possible to show single metabox on particular post types via plugin settings.
-* Added: You can get Email Notification after republication is done.
-* Added: Post Republication Logs in plugin settings.
-* Added: Automatic Single Post Cache clear if Republish Trigger is disabled.
-* Added: Hourly and Minutes option to Single Repeat Republishing option. By default, Minutes is disabled, but it can be enabled via filter.
-* Added: Time Restriction from Single Republishing for Hourly and Minutes Interval on Post Meta Box also.
-* Added: Global Republishing Scheduled will show on admin colums.
-* Improved: Added some checks to fix the over memory usage issues.
-* And all free versions features & Other many fixes and improvemnts.
-
-= Free Version =
-* Added: Modular UI to enhance User Experience.
-* Improved: Background Process Mechanism (currently using cron) to ensure that Post Republish Process runs without any multiple republication issues.
-* Optmized: Some unused & duplicates codes.
-* Tweak: Cron Schedules is displayed on plugin settings page.
-
-= 1.1.6 =
-Release Date: 24th May, 2020
-
-= All Versions =
-* Fixed: A bug where plugin causes multiple republish at a same time.
-* Fixed: Plugin data can'tbe removed at the time of uninstallation.
-
-= 1.1.5 =
-Release Date: 8th May, 2020
-
-= All Versions =
-* Added: Republish event time in plugin settings page.
-* Fixed: Fatal errors in less than PHP version 7.0.0. Please update your website's PHP version to 7.0.0 or higher. Support for less than PHP v7.0 will be removed in the upcoming versions.
-* Fixed: A bug where global republishing is not working.
-
-= 1.1.4 =
-Release Date: 1st May, 2020
+* Rebranded to RevivePress
 
 = Premium Version =
-* Improved: Next republish status will be hidden from columns if single republishing is disabled in plugin settings.
-* All free versions fixes and improvemnts.
+* Added: Ability to republish posts basted on Thumbnail.
+* Added: Ability to republish posts basted on Authors.
+* Added: Option to restrict the number of posts allowed to republish within a day.
+* Improvement: Added String base interval support. It means you can use postfixes of Year, Month, Week, Day, Hour, Minutes like 1y, 2m, 3w, 4d, 5h, 6i respectively. 
+* Improvemnet: Added a swtich under Misc. Options to enable/disable Republish Rules module.
+* Improvement: We have added tab based navigation in per post metabox.
+* Improvement: Instant Republish settings is not seperated from single republish settings. It has its own control settings.
+* Improvement: Social Accounts credentials will be stored on your website so that you don't need to add that evertime when you authorizes your social accounts.
+* Improvement: Social Accounts verification system.
+* Improvement: Added an option to include the start date in post republish metabox if starts date is greater than today.
+* Improvement: Added Order by name in post query setion.
+* Removed: Month Specific republish due to some issues. Will be added in the future versions.
+* Fixed: A bug where checkboxes in post metabox can't be saved.
+* And all Free Version Improvements and Fixes.
 
 = Free Version =
-* Fixed: Wrong date in RSS feeds.
-* Fixed: Republishing is not working if both Category and tags are selected.
-
-= 1.1.3 =
-Release Date: 26th April, 2020
-
-= Premium Version =
-* Added: Option to disable publish event triggering.
-* Tweak: Plugin will show notices on block editor if post type is Post.
-* Fixed: Global republishing not working when Single republishing with taxonomies is enabled.
-* Added: Order by fields to sort posts.
-* And all free versions fixes and improvemnts.
-
-= Free Version =
-* Other minor improvemnts.
-
-= 1.1.2 =
-Release Date: 20th April, 2020
-
-= Premium Version =
-* Tweak: Plugin will show notices on block editor as well.
-* Tweak: All metadatas related to Single Republishing can be removed from plugin settings directly.
-* Tweak: This plugin will republish single posts at a time with a random interval for SEO purposes. By default it is 5 minutes. I can be changed via filter.
-* Tweak: Meta boxes will be displayed if a post is actually published.
-* Tweak: One click Republish will work as expected except auto-draft post status.
-* Fixed: An issue with repeated single republishing.
-* Tweak: Plugin will regerate post permalinks at the time of activation and deactivation.
-* Fixed: A wrong argument input which causes unexpected issues in single republishing.
-* Fixed: An error in nonce check in One Click Republish from post meta box.
-* Fixed: Some untranslated strings.
-* Removed: `wp_publish_post()` is replaced with custom function.
-* Removed: Cache option from plugin settings as this plugin will triggers publish events automatically. So, all cache plugins will work as expected.
-* WPML Compatibility.
-* And all free versions fixes and improvemnts.
-
-= Free Version =
-* Added: Second for time fields.
-* Improved: Plugin settings saving process.
-* Improved: Background process running mechanism.
-* Fixed: Duplicate query output.
-
-= 1.1.1 =
-Release Date: 18th April, 2020
-
-= Premium Version =
-* NEW: Triggers `wp_publish_post()` at the time of republish.
-* Fixed: Post Meta generation issue.
-* Fixed: One Click Republish is not working right after post status is changed to publish from quick links.
-* Fixed: Some untranslated strings.
-* And all free versions fixes and improvemnts.
-
-= Free Version =
-* Code Cleanup.
-
-= 1.1.0 =
-Release Date: 16th April, 2020
-
-= Premium Version =
-* NEW: Unlimited Custom post types support.
-* NEW: Custom taxonomies support.
-* NEW: Individual post republishing. That means it is possible to republish any post/page/custom post on a repeated basis (can be daily, weekly, monthly and yearly) or on a particular date.
-* NEW: Now it is possible to republish posts in a particular date range (post age between 10 years to 3 years etc.).
-* NEW: This plugin will change the title of post at the time of republish automatically if specified. It will help some SEO aspects. Also post permalinks can be changed.
-* NEW: Automatically fires the publish events at the time of each republish.
-* NEW: It is now possible to clear all the caches of total site or only for a post at the time of republish of that post. No it supports most of the cache plugins and hosting platforms.
-* NEW: Previously if you have date/month/year in post permalinks, then can you still use the original info in post permalinks.
-* NEW: It is posssible to set any status for posts after repeated republishing.
-* NEW: One click instant republish from quick links and from post edit page.
-* NEW: Show all republished history in logs in post edit screen.
-* NEW: Shows all single upcoming republication in a dashboard widget.
-* NEW: Shows single republication info in a admin column.
-* NEW: Can hide last original published info from frontend.
-* NEW: Added more republish ages and republish intervals.
-* And all free versions fixes and improvemnts.
-
-= Free Version =
-* Tweak: Merged post category and post tag selection button into one in plugin settings.
-* Tweak: Start time and End Time will be in seperate row from now.
-* Fixed: Property of non-object PHP error.
-* Fixed: A bug where sometimes plugin will republish two posts at a time.
-* Removed: Random Selection of posts from this plugin.
-* Minimum required WordPress version is 4.7 from now.
+* NEW: Redesigned UI.
+* Improvement: Optimized republish process to handle Memory limit.
+* Improvement: Added proper guide in every settings.
+* Improvement: Modular Settings to handle code in efficient way.
+* Improvement: Optimize Post Republish process by doing event segmentation.
+* Improvement: Introduces an Updater class to handle upgradation more efficiently.
+* Improvement: Added Public Roadmap link in menu item.
+* Improvement: Changed default runner interval to 3 minutes from 1 minutes thought it can be modified by filter. We don't recommend to do so.
+* Improvement: Optimize plugin to handle large scale republish events.
+* Improvement: Added Escaping and WPCS checks.
+* Updated: jQuery UI CSS Library annd Timepicker Library.
+* Removed: Health Check system which sometimes causes overload.
+* Removed: Unused Migration scripts.
+* Fixed: Fix for Database Table will run if WooCommerce not active.
+* Fixed: Fatal error caused by Action Schedular.
+* Fixed: Several typos.
+* Tested with WordPress 5.9 and minumum required WordPress version is 5.2.
+* PHP 8.0 Compatibility.
 
 = Other Versions =
 
@@ -270,5 +183,4 @@ Release Date: 16th April, 2020
 
 == Upgrade Notice ==
 
-= 1.1.7 =
-In this release we have introduced several changese. Please review the changes after updating the plugin. Otherwise plugin may stop working.
+* Major changes are introduced in this version. Please review your settings and save changes.
