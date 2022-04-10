@@ -162,10 +162,11 @@ class Dashboard
             'republish_orderby'  => __( 'Select Published Posts Order by', 'wp-auto-republish' ),
         ],
             'post_type'      => [
-            'post_types_list'       => __( 'Select Post Type(s) to Republish', 'wp-auto-republish' ),
-            'taxonomies_filter'     => __( 'Post Types Taxonomies Filter', 'wp-auto-republish' ),
-            'post_taxonomy'         => __( 'Select Post Type(s) Taxonomies', 'wp-auto-republish' ),
-            'override_category_tag' => __( 'Override Taxonomies Filtering for these Specified Post Types', 'wp-auto-republish' ),
+            'post_types_list'   => __( 'Select Post Type(s) to Republish', 'wp-auto-republish' ),
+            'taxonomies_filter' => __( 'Post Types Taxonomies Filter', 'wp-auto-republish' ),
+            'post_taxonomy'     => __( 'Select Post Type(s) Taxonomies', 'wp-auto-republish' ),
+            'force_include'     => __( 'Force Include Post IDs', 'wp-auto-republish' ),
+            'force_exclude'     => __( 'Force Exclude Post IDs', 'wp-auto-republish' ),
         ],
             'tools'          => [
             'remove_plugin_data' => __( 'Delete Plugin Data on Uninstall?', 'wp-auto-republish' ),

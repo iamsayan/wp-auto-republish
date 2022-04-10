@@ -62,7 +62,7 @@ class Actions extends BaseController
     public function roadmap_link()
     {
         global  $submenu ;
-        $submenu['revivepress'][] = [ __( 'Roadmap', 'wp-auto-republish' ), 'manage_options', 'https://api.wpautorepublish.com/go/roadmap' ];
+        $submenu['revivepress'][] = [ __( 'Roadmap', 'wp-auto-republish' ), 'manage_options', 'https://api.wprevivepress.com/go/roadmap?utm_source=admin_menu&utm_medium=plugin' ];
     }
     
     /**
@@ -73,7 +73,7 @@ class Actions extends BaseController
         ?>
 		<script type="text/javascript">
 			jQuery( document ).ready( function( $ ) {
-				$( "ul#adminmenu a[href$='https://api.wpautorepublish.com/go/roadmap']" ).attr( { target: '_blank', rel: 'noopener noreferrer' } );
+				$( "ul#adminmenu a[href$='https://api.wprevivepress.com/go/roadmap?utm_source=admin_menu&utm_medium=plugin']" ).attr( { target: '_blank', rel: 'noopener noreferrer' } );
 			} );
 		</script>
 		<?php 
@@ -96,7 +96,7 @@ class Actions extends BaseController
                 $links[] = '<a href="https://www.paypal.me/iamsayan/" target="_blank">' . __( 'Donate', 'wp-auto-republish' ) . '</a>';
             }
             
-            $links[] = '<a href="https://wpautorepublish.com/docs/" target="_blank">' . __( 'Documentation', 'wp-auto-republish' ) . '</a>';
+            $links[] = '<a href="https://wprevivepress.com/docs/?utm_source=plugin_page&utm_medium=plugin" target="_blank">' . __( 'Documentation', 'wp-auto-republish' ) . '</a>';
         }
         
         return $links;
@@ -112,7 +112,7 @@ class Actions extends BaseController
         if ( 'toplevel_page_revivepress' === $current_screen->id ) {
             $text = [];
             $text[] = __( 'Developed with', 'wp-auto-republish' ) . ' <span style="color:#e25555;">♥</span> by <a href="https://sayandatta.in" target="_blank" style="font-weight: 500;">Sayan Datta</a>';
-            $text[] = '<a href="https://sayandatta.in/contact/" target="_blank" style="font-weight: 500;">' . __( 'Hire Me', 'wp-auto-republish' ) . '</a>';
+            $text[] = '<a href="https://sayandatta.in/contact/?utm_source=plugin_page&utm_medium=revivepress" target="_blank" style="font-weight: 500;">' . __( 'Hire Me', 'wp-auto-republish' ) . '</a>';
             $text[] = '<a href="https://github.com/iamsayan/wp-auto-republish" target="_blank" style="font-weight: 500;">GitHub</a>';
             $text[] = '<a href="https://wordpress.org/support/plugin/wp-auto-republish" target="_blank" style="font-weight: 500;">' . __( 'Support Forum', 'wp-auto-republish' ) . '</a>';
             $text[] = '<a href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" style="font-weight: 500;">' . __( 'Rate it', 'wp-auto-republish' ) . '</a> (<span style="color:#ffa000;">★★★★★</span>) on WordPress.org, if you like this plugin.</span>';

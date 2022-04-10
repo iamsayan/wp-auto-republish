@@ -248,7 +248,7 @@ esc_attr_e( 'De-Schedule Posts', 'wp-auto-republish' );
 
                 <div id="wpar-help" class="postbox wpar-help d-none">
                     <?php 
-$this->sectionHeader( 'Plugin Help', sprintf( __( 'Do you need help any other help with this plugin?  Checkout %s for more.', 'wp-auto-republish' ), sprintf( '<a href="https://wpautorepublish.com/docs/" target="_blank">%s</a>', __( 'Documentation', 'wp-auto-republish' ) ) ) );
+$this->sectionHeader( 'Plugin Help', sprintf( __( 'Do you need help any other help with this plugin?  Checkout %s for more.', 'wp-auto-republish' ), sprintf( '<a href="https://wprevivepress.com/docs/" target="_blank">%s</a>', __( 'Documentation', 'wp-auto-republish' ) ) ) );
 ?>
                     <div class="inside">
                         <?php 
@@ -257,7 +257,7 @@ if ( defined( 'DISABLE_WP_CRON' ) && DISABLE_WP_CRON !== false ) {
     ?>
                             <div class="notice inline notice-error notice-alt">
                                 <p class="cron-warning"><?php 
-    esc_html_e( 'WP Cron is currently disabled. Use Server Level Cron or use external cron services to get it working. Visit our docs for more information regading this.', 'wp-auto-republish' );
+    esc_html_e( 'WP Cron is currently disabled. Use Server Level Cron or use external cron services to get it working. If you already had done this, ignore this warning.', 'wp-auto-republish' );
     ?></p>
                             </div>
                         <?php 
@@ -273,17 +273,24 @@ esc_html_e( 'This plugin is mainly based on WordPress Cron system to republish y
 ?></p>
                         
                             <li><?php 
+esc_html_e( 'Republish is not working. How to resolve this?', 'wp-auto-republish' );
+?></li>
+                            <p><?php 
+esc_html_e( 'Please follow the settings help present in the below of every settings and try to properly configure the plugin. If still not working, please contact support.', 'wp-auto-republish' );
+?></p>
+                        
+                            <li><?php 
 esc_html_e( 'WordPress Cron is disabled on my website. What can I do?', 'wp-auto-republish' );
 ?></li>
                             <p><?php 
-printf( __( 'This plugin is heavily based on WP Cron. If it is disabled on your website which is required by %1$s plugin, please enable native WP Cron or follow this <a href="%2$s" target="_blank">tutorial</a> to enable server level PHP Cron instead with an interval of less than Republish Interval option.', 'wp-auto-republish' ), $this->name, 'https://wpautorepublish.com/docs/how-to-replace-wp-cron-with-a-real-cron-job/' );
+printf( __( 'This plugin is heavily based on WP Cron. If it is disabled on your website which is required by %1$s plugin, please enable native WP Cron or follow this <a href="%2$s" target="_blank">tutorial</a> to enable server level PHP Cron instead with an interval of less than Republish Interval option.', 'wp-auto-republish' ), $this->name, 'https://wprevivepress.com/docs/how-to-replace-wp-cron-with-a-real-cron-job/' );
 ?></p>
                                  
                             <li><?php 
 esc_html_e( 'Plugin sometimes fails or misses to republish a particular post at a specified time. What is the reason?', 'wp-auto-republish' );
 ?></li>
                             <p><?php 
-printf( __( 'This plugin is based on WP Cron which depends on the traffic volume of your website. If you have low traffic, there may be chances to miss any republish job. To avoid this, please disable native WP Cron and follow this <a href="%s" target="_blank">tutorial</a> to enable server level PHP Cron instead with an interval of less than Republish Interval option.', 'wp-auto-republish' ), 'https://wpautorepublish.com/docs/how-to-replace-wp-cron-with-a-real-cron-job/' );
+printf( __( 'This plugin is based on WP Cron which depends on the traffic volume of your website. If you have low traffic, there may be chances to miss any republish job. To avoid this, please disable native WP Cron and follow this <a href="%s" target="_blank">tutorial</a> to enable server level PHP Cron instead with an interval of less than Republish Interval option.', 'wp-auto-republish' ), 'https://wprevivepress.com/docs/how-to-replace-wp-cron-with-a-real-cron-job/' );
 ?></p>
                         
                             <li><?php 
@@ -361,6 +368,12 @@ esc_html_e( 'One Click Instant Republish & Clone', 'wp-auto-republish' );
 ?></p>
                         <p><span class="dashicons dashicons-yes"></span><?php 
 esc_html_e( 'Custom Post Republish Rulesets', 'wp-auto-republish' );
+?></p>
+                        <p><span class="dashicons dashicons-yes"></span><?php 
+esc_html_e( 'WordPress Sticky Posts Support', 'wp-auto-republish' );
+?></p>
+                        <p><span class="dashicons dashicons-yes"></span><?php 
+esc_html_e( 'OneSignal & Jetpack Publicize Support', 'wp-auto-republish' );
 ?></p>
                         <p><span class="dashicons dashicons-yes"></span><?php 
 esc_html_e( 'Email Notification upon Republishing', 'wp-auto-republish' );

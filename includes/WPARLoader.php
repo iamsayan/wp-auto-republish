@@ -31,12 +31,11 @@ final class WPARLoader
             Base\RatingNotice::class,
             Base\DonateNotice::class,
             Base\PluginTools::class,
-            Base\MiscActions::class,
             Core\FetchPosts::class,
             Core\PostRepublish::class,
             Core\SiteCache::class,
             Core\RepublishInfo::class,
-            Tools\DatabaseTable::class,
+            Tools\DatabaseActions::class,
             Tools\Updates::class
         ];
         return $services;

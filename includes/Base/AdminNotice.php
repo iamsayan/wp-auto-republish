@@ -53,27 +53,6 @@ class AdminNotice extends BaseController
             deactivate_plugins( $this->plugin );
             echo  '<div class="error"><p>' . sprintf( __( 'Your version of PHP is below the minimum version of PHP required by %s plugin. Please contact your host and request that your version be upgraded to 5.6 or later.', 'wp-auto-republish' ), $this->name ) . '</p></div>' ;
         }
-        
-        // Check transient, if available display notice
-        
-        if ( get_transient( 'wpar-show-notice-on-activation' ) !== false ) {
-            
-            if ( version_compare( PHP_VERSION, '5.6', '>=' ) ) {
-                ?>
-			    <div class="notice notice-success">
-				    <p><strong><?php 
-                printf(
-                    __( 'Thanks for installing %1$s v%2$s plugin. Click <a href="%3$s">here</a> to configure plugin settings.', 'wp-auto-republish' ),
-                    $this->name,
-                    $this->version,
-                    admin_url( 'admin.php?page=revivepress' )
-                );
-                ?></strong></p>
-			    </div> <?php 
-            }
-            
-            delete_transient( 'wpar-show-notice-on-activation' );
-        }
     
     }
 

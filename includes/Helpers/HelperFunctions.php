@@ -152,14 +152,15 @@ trait HelperFunctions
     /**
      * Check current user roles.
      * 
+     * @since 1.3.0
      * @return bool
      */
-    protected function get_roles( $can_edit_check = true )
+    protected function get_roles( $can_edit_post = true )
     {
         $options = [];
         $roles = get_editable_roles();
         foreach ( $roles as $role => $details ) {
-            if ( $can_edit_check && (!isset( $details['capabilities']['edit_posts'] ) || !$details['capabilities']['edit_posts']) ) {
+            if ( $can_edit_post && (!isset( $details['capabilities']['edit_posts'] ) || !$details['capabilities']['edit_posts']) ) {
                 continue;
             }
             $options[$role] = translate_user_role( $details['name'] );
@@ -214,8 +215,9 @@ trait HelperFunctions
     }
     
     /**
-     *  Return Current timestamp
+     * Return Current timestamp
      * 
+     * @since 1.2.6
      * @return bool
      */
     protected function current_timestamp( $gmt = false )
@@ -225,8 +227,9 @@ trait HelperFunctions
     }
     
     /**
-     *  Return transient name
+     * Return transient name
      * 
+     * @since 1.3.0
      * @return bool
      */
     protected function get_daily_allowed( $value = false )
@@ -249,8 +252,9 @@ trait HelperFunctions
     }
     
     /**
-     *  Date Time string to seconds and also from array
+     * Date Time string to seconds and also from array
      * 
+     * @since 1.3.0
      * @return string
      */
     protected function str_to_second( $input )
@@ -264,8 +268,9 @@ trait HelperFunctions
     }
     
     /**
-     *  Convert Date Time string to seconds
+     * Convert Date Time string to seconds
      * 
+     * @since 1.3.0
      * @return string
      */
     protected function convert_str_to_second( $input )
@@ -305,6 +310,23 @@ trait HelperFunctions
                 $output = MINUTE_IN_SECONDS;
         }
         return $output;
+    }
+    
+    /**
+     * Convert comma separated post ids to array
+     * 
+     * @since 1.3.1
+     * @return array
+     */
+    protected function filter_post_ids( $input )
+    {
+        $input = preg_replace( [
+            '/[^\\d,]/',
+            '/(?<=,),+/',
+            '/^,+/',
+            '/,+$/'
+        ], '', $input );
+        return explode( ',', $input );
     }
     
     /**

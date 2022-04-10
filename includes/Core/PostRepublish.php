@@ -30,7 +30,7 @@ class PostRepublish
     /**
      * Trigger post update process.
      * 
-     * @since v1.1.7
+     * @since 1.1.7
      * @param int   $post_id   Post ID
      */
     public function do_republish( $post_id )
@@ -104,7 +104,7 @@ class PostRepublish
     /**
      * Get new post published time.
      * 
-     * @since v1.1.7
+     * @since 1.1.7
      * @param int   $post_id   Post ID
      * @param bool  $single    Check if a single republish event
      * @param bool  $instant   Check if one click republish event
