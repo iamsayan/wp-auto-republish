@@ -1,12 +1,13 @@
 ![alt text](https://github.com/iamsayan/wp-auto-republish/raw/master/banner.png "Plugin Banner")
 
 # RevivePress
-The RevivePress (formerly WP Auto Republish) plugin helps revive old posts by resetting the published date to the current date.
-Republish your old posts automatically by resetting the date to the current date. Revive old posts to users that haven't seen them.
+RevivePress (formerly WP Auto Republish), the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
 
 ## Description
 
 The RevivePress (formerly WP Auto Republish) plugin helps revive old posts by resetting the published date to the current date. This will push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
+
+[Free Demo](https://api.wprevivepress.com/demo-auto-login-free) | [Premium Demo](https://api.wprevivepress.com/demo-auto-login) | [Get Premium](https://wprevivepress.com/pricing/?utm_source=landing&utm_medium=github)
 
 Like RevivePress plugin? Consider leaving a [5 star review](https://wordpress.org/support/plugin/wp-auto-republish/reviews/?rate=5#new-post).
 
@@ -32,14 +33,16 @@ This plugin helps revive old posts by resetting the published date to the curren
 * Force exclude/include posts by their ID.
 * Can select post in ASC / DESC order.
 * Compatible with any timezone.
+* Supports Indexing API by Rank Math.
 * Automatically purge site cache (limited) after republishing.
 
 #### Premium Features
 
 * Supports all free version features.
+* **Automatic Social Media Share**.
 * Custom post types support.
 * Custom taxonomies support.
-* Individual post republishing (also supports repeated).
+* **Individual post republishing (also supports repeated)**.
 * Scheduled post republishing.
 * Date & time based republishing.
 * Custom post republish interval.
@@ -47,25 +50,25 @@ This plugin helps revive old posts by resetting the published date to the curren
 * Trigger publish event at the time of republish.
 * Automatic Site or Single Post Cache Purge Support (supports most of the cache plugins and hosting platforms)
 * Custom date range for republishing.
-* Can use dates in post permalinks.
 * Change Post Status after Last Republish.
 * One click instant republish.
+* WordPress Sticky Posts Support.
+* OneSignal Push Notification Support.
 * Show all republished history in logs.
-* Can use dates in post permalinks.
 * Can change the post name on every republish.
 * Shows all single upcoming republication in a dashboard widget.
 * Shows single republication info in a admin column.
 * Can hide last original published info from frontend.
 
-<strong>[Upgrade to RevivePress Premium](https://sayandatta.in/wp-auto-republish/purchase) now. You can also upgrade to Premium Version directly from your dashboard.</strong>
+<strong>[Upgrade to RevivePress Premium](https://wprevivepress.com/pricing/?utm_source=landing&utm_medium=github) now. You can also upgrade to Premium Version directly from your dashboard.</strong>
 
 ### Free and Premium Support
 
 Support for the RevivePress plugin on the WordPress forums is free.
 
-Premium world-class support is available via email to all [RevivePress Premium](https://sayandatta.in/wp-auto-republish/purchase) customers.
+Premium world-class support is available via email to all [RevivePress Premium](https://wprevivepress.com/pricing/?utm_source=landing&utm_medium=github) customers.
 
-> <strong>Note</strong>: Paid customers support is always given priority over free support. Paid customers support is provided via one-to-one email. [Upgrade to Premium](https://sayandatta.in/wp-auto-republish/purchase) to benefit from priority support.
+> <strong>Note</strong>: Paid customers support is always given priority over free support. Paid customers support is provided via one-to-one email. [Upgrade to Premium](https://wprevivepress.com/pricing/?utm_source=landing&utm_medium=github) to benefit from priority support.
 
 #### Compatibility
 
@@ -126,7 +129,7 @@ No. The date on posts is updated to the current date making a post appear new. U
 
 #### Doesn't changing the timestamp affect permalinks that include dates?
 
-Yes, permalinks with dates would be affected only in free version. This plugin shouldn't be used if your permalinks include dates since those dates will change when a post is republished. But in Premium version it is possible to use dates in permalinks.
+Yes, permalinks with dates would be not be affected on both free version and Premium Version. RevivePress will handle it easily.
 
 #### The plugin isn't working or have a bug? ####
 

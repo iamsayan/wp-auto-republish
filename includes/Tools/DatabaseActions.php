@@ -5,27 +5,26 @@
  *
  * @since      1.2.0
  * @package    RevivePress
- * @subpackage Wpar\Tools
+ * @subpackage RevivePress\Tools
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
-namespace Wpar\Tools;
+namespace RevivePress\Tools;
 
-use  Wpar\Helpers\Hooker ;
-use  Wpar\Helpers\HelperFunctions ;
+use  RevivePress\Helpers\Hooker ;
+use  RevivePress\Helpers\Schedular ;
+use  RevivePress\Helpers\HelperFunctions ;
 defined( 'ABSPATH' ) || exit;
 /**
  * Database Action links class.
  */
 class DatabaseActions
 {
-    use  HelperFunctions, Hooker ;
+    use  HelperFunctions, Hooker, Schedular ;
     /**
      * Register functions.
      */
     public function register()
     {
-        $this->action( 'wpar/after_plugin_uninstall', 'meta_cleanup', 30 );
-        $this->action( 'wpar/after_plugin_uninstall', 'remove_actions', 5 );
         $this->action( 'wpar/remove_post_metadata', 'meta_cleanup', 20 );
         $this->action( 'wpar/remove_post_metadata', 'remove_actions', 5 );
         $this->action( 'wpar/deschedule_posts', 'deschedule_posts' );
@@ -43,7 +42,7 @@ class DatabaseActions
             'post_status' => [ 'publish', 'future', 'private' ],
             'fields'      => 'ids',
         ];
-        $posts = get_posts( $args );
+        $posts = $this->get_posts( $args );
         if ( !empty($posts) ) {
             foreach ( $posts as $post_id ) {
                 $metas = get_post_custom( $post_id );
@@ -83,7 +82,7 @@ class DatabaseActions
         ];
         $args = $this->do_filter( 'remove_actions_args', $args );
         //error_log( print_r( $args, true ) );
-        $posts = get_posts( $args );
+        $posts = $this->get_posts( $args );
         if ( !empty($posts) ) {
             foreach ( $posts as $post_id ) {
                 // get republish time from post meta
@@ -110,7 +109,7 @@ class DatabaseActions
         ];
         $args = $this->do_filter( 'deschedule_posts_args', $args );
         //error_log( print_r( $args, true ) );
-        $posts = get_posts( $args );
+        $posts = $this->get_posts( $args );
         if ( !empty($posts) ) {
             foreach ( $posts as $post_id ) {
                 // get original published date

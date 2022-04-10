@@ -5,10 +5,10 @@
  *
  * @since      1.1.0
  * @package    RevivePress
- * @subpackage Wpar\Core
+ * @subpackage RevivePress\Core
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
-namespace Wpar\Base;
+namespace RevivePress\Base;
 
 /**
  * Base Controller class.
@@ -46,12 +46,6 @@ class BaseController
      */
     public  $name ;
     /**
-     * Enable debug.
-     *
-     * @var bool
-     */
-    public  $debug ;
-    /**
      * The constructor.
      */
     public function __construct()
@@ -59,10 +53,9 @@ class BaseController
         $this->plugin_path = plugin_dir_path( $this->dirname_r( __FILE__, 2 ) );
         $this->plugin_url = plugin_dir_url( $this->dirname_r( __FILE__, 2 ) );
         $this->plugin = plugin_basename( $this->dirname_r( __FILE__, 3 ) ) . '/wp-auto-republish.php';
-        $this->version = '1.3.1';
-        $this->debug = false;
+        $this->version = REVIVEPRESS_VERSION;
         $this->name = 'RevivePress';
-        $this->tag = 'Free';
+        $this->tag = 'Lite';
     }
     
     /**

@@ -4,14 +4,14 @@
  *
  * @since      1.1.0
  * @package    RevivePress
- * @subpackage Wpar\Base
+ * @subpackage RevivePress\Base
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
-namespace Wpar\Base;
+namespace RevivePress\Base;
 
-use Wpar\Helpers\Hooker;
-use Wpar\Base\BaseController;
+use RevivePress\Helpers\Hooker;
+use RevivePress\Base\BaseController;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -35,22 +35,25 @@ class RatingNotice
 	 */
 	public function show_notice() {
 		// Show notice after 240 hours (10 days) from installed time.
-		if ( $this->calculate_time() > strtotime( '-360 hours' )
+		if ( $this->calculate_time() > strtotime( '-7 days' )
 	    	|| '1' === get_option( 'wpar_plugin_dismiss_rating_notice' )
             || ! current_user_can( 'manage_options' )
 			|| apply_filters( 'wpar/hide_sticky_rating_notice', false ) ) {
             return;
         }
     
-        $dismiss = wp_nonce_url( add_query_arg( 'wpar_rating_notice_action', 'dismiss_rating_true' ), 'dismiss_rating_true' ); 
-        $no_thanks = wp_nonce_url( add_query_arg( 'wpar_rating_notice_action', 'no_thanks_rating_true' ), 'no_thanks_rating_true' ); ?>
+        $dismiss = wp_nonce_url( add_query_arg( 'rvp_rating_notice', 'dismiss' ), 'rvp_rating_nonce' ); 
+        $later = wp_nonce_url( add_query_arg( 'rvp_rating_notice', 'later' ), 'rvp_rating_nonce' ); ?>
         
         <div class="notice notice-success">
-            <p><?php echo wp_kses_post( 'Hey, I noticed you\'ve been using RevivePress (formerly WP Auto Republish) for more than 1 week – that’s awesome! Could you please do me a BIG favor and give it a <strong>5-star</strong> rating on WordPress? Just to help us spread the word and boost my motivation.', 'wp-auto-republish' ); ?></p>
-            <p><a href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/" target="_blank" class="button button-secondary"><?php esc_html_e( 'Ok, you deserve it', 'wp-auto-republish' ); ?></a>&nbsp;
-            <a href="<?php echo esc_url( $dismiss ); ?>" class="already-did"><strong><?php esc_html_e( 'I already did', 'wp-auto-republish' ); ?></strong></a>&nbsp;<strong>|</strong>
-            <a href="<?php echo esc_url( $no_thanks ); ?>" class="later"><strong><?php esc_html_e( 'Nope&#44; maybe later', 'wp-auto-republish' ); ?></strong></a>&nbsp;<strong>|</strong>
-            <a href="<?php echo esc_url( $dismiss ); ?>" class="hide"><strong><?php esc_html_e( 'I don\'t want to rate', 'wp-auto-republish' ); ?></strong></a></p>
+            <p>
+				<?php echo wp_kses_post( 'Hey, I noticed you\'ve been using RevivePress (formerly WP Auto Republish) for more than 1 week – that’s awesome! Could you please do me a BIG favor and give it a <strong>5-star</strong> rating on WordPress? Just to help us spread the word and boost my motivation.', 'wp-auto-republish' ); ?>
+			</p>
+            <p>
+				<a href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" class="button button-secondary"><?php esc_html_e( 'Ok, you deserve it', 'wp-auto-republish' ); ?></a>&nbsp;
+            	<a href="<?php echo esc_url( $dismiss ); ?>" class="rvp-already-did"><strong><?php esc_html_e( 'I already did', 'wp-auto-republish' ); ?></strong></a>&nbsp;<strong>|</strong>
+            	<a href="<?php echo esc_url( $later ); ?>" class="rvp-later"><strong><?php esc_html_e( 'Nope&#44; maybe later', 'wp-auto-republish' ); ?></strong></a>
+			</p>
         </div>
 	<?php
 	}
@@ -60,30 +63,30 @@ class RatingNotice
 	 */
 	public function dismiss_notice() {
 		if ( get_option( 'wpar_plugin_no_thanks_rating_notice' ) === '1' ) {
-			if ( get_option( 'wpar_plugin_dismissed_time' ) > strtotime( '-168 hours' ) ) {
+			if ( get_option( 'wpar_plugin_dismissed_time' ) > strtotime( '-10 days' ) ) {
 				return;
 			}
 			delete_option( 'wpar_plugin_dismiss_rating_notice' );
 			delete_option( 'wpar_plugin_no_thanks_rating_notice' );
 		}
 	
-		if ( ! isset( $_REQUEST['wpar_rating_notice_action'] ) ) {
+		if ( ! isset( $_REQUEST['rvp_rating_notice'] ) ) {
 			return;
 		}
-	
-		if ( 'dismiss_rating_true' === $_REQUEST['wpar_rating_notice_action'] ) {
-			check_admin_referer( 'dismiss_rating_true' );
+
+		check_admin_referer( 'rvp_rating_nonce' );
+
+		if ( 'dismiss' === $_REQUEST['rvp_rating_notice'] ) {
 			update_option( 'wpar_plugin_dismiss_rating_notice', '1' );
 		}
 	
-		if ( 'no_thanks_rating_true' === $_REQUEST['wpar_rating_notice_action'] ) {
-			check_admin_referer( 'no_thanks_rating_true' );
+		if ( 'later' === $_REQUEST['rvp_rating_notice'] ) {
 			update_option( 'wpar_plugin_no_thanks_rating_notice', '1' );
 			update_option( 'wpar_plugin_dismiss_rating_notice', '1' );
 			update_option( 'wpar_plugin_dismissed_time', time() );
 		}
 	
-		wp_redirect( remove_query_arg( 'wpar_rating_notice_action' ) );
+		wp_safe_redirect( remove_query_arg( [ 'rvp_rating_notice', '_wpnonce' ] ) );
 		exit;
 	}
 	

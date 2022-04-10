@@ -4,14 +4,14 @@
  *
  * @since      1.1.0
  * @package    RevivePress
- * @subpackage Wpar\Base
+ * @subpackage RevivePress\Base
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
-namespace Wpar\Base;
+namespace RevivePress\Base;
 
-use Wpar\Helpers\Hooker;
-use Wpar\Base\BaseController;
+use RevivePress\Helpers\Hooker;
+use RevivePress\Base\BaseController;
 
 defined( 'ABSPATH' ) || exit;
 

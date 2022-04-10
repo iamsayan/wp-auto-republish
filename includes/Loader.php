@@ -5,15 +5,15 @@
  *
  * @since      1.1.0
  * @package    RevivePress
- * @subpackage Wpar\Core
+ * @subpackage RevivePress\Core
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
-namespace Wpar;
+namespace RevivePress;
 
 /**
- * WPAR Main Class.
+ * Main Class.
  */
-final class WPARLoader
+final class Loader
 {
     /**
      * Store all the classes inside an array
@@ -29,10 +29,10 @@ final class WPARLoader
             Base\Localization::class,
             Base\AdminNotice::class,
             Base\RatingNotice::class,
-            Base\DonateNotice::class,
             Base\PluginTools::class,
             Core\FetchPosts::class,
             Core\PostRepublish::class,
+            Core\RewritePermainks::class,
             Core\SiteCache::class,
             Core\RepublishInfo::class,
             Tools\DatabaseActions::class,

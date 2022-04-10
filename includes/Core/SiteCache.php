@@ -4,13 +4,13 @@
  *
  * @since      1.0.0
  * @package    RevivePress
- * @subpackage Wpar\Core
+ * @subpackage RevivePress\Core
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
-namespace Wpar\Core;
+namespace RevivePress\Core;
 
-use Wpar\Helpers\Hooker;
+use RevivePress\Helpers\Hooker;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -63,12 +63,12 @@ class SiteCache
 		}
 		
 		# Purge Comet Cache
-		if ( class_exists( 'comet_cache' ) && method_exists( 'comet_cache', 'clearPost' ) ) {
+		if ( class_exists( 'comet_cache' ) && method_exists( 'comet_cache', 'clear' ) ) {
 			\comet_cache::clear();
 		}
 		
 		# Purge Zen Cache
-		if ( class_exists( 'zencache' ) && method_exists( 'zencache', 'clearPost' ) ) {
+		if ( class_exists( 'zencache' ) && method_exists( 'zencache', 'clear' ) ) {
 			\zencache::clear();
 		}
 		

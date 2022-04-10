@@ -3,17 +3,19 @@ Contributors: infosatech
 Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 5.2
 Tested up to: 5.9
-Stable tag: 1.3.1
-Requires PHP: 5.6
+Stable tag: 1.3.2
+Requires PHP: 5.6.20
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
-Republish your old posts automatically by resetting the date to the current date. Revive old posts to users that haven't seen them.
+RevivePress (formerly WP Auto Republish), the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
 
 == Description ==
 
-The RevivePress (formerly WP Auto Republish) plugin helps revive old posts by resetting the published date to the current date. This will push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
+RevivePress (formerly WP Auto Republish), the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
+
+[Free Demo](https://api.wprevivepress.com/demo-auto-login-free) | [Premium Demo](https://api.wprevivepress.com/demo-auto-login) | [Get Premium](https://wprevivepress.com/pricing/?utm_source=landing&utm_medium=wporg)
 
 Like the RevivePress plugin? Consider leaving a [5 star review](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post).
 
@@ -41,6 +43,7 @@ This plugin helps revive old posts by resetting the published date to the curren
 * Force exclude/include posts by their ID.
 * Can select post in ASC / DESC order.
 * Compatible with any timezone.
+* Supports Indexing API by Rank Math.
 * Automatically purge site cache (limited) after republishing.
 
 ### Premium Features
@@ -57,25 +60,23 @@ This plugin helps revive old posts by resetting the published date to the curren
 * Trigger publish event at the time of republish.
 * Automatic Site or Single Post Cache Purge Support (supports most of the cache plugins and hosting platforms)
 * Custom date range for republishing.
-* Can use dates in post permalinks.
 * Change Post Status after Last Republish.
 * One click instant republish.
 * WordPress Sticky Posts Support.
-* OneSignal & Jetpack Publicize Support.
+* OneSignal Push Notification Support.
 * Show all republished history in logs.
-* Can use dates in post permalinks.
 * Can change the post name on every republish.
 * Shows all single upcoming republication in a dashboard widget.
 * Shows single republication info in a admin column.
 * Can hide last original published info from frontend.
 
-<strong>[Upgrade to RevivePress Premium](https://wprevivepress.com?utm_source=landing&utm_medium=wporg) now. You can also upgrade to Premium Version directly from your dashboard.</strong>
+<strong>[Upgrade to RevivePress Premium](https://wprevivepress.com/pricing/?utm_source=landing&utm_medium=wporg) now. You can also upgrade to Premium Version directly from your dashboard.</strong>
 
 ### Free and Premium Support
 
 Support for the RevivePress (formerly WP Auto Republish) plugin on the WordPress forums is free.
 
-Premium world-class support is available via email to all [RevivePress Premium](https://wprevivepress.com?utm_source=landing&utm_medium=wporg) customers.
+Premium world-class support is available via email to all [RevivePress Premium](https://wprevivepress.com/pricing/?utm_source=landing&utm_medium=wporg) customers.
 
 > <strong>Note</strong>: Paid customers support is always given priority over free support. Paid customers support is provided via one-to-one email. [Upgrade to Premium](https://wprevivepress.com?utm_source=landing&utm_medium=wporg) to benefit from priority support.
 
@@ -137,6 +138,26 @@ Yes, permalinks with dates would be affected only in free version. This plugin s
 == Changelog ==
 
 If you like RevivePress (formerly WP Auto Republish), please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.3.2 =
+Release Date: 10th April, 2022
+
+= Premium Version =
+* Added: WPML Compatibility.
+* Added: Option to add Custom Republish Date & Time on post edit screen and Republush Rules.
+* Added: Option to add UTM Parameters in Social Media Share.
+* Added: Internal Capabilities to hide Republish Rules from non-admin users.
+* Fixed: PHP Error on some installations.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Added: A function to call the functions externally. See functions.php file for details.
+* Added: Admin notice using WP Pointer.
+* Added: Auto Fix Permalink mechanism to support the dates, months, years is permalink structure.
+* Improvement: Optimized Post Query Memory usage.
+* Improvement: Added new Logo.
+* Fixed: PHP errors.
+* Other various Improvements and fixes.
 
 = 1.3.1 =
 Release Date: 25th February, 2022

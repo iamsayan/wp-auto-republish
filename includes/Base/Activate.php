@@ -4,11 +4,11 @@
  *
  * @since      1.1.0
  * @package    RevivePress
- * @subpackage Wpar\Base
+ * @subpackage RevivePress\Base
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
-namespace Wpar\Base;
+namespace RevivePress\Base;
 
 /**
  * Activation class.
@@ -23,9 +23,9 @@ class Activate
 			return;
 		}
 		
-		flush_rewrite_rules();
-
-		// action
+		// register action
 		do_action( 'wpar/after_plugin_activate' );
+
+		flush_rewrite_rules();
 	}
 }

@@ -8,12 +8,13 @@ class ComposerStaticInitd5699dfd0ed62714b22c430580475703
 {
     public static $files = array (
         'f718dfa9e9bf99405edffbc3318d3b40' => __DIR__ . '/..' . '/woocommerce/action-scheduler/action-scheduler.php',
+        '22cf8a71b81d1edb798a237a626b19a4' => __DIR__ . '/../..' . '/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'W' => 
+        'R' => 
         array (
-            'Wpar\\' => 5,
+            'RevivePress\\' => 12,
         ),
         'C' => 
         array (
@@ -22,7 +23,7 @@ class ComposerStaticInitd5699dfd0ed62714b22c430580475703
     );
 
     public static $prefixDirsPsr4 = array (
-        'Wpar\\' => 
+        'RevivePress\\' => 
         array (
             0 => __DIR__ . '/../..' . '/includes',
         ),
@@ -35,35 +36,35 @@ class ComposerStaticInitd5699dfd0ed62714b22c430580475703
     public static $classMap = array (
         'Composer\\CaBundle\\CaBundle' => __DIR__ . '/..' . '/composer/ca-bundle/src/CaBundle.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Wpar\\Api\\Callbacks\\AdminCallbacks' => __DIR__ . '/../..' . '/includes/Api/Callbacks/AdminCallbacks.php',
-        'Wpar\\Api\\Callbacks\\ManagerCallbacks' => __DIR__ . '/../..' . '/includes/Api/Callbacks/ManagerCallbacks.php',
-        'Wpar\\Api\\SettingsApi' => __DIR__ . '/../..' . '/includes/Api/SettingsApi.php',
-        'Wpar\\Base\\Actions' => __DIR__ . '/../..' . '/includes/Base/Actions.php',
-        'Wpar\\Base\\Activate' => __DIR__ . '/../..' . '/includes/Base/Activate.php',
-        'Wpar\\Base\\AdminNotice' => __DIR__ . '/../..' . '/includes/Base/AdminNotice.php',
-        'Wpar\\Base\\BaseController' => __DIR__ . '/../..' . '/includes/Base/BaseController.php',
-        'Wpar\\Base\\Deactivate' => __DIR__ . '/../..' . '/includes/Base/Deactivate.php',
-        'Wpar\\Base\\DonateNotice' => __DIR__ . '/../..' . '/includes/Base/DonateNotice.php',
-        'Wpar\\Base\\Enqueue' => __DIR__ . '/../..' . '/includes/Base/Enqueue.php',
-        'Wpar\\Base\\Localization' => __DIR__ . '/../..' . '/includes/Base/Localization.php',
-        'Wpar\\Base\\PluginTools' => __DIR__ . '/../..' . '/includes/Base/PluginTools.php',
-        'Wpar\\Base\\RatingNotice' => __DIR__ . '/../..' . '/includes/Base/RatingNotice.php',
-        'Wpar\\Base\\Uninstall' => __DIR__ . '/../..' . '/includes/Base/Uninstall.php',
-        'Wpar\\Core\\FetchPosts' => __DIR__ . '/../..' . '/includes/Core/FetchPosts.php',
-        'Wpar\\Core\\PostRepublish' => __DIR__ . '/../..' . '/includes/Core/PostRepublish.php',
-        'Wpar\\Core\\RepublishInfo' => __DIR__ . '/../..' . '/includes/Core/RepublishInfo.php',
-        'Wpar\\Core\\SiteCache' => __DIR__ . '/../..' . '/includes/Core/SiteCache.php',
-        'Wpar\\Helpers\\Ajax' => __DIR__ . '/../..' . '/includes/Helpers/Ajax.php',
-        'Wpar\\Helpers\\Fields' => __DIR__ . '/../..' . '/includes/Helpers/Fields.php',
-        'Wpar\\Helpers\\HelperFunctions' => __DIR__ . '/../..' . '/includes/Helpers/HelperFunctions.php',
-        'Wpar\\Helpers\\Hooker' => __DIR__ . '/../..' . '/includes/Helpers/Hooker.php',
-        'Wpar\\Helpers\\SettingsData' => __DIR__ . '/../..' . '/includes/Helpers/SettingsData.php',
-        'Wpar\\Pages\\Dashboard' => __DIR__ . '/../..' . '/includes/Pages/Dashboard.php',
-        'Wpar\\Tools\\DatabaseActions' => __DIR__ . '/../..' . '/includes/Tools/DatabaseActions.php',
-        'Wpar\\Tools\\DatabaseTable' => __DIR__ . '/../..' . '/includes/Tools/DatabaseTable.php',
-        'Wpar\\Tools\\HealthCheck' => __DIR__ . '/../..' . '/includes/Tools/HealthCheck.php',
-        'Wpar\\Tools\\Updates' => __DIR__ . '/../..' . '/includes/Tools/Updates.php',
-        'Wpar\\WPARLoader' => __DIR__ . '/../..' . '/includes/WPARLoader.php',
+        'RevivePress\\Api\\Callbacks\\AdminCallbacks' => __DIR__ . '/../..' . '/includes/Api/Callbacks/AdminCallbacks.php',
+        'RevivePress\\Api\\Callbacks\\ManagerCallbacks' => __DIR__ . '/../..' . '/includes/Api/Callbacks/ManagerCallbacks.php',
+        'RevivePress\\Api\\SettingsApi' => __DIR__ . '/../..' . '/includes/Api/SettingsApi.php',
+        'RevivePress\\Base\\Actions' => __DIR__ . '/../..' . '/includes/Base/Actions.php',
+        'RevivePress\\Base\\Activate' => __DIR__ . '/../..' . '/includes/Base/Activate.php',
+        'RevivePress\\Base\\AdminNotice' => __DIR__ . '/../..' . '/includes/Base/AdminNotice.php',
+        'RevivePress\\Base\\BaseController' => __DIR__ . '/../..' . '/includes/Base/BaseController.php',
+        'RevivePress\\Base\\Deactivate' => __DIR__ . '/../..' . '/includes/Base/Deactivate.php',
+        'RevivePress\\Base\\Enqueue' => __DIR__ . '/../..' . '/includes/Base/Enqueue.php',
+        'RevivePress\\Base\\Localization' => __DIR__ . '/../..' . '/includes/Base/Localization.php',
+        'RevivePress\\Base\\PluginTools' => __DIR__ . '/../..' . '/includes/Base/PluginTools.php',
+        'RevivePress\\Base\\RatingNotice' => __DIR__ . '/../..' . '/includes/Base/RatingNotice.php',
+        'RevivePress\\Base\\Uninstall' => __DIR__ . '/../..' . '/includes/Base/Uninstall.php',
+        'RevivePress\\Core\\FetchPosts' => __DIR__ . '/../..' . '/includes/Core/FetchPosts.php',
+        'RevivePress\\Core\\PostRepublish' => __DIR__ . '/../..' . '/includes/Core/PostRepublish.php',
+        'RevivePress\\Core\\RepublishInfo' => __DIR__ . '/../..' . '/includes/Core/RepublishInfo.php',
+        'RevivePress\\Core\\RewritePermainks' => __DIR__ . '/../..' . '/includes/Core/RewritePermainks.php',
+        'RevivePress\\Core\\SiteCache' => __DIR__ . '/../..' . '/includes/Core/SiteCache.php',
+        'RevivePress\\Helpers\\Ajax' => __DIR__ . '/../..' . '/includes/Helpers/Ajax.php',
+        'RevivePress\\Helpers\\Fields' => __DIR__ . '/../..' . '/includes/Helpers/Fields.php',
+        'RevivePress\\Helpers\\HelperFunctions' => __DIR__ . '/../..' . '/includes/Helpers/HelperFunctions.php',
+        'RevivePress\\Helpers\\Hooker' => __DIR__ . '/../..' . '/includes/Helpers/Hooker.php',
+        'RevivePress\\Helpers\\Schedular' => __DIR__ . '/../..' . '/includes/Helpers/Schedular.php',
+        'RevivePress\\Helpers\\SettingsData' => __DIR__ . '/../..' . '/includes/Helpers/SettingsData.php',
+        'RevivePress\\Helpers\\Sitepress' => __DIR__ . '/../..' . '/includes/Helpers/Sitepress.php',
+        'RevivePress\\Loader' => __DIR__ . '/../..' . '/includes/Loader.php',
+        'RevivePress\\Pages\\Dashboard' => __DIR__ . '/../..' . '/includes/Pages/Dashboard.php',
+        'RevivePress\\Tools\\DatabaseActions' => __DIR__ . '/../..' . '/includes/Tools/DatabaseActions.php',
+        'RevivePress\\Tools\\Updates' => __DIR__ . '/../..' . '/includes/Tools/Updates.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

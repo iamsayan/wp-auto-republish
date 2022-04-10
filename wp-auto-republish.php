@@ -4,7 +4,7 @@
  * Plugin Name: RevivePress
  * Plugin URI: https://wprevivepress.com?utm_source=landing&utm_medium=plugin
  * Description: RevivePress (formerly WP Auto Republish), the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
- * Version: 1.3.1
+ * Version: 1.3.2
  * Author: Sayan Datta
  * Author URI: https://sayandatta.in
  * License: GPLv3
@@ -37,23 +37,23 @@ if ( !defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( function_exists( 'wpar_load_fs_sdk' ) ) {
-    wpar_load_fs_sdk()->set_basename( false, __FILE__ );
+if ( function_exists( 'revivepress_fs' ) ) {
+    revivepress_fs()->set_basename( false, __FILE__ );
     return;
 }
 
 // include freemius sdk
 
-if ( !function_exists( 'wpar_load_fs_sdk' ) ) {
+if ( !function_exists( 'revivepress_fs' ) ) {
     // Create a helper function for easy SDK access.
-    function wpar_load_fs_sdk()
+    function revivepress_fs()
     {
-        global  $wpar_load_fs_sdk ;
+        global  $revivepress_fs ;
         
-        if ( !isset( $wpar_load_fs_sdk ) ) {
+        if ( !isset( $revivepress_fs ) ) {
             // Include Freemius SDK.
             require_once dirname( __FILE__ ) . '/vendor/freemius/start.php';
-            $wpar_load_fs_sdk = fs_dynamic_init( [
+            $revivepress_fs = fs_dynamic_init( [
                 'id'             => '5789',
                 'slug'           => 'wp-auto-republish',
                 'type'           => 'plugin',
@@ -67,76 +67,106 @@ if ( !function_exists( 'wpar_load_fs_sdk' ) ) {
                 'is_require_payment' => false,
             ],
                 'menu'           => [
-                'slug'    => 'revivepress',
-                'support' => false,
+                'slug'        => 'revivepress',
+                'support'     => false,
+                'affiliation' => false,
             ],
                 'is_live'        => true,
             ] );
         }
         
-        return $wpar_load_fs_sdk;
+        return $revivepress_fs;
     }
     
     // Init Freemius.
-    wpar_load_fs_sdk();
+    revivepress_fs();
     // Signal that SDK was initiated.
-    do_action( 'wpar_load_fs_sdk_loaded' );
+    do_action( 'revivepress_fs_loaded' );
 }
 
+// Define constants
+define( 'REVIVEPRESS_VERSION', '1.3.2' );
 // Require once the Composer Autoload
-if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
-    require_once dirname( __FILE__ ) . '/vendor/autoload.php';
-}
+require_once dirname( __FILE__ ) . '/vendor/autoload.php';
 /**
  * The code that runs during plugin activation
  */
-
-if ( !function_exists( 'wpar_plugin_activation' ) ) {
-    function wpar_plugin_activation()
+if ( !function_exists( 'revivepress_activation' ) ) {
+    function revivepress_activation()
     {
-        Wpar\Base\Activate::activate();
+        RevivePress\Base\Activate::activate();
     }
-    
-    register_activation_hook( __FILE__, 'wpar_plugin_activation' );
-}
 
+}
+register_activation_hook( __FILE__, 'revivepress_activation' );
 /**
  * The code that runs during plugin deactivation
  */
-
-if ( !function_exists( 'wpar_plugin_deactivation' ) ) {
-    function wpar_plugin_deactivation()
+if ( !function_exists( 'revivepress_deactivation' ) ) {
+    function revivepress_deactivation()
     {
-        Wpar\Base\Deactivate::deactivate();
+        RevivePress\Base\Deactivate::deactivate();
     }
-    
-    register_deactivation_hook( __FILE__, 'wpar_plugin_deactivation' );
-}
 
+}
+register_deactivation_hook( __FILE__, 'revivepress_deactivation' );
 /**
  * The code that runs during plugin uninstalltion
  */
-
-if ( !function_exists( 'wpar_plugin_uninstallation' ) ) {
-    function wpar_plugin_uninstallation()
+if ( !function_exists( 'revivepress_uninstallation' ) ) {
+    function revivepress_uninstallation()
     {
-        Wpar\Base\Uninstall::uninstall();
+        RevivePress\Base\Uninstall::uninstall();
     }
-    
-    wpar_load_fs_sdk()->add_action( 'after_uninstall', 'wpar_plugin_uninstallation' );
-}
 
+}
+revivepress_fs()->add_action( 'after_uninstall', 'revivepress_uninstallation' );
 /**
  * Initialize all the core classes of the plugin
  */
-
-if ( !function_exists( 'wpar_plugin_init' ) ) {
-    function wpar_plugin_init()
+if ( !function_exists( 'revivepress_init' ) ) {
+    function revivepress_init()
     {
-        if ( class_exists( 'Wpar\\WPARLoader' ) ) {
-            Wpar\WPARLoader::register_services();
+        if ( class_exists( 'RevivePress\\Loader' ) ) {
+            RevivePress\Loader::register_services();
         }
     }
-    
-    wpar_plugin_init();
+
 }
+revivepress_init();
+/**
+ * Add RevivePress icon to freemius
+ */
+if ( !function_exists( 'revivepress_freemius_logo' ) ) {
+    function revivepress_freemius_logo()
+    {
+        return dirname( __FILE__ ) . '/assets/images/logo.png';
+    }
+
+}
+revivepress_fs()->add_filter( 'plugin_icon', 'revivepress_freemius_logo' );
+/**
+ * Prevent trial notice from displaying
+ */
+if ( !function_exists( 'revivepress_disable_trial_promo' ) ) {
+    function revivepress_disable_trial_promo( $show, $msg )
+    {
+        if ( 'trial_promotion' == $msg['id'] ) {
+            return false;
+        }
+        return $show;
+    }
+
+}
+revivepress_fs()->add_filter(
+    'show_admin_notice',
+    'revivepress_disable_trial_promo',
+    10,
+    2
+);
+/**
+ * Flag Freemius options
+ */
+revivepress_fs()->add_filter( 'hide_freemius_powered_by', '__return_true' );
+revivepress_fs()->add_filter( 'show_affiliate_program_notice', '__return_false' );
+revivepress_fs()->add_filter( 'show_deactivation_subscription_cancellation', '__return_false' );

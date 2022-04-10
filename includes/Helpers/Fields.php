@@ -4,11 +4,11 @@
  *
  * @since      1.3.0
  * @package    RevivePress
- * @subpackage Wpar\Helpers
+ * @subpackage RevivePress\Helpers
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
-namespace Wpar\Helpers;
+namespace RevivePress\Helpers;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -69,7 +69,7 @@ trait Fields {
 		}
 
 		if ( isset( $data['condition'] ) && ! empty( $data['condition'] ) && is_array( $data['condition'] ) ) {
-			$cattr = 'data-condition="' . htmlspecialchars( json_encode( $data['condition'] ), ENT_QUOTES, 'UTF-8' ) . '"';
+			$cattr = 'data-condition="' . htmlspecialchars( wp_json_encode( $data['condition'] ), ENT_QUOTES, 'UTF-8' ) . '"';
 			array_push( $attr, $cattr );
 		}
 
@@ -90,7 +90,7 @@ trait Fields {
 			if ( isset( $data['tooltip'] ) && $data['tooltip'] ) {
 				$tooltip = '<span class="tooltip" title="' . esc_attr( $data['description'] ) . '"><span title="" class="dashicons dashicons-editor-help"></span></span>';
 			} else {
-				$tooltip = '<p class="desc">' . wp_kses_post( $data['description'] ) . '</p>';
+				$tooltip = '<div class="description">' . wp_kses_post( $data['description'] ) . '</div>';
 			}
 		}
 	
@@ -102,7 +102,7 @@ trait Fields {
 					<svg width="3" height="8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 6" class="toggle-on" role="img" aria-hidden="true" focusable="false"><path d="M0 0h2v6H0z"></path></svg>
 					<svg width="8" height="8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 6" class="toggle-off" role="img" aria-hidden="true" focusable="false"><path d="M3 1.5c.8 0 1.5.7 1.5 1.5S3.8 4.5 3 4.5 1.5 3.8 1.5 3 2.2 1.5 3 1.5M3 0C1.3 0 0 1.3 0 3s1.3 3 3 3 3-1.3 3-3-1.3-3-3-3z"></path></svg>
 				</span>';
-			echo '</label>' . $tooltip;
+			echo '</label>' . wp_kses_post( $tooltip );
 			return;
 		}
 
@@ -162,7 +162,7 @@ trait Fields {
 				] );
 				echo '</div>';
 			}
-			echo $tooltip;
+			echo wp_kses_post( $tooltip );
 			return;
 		}
 	}
