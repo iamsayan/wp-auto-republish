@@ -4,15 +4,16 @@
  *
  * @since      1.1.8
  * @package    RevivePress
- * @subpackage Wpar\Base
+ * @subpackage RevivePress\Base
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
-namespace Wpar\Base;
+namespace RevivePress\Base;
 
-use Wpar\Helpers\Ajax;
-use Wpar\Helpers\Hooker;
-use Wpar\Helpers\HelperFunctions;
+use RevivePress\Helpers\Ajax;
+use RevivePress\Helpers\Hooker;
+use RevivePress\Helpers\Schedular;
+use RevivePress\Helpers\HelperFunctions;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -21,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class PluginTools
 {
-	use Ajax, Hooker, HelperFunctions;
+	use Ajax, Hooker, HelperFunctions, Schedular;
 	
 	/**
 	 * Register functions.
@@ -41,21 +42,28 @@ class PluginTools
      * Process a settings export that generates a .json file
      */
 	public function export_settings() {
-		if ( empty( $_POST['wpar_export_action'] ) || 'wpar_export_settings' != $_POST['wpar_export_action'] )
+		if ( empty( $_POST['rvp_export_action'] ) || 'rvp_export_settings' != $_POST['rvp_export_action'] ) { 
 			return;
-		if ( ! wp_verify_nonce( $_POST['wpar_export_nonce'], 'wpar_export_nonce' ) )
+		}
+
+		if ( ! wp_verify_nonce( $_POST['rvp_export_nonce'], 'rvp_export_nonce' ) ) {
 			return;
-		if ( ! current_user_can( 'manage_options' ) )
+		}
+
+		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
+		}
+
 		$settings = get_option( 'wpar_plugin_settings' );
 		$url = get_home_url();
 		$find = [ 'http://', 'https://' ];
 		$replace = '';
 		$output = str_replace( $find, $replace, $url );
+
 		ignore_user_abort( true );
 		nocache_headers();
 		header( 'Content-Type: application/json; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename=' . str_replace( '/', '-', $output ) . '-wpar-export-' . gmdate( 'm-d-Y', $this->current_timestamp() ) . '.json' );
+		header( 'Content-Disposition: attachment; filename=' . str_replace( '/', '-', $output ) . '-revivepress-export-' . gmdate( 'm-d-Y', $this->current_timestamp() ) . '.json' );
 		header( "Expires: 0" );
 		echo json_encode( $settings );
 		exit;
@@ -65,30 +73,37 @@ class PluginTools
      * Process a settings import from a json file
      */
 	public function import_settings() {
-    	if ( empty( $_POST['wpar_import_action'] ) || 'wpar_import_settings' != $_POST['wpar_import_action'] )
+    	if ( empty( $_POST['rvp_import_action'] ) || 'rvp_import_settings' != $_POST['rvp_import_action'] ) {
     		return;
-    	if ( ! wp_verify_nonce( $_POST['wpar_import_nonce'], 'wpar_import_nonce' ) )
+		}
+
+    	if ( ! wp_verify_nonce( $_POST['rvp_import_nonce'], 'rvp_import_nonce' ) ) {
     		return;
-    	if ( ! current_user_can( 'manage_options' ) )
+		}
+
+    	if ( ! current_user_can( 'manage_options' ) ) {
     		return;
+		}
+
         $extension = explode( '.', sanitize_text_field( $_FILES['import_file']['name'] ) );
         $file_extension = end( $extension );
-    	if ( $file_extension != 'json' ) {
+    	if ( 'json' !== $file_extension ) {
     		wp_die( __( '<strong>Settings import failed:</strong> Please upload a valid .json file to import settings in this website.', 'wp-auto-republish' ) );
     	}
+
     	$import_file = sanitize_text_field( $_FILES['import_file']['tmp_name'] );
     	if ( empty( $import_file ) ) {
     		wp_die( __( '<strong>Settings import failed:</strong> Please upload a file to import.', 'wp-auto-republish' ) );
     	}
+
     	// Retrieve the settings from the file and convert the json object to an array.
     	$settings = (array) json_decode( file_get_contents( $import_file ) );
-		
 		update_option( 'wpar_plugin_settings', $settings );
 
 		// set temporary transient for admin notice
-		set_transient( 'wpar_import_db_done', true );
+		set_transient( 'rvp_import_db_done', true );
         
-		wp_safe_redirect( add_query_arg( 'page', 'wp-auto-republish', admin_url( 'admin.php' ) ) );
+		wp_safe_redirect( add_query_arg( 'page', 'revivepress', admin_url( 'admin.php' ) ) );
 		exit;
 	}
 
@@ -126,7 +141,7 @@ class PluginTools
 			update_option( 'wpar_plugin_settings', $settings );
 			
 			// set temporary transient for admin notice
-		    set_transient( 'wpar_import_db_done', true );
+		    set_transient( 'rvp_import_db_done', true );
 		}
 
 		$this->success();
@@ -177,9 +192,9 @@ class PluginTools
      * Process reset plugin settings
      */
 	public function admin_notice() {
-    	if ( get_transient( 'wpar_import_db_done' ) !== false ) { ?>
+    	if ( get_transient( 'rvp_import_db_done' ) !== false ) { ?>
 			<div class="notice notice-success is-dismissible"><p><strong><?php esc_html_e( 'Success! Plugin Settings has been imported successfully.', 'wp-auto-republish' ); ?></strong></p></div><?php 
-		    delete_transient( 'wpar_import_db_done' );
+		    delete_transient( 'rvp_import_db_done' );
 	    }
 	}
 }

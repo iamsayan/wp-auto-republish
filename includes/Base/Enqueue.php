@@ -5,13 +5,13 @@
  *
  * @since      1.1.0
  * @package    RevivePress
- * @subpackage Wpar\Base
+ * @subpackage RevivePress\Base
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
-namespace Wpar\Base;
+namespace RevivePress\Base;
 
-use  Wpar\Helpers\Hooker ;
-use  Wpar\Base\BaseController ;
+use  RevivePress\Helpers\Hooker ;
+use  RevivePress\Base\BaseController ;
 defined( 'ABSPATH' ) || exit;
 /**
  * Script class.
@@ -24,15 +24,14 @@ class Enqueue extends BaseController
      */
     public function register()
     {
-        $this->action( 'admin_enqueue_scripts', 'assets' );
+        $this->action( 'admin_enqueue_scripts', 'load_assets' );
     }
     
     /**
      * Load admin assets.
      */
-    public function assets()
+    public function load_assets( $hook )
     {
-        $version = ( $this->debug ? time() : $this->version );
         $this->load(
             'css',
             'jquery-ui',
@@ -61,12 +60,12 @@ class Enqueue extends BaseController
             'css',
             'styles',
             'admin.min.css',
-            $version,
+            $this->version,
             [
-            'wpar-jquery-ui',
-            'wpar-jquery-ui-timepicker',
-            'wpar-selectize',
-            'wpar-confirm'
+            'revivepress-jquery-ui',
+            'revivepress-jquery-ui-timepicker',
+            'revivepress-selectize',
+            'revivepress-confirm'
         ]
         );
         $this->load(
@@ -101,33 +100,31 @@ class Enqueue extends BaseController
             'js',
             'admin',
             'admin.min.js',
-            $version,
+            $this->version,
             [
             'jquery',
             'jquery-form',
-            'wpar-datetimepicker',
-            'wpar-selectize',
-            'wpar-confirm',
-            'wpar-jquery-cookie'
+            'revivepress-datetimepicker',
+            'revivepress-selectize',
+            'revivepress-confirm',
+            'revivepress-jquery-cookie'
         ]
         );
-        // get current screen
-        $current_screen = get_current_screen();
         
-        if ( strpos( $current_screen->base, 'revivepress' ) !== false ) {
-            wp_enqueue_style( 'wpar-selectize' );
-            wp_enqueue_style( 'wpar-jquery-ui' );
-            wp_enqueue_style( 'wpar-jquery-ui-timepicker' );
-            wp_enqueue_style( 'wpar-styles' );
+        if ( 'toplevel_page_revivepress' === $hook ) {
+            wp_enqueue_style( 'revivepress-selectize' );
+            wp_enqueue_style( 'revivepress-jquery-ui' );
+            wp_enqueue_style( 'revivepress-jquery-ui-timepicker' );
+            wp_enqueue_style( 'revivepress-styles' );
             wp_enqueue_script( 'jquery-form' );
             wp_enqueue_script( 'jquery-ui-datepicker' );
             wp_enqueue_script( 'jquery-ui-sortable' );
-            wp_enqueue_script( 'wpar-jquery-cookie' );
-            wp_enqueue_script( 'wpar-datetimepicker' );
-            wp_enqueue_script( 'wpar-selectize' );
-            wp_enqueue_script( 'wpar-confirm' );
-            wp_enqueue_script( 'wpar-admin' );
-            wp_localize_script( 'wpar-admin', 'wpar_admin_L10n', [
+            wp_enqueue_script( 'revivepress-jquery-cookie' );
+            wp_enqueue_script( 'revivepress-datetimepicker' );
+            wp_enqueue_script( 'revivepress-selectize' );
+            wp_enqueue_script( 'revivepress-confirm' );
+            wp_enqueue_script( 'revivepress-admin' );
+            wp_localize_script( 'revivepress-admin', 'rvpAdminL10n', [
                 'ajaxurl'           => admin_url( 'admin-ajax.php' ),
                 'select_weekdays'   => __( 'Select weekdays (required)', 'wp-auto-republish' ),
                 'select_post_types' => __( 'Select post types (required)', 'wp-auto-republish' ),
@@ -166,10 +163,9 @@ class Enqueue extends BaseController
                 'is_empty'          => __( 'Please enter the required data first!', 'wp-auto-republish' ),
                 'edit_template'     => __( 'Edit Template', 'wp-auto-republish' ),
                 'save_template'     => __( 'Save Template', 'wp-auto-republish' ),
-                'charecter_limit'   => __( 'Charecter limit', 'wp-auto-republish' ),
-                'use_this_tags'     => __( 'Use this tags', 'wp-auto-republish' ),
-                'can_use_trial'     => wpar_load_fs_sdk()->is_not_paying() && !wpar_load_fs_sdk()->is_trial() && !wpar_load_fs_sdk()->is_trial_utilized(),
-                'security'          => wp_create_nonce( 'wpar_admin_nonce' ),
+                'is_premium'        => revivepress_fs()->can_use_premium_code__premium_only(),
+                'can_use_trial'     => revivepress_fs()->is_not_paying() && !revivepress_fs()->is_trial() && !revivepress_fs()->is_trial_utilized(),
+                'security'          => wp_create_nonce( 'rvp_admin_nonce' ),
             ] );
         }
     
@@ -190,14 +186,14 @@ class Enqueue extends BaseController
         
         if ( $type == 'css' ) {
             wp_register_style(
-                'wpar-' . $handle,
+                'revivepress-' . $handle,
                 $this->plugin_url . 'assets/css/' . $name,
                 $dep,
                 $version
             );
         } elseif ( $type == 'js' ) {
             wp_register_script(
-                'wpar-' . $handle,
+                'revivepress-' . $handle,
                 $this->plugin_url . 'assets/js/' . $name,
                 $dep,
                 $version,

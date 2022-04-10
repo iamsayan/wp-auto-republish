@@ -5,14 +5,14 @@
  *
  * @since      1.1.0
  * @package    RevivePress
- * @subpackage Wpar\Api\Callbacks
+ * @subpackage RevivePress\Api\Callbacks
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
-namespace Wpar\Api\Callbacks;
+namespace RevivePress\Api\Callbacks;
 
-use  Wpar\Helpers\Fields ;
-use  Wpar\Helpers\Hooker ;
-use  Wpar\Helpers\HelperFunctions ;
+use  RevivePress\Helpers\Fields ;
+use  RevivePress\Helpers\Hooker ;
+use  RevivePress\Helpers\HelperFunctions ;
 defined( 'ABSPATH' ) || exit;
 class ManagerCallbacks
 {
@@ -24,7 +24,7 @@ class ManagerCallbacks
             'id'          => $args['label_for'],
             'name'        => 'wpar_enable_plugin',
             'checked'     => 1 == $this->get_data( 'wpar_enable_plugin' ),
-            'description' => esc_attr( 'Enable this if you want to auto republish old posts of your blog. It is the switch to enable or disable the Global Republish related functionalities of this plugin.', 'wp-auto-republish' ),
+            'description' => __( 'Enable this if you want to auto republish old posts of your blog. It is the switch to enable or disable the Global Republish related functionalities of this plugin.', 'wp-auto-republish' ),
         ] );
     }
     
@@ -35,7 +35,7 @@ class ManagerCallbacks
             'id'          => $args['label_for'],
             'name'        => 'wpar_minimun_republish_interval',
             'value'       => $this->get_data( 'wpar_minimun_republish_interval', 3600 ),
-            'description' => esc_attr( 'Select post republish interval between two post republish events. It will be added to the Last Run time (see top right) and will re-run at a point of time which resolves Last Run plus this settings. If Last Run is Today at 10:05 AM and this settings is set to 30 Minutes, then next process will run at 10:35 AM. Although, running of this process doesn\'t mean that it will republish a post every time. It will also check if the below conditions are met, if not, republish will not work at that particular point of time.', 'wp-auto-republish' ),
+            'description' => __( 'Select post republish interval between two post republish events. It will be added to the Last Run time (see top right) and will re-run at a point of time which resolves Last Run plus this settings. If Last Run is Today at 10:05 AM and this settings is set to 30 Minutes, then next process will run at 10:35 AM. Although, running of this process doesn\'t mean that it will republish a post every time. It will also check if the below conditions are met, if not, republish will not work at that particular point of time.', 'wp-auto-republish' ),
             'options'     => $this->do_filter( 'minimum_republish_interval', [
             '300'    => __( '5 Minutes', 'wp-auto-republish' ),
             '600'    => __( '10 Minutes', 'wp-auto-republish' ),
@@ -56,7 +56,7 @@ class ManagerCallbacks
             '604800' => __( '168 hours (7 days)', 'wp-auto-republish' ),
             'custom' => __( 'Custom Interval (Premium)', 'wp-auto-republish' ),
         ] ),
-            'filter'      => !wpar_load_fs_sdk()->can_use_premium_code__premium_only(),
+            'filter'      => !revivepress_fs()->can_use_premium_code__premium_only(),
             'show_if'     => 'wpar_enable_plugin',
         ] );
     }
@@ -68,7 +68,7 @@ class ManagerCallbacks
             'id'          => $args['label_for'],
             'name'        => 'wpar_random_republish_interval',
             'value'       => $this->get_data( 'wpar_random_republish_interval', 14400 ),
-            'description' => esc_attr( 'Select randomness interval from here which will be added to post republish time. If republish process runs at 11.25 AM and this option is set to Upto 1 Hour, post will be republished at anytime between 11.25 AM and 12.25 PM. It can make the republishing seem more natural to Readers and SERPs.', 'wp-auto-republish' ),
+            'description' => __( 'Select randomness interval from here which will be added to post republish time. If republish process runs at 11.25 AM and this option is set to Upto 1 Hour, post will be republished at anytime between 11.25 AM and 12.25 PM. It can make the republishing seem more natural to Readers and SERPs.', 'wp-auto-republish' ),
             'options'     => $this->do_filter( 'random_republish_interval', [
             'premium_1'  => __( 'No Randomness (Premium)', 'wp-auto-republish' ),
             'premium_2'  => __( 'Upto 5 Minutes (Premium)', 'wp-auto-republish' ),
@@ -85,7 +85,7 @@ class ManagerCallbacks
             'premium_9'  => __( 'Upto 12 hours (Premium)', 'wp-auto-republish' ),
             'premium_10' => __( 'Upto 24 hours (Premium)', 'wp-auto-republish' ),
         ] ),
-            'filter'      => !wpar_load_fs_sdk()->can_use_premium_code__premium_only(),
+            'filter'      => !revivepress_fs()->can_use_premium_code__premium_only(),
             'show_if'     => 'wpar_enable_plugin',
         ] );
     }
@@ -97,7 +97,7 @@ class ManagerCallbacks
             'id'          => $args['label_for'],
             'name'        => 'wpar_republish_post_position',
             'value'       => $this->get_data( 'wpar_republish_post_position', 'one' ),
-            'description' => esc_attr( 'Select the position of republished post (choosing the 2nd position will leave the most recent post in 1st place). Let\'s say, your last post/republished post time is 02:45 PM, First Position will push the current republished post to before the last post and Second Position will attach current republished post just after last post with a interval of 5 minutes (can be modified by filter).', 'wp-auto-republish' ),
+            'description' => __( 'Select the position of republished post (choosing the 2nd position will leave the most recent post in 1st place). Let\'s say, your last post/republished post time is 02:45 PM, First Position will push the current republished post to before the last post and Second Position will attach current republished post just after last post with a interval of 5 minutes (can be modified by filter).', 'wp-auto-republish' ),
             'options'     => [
             'one' => __( 'First Position', 'wp-auto-republish' ),
             'two' => __( 'Second Position', 'wp-auto-republish' ),
@@ -113,7 +113,7 @@ class ManagerCallbacks
             'id'          => $args['label_for'],
             'name'        => 'republish_time_specific',
             'value'       => $this->get_data( 'republish_time_specific', 'no' ),
-            'description' => esc_attr( 'Enable or Disable Time Specifc Republish from here. If you Enable this, plugin will only republish between the Start Time and End Time. If Start Time is grater than End Time, plugin will assume the end time in on the next available day (if the next day is eligible for republish). No Time Limit will republish at any time. Note: If you are using Time Limits then you have to set the "Run Republish Process Every" option as less than the interval between Start Time and End Time so that process interval fits within the interval. Otherwise, it will not work.', 'wp-auto-republish' ),
+            'description' => __( 'Enable or Disable Time Specifc Republish from here. If you Enable this, plugin will only republish between the Start Time and End Time. If Start Time is grater than End Time, plugin will assume the end time in on the next available day (if the next day is eligible for republish). No Time Limit will republish at any time. Note: If you are using Time Limits then you have to set the "Run Republish Process Every" option as less than the interval between Start Time and End Time so that process interval fits within the interval. Otherwise, it will not work.', 'wp-auto-republish' ),
             'options'     => [
             'no'  => __( 'No Time Limit', 'wp-auto-republish' ),
             'yes' => __( 'Set Time Limit', 'wp-auto-republish' ),
@@ -128,7 +128,7 @@ class ManagerCallbacks
             'id'          => $args['label_for'],
             'name'        => 'wpar_start_time',
             'value'       => $this->get_data( 'wpar_start_time', '05:00:00' ),
-            'description' => esc_attr( 'Set the starting time period for republish old posts from here. Republish will start from this time.', 'wp-auto-republish' ),
+            'description' => __( 'Set the starting time period for republish old posts from here. Republish will start from this time.', 'wp-auto-republish' ),
             'class'       => 'wpar-timepicker',
             'attributes'  => [
             'placeholder' => '05:00:00',
@@ -146,7 +146,7 @@ class ManagerCallbacks
             'id'          => $args['label_for'],
             'name'        => 'wpar_end_time',
             'value'       => $this->get_data( 'wpar_end_time', '23:59:59' ),
-            'description' => esc_attr( 'Set the ending time period for republish old posts from here. Republish will not occur after this time.', 'wp-auto-republish' ),
+            'description' => __( 'Set the ending time period for republish old posts from here. Republish will not occur after this time.', 'wp-auto-republish' ),
             'class'       => 'wpar-timepicker',
             'attributes'  => [
             'placeholder' => '05:00:00',
@@ -173,7 +173,7 @@ class ManagerCallbacks
             'fri',
             'sat'
         ] ),
-            'description' => esc_attr( 'Select the weekdays when you want to republish old posts. If you want to disable republish on any weekday, you can easily do it from here. Just remove that day and save your settings.', 'wp-auto-republish' ),
+            'description' => __( 'Select the weekdays when you want to republish old posts. If you want to disable republish on any weekday, you can easily do it from here. Just remove that day and save your settings.', 'wp-auto-republish' ),
             'options'     => [
             'sun' => __( 'Sunday', 'wp-auto-republish' ),
             'mon' => __( 'Monday', 'wp-auto-republish' ),
@@ -194,7 +194,7 @@ class ManagerCallbacks
             'id'          => $args['label_for'],
             'name'        => 'wpar_republish_position',
             'value'       => $this->get_data( 'wpar_republish_position', 'disable' ),
-            'description' => esc_attr( 'Select how you want to show original published date of the post on frontend. Before Content option will push Republish info to top and After Content will pust post content to top. You can keep it disable if you don\'t want to use this.', 'wp-auto-republish' ),
+            'description' => __( 'Select how you want to show original published date of the post on frontend. Before Content option will push Republish info to top and After Content will pust post content to top. You can keep it disable if you don\'t want to use this.', 'wp-auto-republish' ),
             'options'     => [
             'disable'        => __( 'Disable', 'wp-auto-republish' ),
             'before_content' => __( 'Before Content', 'wp-auto-republish' ),
@@ -210,7 +210,7 @@ class ManagerCallbacks
             'name'        => 'wpar_republish_position_text',
             'class'       => 'expand',
             'value'       => $this->get_data( 'wpar_republish_position_text', 'Originally posted on ' ),
-            'description' => esc_attr( 'Message before original published date of the post on frontend. It will work like prefix. Post Republish info will be added after this prefix if actually exists.', 'wp-auto-republish' ),
+            'description' => __( 'Message before original published date of the post on frontend. It will work like prefix. Post Republish info will be added after this prefix if actually exists.', 'wp-auto-republish' ),
             'required'    => true,
             'condition'   => [ 'wpar_republish_info', '!=', 'disable' ],
         ] );
@@ -223,7 +223,7 @@ class ManagerCallbacks
             'id'          => $args['label_for'],
             'name'        => 'wpar_republish_post_age',
             'value'       => $this->get_data( 'wpar_republish_post_age', 120 ),
-            'description' => esc_attr( 'Select the post age for republishing. Post originally published before this, will be available for republish. Note: If a post is already republished, then plugin will consider the new republished date, not the actual published date.', 'wp-auto-republish' ),
+            'description' => __( 'Select the post age for republishing. Post originally published before this, will be available for republish. Note: If a post is already republished, then plugin will consider the new republished date, not the actual published date.', 'wp-auto-republish' ),
             'options'     => $this->do_filter( 'republish_eligibility_age', [
             'premium_1' => __( 'No Age Limit (Premium)', 'wp-auto-republish' ),
             '30'        => __( '30 Days (1 month)', 'wp-auto-republish' ),
@@ -238,7 +238,7 @@ class ManagerCallbacks
             '1095'      => __( '1095 Days (3 years)', 'wp-auto-republish' ),
             'premium_2' => __( 'Custom Age Limit (Premium)', 'wp-auto-republish' ),
         ] ),
-            'filter'      => !wpar_load_fs_sdk()->can_use_premium_code__premium_only(),
+            'filter'      => !revivepress_fs()->can_use_premium_code__premium_only(),
         ] );
     }
     
@@ -249,7 +249,7 @@ class ManagerCallbacks
             'id'          => $args['label_for'],
             'name'        => 'wpar_republish_method',
             'value'       => $this->get_data( 'wpar_republish_method', 'old_first' ),
-            'description' => esc_attr( 'Select the method of getting old posts from database.', 'wp-auto-republish' ),
+            'description' => __( 'Select the method of getting old posts from database.', 'wp-auto-republish' ),
             'options'     => [
             'old_first' => __( 'Select Old Post First (ASC)', 'wp-auto-republish' ),
             'new_first' => __( 'Select New Post First (DESC)', 'wp-auto-republish' ),
@@ -264,7 +264,7 @@ class ManagerCallbacks
             'id'          => $args['label_for'],
             'name'        => 'wpar_republish_orderby',
             'value'       => $this->get_data( 'wpar_republish_orderby', 'date' ),
-            'description' => esc_attr( 'Select the method of getting old posts order by parameter. Default: Post Date', 'wp-auto-republish' ),
+            'description' => __( 'Select the method of getting old posts order by parameter. Default: Post Date', 'wp-auto-republish' ),
             'options'     => $this->do_filter( 'republish_orderby_items', [
             'date'      => __( 'Post Date', 'wp-auto-republish' ),
             'premium_1' => __( 'Post ID (Premium)', 'wp-auto-republish' ),
@@ -276,7 +276,7 @@ class ManagerCallbacks
             'premium_7' => __( 'Relevance (Premium)', 'wp-auto-republish' ),
             'premium_8' => __( 'Menu Order (Premium)', 'wp-auto-republish' ),
         ] ),
-            'filter'      => !wpar_load_fs_sdk()->can_use_premium_code__premium_only(),
+            'filter'      => !revivepress_fs()->can_use_premium_code__premium_only(),
         ] );
     }
     
@@ -288,7 +288,7 @@ class ManagerCallbacks
             'name'        => 'wpar_post_types',
             'class'       => 'wpar-post-types',
             'value'       => $this->get_data( 'wpar_post_types', [ 'post' ] ),
-            'description' => esc_attr( 'Select the post types of which you want to republish using global method. Custom Post Types are available on the Premium Version of this plugin.', 'wp-auto-republish' ),
+            'description' => __( 'Select the post types of which you want to republish using global method. Custom Post Types are available on the Premium Version of this plugin.', 'wp-auto-republish' ),
             'options'     => $this->get_post_types(),
         ] );
     }
@@ -300,7 +300,7 @@ class ManagerCallbacks
             'id'          => $args['label_for'],
             'name'        => 'wpar_exclude_by_type',
             'value'       => $this->get_data( 'wpar_exclude_by_type', 'none' ),
-            'description' => esc_attr( 'Select how you want to include or exclude a post category from republishing. If you choose Exclude Taxonomies, selected taxonomies will be ignored and Include will add them only.', 'wp-auto-republish' ),
+            'description' => __( 'Select how you want to include or exclude a post category from republishing. If you choose Exclude Taxonomies, selected taxonomies will be ignored and Include will add them only.', 'wp-auto-republish' ),
             'options'     => [
             'none'    => __( 'Disable', 'wp-auto-republish' ),
             'include' => __( 'Include Taxonomies', 'wp-auto-republish' ),
@@ -311,7 +311,7 @@ class ManagerCallbacks
     
     public function post_taxonomy( $args )
     {
-        $taxonomies = $this->get_all_taxonomies( [
+        $taxonomies = $this->get_taxonomies( [
             'public'   => true,
             '_builtin' => true,
         ] );
@@ -320,7 +320,7 @@ class ManagerCallbacks
             'id'          => $args['label_for'],
             'name'        => 'wpar_post_taxonomy',
             'value'       => $this->get_data( 'wpar_post_taxonomy', [] ),
-            'description' => esc_attr( 'Select taxonimies which you want to include to republishing or exclude from republishing. Custom Taxonomies are available on the Premium Version of this plugin.', 'wp-auto-republish' ),
+            'description' => __( 'Select taxonimies which you want to include to republishing or exclude from republishing. Custom Taxonomies are available on the Premium Version of this plugin.', 'wp-auto-republish' ),
             'options'     => $taxonomies,
             'class'       => 'wpar-taxonomies',
             'condition'   => [ 'wpar_taxonomies_filter', '!=', 'none' ],
@@ -338,7 +338,7 @@ class ManagerCallbacks
             '/^,+/',
             '/,+$/'
         ], '', $this->get_data( 'force_include' ) ),
-            'description' => esc_attr( 'Write the post IDs which you want to include forcefully in the republish process. But it doesn\'t mean that it will republish on every time rather it it will added to the republish eligible post list. These posts will be republished only if the orther conditions are met.', 'wp-auto-republish' ),
+            'description' => __( 'Write the post IDs which you want to include forcefully in the republish process. But it doesn\'t mean that it will republish on every time, rather it will added to the republish eligible post list. These posts will be republished only if the orther conditions are met.', 'wp-auto-republish' ),
             'attributes'  => [
             'style' => 'width: 90%',
         ],
@@ -356,7 +356,7 @@ class ManagerCallbacks
             '/^,+/',
             '/,+$/'
         ], '', $this->get_data( 'wpar_override_category_tag' ) ),
-            'description' => esc_attr( 'Write the post IDs which you want to exclude forcefully from the republish process.', 'wp-auto-republish' ),
+            'description' => __( 'Write the post IDs which you want to exclude forcefully from the republish process.', 'wp-auto-republish' ),
             'attributes'  => [
             'style' => 'width: 90%',
         ],
@@ -370,7 +370,7 @@ class ManagerCallbacks
             'id'          => $args['label_for'],
             'name'        => 'wpar_remove_plugin_data',
             'checked'     => 1 == $this->get_data( 'wpar_remove_plugin_data' ),
-            'description' => esc_attr( 'Enable this if you want to remove all the plugin data from your website.', 'wp-auto-republish' ),
+            'description' => __( 'Enable this if you want to remove all the plugin data from your website.', 'wp-auto-republish' ),
         ] );
     }
 

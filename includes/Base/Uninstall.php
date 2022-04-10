@@ -4,11 +4,11 @@
  *
  * @since      1.1.0
  * @package    RevivePress
- * @subpackage Wpar\Base
+ * @subpackage RevivePress\Base
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
-namespace Wpar\Base;
+namespace RevivePress\Base;
 
 /**
  * Uninstall class.
@@ -24,10 +24,7 @@ class Uninstall
 			$options = get_option( $option_name );
 			if ( isset( $options['wpar_remove_plugin_data'] ) && ( $options['wpar_remove_plugin_data'] == 1 ) ) {
 				// delete plugin settings
-				delete_option( $option_name );
-				
-				// run unisnstaller 
-				self::uninstaller();
+				self::remove_options();
 			}
 		} else {
 			global $wpdb;
@@ -39,10 +36,7 @@ class Uninstall
 				$options = get_option( $option_name );
 				if ( isset( $options['wpar_remove_plugin_data'] ) && ( $options['wpar_remove_plugin_data'] == 1 ) ) {
 					// delete plugin settings
-					delete_option( $option_name );
-
-					// run unisnstaller 
-					self::uninstaller();
+					self::remove_options();
 				}
 			}
 			switch_to_blog( $original_blog_id );
@@ -52,14 +46,12 @@ class Uninstall
 	/**
 	 * Run plugin uninstallation process.
 	 */
-	public static function uninstaller() {
+	public static function remove_options() {
+		delete_option( 'wpar_plugin_settings' );
 		delete_option( 'wpar_republish_log_history' );
 		delete_option( 'wpar_dashboard_widget_options' );
 		delete_option( 'wpar_last_global_cron_run' );
 		delete_option( 'wpar_global_republish_post_ids' );
 		delete_option( 'wpar_social_credentials' );
-		
-		// uninstall action
-		do_action( 'wpar/after_plugin_uninstall' );
 	}
 }

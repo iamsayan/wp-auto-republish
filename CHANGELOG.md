@@ -1,6 +1,26 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.3.2
+Release Date: 10th April, 2022
+
+### Premium Version
+* Added: WPML Compatibility.
+* Added: Option to add Custom Republish Date & Time on post edit screen and Republush Rules.
+* Added: Option to add UTM Parameters in Social Media Share.
+* Added: Internal Capabilities to hide Republish Rules from non-admin users.
+* Fixed: PHP Error on some installations.
+* And all Free Version Improvements and Fixes.
+
+### Free Version
+* Added: A function to call the functions externally. See functions.php file for details.
+* Added: Admin notice using WP Pointer.
+* Added: Auto Fix Permalink mechanism to support the dates, months, years is permalink structure.
+* Improvement: Optimized Post Query Memory usage.
+* Improvement: Added new Logo.
+* Fixed: PHP errors.
+* Other various Improvements and fixes.
+
 ## 1.3.1
 Release Date: 25th February, 2022
 

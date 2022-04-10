@@ -5,27 +5,27 @@
  *
  * @since      1.2.0
  * @package    RevivePress
- * @subpackage Wpar\Core
+ * @subpackage RevivePress\Core
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
-namespace Wpar\Core;
+namespace RevivePress\Core;
 
-use  Wpar\Helpers\Hooker ;
-use  Wpar\Helpers\HelperFunctions ;
+use  RevivePress\Helpers\Hooker ;
+use  RevivePress\Helpers\Schedular ;
+use  RevivePress\Helpers\HelperFunctions ;
 defined( 'ABSPATH' ) || exit;
 /**
  * Republication class.
  */
 class FetchPosts
 {
-    use  HelperFunctions, Hooker ;
+    use  HelperFunctions, Hooker, Schedular ;
     /**
      * Register functions.
      */
     public function register()
     {
         $this->action( 'init', 'generate_task' );
-        $this->action( 'wpar/global_republish_fetch_posts', 'run_republish_process' );
         $this->action( 'wpar/global_republish_flat_posts', 'query_posts' );
         $this->action( 'wpar/global_republish_flat_posts_completed', 'complete' );
     }
@@ -35,30 +35,30 @@ class FetchPosts
      */
     public function generate_task()
     {
-        $interval = $this->do_filter( 'global_cron_interval', 3 );
-        if ( !$this->has_next_action( 'wpar/global_republish_fetch_posts' ) ) {
-            $this->set_recurring_action( time() + MINUTE_IN_SECONDS * $interval, MINUTE_IN_SECONDS * $interval, 'wpar/global_republish_fetch_posts' );
-        }
         $transient_name = $this->get_daily_allowed();
         if ( false === get_transient( $transient_name ) ) {
             set_transient( $transient_name, [], DAY_IN_SECONDS );
         }
+        $this->check_and_create_tasks();
     }
     
     /**
      * Run post fetching process.
      */
-    public function run_republish_process()
+    public function check_and_create_tasks()
     {
+        
         if ( $this->is_enabled( 'enable_plugin', true ) && $this->valid_next_run() ) {
-            $this->flat_posts();
+            update_option( 'wpar_last_global_cron_run', $this->current_timestamp() );
+            $this->create_tasks();
         }
+    
     }
     
     /**
      * Get eligible posts.
      */
-    private function flat_posts()
+    private function create_tasks()
     {
         $post_types = $this->get_data( 'wpar_post_types', [ 'post' ] );
         
@@ -68,12 +68,12 @@ class FetchPosts
                 
                 if ( !$this->has_future_posts( $post_type ) ) {
                     $counter++;
-                    $this->set_single_action( time() + 60 * ($counter / 2), 'wpar/global_republish_flat_posts', [ $post_type ] );
+                    $this->set_single_action( time() + 30 * ($counter / 2), 'wpar/global_republish_flat_posts', [ $post_type ] );
                 }
             
             }
             // Check for posts.
-            $this->set_single_action( time() + 60 * (($counter + 1) / 2), 'wpar/global_republish_flat_posts_completed' );
+            $this->set_single_action( time() + 30 * (($counter + 1) / 2), 'wpar/global_republish_flat_posts_completed' );
         }
     
     }
@@ -91,20 +91,6 @@ class FetchPosts
         $post_age = $this->get_data( 'wpar_republish_post_age', 120 );
         $orderby = $this->get_data( 'wpar_republish_orderby', 'date' );
         $order = $this->get_data( 'wpar_republish_method', 'old_first' );
-        if ( !in_array( $post_age, [
-            '30',
-            '45',
-            '60',
-            '90',
-            '120',
-            '180',
-            '240',
-            '365',
-            '730',
-            '1095'
-        ] ) ) {
-            $post_age = 14400;
-        }
         $post_age_seconds = $post_age * DAY_IN_SECONDS;
         $cats = $tags = $terms = [];
         $args = [
@@ -172,17 +158,17 @@ class FetchPosts
             
             if ( $tax_filter == 'include' ) {
                 if ( !empty($cats) ) {
-                    $args['category__in'] = $cats;
+                    $args['category__in'] = wp_parse_id_list( $cats );
                 }
                 if ( !empty($tags) ) {
-                    $args['tag__in'] = $tags;
+                    $args['tag__in'] = wp_parse_id_list( $tags );
                 }
             } elseif ( $tax_filter == 'exclude' ) {
                 if ( !empty($cats) ) {
-                    $args['category__not_in'] = $cats;
+                    $args['category__not_in'] = wp_parse_id_list( $cats );
                 }
                 if ( !empty($tags) ) {
-                    $args['tag__not_in'] = $tags;
+                    $args['tag__not_in'] = wp_parse_id_list( $tags );
                 }
             }
         
@@ -191,9 +177,9 @@ class FetchPosts
         $args = $this->do_filter( 'query_args', $args, $post_type );
         //error_log( print_r( $args, true ) );
         // get posts
-        $posts = get_posts( $args );
+        $post_ids = $this->get_posts( $args );
         // store post ids
-        $this->store_post_ids( $posts, $post_type );
+        $this->store_post_ids( $post_ids, $post_type );
     }
     
     /**
@@ -212,11 +198,10 @@ class FetchPosts
         if ( !$post_ids || !is_array( $post_ids ) ) {
             $post_ids = [];
         }
-        //error_log( print_r( $post_ids, true ) );
         
         if ( !empty($post_ids) ) {
             if ( !empty($include_ids) ) {
-                $post_ids = array_unique( array_merge( $post_ids, $include_ids ) );
+                $post_ids = array_merge( $post_ids, $include_ids );
             }
             if ( !empty($exclude_ids) ) {
                 $post_ids = array_diff( $post_ids, $exclude_ids );
@@ -224,7 +209,7 @@ class FetchPosts
             $args = [
                 'post_type'   => $post_types,
                 'post_status' => 'publish',
-                'post__in'    => $post_ids,
+                'post__in'    => wp_parse_id_list( $post_ids ),
                 'numberposts' => $number_posts,
                 'orderby'     => $orderby,
                 'fields'      => 'ids',
@@ -244,13 +229,22 @@ class FetchPosts
             //error_log( print_r( $args, true ) );
             // get the required date time
             $datetime = $this->next_schedule( $timestamp, 'local' );
-            $filtered_post_ids = get_posts( $args );
+            $schedule = get_gmt_from_date( $datetime, 'U' );
+            $filtered_post_ids = $this->do_filter( 'filtered_post_ids', $this->get_posts( $args ) );
+            
             if ( !empty($filtered_post_ids) ) {
-                foreach ( $filtered_post_ids as $post_id ) {
+                $counter = 0;
+                foreach ( $filtered_post_ids as $key => $post_id ) {
+                    
+                    if ( $key > 0 ) {
+                        $counter++;
+                        $schedule = $schedule + 30 * ($counter / 2);
+                    }
+                    
                     // delete previosly scheduled hook if exists any.
                     $this->unschedule_all_actions( 'wpar/global_republish_single_post', [ $post_id ] );
                     // schedule single post republish event
-                    $this->set_single_action( get_gmt_from_date( $datetime, 'U' ), 'wpar/global_republish_single_post', [ $post_id ] );
+                    $this->set_single_action( $schedule, 'wpar/global_republish_single_post', [ $post_id ] );
                     // update required post metas
                     $this->update_meta( $post_id, 'wpar_global_republish_status', 'pending' );
                     $this->update_meta( $post_id, '_wpar_global_republish_datetime', $datetime );
@@ -258,12 +252,11 @@ class FetchPosts
                     $this->set_limit( $post_id );
                 }
             }
+        
         }
         
         // delete temp storage
         delete_option( 'wpar_global_republish_post_ids' );
-        // update future reference
-        update_option( 'wpar_last_global_cron_run', $timestamp );
     }
     
     /**
@@ -279,14 +272,6 @@ class FetchPosts
     {
         $current_date = gmdate( 'Y-m-d', $timestamp );
         $slop = $this->get_data( 'wpar_random_republish_interval', 14400 );
-        if ( !in_array( $slop, [
-            '3600',
-            '7200',
-            '14400',
-            '21600'
-        ] ) ) {
-            $slop = 14400;
-        }
         $timestamp = $timestamp + wp_rand( 30, $slop );
         $time_based = $this->get_data( 'republish_time_specific', 'no' );
         
@@ -424,7 +409,7 @@ class FetchPosts
         // cureent timestmap
         $timestamp = $this->current_timestamp();
         // get future posts
-        $posts = $this->do_filter( 'has_future_post_args', get_posts( [
+        $posts = $this->do_filter( 'has_future_post_args', $this->get_posts( [
             'numberposts' => -1,
             'post_type'   => $post_type,
             'sort_order'  => 'ASC',
@@ -454,7 +439,7 @@ class FetchPosts
             $post_ids = [];
         }
         $post_ids = $this->do_filter( 'post_ids_before_store', $post_ids, $post_type );
-        update_option( 'wpar_global_republish_post_ids', array_unique( array_merge( $post_ids, $ids ) ) );
+        update_option( 'wpar_global_republish_post_ids', wp_parse_id_list( array_merge( $post_ids, $ids ) ) );
     }
     
     /**

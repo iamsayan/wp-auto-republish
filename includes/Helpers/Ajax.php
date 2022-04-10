@@ -4,11 +4,11 @@
  *
  * @since      1.1.8
  * @package    RevivePress
- * @subpackage Wpar\Helpers
+ * @subpackage RevivePress\Helpers
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
-namespace Wpar\Helpers;
+namespace RevivePress\Helpers;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -37,8 +37,8 @@ trait Ajax {
 	 *
 	 * @param string $action The nonce action name.
 	 */
-	protected function verify_nonce( $action = 'wpar_admin_nonce' ) {
-		if ( ! isset( $_REQUEST['security'] ) || ! \wp_verify_nonce( $_REQUEST['security'], $action ) ) {
+	protected function verify_nonce( $action = 'rvp_admin_nonce' ) {
+		if ( ! isset( $_REQUEST['security'] ) || ! \wp_verify_nonce( $_REQUEST['security'], $action ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 			$this->error( __( 'Error: Nonce verification failed!', 'wp-auto-republish' ) );
 		}
 	}

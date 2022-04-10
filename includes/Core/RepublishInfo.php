@@ -5,13 +5,13 @@
  *
  * @since      1.1.0
  * @package    RevivePress
- * @subpackage Wpar\Core
+ * @subpackage RevivePress\Core
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
-namespace Wpar\Core;
+namespace RevivePress\Core;
 
-use  Wpar\Helpers\Hooker ;
-use  Wpar\Helpers\SettingsData ;
+use  RevivePress\Helpers\Hooker ;
+use  RevivePress\Helpers\SettingsData ;
 defined( 'ABSPATH' ) || exit;
 /**
  * Republish info class.
@@ -45,7 +45,7 @@ class RepublishInfo
         $dateline = '';
         
         if ( $wpar_original_pub_date ) {
-            $dateline .= '<p id="wpar" class="wpar-pubdate" style="font-size: 12px;">';
+            $dateline .= '<p id="wpar-pubdate" class="wpar-pubdate wpar-pubdate-container">';
             $dateline .= '<span class="wpar-label">' . $wpar_text . '</span><span class="wpar-time">' . $local_date;
             $dateline .= '</p>';
         }

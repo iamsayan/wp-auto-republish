@@ -5,12 +5,12 @@
  *
  * @since      1.1.0
  * @package    RevivePress
- * @subpackage Wpar\Api\Callbacks
+ * @subpackage RevivePress\Api\Callbacks
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
-namespace Wpar\Api\Callbacks;
+namespace RevivePress\Api\Callbacks;
 
-use  Wpar\Base\BaseController ;
+use  RevivePress\Base\BaseController ;
 defined( 'ABSPATH' ) || exit;
 /**
  * Admin callbacks class.
@@ -25,8 +25,8 @@ class AdminCallbacks extends BaseController
         $options = get_option( 'wpar_plugin_settings' );
         $last = get_option( 'wpar_last_global_cron_run' );
         $format = get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' );
-        $class_name = ( wpar_load_fs_sdk()->can_use_premium_code__premium_only() ? ' premium' : '' );
-        return require_once "{$this->plugin_path}/templates/admin.php";
+        $class_name = ( revivepress_fs()->can_use_premium_code__premium_only() ? ' premium' : '' );
+        return require_once $this->plugin_path . 'templates/admin.php';
     }
     
     public function sectionHeader( $title, $description )

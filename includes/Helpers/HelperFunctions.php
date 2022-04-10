@@ -5,12 +5,14 @@
  *
  * @since      1.1.3
  * @package    RevivePress
- * @subpackage Wpar\Helpers
+ * @subpackage RevivePress\Helpers
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
-namespace Wpar\Helpers;
+namespace RevivePress\Helpers;
 
-use  Wpar\Helpers\SettingsData ;
+use  DateTime ;
+use  RevivePress\Helpers\Sitepress ;
+use  RevivePress\Helpers\SettingsData ;
 defined( 'ABSPATH' ) || exit;
 /**
  * Meta & Option class.
@@ -26,7 +28,7 @@ trait HelperFunctions
      */
     protected function get_post_types()
     {
-        $post_types = get_post_types( [
+        $post_types = \get_post_types( [
             'public'   => true,
             '_builtin' => true,
         ], 'objects' );
@@ -56,13 +58,18 @@ trait HelperFunctions
     /**
      * Get all registered taxonomies.
      *
+     * @param array $args    Query args.
      * @param bool  $public  Builtin post types True or False.
      * @param bool  $hide    Hide empty taxonomies True or False.
      * @return array
      */
-    protected function get_all_taxonomies( $args, $hide = false, $builtin = true )
+    protected function get_taxonomies( $args, $hide = false, $builtin = true )
     {
-        $post_types = get_post_types( $args, 'objects' );
+        /**
+         * Remove WPML filters while getting terms, to get all languages
+         */
+        Sitepress::get()->remove_term_filters();
+        $post_types = \get_post_types( $args, 'objects' );
         $post_types = ( is_array( $post_types ) ? $post_types : [] );
         $data = $attribute_taxonomy_array = [];
         
@@ -94,14 +101,14 @@ trait HelperFunctions
                 }
                 
                 $post_type = $post_type->name;
-                $categories_array = [];
+                $terms_array = [];
                 
                 if ( $label == 'Media' || $label == 'media' || $post_type == 'elementor_library' ) {
                     continue;
                     // skip media
                 }
                 
-                $taxonomies = get_object_taxonomies( $post_type, 'objects' );
+                $taxonomies = \get_object_taxonomies( $post_type, 'objects' );
                 // Loop on all taxonomies
                 foreach ( $taxonomies as $taxonomy ) {
                     
@@ -109,28 +116,48 @@ trait HelperFunctions
                         if ( $builtin && ($post_type != 'post' || !in_array( $taxonomy->name, [ 'category', 'post_tag' ] )) ) {
                             continue;
                         }
-                        $categories = get_terms( $taxonomy->name, [
+                        $terms = \get_terms( [
+                            'taxonomy'   => $taxonomy->name,
                             'hide_empty' => $hide,
                         ] );
-                        // Get categories
-                        foreach ( $categories as $category ) {
-                            if ( is_object_in_taxonomy( $post_type, $taxonomy->name ) ) {
-                                $categories_array[$post_type . '|' . $taxonomy->name . '|' . $category->term_id] = ucwords( $taxonomy->label ) . ': ' . $category->name;
-                            }
+                        foreach ( $terms as $term ) {
+                            $terms_array[$post_type . '|' . $taxonomy->name . '|' . $term->term_id] = ucwords( $taxonomy->label ) . ': ' . $term->name;
                         }
                     }
                 
                 }
                 
-                if ( !empty($categories_array) ) {
+                if ( !empty($terms_array) ) {
                     $data[$post_type]['label'] = $label;
-                    $data[$post_type]['categories'] = $categories_array;
-                    unset( $categories_array );
+                    $data[$post_type]['categories'] = $terms_array;
+                    unset( $terms_array );
                 }
             
             }
         }
+        /**
+         * Register WPML filters back
+         */
+        Sitepress::get()->restore_term_filters();
         return $data;
+    }
+    
+    /**
+     * Get posts
+     *
+     * @param array $args WP_Query args.
+     * @return array
+     */
+    protected function get_posts( $args )
+    {
+        $current_language = \apply_filters( 'wpml_current_language', null );
+        // changes the language of global query to use the specfied language
+        \do_action( 'wpml_switch_language', 'all' );
+        // get posts
+        $posts = \get_posts( $args );
+        // set language back to original
+        \do_action( 'wpml_switch_language', $current_language );
+        return $posts;
     }
     
     /**
@@ -158,12 +185,12 @@ trait HelperFunctions
     protected function get_roles( $can_edit_post = true )
     {
         $options = [];
-        $roles = get_editable_roles();
+        $roles = \get_editable_roles();
         foreach ( $roles as $role => $details ) {
             if ( $can_edit_post && (!isset( $details['capabilities']['edit_posts'] ) || !$details['capabilities']['edit_posts']) ) {
                 continue;
             }
-            $options[$role] = translate_user_role( $details['name'] );
+            $options[$role] = \translate_user_role( $details['name'] );
         }
         return $options;
     }
@@ -176,7 +203,7 @@ trait HelperFunctions
     protected function get_users( $args = array() )
     {
         $options = [];
-        $users = get_users( [
+        $users = \get_users( [
             'fields' => [ 'ID', 'display_name' ],
         ] );
         foreach ( $users as $user ) {
@@ -222,8 +249,9 @@ trait HelperFunctions
      */
     protected function current_timestamp( $gmt = false )
     {
-        $local_time = current_time( 'mysql', $gmt );
-        return strtotime( $local_time );
+        $local_time = current_time( 'timestamp', $gmt );
+        // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested
+        return $local_time;
     }
     
     /**
@@ -249,6 +277,37 @@ trait HelperFunctions
         }
         
         return $transient_name;
+    }
+    
+    /**
+     * Determines if a post exists based on title, content, date and type.
+     *
+     * @since 1.3.2
+     *
+     * @global wpdb $wpdb WordPress database abstraction object.
+     *
+     * @param string $title   Post title.
+     * @param string $content Optional. Post content.
+     * @param string $date    Optional. Post date.
+     * @param string $type    Optional. Post type.
+     * @return int Post ID if post exists, 0 otherwise.
+     */
+    protected function post_exists(
+        $title,
+        $content = '',
+        $date = '',
+        $type = ''
+    )
+    {
+        if ( !function_exists( 'post_exists' ) ) {
+            require_once ABSPATH . 'wp-admin/includes/post.php';
+        }
+        return \post_exists(
+            $title,
+            $content,
+            $date,
+            $type
+        );
     }
     
     /**
@@ -313,6 +372,105 @@ trait HelperFunctions
     }
     
     /**
+     * Determines whether the current screen is an edit post screen.
+     *
+     * @since 1.3.2
+     * @return bool Whether or not the current screen is editing an existing post.
+     */
+    protected function is_edit_post_screen()
+    {
+        if ( !\is_admin() ) {
+            return false;
+        }
+        $current_screen = \get_current_screen();
+        return $current_screen->base === 'post' && $current_screen->action !== 'add';
+    }
+    
+    /**
+     * Determines whether the current screen is an new post screen.
+     *
+     * @since 1.3.2
+     * @return bool Whether or not the current screen is editing an new post.
+     */
+    protected function is_new_post_screen()
+    {
+        if ( !\is_admin() ) {
+            return false;
+        }
+        $current_screen = \get_current_screen();
+        return $current_screen->base === 'post' && $current_screen->action === 'add';
+    }
+    
+    /**
+     * Determines if we are currently editing a post with Classic editor.
+     *
+     * @since 1.3.2
+     * @return bool Whether we are currently editing a post with Classic editor.
+     */
+    protected function is_classic_editor()
+    {
+        if ( !$this->is_edit_post_screen() && !$this->is_new_post_screen() ) {
+            return false;
+        }
+        $screen = \get_current_screen();
+        if ( $screen->is_block_editor() ) {
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+     * Determines if we are currently editing a post with Block editor.
+     *
+     * @since 1.3.2
+     * @return bool Whether we are currently editing a post with Block editor.
+     */
+    protected function is_block_editor()
+    {
+        $screen = \get_current_screen();
+        if ( \method_exists( $screen, 'is_block_editor' ) && $screen->is_block_editor() ) {
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Determines whether the passed post type is public and shows an admin bar.
+     *
+     * @param string $post_type The post_type to copy.
+     *
+     * @since 1.3.2
+     * @return bool Whether or not the post can be copied to a new draft.
+     */
+    protected function post_type_has_admin_bar( $post_type )
+    {
+        $post_type_object = \get_post_type_object( $post_type );
+        if ( empty($post_type_object) ) {
+            return false;
+        }
+        return $post_type_object->public && $post_type_object->show_in_admin_bar;
+    }
+    
+    /**
+     * Get Post Permalinks
+     * 
+     * @since 1.3.2
+     * @return string
+     */
+    protected function get_permalink( $post_id )
+    {
+        $permalink_structure = get_option( 'permalink_structure' );
+        
+        if ( $permalink_structure != '' ) {
+            $permalink = wp_get_shortlink( $post_id );
+        } else {
+            $permalink = get_permalink( $post_id );
+        }
+        
+        return $permalink;
+    }
+    
+    /**
      * Convert comma separated post ids to array
      * 
      * @since 1.3.1
@@ -330,137 +488,32 @@ trait HelperFunctions
     }
     
     /**
-     * Create the recurring action event.
-     *
-     * @param  integer $timestamp            Timestamp.
-     * @param  integer $interval_in_seconds  Interval in Seconds.
-     * @param  string  $hook                 Action Hook.
-     * @param  array   $args                 Parameters.
-     * @param  string  $group                Group Name.
-     * @return string
+     * Can proceed with external API
+     * 
+     * @since 1.3.2
+     * @return bool
      */
-    protected function set_recurring_action(
-        $timestamp,
-        $interval_in_seconds,
-        $hook,
-        $args = array(),
-        $group = 'wp-auto-republish'
-    )
+    protected function can_proceed( $action, $args )
     {
-        $action_id = \as_schedule_recurring_action(
-            $timestamp,
-            $interval_in_seconds,
-            $hook,
-            $args,
-            $group
-        );
-        return $action_id;
-    }
-    
-    /**
-     * Create the single action event.
-     *
-     * @param  integer $timestamp  Timestamp.
-     * @param  string  $hook       Hook.
-     * @param  array   $arg        Parameter.
-     * @param  string  $group      Group Name.
-     * @return string
-     */
-    protected function set_single_action(
-        $timestamp,
-        $hook,
-        $args = array(),
-        $group = 'wp-auto-republish'
-    )
-    {
-        $action_id = \as_schedule_single_action(
-            $timestamp,
-            $hook,
-            $args,
-            $group
-        );
-        return $action_id;
-    }
-    
-    /**
-     * Unschedule all action events.
-     *
-     * @param  string  $hook       Hook.
-     * @param  array   $arg        Parameter.
-     * @param  string  $group      Group Name.
-     */
-    protected function unschedule_all_actions( $hook, $args = array(), $group = 'wp-auto-republish' )
-    {
-        \as_unschedule_all_actions( $hook, $args, $group );
-    }
-    
-    /**
-     * Unschedule last action event.
-     *
-     * @param  string  $hook       Hook.
-     * @param  array   $arg        Parameter.
-     * @param  string  $group      Group Name.
-     */
-    protected function unschedule_last_action( $hook, $args = array(), $group = 'wp-auto-republish' )
-    {
-        \as_unschedule_action( $hook, $args, $group );
-    }
-    
-    /**
-     * Check if next action is exists.
-     *
-     * @param  string  $hook   Action Hook.
-     * @param  array   $args   Parameters.
-     * @param  string  $group  Group Name.
-     * @return null|string
-     */
-    protected function get_next_action( $hook, $args = array(), $group = 'wp-auto-republish' )
-    {
-        return \as_next_scheduled_action( $hook, $args, $group );
-    }
-    
-    /**
-     * Check if next action is exists.
-     *
-     * @param  string  $hook   Action Hook.
-     * @param  array   $args   Parameters.
-     * @param  string  $group  Group Name.
-     * @return null|string
-     */
-    protected function has_next_action( $hook, $args = array(), $group = 'wp-auto-republish' )
-    {
-        if ( !function_exists( 'as_has_scheduled_action' ) ) {
-            return \boolval( $this->get_next_action( $hook, $args, $group ) );
+        if ( empty($args) || !is_array( $args ) ) {
+            return true;
         }
-        return \as_has_scheduled_action( $hook, $args, $group );
+        if ( isset( $args[$action] ) && false === $args[$action] ) {
+            return false;
+        }
+        return true;
     }
     
     /**
-     * Check if next action is exists.
-     *
-     * @param  string  $hook   Action Hook.
-     * @param  array   $args   Parameters.
-     * @param  string  $group  Group Name.
-     * @return null|string
+     * Validate date format
+     * 
+     * @since 1.3.2
+     * @return bool
      */
-    protected function get_next_action_by_data(
-        $hook,
-        $timestamp,
-        $args,
-        $group = 'wp-auto-republish'
-    )
+    protected function validate_date( $date, $format = 'Y-m-d H:i:s' )
     {
-        return \as_get_scheduled_actions( [
-            'hook'         => $hook,
-            'args'         => $args,
-            'date'         => gmdate( 'U', $timestamp ),
-            'date_compare' => '=',
-            'group'        => $group,
-            'status'       => \ActionScheduler_Store::STATUS_PENDING,
-            'per_page'     => 1,
-            'orderby'      => 'date',
-            'order'        => 'ASC',
-        ], 'ids' );
+        $d = DateTime::createFromFormat( $format, $date );
+        return $d && $d->format( $format ) == $date;
     }
 
 }

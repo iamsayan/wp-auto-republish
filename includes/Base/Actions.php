@@ -5,13 +5,13 @@
  *
  * @since      1.1.0
  * @package    RevivePress
- * @subpackage Wpar\Base
+ * @subpackage RevivePress\Base
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
-namespace Wpar\Base;
+namespace RevivePress\Base;
 
-use  Wpar\Helpers\Hooker ;
-use  Wpar\Base\BaseController ;
+use  RevivePress\Helpers\Hooker ;
+use  RevivePress\Base\BaseController ;
 defined( 'ABSPATH' ) || exit;
 /**
  * Action links class.
@@ -52,8 +52,8 @@ class Actions extends BaseController
      */
     public function settings_link( $links )
     {
-        $wparlinks = [ '<a href="' . admin_url( 'admin.php?page=revivepress' ) . '">' . __( 'Settings', 'wp-auto-republish' ) . '</a>' ];
-        return array_merge( $wparlinks, $links );
+        $settings = [ '<a href="' . admin_url( 'admin.php?page=revivepress' ) . '">' . __( 'Settings', 'wp-auto-republish' ) . '</a>' ];
+        return array_merge( $settings, $links );
     }
     
     /**
@@ -62,7 +62,9 @@ class Actions extends BaseController
     public function roadmap_link()
     {
         global  $submenu ;
-        $submenu['revivepress'][] = [ __( 'Roadmap', 'wp-auto-republish' ), 'manage_options', 'https://api.wprevivepress.com/go/roadmap?utm_source=admin_menu&utm_medium=plugin' ];
+        $manage_options_cap = apply_filters( 'wpar/manage_options_capability', 'manage_options' );
+        $submenu['revivepress'][9] = [ __( 'Roadmap', 'wp-auto-republish' ), $manage_options_cap, 'https://api.wprevivepress.com/go/roadmap?utm_source=admin_menu&utm_medium=plugin' ];
+        ksort( $submenu['revivepress'], SORT_NUMERIC );
     }
     
     /**
@@ -84,21 +86,10 @@ class Actions extends BaseController
      */
     public function meta_links( $links, $file )
     {
-        
-        if ( $file === $this->plugin ) {
+        if ( $this->plugin === $file ) {
             // only for this plugin
-            
-            if ( wpar_load_fs_sdk()->is_not_paying() && !wpar_load_fs_sdk()->is_trial() ) {
-                if ( !wpar_load_fs_sdk()->is_trial_utilized() ) {
-                    $links[] = '<a href="' . esc_url( wpar_load_fs_sdk()->get_trial_url() ) . '" target="_blank" style="font-weight: 700;">' . __( 'Premium Trial', 'wp-auto-republish' ) . '</a>';
-                }
-                $links[] = '<a href="https://wordpress.org/support/plugin/wp-auto-republish" target="_blank">' . __( 'Support Forum', 'wp-auto-republish' ) . '</a>';
-                $links[] = '<a href="https://www.paypal.me/iamsayan/" target="_blank">' . __( 'Donate', 'wp-auto-republish' ) . '</a>';
-            }
-            
             $links[] = '<a href="https://wprevivepress.com/docs/?utm_source=plugin_page&utm_medium=plugin" target="_blank">' . __( 'Documentation', 'wp-auto-republish' ) . '</a>';
         }
-        
         return $links;
     }
     
@@ -111,8 +102,7 @@ class Actions extends BaseController
         
         if ( 'toplevel_page_revivepress' === $current_screen->id ) {
             $text = [];
-            $text[] = __( 'Developed with', 'wp-auto-republish' ) . ' <span style="color:#e25555;">♥</span> by <a href="https://sayandatta.in" target="_blank" style="font-weight: 500;">Sayan Datta</a>';
-            $text[] = '<a href="https://sayandatta.in/contact/?utm_source=plugin_page&utm_medium=revivepress" target="_blank" style="font-weight: 500;">' . __( 'Hire Me', 'wp-auto-republish' ) . '</a>';
+            $text[] = __( 'Developed with', 'wp-auto-republish' ) . ' <span style="color:#e25555;">♥</span> by <a href="https://sayandatta.in?utm_source=plugin_page&utm_medium=revivepress" target="_blank" style="font-weight: 500;">Sayan Datta</a>';
             $text[] = '<a href="https://github.com/iamsayan/wp-auto-republish" target="_blank" style="font-weight: 500;">GitHub</a>';
             $text[] = '<a href="https://wordpress.org/support/plugin/wp-auto-republish" target="_blank" style="font-weight: 500;">' . __( 'Support Forum', 'wp-auto-republish' ) . '</a>';
             $text[] = '<a href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" style="font-weight: 500;">' . __( 'Rate it', 'wp-auto-republish' ) . '</a> (<span style="color:#ffa000;">★★★★★</span>) on WordPress.org, if you like this plugin.</span>';
@@ -128,10 +118,10 @@ class Actions extends BaseController
     public function run_upgrade_action( $upgrader_object, $options )
     {
         // If an update has taken place and the updated type is plugins and the plugins element exists
-        if ( $options['action'] == 'update' && $options['type'] == 'plugin' && isset( $options['plugins'] ) ) {
+        if ( 'update' === $options['action'] && 'plugin' === $options['type'] && isset( $options['plugins'] ) ) {
             // Iterate through the plugins being updated and check if ours is there
             foreach ( $options['plugins'] as $plugin ) {
-                if ( $plugin === $this->plugin ) {
+                if ( $this->plugin === $plugin ) {
                     $this->do_action(
                         'plugin_updated',
                         $options,

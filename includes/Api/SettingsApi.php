@@ -4,13 +4,13 @@
  *
  * @since      1.1.0
  * @package    RevivePress
- * @subpackage Wpar\Api
+ * @subpackage RevivePress\Api
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
-namespace Wpar\Api;
+namespace RevivePress\Api;
 
-use Wpar\Helpers\Hooker;
+use RevivePress\Helpers\Hooker;
 
 defined( 'ABSPATH' ) || exit;
 

@@ -5,26 +5,47 @@
  *
  * @since      1.1.0
  * @package    RevivePress
- * @subpackage Wpar\Core
+ * @subpackage RevivePress\Core
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
-namespace Wpar\Core;
+namespace RevivePress\Core;
 
-use  Wpar\Helpers\Hooker ;
-use  Wpar\Helpers\HelperFunctions ;
+use  RevivePress\Helpers\Hooker ;
+use  RevivePress\Helpers\Schedular ;
+use  RevivePress\Helpers\HelperFunctions ;
 defined( 'ABSPATH' ) || exit;
 /**
  * Republication class.
  */
 class PostRepublish
 {
-    use  HelperFunctions, Hooker ;
+    use  HelperFunctions, Hooker, Schedular ;
     /**
      * Register functions.
      */
     public function register()
     {
         $this->action( 'wpar/global_republish_single_post', 'do_republish' );
+        $this->action( 'wpar/process_republish_post', 'call_republish' );
+    }
+    
+    /**
+     * Trigger on external API call.
+     * 
+     * @since 1.3.2
+     * @param array   $args   Republish params
+     */
+    public function call_republish( $args )
+    {
+        $method = $args['method'];
+        if ( 'republish' === $method ) {
+            $post_id = $this->update_old_post(
+                $args['post_id'],
+                $args['single'],
+                $args['instant'],
+                true
+            );
+        }
     }
     
     /**
@@ -67,12 +88,18 @@ class PostRepublish
      * @param int   $post_id  Post ID
      * @param bool  $single   Check if it is a single republish event
      * @param bool  $instant  Check if it is one click republish event
+     * @param bool  $args     Republish patameters
      * 
      * @return int $post_id
      */
-    protected function update_old_post( $post_id, $single = false, $instant = false )
+    public function update_old_post(
+        $post_id,
+        $single = false,
+        $instant = false,
+        $external = false
+    )
     {
-        $post = get_post( $post_id );
+        $post = \get_post( $post_id );
         $pub_date = $this->get_meta( $post->ID, '_wpar_original_pub_date' );
         if ( !$pub_date && $post->post_status !== 'future' ) {
             $this->update_meta( $post->ID, '_wpar_original_pub_date', $post->post_date );
@@ -80,7 +107,7 @@ class PostRepublish
         $this->update_meta( $post->ID, '_wpar_last_pub_date', $post->post_date );
         $new_time = $this->get_publish_time( $post->ID, $single, $instant );
         // remove kses filters
-        kses_remove_filters();
+        \kses_remove_filters();
         $args = [
             'ID'            => $post->ID,
             'post_date'     => $new_time,
@@ -97,7 +124,7 @@ class PostRepublish
         $this->set_occurence( $post );
         $this->do_action( 'clear_site_cache' );
         // reinit kses filters
-        kses_init_filters();
+        \kses_init_filters();
         return $post_id;
     }
     
@@ -119,7 +146,7 @@ class PostRepublish
         $scheduled = false
     )
     {
-        $post = get_post( $post_id );
+        $post = \get_post( $post_id );
         $timestamp = $this->current_timestamp();
         $interval = MINUTE_IN_SECONDS * $this->do_filter( 'second_position_interval', wp_rand( 1, 15 ) );
         
@@ -133,7 +160,7 @@ class PostRepublish
             }
         
         } else {
-            $lastposts = get_posts( [
+            $lastposts = $this->get_posts( [
                 'post_type'   => $post->post_type,
                 'numberposts' => 1,
                 'offset'      => 1,

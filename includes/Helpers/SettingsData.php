@@ -4,11 +4,11 @@
  *
  * @since      1.1.0
  * @package    RevivePress
- * @subpackage Wpar\Helpers
+ * @subpackage RevivePress\Helpers
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
-namespace Wpar\Helpers;
+namespace RevivePress\Helpers;
 
 defined( 'ABSPATH' ) || exit;
 
