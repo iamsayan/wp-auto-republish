@@ -24,7 +24,6 @@ class Activate
 		}
 		
 		flush_rewrite_rules();
-		set_transient( 'wpar-show-notice-on-activation', true );
 
 		// action
 		do_action( 'wpar/after_plugin_activate' );

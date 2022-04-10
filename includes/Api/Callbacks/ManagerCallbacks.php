@@ -113,7 +113,7 @@ class ManagerCallbacks
             'id'          => $args['label_for'],
             'name'        => 'republish_time_specific',
             'value'       => $this->get_data( 'republish_time_specific', 'no' ),
-            'description' => esc_attr( 'Enable or Disable Time Specifc Republish from here. If you Enable this, plugin will only republish between the Start Time and End Time. If Start Time is grater than End Time, plugin will assume the end time in on the next available day (if the next day is eligible for republish). No Time Limit will republish at any time.', 'wp-auto-republish' ),
+            'description' => esc_attr( 'Enable or Disable Time Specifc Republish from here. If you Enable this, plugin will only republish between the Start Time and End Time. If Start Time is grater than End Time, plugin will assume the end time in on the next available day (if the next day is eligible for republish). No Time Limit will republish at any time. Note: If you are using Time Limits then you have to set the "Run Republish Process Every" option as less than the interval between Start Time and End Time so that process interval fits within the interval. Otherwise, it will not work.', 'wp-auto-republish' ),
             'options'     => [
             'no'  => __( 'No Time Limit', 'wp-auto-republish' ),
             'yes' => __( 'Set Time Limit', 'wp-auto-republish' ),
@@ -270,7 +270,7 @@ class ManagerCallbacks
             'premium_1' => __( 'Post ID (Premium)', 'wp-auto-republish' ),
             'premium_2' => __( 'Post Author (Premium)', 'wp-auto-republish' ),
             'premium_3' => __( 'Post Title (Premium)', 'wp-auto-republish' ),
-            'premium_4' => __( 'Post Name/Slug (Premium)', 'wp-auto-republish' ),
+            'premium_4' => __( 'Post Name (Premium)', 'wp-auto-republish' ),
             'premium_5' => __( 'Random Selection (Premium)', 'wp-auto-republish' ),
             'premium_6' => __( 'Comment Count (Premium)', 'wp-auto-republish' ),
             'premium_7' => __( 'Relevance (Premium)', 'wp-auto-republish' ),
@@ -327,7 +327,25 @@ class ManagerCallbacks
         ] );
     }
     
-    public function override_category_tag( $args )
+    public function force_include( $args )
+    {
+        $this->do_field( [
+            'id'          => $args['label_for'],
+            'name'        => 'force_include',
+            'value'       => preg_replace( [
+            '/[^\\d,]/',
+            '/(?<=,),+/',
+            '/^,+/',
+            '/,+$/'
+        ], '', $this->get_data( 'force_include' ) ),
+            'description' => esc_attr( 'Write the post IDs which you want to include forcefully in the republish process. But it doesn\'t mean that it will republish on every time rather it it will added to the republish eligible post list. These posts will be republished only if the orther conditions are met.', 'wp-auto-republish' ),
+            'attributes'  => [
+            'style' => 'width: 90%',
+        ],
+        ] );
+    }
+    
+    public function force_exclude( $args )
     {
         $this->do_field( [
             'id'          => $args['label_for'],
@@ -338,11 +356,10 @@ class ManagerCallbacks
             '/^,+/',
             '/,+$/'
         ], '', $this->get_data( 'wpar_override_category_tag' ) ),
-            'description' => esc_attr( 'Write the post IDs which you want to select forcefully (when you select excluding) or want to not select forcefully (when you select including).', 'wp-auto-republish' ),
+            'description' => esc_attr( 'Write the post IDs which you want to exclude forcefully from the republish process.', 'wp-auto-republish' ),
             'attributes'  => [
             'style' => 'width: 90%',
         ],
-            'condition'   => [ 'wpar_taxonomies_filter', '!=', 'none' ],
         ] );
     }
     

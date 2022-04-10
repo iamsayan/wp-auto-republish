@@ -1,22 +1,22 @@
 <?php
 
 /**
- * Misc Action links.
+ * Database Action links.
  *
  * @since      1.2.0
  * @package    RevivePress
- * @subpackage Wpar\Base
+ * @subpackage Wpar\Tools
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
-namespace Wpar\Base;
+namespace Wpar\Tools;
 
 use  Wpar\Helpers\Hooker ;
 use  Wpar\Helpers\HelperFunctions ;
 defined( 'ABSPATH' ) || exit;
 /**
- * Misc Action links class.
+ * Database Action links class.
  */
-class MiscActions
+class DatabaseActions
 {
     use  HelperFunctions, Hooker ;
     /**

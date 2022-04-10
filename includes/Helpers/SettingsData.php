@@ -20,14 +20,18 @@ trait SettingsData
 	/**
 	 * Get meta by post id.
 	 *
-	 * @param int    $post_id     Post id for destination where to save.
-	 * @param string $key         The meta key to retrieve. If no key is provided, fetches all metadata.
-	 * @param bool   $single      Whether to return a single value.
-	 *
+	 * @param int          $post_id            Post id for destination where to save.
+	 * @param string       $key                The meta key to retrieve. If no key is provided, fetches all metadata.
+	 * @param string|bool  $default            Default value.
+	 * @param bool         $maybe_unserialize  Whether to serialize data
 	 * @return mixed
 	 */
-    protected function get_meta( $post_id, $key, $single = true ) {
-		return \get_post_meta( $post_id, $key, $single );
+    protected function get_meta( $post_id, $key, $default = false, $maybe_unserialize = false ) {
+		$meta = \get_post_meta( $post_id, $key, true );
+		if ( $maybe_unserialize ) {
+			$meta = maybe_unserialize( $meta );
+		}
+		return ( ! empty( $meta ) ) ? $meta : $default;
 	}
 
 	/**
@@ -81,22 +85,5 @@ trait SettingsData
 		$settings = get_option( 'wpar_plugin_settings' );
 
 		return ( isset( $settings[ $key ] ) && ! empty( $settings[ $key ] ) ) ? $settings[ $key ] : $default;
-	}
-
-	/**
-	 * retreive plugin data.
-	 *
-	 * @param string $key         Option key.
-	 * @param mixed  $value       Default value
-	 *
-	 * @return mixed
-	 */
-	protected function build_meta( $post_id, $meta_key, $default = false, $maybe_unserialize = false, $single = true ) {
-		$meta = $this->get_meta( $post_id, $meta_key, $single );
-		if ( $maybe_unserialize ) {
-			$meta = maybe_unserialize( $meta );
-		}
-
-		return ( ! empty( $meta ) ) ? $meta : $default;
 	}
 }

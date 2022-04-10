@@ -35,13 +35,13 @@ class Enqueue extends BaseController
         $version = ( $this->debug ? time() : $this->version );
         $this->load(
             'css',
-            'jquery-ui-datepicker',
+            'jquery-ui',
             'jquery-ui.min.css',
-            '1.12.1'
+            '1.13.1'
         );
         $this->load(
             'css',
-            'jquery-ui-datetimepicker',
+            'jquery-ui-timepicker',
             'jquery-ui-timepicker-addon.min.css',
             '1.6.3'
         );
@@ -63,8 +63,8 @@ class Enqueue extends BaseController
             'admin.min.css',
             $version,
             [
-            'wpar-jquery-ui-datepicker',
-            'wpar-jquery-ui-datetimepicker',
+            'wpar-jquery-ui',
+            'wpar-jquery-ui-timepicker',
             'wpar-selectize',
             'wpar-confirm'
         ]
@@ -116,8 +116,8 @@ class Enqueue extends BaseController
         
         if ( strpos( $current_screen->base, 'revivepress' ) !== false ) {
             wp_enqueue_style( 'wpar-selectize' );
-            wp_enqueue_style( 'wpar-jquery-ui-datepicker' );
-            wp_enqueue_style( 'wpar-jquery-ui-datetimepicker' );
+            wp_enqueue_style( 'wpar-jquery-ui' );
+            wp_enqueue_style( 'wpar-jquery-ui-timepicker' );
             wp_enqueue_style( 'wpar-styles' );
             wp_enqueue_script( 'jquery-form' );
             wp_enqueue_script( 'jquery-ui-datepicker' );

@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.3.1
+Release Date: 25th February, 2022
+
+### Premium Version
+* Added: Ability exclude Sticky Posts.
+* Added: OneSignal Support.
+* Added: Batch Processing for Social Media share and Notification.
+* And all Free Version Improvements and Fixes.
+
+### Free Version
+* Improvement: Optimized Post Query Memory usage.
+* Improvement: Ability to force include or exclude post ids at same time.
+* Other Improvements and fixes.
+
 ## 1.3.0
 Release Date: 22th March, 2022
 

@@ -89,6 +89,8 @@ class FetchPosts
         $tax_filter = $this->get_data( 'wpar_exclude_by_type', 'none' );
         $taxonomies = $this->get_data( 'wpar_post_taxonomy', [] );
         $post_age = $this->get_data( 'wpar_republish_post_age', 120 );
+        $orderby = $this->get_data( 'wpar_republish_orderby', 'date' );
+        $order = $this->get_data( 'wpar_republish_method', 'old_first' );
         if ( !in_array( $post_age, [
             '30',
             '45',
@@ -108,9 +110,21 @@ class FetchPosts
         $args = [
             'post_status' => 'publish',
             'post_type'   => $post_type,
-            'numberposts' => -1,
+            'numberposts' => 5,
+            'orderby'     => $orderby,
             'fields'      => 'ids',
         ];
+        
+        if ( !empty($order) ) {
+            $args['order'] = 'ASC';
+            if ( $order == 'new_first' ) {
+                $args['order'] = 'DESC';
+            }
+        }
+        
+        if ( $args['orderby'] != 'date' ) {
+            $args['orderby'] = 'date';
+        }
         
         if ( isset( $post_age_seconds ) ) {
             $before_date = gmdate( 'Y-m-d H:i:s', strtotime( "-{$post_age_seconds} seconds", $timestamp ) );
@@ -174,12 +188,12 @@ class FetchPosts
         
         }
         
-        $args = $this->do_filter( 'query_args', $args );
+        $args = $this->do_filter( 'query_args', $args, $post_type );
         //error_log( print_r( $args, true ) );
         // get posts
         $posts = get_posts( $args );
         // store post ids
-        $this->store_post_ids( $posts );
+        $this->store_post_ids( $posts, $post_type );
     }
     
     /**
@@ -192,14 +206,8 @@ class FetchPosts
         $number_posts = $this->do_filter( 'number_of_posts', 1 );
         $orderby = $this->get_data( 'wpar_republish_orderby', 'date' );
         $order = $this->get_data( 'wpar_republish_method', 'old_first' );
-        $tax_filter = $this->get_data( 'wpar_exclude_by_type', 'none' );
-        $exclude_ids = $this->get_data( 'wpar_override_category_tag' );
-        $exclude_ids = preg_replace( [
-            '/[^\\d,]/',
-            '/(?<=,),+/',
-            '/^,+/',
-            '/,+$/'
-        ], '', $exclude_ids );
+        $include_ids = $this->filter_post_ids( $this->get_data( 'force_include' ) );
+        $exclude_ids = $this->filter_post_ids( $this->get_data( 'wpar_override_category_tag' ) );
         $post_ids = get_option( 'wpar_global_republish_post_ids' );
         if ( !$post_ids || !is_array( $post_ids ) ) {
             $post_ids = [];
@@ -207,6 +215,12 @@ class FetchPosts
         //error_log( print_r( $post_ids, true ) );
         
         if ( !empty($post_ids) ) {
+            if ( !empty($include_ids) ) {
+                $post_ids = array_unique( array_merge( $post_ids, $include_ids ) );
+            }
+            if ( !empty($exclude_ids) ) {
+                $post_ids = array_diff( $post_ids, $exclude_ids );
+            }
             $args = [
                 'post_type'   => $post_types,
                 'post_status' => 'publish',
@@ -225,15 +239,6 @@ class FetchPosts
             
             if ( $args['orderby'] != 'date' ) {
                 $args['orderby'] = 'date';
-            }
-            if ( !empty($exclude_ids) ) {
-                
-                if ( $tax_filter == 'include' ) {
-                    $args['post__in'] = array_diff( $post_ids, explode( ',', $exclude_ids ) );
-                } elseif ( $tax_filter == 'exclude' ) {
-                    $args['post__in'] = array_unique( array_merge( $post_ids, explode( ',', $exclude_ids ) ) );
-                }
-            
             }
             $args = $this->do_filter( 'post_query_args', $args );
             //error_log( print_r( $args, true ) );
@@ -272,29 +277,7 @@ class FetchPosts
      */
     private function next_schedule( $timestamp, $format = 'GMT' )
     {
-        $weekdays = $this->get_data( 'wpar_days', [
-            'sun',
-            'mon',
-            'tue',
-            'wed',
-            'thu',
-            'fri',
-            'sat'
-        ] );
-        $start_time_input = $this->get_data( 'wpar_start_time', '05:00:00' );
-        $end_time_input = $this->get_data( 'wpar_end_time', '23:59:59' );
         $current_date = gmdate( 'Y-m-d', $timestamp );
-        $start_time = strtotime( $start_time_input );
-        $end_time = strtotime( $end_time_input );
-        
-        if ( $start_time <= $end_time ) {
-            $start_time = strtotime( $current_date . ' ' . $start_time_input );
-            $end_time = strtotime( $current_date . ' ' . $end_time_input );
-        } else {
-            $start_time = strtotime( $current_date . ' ' . $start_time_input );
-            $end_time = strtotime( '+1 day', strtotime( $current_date . ' ' . $end_time_input ) );
-        }
-        
         $slop = $this->get_data( 'wpar_random_republish_interval', 14400 );
         if ( !in_array( $slop, [
             '3600',
@@ -305,14 +288,43 @@ class FetchPosts
             $slop = 14400;
         }
         $timestamp = $timestamp + wp_rand( 30, $slop );
+        $time_based = $this->get_data( 'republish_time_specific', 'no' );
         
-        if ( $timestamp >= $start_time && $timestamp <= $end_time ) {
-            $final_timestamp = $timestamp;
+        if ( $time_based == 'yes' ) {
+            $start_time_input = $this->get_data( 'wpar_start_time', '05:00:00' );
+            $end_time_input = $this->get_data( 'wpar_end_time', '23:59:59' );
+            $start_time = strtotime( $start_time_input );
+            $end_time = strtotime( $end_time_input );
+            
+            if ( $start_time <= $end_time ) {
+                $start_time = strtotime( $current_date . ' ' . $start_time_input );
+                $end_time = strtotime( $current_date . ' ' . $end_time_input );
+            } else {
+                $start_time = strtotime( $current_date . ' ' . $start_time_input );
+                $end_time = strtotime( '+1 day', strtotime( $current_date . ' ' . $end_time_input ) );
+            }
+            
+            
+            if ( $timestamp >= $start_time && $timestamp <= $end_time ) {
+                $final_timestamp = $timestamp;
+            } else {
+                $rand_time = $start_time + wp_rand( 300, 900 );
+                $final_timestamp = strtotime( gmdate( 'Y-m-d', $timestamp ) . ' ' . gmdate( 'H:i:s', $rand_time ) );
+            }
+        
         } else {
-            $rand_time = $start_time + wp_rand( 300, 900 );
-            $final_timestamp = strtotime( gmdate( 'Y-m-d', $timestamp ) . ' ' . gmdate( 'H:i:s', $rand_time ) );
+            $final_timestamp = $timestamp;
         }
         
+        $weekdays = $this->get_data( 'wpar_days', [
+            'sun',
+            'mon',
+            'tue',
+            'wed',
+            'thu',
+            'fri',
+            'sat'
+        ] );
         
         if ( !in_array( lcfirst( gmdate( 'D', $final_timestamp ) ), $weekdays ) ) {
             $i = 1;
@@ -366,32 +378,31 @@ class FetchPosts
     private function slot_available()
     {
         $timestamp = $this->current_timestamp();
-        $start_time_input = $this->get_data( 'wpar_start_time', '05:00:00' );
-        $end_time_input = $this->get_data( 'wpar_end_time', '23:59:59' );
-        $current_date = gmdate( 'Y-m-d', $timestamp );
-        $start_time = strtotime( $start_time_input );
-        $end_time = strtotime( $end_time_input );
-        
-        if ( $start_time <= $end_time ) {
-            $start_time = strtotime( $current_date . ' ' . $start_time_input );
-            $end_time = strtotime( $current_date . ' ' . $end_time_input );
-        } else {
-            $start_time = strtotime( $current_date . ' ' . $start_time_input );
-            $end_time = strtotime( '+1 day', strtotime( $current_date . ' ' . $end_time_input ) );
-        }
-        
-        $cur_time = $timestamp;
         $weekdays = $this->get_data( 'wpar_days' );
         $next_date = strtolower( gmdate( 'D', $timestamp ) );
-        $time_based = $this->get_data( 'republish_time_specific', 'no' );
         $available = false;
         if ( !empty($weekdays) && in_array( $next_date, $weekdays ) ) {
             $available = true;
         }
+        $time_based = $this->get_data( 'republish_time_specific', 'no' );
         
         if ( $available && $time_based == 'yes' ) {
+            $start_time_input = $this->get_data( 'wpar_start_time', '05:00:00' );
+            $end_time_input = $this->get_data( 'wpar_end_time', '23:59:59' );
+            $current_date = gmdate( 'Y-m-d', $timestamp );
+            $start_time = strtotime( $start_time_input );
+            $end_time = strtotime( $end_time_input );
+            
+            if ( $start_time <= $end_time ) {
+                $start_time = strtotime( $current_date . ' ' . $start_time_input );
+                $end_time = strtotime( $current_date . ' ' . $end_time_input );
+            } else {
+                $start_time = strtotime( $current_date . ' ' . $start_time_input );
+                $end_time = strtotime( '+1 day', strtotime( $current_date . ' ' . $end_time_input ) );
+            }
+            
             $available = false;
-            if ( $cur_time >= $start_time && $cur_time <= $end_time ) {
+            if ( $timestamp >= $start_time && $timestamp <= $end_time ) {
                 $available = true;
             }
         }
@@ -402,10 +413,14 @@ class FetchPosts
     /**
      * Check if has any future posts.
      * 
-     * @since v1.1.7
+     * @since 1.1.7
      */
     private function has_future_posts( $post_type )
     {
+        $can_check = $this->do_filter( 'has_future_post_check', false, $post_type );
+        if ( !$can_check ) {
+            return false;
+        }
         // cureent timestmap
         $timestamp = $this->current_timestamp();
         // get future posts
@@ -414,13 +429,14 @@ class FetchPosts
             'post_type'   => $post_type,
             'sort_order'  => 'ASC',
             'post_status' => 'future',
+            'fields'      => 'ids',
             'date_query'  => [
             'year'  => gmdate( 'Y', $timestamp ),
             'month' => gmdate( 'n', $timestamp ),
             'day'   => gmdate( 'j', $timestamp ),
         ],
         ] ), $post_type );
-        if ( !empty($posts) && count( $posts ) > 0 && $this->do_filter( 'has_future_post_check', false ) ) {
+        if ( !empty($posts) && count( $posts ) > 0 ) {
             return true;
         }
         return false;
@@ -431,13 +447,13 @@ class FetchPosts
      * 
      * @since 1.3.0
      */
-    private function store_post_ids( $ids )
+    private function store_post_ids( $ids, $post_type )
     {
         $post_ids = get_option( 'wpar_global_republish_post_ids' );
         if ( !$post_ids || !is_array( $post_ids ) ) {
             $post_ids = [];
         }
-        $post_ids = $this->do_filter( 'post_ids_before_store', $post_ids );
+        $post_ids = $this->do_filter( 'post_ids_before_store', $post_ids, $post_type );
         update_option( 'wpar_global_republish_post_ids', array_unique( array_merge( $post_ids, $ids ) ) );
     }
     

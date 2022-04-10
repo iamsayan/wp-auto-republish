@@ -1,9 +1,9 @@
 === RevivePress – Keep your Old Content Evergreen ===
-Contributors: Infosatech
+Contributors: infosatech
 Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 5.2
 Tested up to: 5.9
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -30,7 +30,7 @@ Like the RevivePress plugin? Consider leaving a [5 star review](https://wordpres
 
 This plugin helps revive old posts by resetting the published date to the current date and push old posts to your front page, the top of archive pages, and back into RSS feeds.
 
-> <strong>Note</strong>: All basic functionality is FREE. Features such as single post republishing, auto social share, repeated republishing & triggering publish events are available in the <Strong>[Premium Edition](https://wpautorepublish.com)</strong>.
+> <strong>Note</strong>: All basic functionality is FREE. Features such as single post republishing, auto social share, repeated republishing & triggering publish events are available in the <Strong>[Premium Edition](https://wprevivepress.com/?utm_source=landing&utm_medium=wporg)</strong>.
 
 ### Key Features
 
@@ -60,6 +60,8 @@ This plugin helps revive old posts by resetting the published date to the curren
 * Can use dates in post permalinks.
 * Change Post Status after Last Republish.
 * One click instant republish.
+* WordPress Sticky Posts Support.
+* OneSignal & Jetpack Publicize Support.
 * Show all republished history in logs.
 * Can use dates in post permalinks.
 * Can change the post name on every republish.
@@ -67,19 +69,19 @@ This plugin helps revive old posts by resetting the published date to the curren
 * Shows single republication info in a admin column.
 * Can hide last original published info from frontend.
 
-<strong>[Upgrade to RevivePress Premium](https://wpautorepublish.com) now. You can also upgrade to Premium Version directly from your dashboard.</strong>
+<strong>[Upgrade to RevivePress Premium](https://wprevivepress.com?utm_source=landing&utm_medium=wporg) now. You can also upgrade to Premium Version directly from your dashboard.</strong>
 
 ### Free and Premium Support
 
 Support for the RevivePress (formerly WP Auto Republish) plugin on the WordPress forums is free.
 
-Premium world-class support is available via email to all [RevivePress Premium](https://wpautorepublish.com) customers.
+Premium world-class support is available via email to all [RevivePress Premium](https://wprevivepress.com?utm_source=landing&utm_medium=wporg) customers.
 
-> <strong>Note</strong>: Paid customers support is always given priority over free support. Paid customers support is provided via one-to-one email. [Upgrade to Premium](https://wpautorepublish.com) to benefit from priority support.
+> <strong>Note</strong>: Paid customers support is always given priority over free support. Paid customers support is provided via one-to-one email. [Upgrade to Premium](https://wprevivepress.com?utm_source=landing&utm_medium=wporg) to benefit from priority support.
 
 = Compatibility =
 
-* This plugin is tested with W3 Total Cache, WP Super Cache, WP Rocket, WP Fastest Cache, Cachify, Comet Cache, Zen Cache, LiteSpeed Cache, SG Optimizer, HyperCache, Cache Enabler, Swift Performance Lite, Nginx Cache, Proxy Cache, Nginx Helper Cache, Autoptimize, Breeze (Cloudways), Godaddy Managed WordPress Hosting and WP Engine and fully compatible with WordPress Version 4.7 and beyond and also compatible with any WordPress theme.
+* This plugin is tested with W3 Total Cache, WP Super Cache, WP Rocket, WP Fastest Cache, Cachify, Comet Cache, Zen Cache, LiteSpeed Cache, SG Optimizer, HyperCache, Cache Enabler, Swift Performance Lite, Nginx Cache, Proxy Cache, Nginx Helper Cache, Autoptimize, Breeze (Cloudways), Godaddy Managed WordPress Hosting and WP Engine and fully compatible with WordPress Version 5.2 and beyond and also compatible with any WordPress theme.
 
 = Support =
 
@@ -136,8 +138,22 @@ Yes, permalinks with dates would be affected only in free version. This plugin s
 
 If you like RevivePress (formerly WP Auto Republish), please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
 
+= 1.3.1 =
+Release Date: 25th February, 2022
+
+= Premium Version =
+* Added: Ability exclude Sticky Posts.
+* Added: OneSignal Support.
+* Added: Batch Processing for Social Media share and Notification.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Improvement: Optimized Post Query Memory usage.
+* Improvement: Ability to force include or exclude post ids at same time.
+* Other Improvements and fixes.
+
 = 1.3.0 =
-Release Date: 22th March, 2022
+Release Date: 22th February, 2022
 
 * Rebranded to RevivePress
 
