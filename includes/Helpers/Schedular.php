@@ -29,7 +29,7 @@ trait Schedular
 	 * @return string
 	 */
 	protected function set_recurring_action( $timestamp, $interval_in_seconds, $hook, $args = [], $group = 'wp-auto-republish' ) {
-		$action_id = \as_schedule_recurring_action( $timestamp, $interval_in_seconds, $hook, $args, $group );
+		$action_id = \as_schedule_recurring_action( $timestamp, $interval_in_seconds, $hook, $args, $group ); // @phpstan-ignore-line
 
 		return $action_id;
 	}
@@ -44,7 +44,7 @@ trait Schedular
 	 * @return string
 	 */
 	protected function set_single_action( $timestamp, $hook, $args = [], $group = 'wp-auto-republish' ) {
-		$action_id = \as_schedule_single_action( $timestamp, $hook, $args, $group );
+		$action_id = \as_schedule_single_action( $timestamp, $hook, $args, $group ); // @phpstan-ignore-line
 
 		return $action_id;
 	}
@@ -57,7 +57,7 @@ trait Schedular
 	 * @param  string  $group      Group Name.
 	 */
 	protected function unschedule_all_actions( $hook, $args = [], $group = 'wp-auto-republish' ) {
-		\as_unschedule_all_actions( $hook, $args, $group );
+		\as_unschedule_all_actions( $hook, $args, $group ); // @phpstan-ignore-line
 	}
 
 	/**
@@ -68,7 +68,7 @@ trait Schedular
 	 * @param  string  $group      Group Name.
 	 */
 	protected function unschedule_last_action( $hook, $args = [], $group = 'wp-auto-republish' ) {
-		\as_unschedule_action( $hook, $args, $group );
+		\as_unschedule_action( $hook, $args, $group ); // @phpstan-ignore-line
 	}
 
 	/**
@@ -80,7 +80,7 @@ trait Schedular
 	 * @return null|string
 	 */
 	protected function get_next_action( $hook, $args = [], $group = 'wp-auto-republish' ) {
-		return \as_next_scheduled_action( $hook, $args, $group );
+		return \as_next_scheduled_action( $hook, $args, $group ); // @phpstan-ignore-line
 	}
 
 	/**
@@ -93,9 +93,9 @@ trait Schedular
 	 */
 	protected function has_next_action( $hook, $args = [], $group = 'wp-auto-republish' ) {
 		if ( ! function_exists( 'as_has_scheduled_action' ) ) {
-			return \boolval( $this->get_next_action( $hook, $args, $group ) );
+			return \boolval( $this->get_next_action( $hook, $args, $group ) );  // @phpstan-ignore-line
 		}
-		return \as_has_scheduled_action( $hook, $args, $group );
+		return \as_has_scheduled_action( $hook, $args, $group ); // @phpstan-ignore-line
 	}
 
 	/**
@@ -105,7 +105,7 @@ trait Schedular
 	 * @return null|string
 	 */
 	protected function get_next_actions( $args ) {
-		return \as_get_scheduled_actions( $args );
+		return \as_get_scheduled_actions( $args ); // @phpstan-ignore-line
 	}
 
 	/**

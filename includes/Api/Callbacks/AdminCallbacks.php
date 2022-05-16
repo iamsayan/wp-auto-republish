@@ -47,6 +47,7 @@ class AdminCallbacks extends BaseController
     
     public function doSettingsSection( $attr )
     {
+        $social_accounts = false;
         ?>
 		<div id="<?php 
         echo  esc_attr( $attr['id'] ) ;

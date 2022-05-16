@@ -7,14 +7,19 @@ namespace Composer\Autoload;
 class ComposerStaticInitd5699dfd0ed62714b22c430580475703
 {
     public static $files = array (
-        'f718dfa9e9bf99405edffbc3318d3b40' => __DIR__ . '/..' . '/woocommerce/action-scheduler/action-scheduler.php',
-        '22cf8a71b81d1edb798a237a626b19a4' => __DIR__ . '/../..' . '/functions.php',
+        'a2c48002d05f7782d8b603bd2bcb5252' => __DIR__ . '/..' . '/johnbillion/extended-cpts/extended-cpts.php',
+        '6116bb3c2e739c8baa180dc51ba4c9fe' => __DIR__ . '/..' . '/woocommerce/action-scheduler/action-scheduler.php',
+        '1a19a63a1a4b80ac8fcb008711e9450e' => __DIR__ . '/../..' . '/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'R' => 
         array (
             'RevivePress\\' => 12,
+        ),
+        'E' => 
+        array (
+            'ExtCPTs\\Tests\\' => 14,
         ),
         'C' => 
         array (
@@ -26,6 +31,10 @@ class ComposerStaticInitd5699dfd0ed62714b22c430580475703
         'RevivePress\\' => 
         array (
             0 => __DIR__ . '/../..' . '/includes',
+        ),
+        'ExtCPTs\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/johnbillion/extended-cpts/tests/phpunit',
         ),
         'Composer\\CaBundle\\' => 
         array (

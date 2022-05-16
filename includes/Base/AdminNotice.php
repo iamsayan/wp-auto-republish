@@ -10,6 +10,7 @@
 
 namespace RevivePress\Base;
 
+use WP_Dismiss_Notice;
 use RevivePress\Helpers\Hooker;
 use RevivePress\Base\BaseController;
 
@@ -26,7 +27,7 @@ class AdminNotice extends BaseController
 	 * Register functions.
 	 */
 	public function register() {
-		$this->action( 'admin_notices', 'install_notice' );
+		$this->action( 'admin_notices', 'load_notice' );
 		$this->action( 'admin_init', 'fix_action' );
 		//$this->action( 'wpar/after_plugin_activate', 'fix_permalink' );
 	}
@@ -34,7 +35,11 @@ class AdminNotice extends BaseController
 	/**
 	 * Show internal admin notices.
 	 */
-	public function install_notice() {
+	public function load_notice() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
 		// Show a warning to sites running PHP < 7.2
 		if ( version_compare( PHP_VERSION, '7.2', '<' ) ) {
 			deactivate_plugins( $this->plugin );
@@ -102,9 +107,11 @@ class AdminNotice extends BaseController
 	 */
 	public function fix_permalink() {
 		$permalink_structure = get_option( 'permalink_structure' );
+
 		$search = [ '%year%', '%monthnum%', '%day%', '%hour%', '%minute%', '%second%' ];
 		$replace = [ '%rvp_year%', '%rvp_monthnum%', '%rvp_day%', '%rvp_hour%', '%rvp_minute%', '%rvp_second%' ];
 		$permalink_structure = str_replace( $search, $replace, $permalink_structure );
+
 		update_option( 'permalink_structure', $permalink_structure );
 	}
 }

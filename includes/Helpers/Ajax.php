@@ -67,11 +67,11 @@ trait Ajax {
 	/**
 	 * Send AJAX response.
 	 *
-	 * @param array   $data    Data to send using ajax.
+	 * @param array|string   $data    Data to send using ajax.
 	 * @param boolean $success Optional. If this is an error. Defaults: true.
 	 */
 	private function send( $data = null, $success = true, $status_code = null ) {
-		if ( is_string( $data ) ) {
+		if ( ! is_array( $data ) ) {
 			$data = $success ? [ 'message' => $data ] : [ 'error' => $data ];
 		}
 

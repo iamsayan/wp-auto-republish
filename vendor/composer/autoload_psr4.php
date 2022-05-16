@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'RevivePress\\' => array($baseDir . '/includes'),
+    'ExtCPTs\\Tests\\' => array($vendorDir . '/johnbillion/extended-cpts/tests/phpunit'),
     'Composer\\CaBundle\\' => array($vendorDir . '/composer/ca-bundle/src'),
 );

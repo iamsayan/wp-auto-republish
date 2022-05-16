@@ -30,7 +30,7 @@ class Actions extends BaseController
             10,
             1
         );
-        $this->action( 'admin_menu', 'roadmap_link', 999 );
+        $this->action( 'admin_menu', 'menu_items', 99 );
         $this->action( 'admin_footer', 'do_footer', 99 );
         $this->action(
             'plugin_row_meta',
@@ -59,12 +59,12 @@ class Actions extends BaseController
     /**
      * Add roadmap item to submenu
      */
-    public function roadmap_link()
+    public function menu_items()
     {
-        $manage_options_cap = apply_filters( 'wpar/manage_options_capability', 'manage_options' );
         global  $submenu ;
-        $submenu['revivepress'][9] = [ __( 'Roadmap', 'wp-auto-republish' ), $manage_options_cap, 'https://api.wprevivepress.com/go/roadmap?utm_source=admin_menu&utm_medium=plugin' ];
-        ksort( $submenu['revivepress'], SORT_NUMERIC );
+        $manage_options_cap = apply_filters( 'wpar/manage_options_capability', 'manage_options' );
+        $submenu['revivepress'][] = [ __( 'Scheduled Tasks', 'wp-auto-republish' ), $manage_options_cap, admin_url( 'tools.php?page=action-scheduler&status=pending&s=wpar' ) ];
+        $submenu['revivepress'][] = [ __( 'Roadmap', 'wp-auto-republish' ), $manage_options_cap, 'https://api.wprevivepress.com/go/roadmap?utm_source=admin_menu&utm_medium=plugin' ];
     }
     
     /**
@@ -75,6 +75,7 @@ class Actions extends BaseController
         ?>
 		<script type="text/javascript">
 			jQuery( document ).ready( function( $ ) {
+				$( "ul#adminmenu a[href$='https://wpart.dev/wp-admin/tools.php?page=action-scheduler&status=pending&s=wpar']" ).attr( { target: '_blank' } );
 				$( "ul#adminmenu a[href$='https://api.wprevivepress.com/go/roadmap?utm_source=admin_menu&utm_medium=plugin']" ).attr( { target: '_blank', rel: 'noopener noreferrer' } );
 			} );
 		</script>

@@ -36,6 +36,7 @@ class PluginTools
 		$this->ajax( 'process_delete_plugin_data', 'remove_settings' );
 		$this->ajax( 'process_delete_post_metas', 'remove_metas' );
 		$this->ajax( 'process_deschedule_posts', 'deschedule_posts' );
+		$this->ajax( 'process_regenerate_schedule', 'regenerate_schedule' );
 	}
 	
 	/**
@@ -184,6 +185,21 @@ class PluginTools
 		$this->verify_nonce();
 		
 		$this->set_single_action( time() + 10, 'wpar/deschedule_posts' );
+
+		$this->success();
+	}
+
+	/**
+     * Process regenerate schedule
+     */
+	public function regenerate_schedule() {
+    	// security check
+		$this->verify_nonce();
+		
+		$this->unschedule_all_actions( 'wpar/global_schedule_next_date' );
+		
+		$interval = $this->get_data( 'republish_interval_days', '1' );
+		$this->set_recurring_action( strtotime( 'today' ), $interval * DAY_IN_SECONDS, 'wpar/global_schedule_next_date' );
 
 		$this->success();
 	}

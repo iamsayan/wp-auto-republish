@@ -24,6 +24,8 @@ trait Fields {
 	 * @param boolean $success Optional. If this is an error. Defaults: true.
 	 */
 	protected function do_field( $data ) {
+		$data = $this->do_filter( 'admin_fields', $data, $data['id'] );
+
 		if ( ! isset( $data['type'] ) || empty( $data['type'] ) ) {
 			$data['type'] = 'text';
 		}
@@ -116,10 +118,7 @@ trait Fields {
 					echo '<select id="' . esc_attr( $data['id'] ) . '" class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" name="wpar_plugin_settings[' . esc_attr( $name ) . ']" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' autocomplete="off">';
 					if ( ! empty( $data['options'] ) ) {
 						foreach ( $data['options'] as $key => $option ) {
-							$disabled = '';
-							if ( isset( $data['filter'] ) && $data['filter'] ) {
-								$disabled = ( strpos( $key, 'premium' ) !== false ) ? ' disabled' : '';
-							}
+							$disabled = ( strpos( $key, 'premium' ) !== false ) ? ' disabled' : '';
 							echo '<option value="' . esc_attr( $key ) . '" ' . selected( $key, $value, false ) . esc_attr( $disabled ) . '>' . esc_html( $option ) . '</option>';
 						}
 					}

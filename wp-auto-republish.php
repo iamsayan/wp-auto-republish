@@ -4,7 +4,7 @@
  * Plugin Name: RevivePress
  * Plugin URI: https://wprevivepress.com?utm_source=landing&utm_medium=plugin
  * Description: RevivePress (formerly WP Auto Republish), the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
- * Version: 1.3.3
+ * Version: 1.3.4
  * Author: Sayan Datta
  * Author URI: https://sayandatta.in
  * License: GPLv3
@@ -40,11 +40,7 @@ if ( !defined( 'ABSPATH' ) ) {
 if ( function_exists( 'revivepress_fs' ) ) {
     revivepress_fs()->set_basename( false, __FILE__ );
     return;
-}
-
-// include freemius sdk
-
-if ( !function_exists( 'revivepress_fs' ) ) {
+} else {
     // Create a helper function for easy SDK access.
     function revivepress_fs()
     {
@@ -86,7 +82,7 @@ if ( !function_exists( 'revivepress_fs' ) ) {
 
 // Define constants
 if ( !defined( 'REVIVEPRESS_VERSION' ) ) {
-    define( 'REVIVEPRESS_VERSION', '1.3.3' );
+    define( 'REVIVEPRESS_VERSION', '1.3.4' );
 }
 // Require once the Composer Autoload
 if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
@@ -149,25 +145,6 @@ if ( !function_exists( 'revivepress_freemius_logo' ) ) {
 
 }
 revivepress_fs()->add_filter( 'plugin_icon', 'revivepress_freemius_logo' );
-/**
- * Prevent trial notice from displaying
- */
-if ( !function_exists( 'revivepress_disable_trial_promo' ) ) {
-    function revivepress_disable_trial_promo( $show, $msg )
-    {
-        if ( 'trial_promotion' == $msg['id'] ) {
-            return false;
-        }
-        return $show;
-    }
-
-}
-revivepress_fs()->add_filter(
-    'show_admin_notice',
-    'revivepress_disable_trial_promo',
-    10,
-    2
-);
 /**
  * Flag Freemius options
  */

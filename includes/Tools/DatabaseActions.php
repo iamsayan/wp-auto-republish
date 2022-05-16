@@ -44,6 +44,9 @@ class DatabaseActions
         $posts = $this->get_posts( $args );
         if ( !empty($posts) ) {
             foreach ( $posts as $post_id ) {
+                // Remove schedules
+                $this->unschedule_all_actions( 'wpar/global_republish_single_post', [ $post_id ] );
+                // Remove metas
                 $metas = get_post_custom( $post_id );
                 foreach ( $metas as $key => $values ) {
                     if ( strpos( $key, 'wpar_' ) !== false ) {
@@ -52,38 +55,6 @@ class DatabaseActions
                         }
                     }
                 }
-            }
-        }
-        $this->remove_actions();
-    }
-    
-    /**
-     * Remove actions.
-     */
-    private function remove_actions()
-    {
-        $post_types = array_keys( $this->get_post_types() );
-        $args = $this->do_filter( 'remove_actions_args', [
-            'post_type'   => $post_types,
-            'numberposts' => -1,
-            'post_status' => 'publish',
-            'fields'      => 'ids',
-            'meta_query'  => [
-            'relation' => 'OR',
-            [
-            'key'     => 'wpar_global_republish_status',
-            'compare' => 'EXISTS',
-        ],
-            [
-            'key'     => 'wpar_single_republish_status',
-            'compare' => 'EXISTS',
-        ],
-        ],
-        ] );
-        $posts = $this->get_posts( $args );
-        if ( !empty($posts) ) {
-            foreach ( $posts as $post_id ) {
-                $this->unschedule_all_actions( 'wpar/global_republish_single_post', [ $post_id ] );
             }
         }
     }

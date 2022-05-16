@@ -70,13 +70,6 @@ class Enqueue extends BaseController
         );
         $this->load(
             'js',
-            'jquery-cookie',
-            'jquery.cookie.js',
-            '1.4.1',
-            [ 'jquery' ]
-        );
-        $this->load(
-            'js',
             'datetimepicker',
             'jquery-ui-timepicker-addon.min.js',
             '1.6.3',
@@ -106,8 +99,7 @@ class Enqueue extends BaseController
             'jquery-form',
             'revivepress-datetimepicker',
             'revivepress-selectize',
-            'revivepress-confirm',
-            'revivepress-jquery-cookie'
+            'revivepress-confirm'
         ]
         );
         
@@ -119,7 +111,6 @@ class Enqueue extends BaseController
             wp_enqueue_script( 'jquery-form' );
             wp_enqueue_script( 'jquery-ui-datepicker' );
             wp_enqueue_script( 'jquery-ui-sortable' );
-            wp_enqueue_script( 'revivepress-jquery-cookie' );
             wp_enqueue_script( 'revivepress-datetimepicker' );
             wp_enqueue_script( 'revivepress-selectize' );
             wp_enqueue_script( 'revivepress-confirm' );
@@ -136,8 +127,9 @@ class Enqueue extends BaseController
                 'done'              => __( 'Done!', 'wp-auto-republish' ),
                 'error'             => __( 'Error!', 'wp-auto-republish' ),
                 'deleting'          => __( 'Deleting...', 'wp-auto-republish' ),
+                'processing'        => __( 'Processing...', 'wp-auto-republish' ),
                 'warning'           => __( 'Warning!', 'wp-auto-republish' ),
-                'processing'        => __( 'Please wait while we are processing your request...', 'wp-auto-republish' ),
+                'under_process'     => __( 'Please wait while we are processing your request...', 'wp-auto-republish' ),
                 'save_button'       => __( 'Save Settings', 'wp-auto-republish' ),
                 'save_success'      => __( 'Settings Saved Successfully!', 'wp-auto-republish' ),
                 'are_you_sure'      => __( 'Are you sure that you want to delete this item?', 'wp-auto-republish' ),

@@ -2,8 +2,8 @@
 Contributors: infosatech
 Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 5.2
-Tested up to: 5.9
-Stable tag: 1.3.3
+Tested up to: 6.0
+Stable tag: 1.3.4
 Requires PHP: 7.2
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -140,6 +140,24 @@ No, plugin can handle it efficiently by tinkering the Permalink Structure.
 == Changelog ==
 
 If you like RevivePress (formerly WP Auto Republish), please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.3.4 =
+Release Date: 16th May, 2022
+
+= Premium Version =
+* Added: New Logging System.
+* Fixed: Action Schedular Error if WPML is active.
+* Removed: Rules and Logs Toogle Options from Settings.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Added: Option Under RevivePress > Dashboard > Misc to regenerate Action Schedular Tables if missing.
+* Added: CSS Improvements.
+* Improved: Conditional Logic.
+* Improved: Republish Interval per Day is now seperated and can be customized.
+* Fixed: Incrasing Gap between Two Scheduled Posts.
+* Removed: jQuery Cookie Library.
+* Compatibility with WordPress v6.0.
 
 = 1.3.3 =
 Release Date: 19th April, 2022
