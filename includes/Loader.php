@@ -36,6 +36,7 @@ final class Loader
             Core\SiteCache::class,
             Core\RepublishInfo::class,
             Tools\DatabaseActions::class,
+            Tools\DatabaseTable::class,
             Tools\Updates::class
         ];
         return $services;

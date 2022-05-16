@@ -36,5 +36,6 @@ return array(
     'RevivePress\\Loader' => $baseDir . '/includes/Loader.php',
     'RevivePress\\Pages\\Dashboard' => $baseDir . '/includes/Pages/Dashboard.php',
     'RevivePress\\Tools\\DatabaseActions' => $baseDir . '/includes/Tools/DatabaseActions.php',
+    'RevivePress\\Tools\\DatabaseTable' => $baseDir . '/includes/Tools/DatabaseTable.php',
     'RevivePress\\Tools\\Updates' => $baseDir . '/includes/Tools/Updates.php',
 );

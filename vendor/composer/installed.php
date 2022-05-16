@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '42883162ab7a926c0184208f74b198b29b1bd98c',
+        'reference' => '5ddf1d1db00a7e27c1758b2d3116475ed38be90d',
         'name' => 'sayan/wp-auto-republish',
         'dev' => true,
     ),
@@ -103,7 +103,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '42883162ab7a926c0184208f74b198b29b1bd98c',
+            'reference' => '5ddf1d1db00a7e27c1758b2d3116475ed38be90d',
             'dev_requirement' => false,
         ),
         'symfony/polyfill-intl-idn' => array(
@@ -134,12 +134,12 @@
             'dev_requirement' => false,
         ),
         'tumblr/tumblr' => array(
-            'pretty_version' => 'v0.4.0',
-            'version' => '0.4.0.0',
+            'pretty_version' => 'v0.4.1',
+            'version' => '0.4.1.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../tumblr/tumblr',
             'aliases' => array(),
-            'reference' => '308ad2a8a840ae8a8b70e96a19701b7ef1b00d0d',
+            'reference' => '64d5deab0837ef1017c41c640152a8e62a8de39f',
             'dev_requirement' => false,
         ),
         'woocommerce/action-scheduler' => array(
