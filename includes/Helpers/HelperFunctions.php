@@ -15,7 +15,7 @@ use  RevivePress\Helpers\Sitepress ;
 use  RevivePress\Helpers\SettingsData ;
 defined( 'ABSPATH' ) || exit;
 /**
- * Meta & Option class.
+ * Helper Functions class.
  */
 trait HelperFunctions
 {
@@ -23,7 +23,6 @@ trait HelperFunctions
     /**
      * Get all registered public post types.
      *
-     * @param bool $public Public type True or False.
      * @return array
      */
     protected function get_post_types()
@@ -235,24 +234,25 @@ trait HelperFunctions
     {
         switch ( $format ) {
             case 'F j, Y':
-                return 'MM dd, yy';
+                $format = 'MM dd, yy';
                 break;
             case 'Y/m/d':
-                return 'yy/mm/dd';
+                $format = 'yy/mm/dd';
                 break;
             case 'm/d/Y':
-                return 'mm/dd/yy';
+                $format = 'mm/dd/yy';
                 break;
             case 'd/m/Y':
-                return 'dd/mm/yy';
+                $format = 'dd/mm/yy';
                 break;
             case 'Y-m-d':
-                return 'yy-mm-dd';
+                $format = 'yy-mm-dd';
                 break;
             case 'd.m.Y':
-                return 'dd.mm.yy';
+                $format = 'dd.mm.yy';
                 break;
         }
+        return $format;
     }
     
     /**
@@ -269,28 +269,20 @@ trait HelperFunctions
     }
     
     /**
-     * Return transient name
+     * Return transient value
      * 
      * @since 1.3.0
-     * @return bool
+     * @return int
      */
-    protected function get_daily_allowed( $value = false )
+    protected function get_daily_completed()
     {
         $timestamp = $this->current_timestamp();
         $transient_name = 'wpar_daily_' . gmdate( 'Y_m_d', $timestamp );
-        
-        if ( $value ) {
-            $transient = get_transient( $transient_name );
-            
-            if ( !empty($transient) && is_array( $transient ) ) {
-                return $transient;
-            } else {
-                return false;
-            }
-        
+        $numbers_proceed = get_transient( $transient_name );
+        if ( !$numbers_proceed ) {
+            return 0;
         }
-        
-        return $transient_name;
+        return count( $numbers_proceed );
     }
     
     /**
@@ -333,11 +325,11 @@ trait HelperFunctions
     protected function str_to_second( $input )
     {
         $times = explode( ' ', preg_replace( '!\\s+!', ' ', str_replace( [ ',', '-', '_' ], ' ', $input ) ) );
-        $total_time = [];
+        $total_time = 0;
         foreach ( $times as $time ) {
-            $total_time[] = $this->convert_str_to_second( $time );
+            $total_time += $this->convert_str_to_second( $time );
         }
-        return array_sum( $total_time );
+        return $total_time;
     }
     
     /**
@@ -382,7 +374,7 @@ trait HelperFunctions
             default:
                 $output = MINUTE_IN_SECONDS;
         }
-        return $output;
+        return (int) $output;
     }
     
     /**
@@ -526,8 +518,8 @@ trait HelperFunctions
      */
     protected function validate_date( $date, $format = 'Y-m-d H:i:s' )
     {
-        $d = DateTime::createFromFormat( $format, $date );
-        return $d && $d->format( $format ) == $date;
+        $date_time = DateTime::createFromFormat( $format, $date );
+        return $date_time && $date_time->format( $format ) == $date;
     }
 
 }

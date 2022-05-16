@@ -46,6 +46,12 @@ class BaseController
      */
     public  $name ;
     /**
+     * Plugin tag.
+     *
+     * @var string
+     */
+    public  $tag ;
+    /**
      * The constructor.
      */
     public function __construct()

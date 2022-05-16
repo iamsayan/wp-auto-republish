@@ -71,13 +71,13 @@ class DatabaseTable
 	 * Force the data store schema updates.
 	 */
 	private function recreate_actionscheduler_tables() {
-		$store = new \ActionScheduler_HybridStore();
+		$store = new \ActionScheduler_HybridStore(); // @phpstan-ignore-line
 		add_action( 'action_scheduler/created_table', [ $store, 'set_autoincrement' ], 10, 2 );
 
-		$store_schema  = new \ActionScheduler_StoreSchema();
-		$logger_schema = new \ActionScheduler_LoggerSchema();
-		$store_schema->register_tables( true );
-		$logger_schema->register_tables( true );
+		$store_schema  = new \ActionScheduler_StoreSchema(); // @phpstan-ignore-line
+		$logger_schema = new \ActionScheduler_LoggerSchema(); // @phpstan-ignore-line
+		$store_schema->register_tables( true ); // @phpstan-ignore-line
+		$logger_schema->register_tables( true ); // @phpstan-ignore-line
 
 		remove_action( 'action_scheduler/created_table', [ $store, 'set_autoincrement' ], 10 );
 	}

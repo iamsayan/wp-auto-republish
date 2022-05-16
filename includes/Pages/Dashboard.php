@@ -23,20 +23,14 @@ class Dashboard
     use  HelperFunctions ;
     /**
      * Settings.
-     *
-     * @var array
      */
     public  $settings ;
     /**
      * Callbacks.
-     *
-     * @var array
      */
     public  $callbacks ;
     /**
      * Callback Managers.
-     *
-     * @var array
      */
     public  $callbacks_manager ;
     /**
@@ -145,13 +139,14 @@ class Dashboard
         $managers = [
             'default'        => [
             'enable_plugin'              => __( 'Enable Auto Republishing?', 'wp-auto-republish' ),
-            'minimun_republish_interval' => __( 'Run Republish Process in Every', 'wp-auto-republish' ),
+            'republish_interval_days'    => __( 'Schedule Auto Republish Process Every (in days)', 'wp-auto-republish' ),
+            'minimun_republish_interval' => __( 'Republish Process Interval within a Day', 'wp-auto-republish' ),
             'random_republish_interval'  => __( 'Date Time Random Interval', 'wp-auto-republish' ),
-            'republish_post_position'    => __( 'Republish Post to Position', 'wp-auto-republish' ),
             'republish_time_specific'    => __( 'Time Specific Republishing', 'wp-auto-republish' ),
             'republish_time_start'       => __( 'Start Time for Republishing', 'wp-auto-republish' ),
             'republish_time_end'         => __( 'End Time for Republishing', 'wp-auto-republish' ),
             'republish_days'             => __( 'Select Weekdays to Republish', 'wp-auto-republish' ),
+            'republish_post_position'    => __( 'Republish Post to Position', 'wp-auto-republish' ),
         ],
             'republish_info' => [
             'republish_info'      => __( 'Show Original Publication Date', 'wp-auto-republish' ),

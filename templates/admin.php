@@ -61,7 +61,7 @@ esc_html_e( 'Share', 'wp-auto-republish' );
 ?></a>
     </div>
 </div>
-<div class="wrap wpar-wrap" data-reload="no">
+<div class="wrap wpar-wrap" data-reload="no" data-regenerate="no">
     <h2 style="display: none;"></h2>
     <div id="poststuff">
         <div id="post-body" class="metabox-holder">
@@ -118,10 +118,6 @@ $this->doSettingsSection( [
 ] );
 ?>
                 </form>
-
-                <?php 
-?>
-
                 <div id="wpar-tools" class="postbox wpar-tools d-none">
                     <?php 
 $this->sectionHeader( 'Plugin Tools', __( 'Perform database related actions from here.', 'wp-auto-republish' ) );
@@ -219,10 +215,17 @@ $data = [
     [
     'heading' => __( 'Re-Create Missing Database Tables', 'wp-auto-republish' ),
     'hint'    => __( 'Check if required tables exist and create them if not.', 'wp-auto-republish' ),
-    'notice'  => __( 'It will check if required Action Schedular tables exist and create them if not. Do you want to continue?', 'wp-auto-republish' ),
     'success' => __( 'Success! Table creation proceeded successfully!', 'wp-auto-republish' ),
     'action'  => 'process_fix_database_tables',
     'button'  => __( 'Re-Create Tables', 'wp-auto-republish' ),
+    'type'    => 'blue',
+],
+    [
+    'heading' => __( 'Re-Generate Republish Interval', 'wp-auto-republish' ),
+    'hint'    => __( 'It will regenerate Schedule Auto Republish Process Interval.', 'wp-auto-republish' ),
+    'success' => __( 'Success! Schedule regenerated successfully!', 'wp-auto-republish' ),
+    'action'  => 'process_regenerate_schedule',
+    'button'  => __( 'Re-Generate Interval', 'wp-auto-republish' ),
     'type'    => 'blue',
 ]
 ];
@@ -231,6 +234,7 @@ foreach ( $data as $args ) {
         'reload' => false,
         'type'   => 'red',
         'button' => $args['heading'],
+        'notice' => '',
     ] );
     ?>
                             <div class="wpar-tools-box">
@@ -243,7 +247,9 @@ foreach ( $data as $args ) {
     ?>
                                 </p>
                                 <p>
-                                    <input type="button" class="button button-large button-secondary default wpar-reset" data-type="<?php 
+                                    <input type="button" id="<?php 
+    echo  esc_attr( str_replace( 'process_', 'rvp_', $box['action'] ) ) ;
+    ?>" class="button button-large button-secondary default wpar-reset" data-type="<?php 
     echo  esc_attr( $box['type'] ) ;
     ?>" data-action="wpar_<?php 
     echo  esc_attr( $box['action'] ) ;
