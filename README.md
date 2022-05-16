@@ -1,4 +1,4 @@
-![alt text](https://github.com/iamsayan/wp-auto-republish/raw/master/banner.png "Plugin Banner")
+![RevivePress](.github/banner.png "Plugin Banner")
 
 # RevivePress
 RevivePress (formerly WP Auto Republish), the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.

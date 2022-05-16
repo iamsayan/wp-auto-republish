@@ -1,6 +1,38 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.3.4
+Release Date: 16th May, 2022
+
+### Premium Version
+* Added: New Logging System.
+* Fixed: Action Schedular Error if WPML is active.
+* Removed: Rules and Logs Toogle Options from Settings.
+* And all Free Version Improvements and Fixes.
+
+### Free Version
+* Added: Option Under RevivePress > Dashboard > Misc to regenerate Action Schedular Tables if missing.
+* Added: CSS Improvements.
+* Improved: Conditional Logic.
+* Improved: Republish Interval per Day is now seperated and can be customized.
+* Fixed: Incrasing Gap between Two Scheduled Posts.
+* Removed: jQuery Cookie Library.
+* Compatibility with WordPress v6.0.
+
+## 1.3.3
+Release Date: 19th April, 2022
+
+### Premium Version
+* Added: RevivePress tags in Permalinks Tags List under Settings > Permalinks.
+* Fixed: Action Schedular Error if WPML is active.
+* And all Free Version Improvements and Fixes.
+
+### Free Version
+* Added: Option Under RevivePress > Dashboard > Misc to regenerate Action Schedular Tables if missing.
+* Added: CSS Tweaks.
+* Fixed: Conditional logic.
+* Minimum Required PHP version is now v7.2
+
 ## 1.3.2
 Release Date: 10th April, 2022
 
