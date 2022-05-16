@@ -28,20 +28,20 @@ class AdminNotice extends BaseController
 	public function register() {
 		$this->action( 'admin_notices', 'install_notice' );
 		$this->action( 'admin_init', 'fix_action' );
-		$this->action( 'wpar/after_plugin_activate', 'fix_permalink' );
+		//$this->action( 'wpar/after_plugin_activate', 'fix_permalink' );
 	}
 	
 	/**
 	 * Show internal admin notices.
 	 */
 	public function install_notice() {
-		// Show a warning to sites running PHP < 5.6
-		if ( version_compare( PHP_VERSION, '5.6', '<' ) ) {
+		// Show a warning to sites running PHP < 7.2
+		if ( version_compare( PHP_VERSION, '7.2', '<' ) ) {
 			deactivate_plugins( $this->plugin );
 			if ( isset( $_GET['activate'] ) ) { // phpcs:ignore
 				unset( $_GET['activate'] ); // phpcs:ignore
 			}
-			echo '<div class="error"><p>' . sprintf( esc_html__( 'Your version of PHP is below the minimum version of PHP required by %s plugin. Please contact your host and request that your version be upgraded to 5.6 or later.', 'wp-auto-republish' ), esc_html( $this->name ) ) . '</p></div>';
+			echo '<div class="error"><p>' . sprintf( esc_html__( 'Your version of PHP is below the minimum version of PHP required by %s plugin. Please contact your host and request that your version be upgraded to 7.2 or later.', 'wp-auto-republish' ), esc_html( $this->name ) ) . '</p></div>';
 			return;
 		}
 
@@ -64,7 +64,7 @@ class AdminNotice extends BaseController
 		if ( preg_match( '(%year%|%monthnum%|%day%|%hour%|%minute%|%second%)', $permalink_structure ) === 1 ) { ?>
 			<div class="notice notice-warning">
 				<p style="line-height: 1.8;">
-					<strong><?php echo esc_html( $this->name ); ?></strong>: <em><?php printf( esc_html__( 'As it seems that your permalinks structure contains date, please use %1$s instead of %2$s respectively. Otherwise, it may create SEO issues. Click the below button to fix automatically.', 'wp-auto-republish' ), '<code>%rvp_year%</code>, <code>%rvp_monthnum%</code>, <code>%rvp_day%</code>, <code>%rvp_hour%</code>, <code>%rvp_minute%</code>, <code>%rvp_second%</code>', '<code>%year%</code>, <code>%monthnum%</code>, <code>%day%</code>, <code>%hour%</code>, <code>%minute%</code>, <code>%second%</code>' ); ?></em>
+					<strong><?php echo esc_html( $this->name ); ?></strong>: <em><?php printf( esc_html__( 'As it seems that your permalinks structure contains date, please use %1$s instead of %2$s respectively. Otherwise, it may create SEO issues. But, if you want to use different permalink structure everytime after republish, you can safely dismiss this warning.', 'wp-auto-republish' ), '<code>%rvp_year%</code>, <code>%rvp_monthnum%</code>, <code>%rvp_day%</code>, <code>%rvp_hour%</code>, <code>%rvp_minute%</code>, <code>%rvp_second%</code>', '<code>%year%</code>, <code>%monthnum%</code>, <code>%day%</code>, <code>%hour%</code>, <code>%minute%</code>, <code>%second%</code>' ); ?></em>
 				</p>
 				<p style="margin-bottom: 10px;">
 					<a href="<?php echo esc_url( $fix_url ); ?>" class="button button-secondary"><strong><?php esc_html_e( 'Fix Permalink Structure', 'wp-auto-republish' ); ?></strong></a>&nbsp;&nbsp;
@@ -93,7 +93,7 @@ class AdminNotice extends BaseController
 			flush_rewrite_rules();
 		}
 	
-		wp_safe_redirect( remove_query_arg( [ 'rvp_sync_permalink', '_wpnonce' ] ) );
+		wp_safe_redirect( admin_url( 'options-permalink.php' ) );
 		exit;
 	}
 

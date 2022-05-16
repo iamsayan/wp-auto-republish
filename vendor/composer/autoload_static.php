@@ -64,6 +64,7 @@ class ComposerStaticInitd5699dfd0ed62714b22c430580475703
         'RevivePress\\Loader' => __DIR__ . '/../..' . '/includes/Loader.php',
         'RevivePress\\Pages\\Dashboard' => __DIR__ . '/../..' . '/includes/Pages/Dashboard.php',
         'RevivePress\\Tools\\DatabaseActions' => __DIR__ . '/../..' . '/includes/Tools/DatabaseActions.php',
+        'RevivePress\\Tools\\DatabaseTable' => __DIR__ . '/../..' . '/includes/Tools/DatabaseTable.php',
         'RevivePress\\Tools\\Updates' => __DIR__ . '/../..' . '/includes/Tools/Updates.php',
     );
 

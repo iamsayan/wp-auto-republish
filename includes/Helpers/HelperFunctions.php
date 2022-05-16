@@ -213,6 +213,20 @@ trait HelperFunctions
     }
     
     /**
+     * Insert the plugins settings in proper place.
+     *
+     * @param  array   $array     Default setting fields.
+     * @param  integer $position  Insertion position.
+     * @param  array   $insert    Field.
+     * @return array
+     */
+    protected function insert_settings( $array, $position, $insert )
+    {
+        $array = array_merge( array_slice( $array, 0, $position ), $insert, array_slice( $array, $position ) );
+        return $array;
+    }
+    
+    /**
      * Convert PHP date for to JS Date Format
      * 
      * @return string

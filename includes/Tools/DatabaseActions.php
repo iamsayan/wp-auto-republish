@@ -25,15 +25,14 @@ class DatabaseActions
      */
     public function register()
     {
-        $this->action( 'wpar/remove_post_metadata', 'meta_cleanup', 20 );
-        $this->action( 'wpar/remove_post_metadata', 'remove_actions', 5 );
+        $this->action( 'wpar/remove_post_metadata', 'run_cleanup' );
         $this->action( 'wpar/deschedule_posts', 'deschedule_posts' );
     }
     
     /**
      * Post meta cleanup.
      */
-    public function meta_cleanup()
+    public function run_cleanup()
     {
         $post_types = array_keys( $this->get_post_types() );
         $args = [
@@ -55,15 +54,16 @@ class DatabaseActions
                 }
             }
         }
+        $this->remove_actions();
     }
     
     /**
      * Remove actions.
      */
-    public function remove_actions()
+    private function remove_actions()
     {
         $post_types = array_keys( $this->get_post_types() );
-        $args = [
+        $args = $this->do_filter( 'remove_actions_args', [
             'post_type'   => $post_types,
             'numberposts' => -1,
             'post_status' => 'publish',
@@ -79,13 +79,10 @@ class DatabaseActions
             'compare' => 'EXISTS',
         ],
         ],
-        ];
-        $args = $this->do_filter( 'remove_actions_args', $args );
-        //error_log( print_r( $args, true ) );
+        ] );
         $posts = $this->get_posts( $args );
         if ( !empty($posts) ) {
             foreach ( $posts as $post_id ) {
-                // get republish time from post meta
                 $this->unschedule_all_actions( 'wpar/global_republish_single_post', [ $post_id ] );
             }
         }
@@ -97,7 +94,7 @@ class DatabaseActions
     public function deschedule_posts()
     {
         $post_types = array_keys( $this->get_post_types() );
-        $args = [
+        $args = $this->do_filter( 'deschedule_posts_args', [
             'post_type'   => $post_types,
             'numberposts' => -1,
             'post_status' => [ 'publish', 'future', 'private' ],
@@ -106,19 +103,17 @@ class DatabaseActions
             'key'     => '_wpar_original_pub_date',
             'compare' => 'EXISTS',
         ] ],
-        ];
-        $args = $this->do_filter( 'deschedule_posts_args', $args );
-        //error_log( print_r( $args, true ) );
+        ] );
         $posts = $this->get_posts( $args );
         if ( !empty($posts) ) {
             foreach ( $posts as $post_id ) {
                 // get original published date
                 $pub_date = $this->get_meta( $post_id, '_wpar_original_pub_date' );
                 // update posts
-                wp_update_post( [
+                \wp_update_post( [
                     'ID'            => $post_id,
                     'post_date'     => $pub_date,
-                    'post_date_gmt' => get_gmt_from_date( $pub_date ),
+                    'post_date_gmt' => \get_gmt_from_date( $pub_date ),
                 ] );
                 // delete old meta
                 $this->delete_meta( $post_id, '_wpar_original_pub_date' );

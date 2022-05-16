@@ -61,8 +61,8 @@ class Actions extends BaseController
      */
     public function roadmap_link()
     {
-        global  $submenu ;
         $manage_options_cap = apply_filters( 'wpar/manage_options_capability', 'manage_options' );
+        global  $submenu ;
         $submenu['revivepress'][9] = [ __( 'Roadmap', 'wp-auto-republish' ), $manage_options_cap, 'https://api.wprevivepress.com/go/roadmap?utm_source=admin_menu&utm_medium=plugin' ];
         ksort( $submenu['revivepress'], SORT_NUMERIC );
     }

@@ -29,6 +29,7 @@ class RewritePermainks
 		$this->action( 'init','rewrite_tag' );
         $this->filter( 'post_link', 'filter_post_link', 10, 2 );
         $this->filter( 'post_type_link', 'filter_post_link', 10, 2 );
+        $this->filter( 'available_permalink_structure_tags', 'available_tags' );
 	}
 
 	/**
@@ -85,5 +86,32 @@ class RewritePermainks
 		];
 
 		return str_replace( $rewritecode, $rewritereplace, $permalink );
+	}
+
+	/**
+	 * Filter post permalink available tags lists.
+	 * 
+	 * @since 1.3.3
+	 * @param array $tags   Existing tags.
+	 *
+	 * @return array        Filtered tags array
+	 */
+	public function available_tags( $tags ) {
+		$available_tags = array(
+			/* translators: %s: Permalink structure tag. */
+			'rvp_year'     => __( '%s (The year of the post, four digits, for example 2004.)' ),
+			/* translators: %s: Permalink structure tag. */
+			'rvp_monthnum' => __( '%s (Month of the year, for example 05.)' ),
+			/* translators: %s: Permalink structure tag. */
+			'rvp_day'      => __( '%s (Day of the month, for example 28.)' ),
+			/* translators: %s: Permalink structure tag. */
+			'rvp_hour'     => __( '%s (Hour of the day, for example 15.)' ),
+			/* translators: %s: Permalink structure tag. */
+			'rvp_minute'   => __( '%s (Minute of the hour, for example 43.)' ),
+			/* translators: %s: Permalink structure tag. */
+			'rvp_second'   => __( '%s (Second of the minute, for example 33.)' ),
+		);
+		
+		return array_merge( $tags, $available_tags );
 	}
 }

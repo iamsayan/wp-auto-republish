@@ -39,7 +39,9 @@ class FetchPosts
         if ( false === get_transient( $transient_name ) ) {
             set_transient( $transient_name, [], DAY_IN_SECONDS );
         }
-        $this->check_and_create_tasks();
+        if ( $this->is_enabled( 'enable_plugin', true ) ) {
+            $this->check_and_create_tasks();
+        }
     }
     
     /**
@@ -48,7 +50,7 @@ class FetchPosts
     public function check_and_create_tasks()
     {
         
-        if ( $this->is_enabled( 'enable_plugin', true ) && $this->valid_next_run() ) {
+        if ( $this->valid_next_run() ) {
             update_option( 'wpar_last_global_cron_run', $this->current_timestamp() );
             $this->create_tasks();
         }
