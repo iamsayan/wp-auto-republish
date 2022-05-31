@@ -42,7 +42,6 @@ class FetchPosts
         if ( ! wp_next_scheduled( 'wpar/schedular_health_check' ) ) {
             wp_schedule_event( time(), 'hourly', 'wpar/schedular_health_check' );
         }
-        //error_log(date('Y-m-d H:i:s', $this->get_next_action( 'wpar/global_schedule_next_date' )));
         $scheduled = get_option( 'wpar_next_scheduled' );
         
         if ( ! $scheduled && ! $this->has_next_action( 'wpar/global_schedule_next_date' ) ) {

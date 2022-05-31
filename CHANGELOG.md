@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.3.6
+Release Date: 31st May, 2022
+
+* Updated: Action Schedular Library.
+
 ## 1.3.5
 Release Date: 26th May, 2022
 
