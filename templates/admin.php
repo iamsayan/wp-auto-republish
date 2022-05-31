@@ -24,9 +24,7 @@ esc_html_e( 'General', 'wp-auto-republish' );
     <a href="#post" class="wpar-tab" id="wpar-tab-post"><?php 
 esc_html_e( 'Posts', 'wp-auto-republish' );
 ?></a>
-    <?php 
-?>
-    <a href="#misc" class="wpar-tab" id="wpar-tab-misc"><?php 
+        <a href="#misc" class="wpar-tab" id="wpar-tab-misc"><?php 
 esc_html_e( 'Misc.', 'wp-auto-republish' );
 ?></a>
     <a href="#tools" class="wpar-tab" id="wpar-tab-tools"><?php 
@@ -35,9 +33,7 @@ esc_html_e( 'Tools', 'wp-auto-republish' );
     <a href="https://wprevivepress.com/docs/?utm_source=dashboard&utm_medium=plugin" target="_blank" class="wpar-tab type-link" id="wpar-tab-help"><?php 
 esc_html_e( 'Help', 'wp-auto-republish' );
 ?></a>
-    <?php 
-?>
-        <a href="<?php 
+            <a href="<?php 
 echo  esc_url( revivepress_fs()->get_upgrade_url() ) ;
 ?>" target="_blank" class="wpar-tab type-link btn-upgrade wpar-upgrade" id="wpar-tab-upgrade">
             <span class="dashicons dashicons-admin-plugins"></span>
@@ -45,9 +41,7 @@ echo  esc_url( revivepress_fs()->get_upgrade_url() ) ;
 esc_html_e( 'Upgrade to Premium', 'wp-auto-republish' );
 ?></p>
         </a>
-    <?php 
-?>
-    <div class="top-sharebar">
+        <div class="top-sharebar">
         <a class="share-btn rate-btn no-popup" href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" title="<?php 
 esc_html_e( 'Please rate 5 stars if you like RevivePress', 'wp-auto-republish' );
 ?>"><span class="dashicons dashicons-star-filled"></span> <?php 
@@ -66,9 +60,7 @@ esc_html_e( 'Share', 'wp-auto-republish' );
     <div id="poststuff">
         <div id="post-body" class="metabox-holder">
             <div id="post-body-content" class="wpar-metabox">
-                <?php 
-?>
-                    <div class="wpar-upgrade-notice" id="wpar-upgrade-notice">
+                                    <div class="wpar-upgrade-notice" id="wpar-upgrade-notice">
                         <p>
                             Republish & Share your Evergreen Content with more controls. Get <strong>RevivePress Premium</strong>!
                             <a class="wpar-upgrade" href="<?php 
@@ -76,9 +68,7 @@ echo  esc_url( revivepress_fs()->get_upgrade_url() ) ;
 ?>" target="_blank">Click here to see all the exciting features.</a>
                         </p>
                     </div>
-                <?php 
-?>
-                <form id="wpar-settings-form" method="post" action="options.php">
+                                <form id="wpar-settings-form" method="post" action="options.php">
                     <?php 
 settings_fields( 'wpar_plugin_settings_fields' );
 $this->doSettingsSection( [
@@ -190,44 +180,44 @@ if ( current_user_can( 'manage_options' ) ) {
 
 $data = [
     [
-    'heading' => __( 'Reset Settings', 'wp-auto-republish' ),
-    'hint'    => __( 'Resetting will delete all custom options to the default settings of the plugin in your database.', 'wp-auto-republish' ),
-    'notice'  => __( 'It will delete all the data relating to this plugin settings. You have to re-configure this plugin again. Do you want to still continue?', 'wp-auto-republish' ),
-    'success' => __( 'Success! Plugin Settings reset successfully.', 'wp-auto-republish' ),
-    'action'  => 'process_delete_plugin_data',
-    'reload'  => true,
-],
+		'heading' => __( 'Reset Settings', 'wp-auto-republish' ),
+		'hint'    => __( 'Resetting will delete all custom options to the default settings of the plugin in your database.', 'wp-auto-republish' ),
+		'notice'  => __( 'It will delete all the data relating to this plugin settings. You have to re-configure this plugin again. Do you want to still continue?', 'wp-auto-republish' ),
+		'success' => __( 'Success! Plugin Settings reset successfully.', 'wp-auto-republish' ),
+		'action'  => 'process_delete_plugin_data',
+		'reload'  => true,
+	],
     [
-    'heading' => __( 'Remove Post Meta & Actions', 'wp-auto-republish' ),
-    'hint'    => __( 'Resetting will delete all post metadatas and future action events associated with Post Republish.', 'wp-auto-republish' ),
-    'notice'  => __( 'It will delete all the post meta data & action events relating to global and single post republishing. It may stop previous scheduled republished event. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
-    'success' => __( 'Success! All post meta datas and republish events deleted successfully!', 'wp-auto-republish' ),
-    'action'  => 'process_delete_post_metas',
-    'button'  => __( 'Clear Post Metas & Events', 'wp-auto-republish' ),
-],
+		'heading' => __( 'Remove Post Meta & Actions', 'wp-auto-republish' ),
+		'hint'    => __( 'Resetting will delete all post metadatas and future action events associated with Post Republish.', 'wp-auto-republish' ),
+		'notice'  => __( 'It will delete all the post meta data & action events relating to global and single post republishing. It may stop previous scheduled republished event. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
+		'success' => __( 'Success! All post meta datas and republish events deleted successfully!', 'wp-auto-republish' ),
+		'action'  => 'process_delete_post_metas',
+		'button'  => __( 'Clear Post Metas & Events', 'wp-auto-republish' ),
+	],
     [
-    'heading' => __( 'De-Schedule Posts', 'wp-auto-republish' ),
-    'hint'    => __( 'It will change the republish date to the original post published date on all posts.', 'wp-auto-republish' ),
-    'notice'  => __( 'It will change the republish date to the original post published date on all posts. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
-    'success' => __( 'Success! All posts de-scheduled successfully!', 'wp-auto-republish' ),
-    'action'  => 'process_deschedule_posts',
-],
+		'heading' => __( 'De-Schedule Posts', 'wp-auto-republish' ),
+		'hint'    => __( 'It will change the republish date to the original post published date on all posts.', 'wp-auto-republish' ),
+		'notice'  => __( 'It will change the republish date to the original post published date on all posts. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
+		'success' => __( 'Success! All posts de-scheduled successfully!', 'wp-auto-republish' ),
+		'action'  => 'process_deschedule_posts',
+	],
     [
-    'heading' => __( 'Re-Create Missing Database Tables', 'wp-auto-republish' ),
-    'hint'    => __( 'Check if required tables exist and create them if not.', 'wp-auto-republish' ),
-    'success' => __( 'Success! Table creation proceeded successfully!', 'wp-auto-republish' ),
-    'action'  => 'process_fix_database_tables',
-    'button'  => __( 'Re-Create Tables', 'wp-auto-republish' ),
-    'type'    => 'blue',
-],
+		'heading' => __( 'Re-Create Missing Database Tables', 'wp-auto-republish' ),
+		'hint'    => __( 'Check if required tables exist and create them if not.', 'wp-auto-republish' ),
+		'success' => __( 'Success! Table creation proceeded successfully!', 'wp-auto-republish' ),
+		'action'  => 'process_fix_database_tables',
+		'button'  => __( 'Re-Create Tables', 'wp-auto-republish' ),
+		'type'    => 'blue',
+	],
     [
-    'heading' => __( 'Re-Generate Republish Interval', 'wp-auto-republish' ),
-    'hint'    => __( 'It will regenerate Schedule Auto Republish Process Interval.', 'wp-auto-republish' ),
-    'success' => __( 'Success! Schedule regenerated successfully!', 'wp-auto-republish' ),
-    'action'  => 'process_regenerate_schedule',
-    'button'  => __( 'Re-Generate Interval', 'wp-auto-republish' ),
-    'type'    => 'blue',
-]
+		'heading' => __( 'Re-Generate Republish Interval', 'wp-auto-republish' ),
+		'hint'    => __( 'It will regenerate Schedule Auto Republish Process Interval.', 'wp-auto-republish' ),
+		'success' => __( 'Success! Schedule regenerated successfully!', 'wp-auto-republish' ),
+		'action'  => 'process_regenerate_schedule',
+		'button'  => __( 'Re-Generate Interval', 'wp-auto-republish' ),
+		'type'    => 'blue',
+	],
 ];
 foreach ( $data as $args ) {
     $box = wp_parse_args( $args, [
@@ -267,6 +257,22 @@ foreach ( $data as $args ) {
                             <?php 
 }
 ?>
+                    </div>
+                </div>
+
+                <div id="wpar-status" class="postbox wpar-tools d-none">
+				    <div class="inside wpar-inside" style="padding: 15px 20px;">
+                        <div class="wpar-tools-box">
+                            <span><?php 
+esc_html_e( 'System Status', 'wp-auto-republish' );
+?></span>
+                            <p><?php 
+esc_html_e( 'In order to use this plugin, please ensure your server meets the following PHP configurations. Your hosting provider will help you modify server configurations, if required.', 'wp-auto-republish' );
+?></p>
+                            <?php 
+$this->systemStatus();
+?>
+                        </div>
                     </div>
                 </div>
 

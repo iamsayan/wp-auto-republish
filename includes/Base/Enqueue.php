@@ -22,16 +22,14 @@ class Enqueue extends BaseController
     /**
      * Register functions.
      */
-    public function register()
-    {
+    public function register() {
         $this->action( 'admin_enqueue_scripts', 'load_assets' );
     }
     
     /**
      * Load admin assets.
      */
-    public function load_assets( $hook )
-    {
+    public function load_assets( $hook ) {
         $this->load(
             'css',
             'jquery-ui',
@@ -62,11 +60,11 @@ class Enqueue extends BaseController
             'admin.min.css',
             $this->version,
             [
-            'revivepress-jquery-ui',
-            'revivepress-jquery-ui-timepicker',
-            'revivepress-selectize',
-            'revivepress-confirm'
-        ]
+				'revivepress-jquery-ui',
+				'revivepress-jquery-ui-timepicker',
+				'revivepress-selectize',
+				'revivepress-confirm',
+			]
         );
         $this->load(
             'js',
@@ -95,12 +93,12 @@ class Enqueue extends BaseController
             'admin.min.js',
             $this->version,
             [
-            'jquery',
-            'jquery-form',
-            'revivepress-datetimepicker',
-            'revivepress-selectize',
-            'revivepress-confirm'
-        ]
+				'jquery',
+				'jquery-form',
+				'revivepress-datetimepicker',
+				'revivepress-selectize',
+				'revivepress-confirm',
+			]
         );
         
         if ( 'toplevel_page_revivepress' === $hook ) {
@@ -156,7 +154,7 @@ class Enqueue extends BaseController
                 'edit_template'     => __( 'Edit Template', 'wp-auto-republish' ),
                 'save_template'     => __( 'Save Template', 'wp-auto-republish' ),
                 'is_premium'        => revivepress_fs()->can_use_premium_code__premium_only(),
-                'can_use_trial'     => revivepress_fs()->is_not_paying() && !revivepress_fs()->is_trial() && !revivepress_fs()->is_trial_utilized(),
+                'can_use_trial'     => revivepress_fs()->is_not_paying() && ! revivepress_fs()->is_trial() && ! revivepress_fs()->is_trial_utilized(),
                 'security'          => wp_create_nonce( 'rvp_admin_nonce' ),
             ] );
         }
@@ -173,8 +171,7 @@ class Enqueue extends BaseController
         $version,
         $dep = array(),
         $end = true
-    )
-    {
+    ) {
         
         if ( $type == 'css' ) {
             wp_register_style(

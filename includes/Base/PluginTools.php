@@ -197,9 +197,7 @@ class PluginTools
 		$this->verify_nonce();
 		
 		$this->unschedule_all_actions( 'wpar/global_schedule_next_date' );
-		
-		$interval = $this->get_data( 'republish_interval_days', '1' );
-		$this->set_recurring_action( strtotime( 'today' ), $interval * DAY_IN_SECONDS, 'wpar/global_schedule_next_date' );
+		\delete_option( 'wpar_next_scheduled' );
 
 		$this->success();
 	}

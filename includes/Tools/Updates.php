@@ -30,6 +30,7 @@ class Updates extends BaseController
 	 */
 	private static $updates = [
 		'1.3.2' => 'updates/update-1.3.2.php',
+		'1.3.5' => 'updates/update-1.3.5.php',
 	];
 
 	/**

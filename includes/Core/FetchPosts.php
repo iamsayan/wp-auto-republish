@@ -23,27 +23,33 @@ class FetchPosts
     /**
      * Register functions.
      */
-    public function register()
-    {
+    public function register() {
         $this->action( 'init', 'process_start' );
         $this->action( 'wpar/global_republish_flat_posts', 'query_posts' );
         $this->action( 'wpar/global_republish_flat_posts_completed', 'complete' );
         $this->action( 'wpar/global_schedule_next_date', 'schedule_date' );
         $this->action( 'wpar/process_flat_batches', 'set_schedule' );
+        $this->action( 'wpar/schedular_health_check', 'schedule_health' );
     }
     
     /**
      * Generate Action event if not already exists.
      */
-    public function process_start()
-    {
-        if ( !$this->is_enabled( 'enable_plugin', true ) ) {
+    public function process_start() {
+        if ( ! $this->is_enabled( 'enable_plugin', true ) ) {
             return;
         }
+        if ( ! wp_next_scheduled( 'wpar/schedular_health_check' ) ) {
+            wp_schedule_event( time(), 'hourly', 'wpar/schedular_health_check' );
+        }
+        //error_log(date('Y-m-d H:i:s', $this->get_next_action( 'wpar/global_schedule_next_date' )));
+        $scheduled = get_option( 'wpar_next_scheduled' );
         
-        if ( !$this->has_next_action( 'wpar/global_schedule_next_date' ) ) {
+        if ( ! $scheduled && ! $this->has_next_action( 'wpar/global_schedule_next_date' ) ) {
+            $this->schedule_date();
             $interval = $this->get_data( 'republish_interval_days', '1' );
-            $this->set_recurring_action( strtotime( 'today' ), $interval * DAY_IN_SECONDS, 'wpar/global_schedule_next_date' );
+            $this->set_recurring_action( strtotime( 'tomorrow' ), $interval * DAY_IN_SECONDS, 'wpar/global_schedule_next_date' );
+            update_option( 'wpar_next_scheduled', true );
         }
         
         $timestamp = gmdate( 'd/m/Y', $this->current_timestamp() );
@@ -56,12 +62,19 @@ class FetchPosts
     /**
      * Save the date if republish is possible on that date.
      */
-    public function schedule_date()
-    {
+    public function schedule_date() {
         $timestamp = $this->current_timestamp();
-        $weekdays = $this->get_data( 'wpar_days' );
+        $weekdays = $this->get_data( 'wpar_days', [
+            'sun',
+            'mon',
+            'tue',
+            'wed',
+            'thu',
+            'fri',
+            'sat',
+        ] );
         
-        if ( !in_array( lcfirst( gmdate( 'D', $timestamp ) ), $weekdays, true ) ) {
+        if ( ! in_array( lcfirst( gmdate( 'D', $timestamp ) ), $weekdays, true ) ) {
             $i = 1;
             while ( $i <= 7 ) {
                 $next_timestamp = strtotime( '+' . $i . ' days', $timestamp );
@@ -80,8 +93,7 @@ class FetchPosts
     /**
      * Run post fetching process.
      */
-    public function check_and_create_tasks()
-    {
+    public function check_and_create_tasks() {
         
         if ( $this->valid_next_run() ) {
             update_option( 'wpar_last_global_cron_run', $this->current_timestamp() );
@@ -93,20 +105,18 @@ class FetchPosts
     /**
      * Get eligible posts.
      */
-    private function create_tasks()
-    {
+    private function create_tasks() {
         $post_types = $this->get_data( 'wpar_post_types', [ 'post' ] );
         
-        if ( !empty($post_types) ) {
+        if ( ! empty($post_types) ) {
             $counter = 0;
             foreach ( $post_types as $post_type ) {
                 
-                if ( !$this->has_future_posts( $post_type ) ) {
+                if ( ! $this->has_future_posts( $post_type ) ) {
                     $counter++;
                     $this->set_single_action( time() + 30 * ($counter / 2), 'wpar/global_republish_flat_posts', [ $post_type ] );
-                }
-            
-            }
+                }            
+}
             // Check for posts.
             $this->set_single_action( time() + 30 * (($counter + 1) / 2), 'wpar/global_republish_flat_posts_completed' );
         }
@@ -118,8 +128,7 @@ class FetchPosts
      *
      * @param string $post_type WordPress post types
      */
-    public function query_posts( string $post_type )
-    {
+    public function query_posts( string $post_type ) {
         $timestamp = $this->current_timestamp();
         $tax_filter = $this->get_data( 'wpar_exclude_by_type', 'none' );
         $taxonomies = $this->get_data( 'wpar_post_taxonomy', [] );
@@ -133,12 +142,14 @@ class FetchPosts
             'numberposts' => -1,
             'orderby'     => $orderby,
             'fields'      => 'ids',
-            'meta_query'  => [ [
-            'key'     => 'wpar_global_republish_status',
-            'compare' => 'NOT EXISTS',
-        ] ],
+            'meta_query'  => [
+				[
+					'key'     => 'wpar_global_republish_status',
+					'compare' => 'NOT EXISTS',
+				],
+			],
         ];
-        if ( !empty($order) ) {
+        if ( ! empty($order) ) {
             $args['order'] = ( $order == 'new_first' ? 'DESC' : 'ASC' );
         }
         
@@ -149,7 +160,7 @@ class FetchPosts
         
         $cats = $tags = $terms = [];
         
-        if ( $tax_filter != 'none' && !empty($taxonomies) ) {
+        if ( $tax_filter != 'none' && ! empty($taxonomies) ) {
             foreach ( $taxonomies as $taxonomy ) {
                 $get_item = explode( '|', $taxonomy );
                 $type = $get_item[0];
@@ -162,28 +173,25 @@ class FetchPosts
                     } elseif ( $taxonomy_name == 'post_tag' ) {
                         $tags[] = $term_id;
                     } else {
-                    }
-                
-                }
+                    }                
+}
             }
-            if ( !empty($cats) ) {
+            if ( ! empty($cats) ) {
                 
                 if ( $tax_filter == 'include' ) {
                     $args['category__in'] = wp_parse_id_list( $cats );
                 } else {
                     $args['category__not_in'] = wp_parse_id_list( $cats );
-                }
-            
-            }
-            if ( !empty($tags) ) {
+                }            
+}
+            if ( ! empty($tags) ) {
                 
                 if ( $tax_filter == 'include' ) {
                     $args['tag__in'] = wp_parse_id_list( $tags );
                 } else {
                     $args['tag__not_in'] = wp_parse_id_list( $tags );
-                }
-            
-            }
+                }            
+}
         }
         
         $args = $this->do_filter( 'query_args', $args, $post_type );
@@ -196,8 +204,7 @@ class FetchPosts
     /**
      * Complete
      */
-    public function complete()
-    {
+    public function complete() {
         $timestamp = $this->current_timestamp();
         $post_types = $this->get_data( 'wpar_post_types', [ 'post' ] );
         $number_posts = $this->get_data( 'number_of_posts', 1 );
@@ -206,15 +213,15 @@ class FetchPosts
         $include_ids = $this->filter_post_ids( $this->get_data( 'force_include' ) );
         $exclude_ids = $this->filter_post_ids( $this->get_data( 'wpar_override_category_tag' ) );
         $post_ids = get_option( 'wpar_global_republish_post_ids' );
-        if ( !$post_ids || !is_array( $post_ids ) ) {
+        if ( ! $post_ids || ! is_array( $post_ids ) ) {
             $post_ids = [];
         }
         
-        if ( !empty($post_ids) ) {
-            if ( !empty($include_ids) ) {
+        if ( ! empty($post_ids) ) {
+            if ( ! empty($include_ids) ) {
                 $post_ids = array_merge( $post_ids, $include_ids );
             }
-            if ( !empty($exclude_ids) ) {
+            if ( ! empty($exclude_ids) ) {
                 $post_ids = array_diff( $post_ids, $exclude_ids );
             }
             $args = [
@@ -225,22 +232,21 @@ class FetchPosts
                 'orderby'     => $orderby,
                 'fields'      => 'ids',
             ];
-            if ( !empty($order) ) {
+            if ( ! empty($order) ) {
                 $args['order'] = ( $order == 'new_first' ? 'DESC' : 'ASC' );
             }
             $args = $this->do_filter( 'post_query_args', $args );
             $post_ids = $this->do_filter( 'filtered_post_ids', $this->get_posts( $args ) );
             
-            if ( !empty($post_ids) ) {
+            if ( ! empty($post_ids) ) {
                 $counter = 0;
                 $chunks = \array_chunk( $post_ids, 50 );
                 foreach ( $chunks as $chunk ) {
                     $counter++;
                     $this->set_single_action( time() + 20 * ($counter / 2), 'wpar/process_flat_batches', [ $chunk ] );
                 }
-            }
-        
-        }
+            }        
+}
         
         // delete temp storage
         delete_option( 'wpar_global_republish_post_ids' );
@@ -252,8 +258,7 @@ class FetchPosts
      * @since 1.3.4
      * @param array   $post_ids  Post IDs
      */
-    public function set_schedule( array $post_ids )
-    {
+    public function set_schedule( array $post_ids ) {
         $timestamp = $this->current_timestamp();
         $utc_timestamp_raw = $this->next_schedule( $timestamp );
         $utc_timestamp = $utc_timestamp_raw;
@@ -287,8 +292,7 @@ class FetchPosts
      * 
      * @return int|string  Generated UTC timestamp
      */
-    private function next_schedule( int $timestamp, string $format = 'GMT' )
-    {
+    private function next_schedule( int $timestamp, string $format = 'GMT' ) {
         $slop = $this->get_data( 'wpar_random_republish_interval', 3600 );
         $timestamp = $timestamp + wp_rand( 30, $slop );
         $formatted_date = gmdate( 'Y-m-d H:i:s', $timestamp );
@@ -298,8 +302,7 @@ class FetchPosts
     /**
      * Check if current run is actually eligible.
      */
-    private function valid_next_run()
-    {
+    private function valid_next_run() {
         $last = get_option( 'wpar_last_global_cron_run' );
         $current_time = $this->current_timestamp();
         $interval = $this->get_data( 'wpar_minimun_republish_interval', 3600 );
@@ -314,9 +317,8 @@ class FetchPosts
                 if ( $current_time - $last >= $interval ) {
                     $proceed = true;
                 }
-            }
-        
-        }
+            }        
+}
         return $proceed;
     }
     
@@ -325,11 +327,18 @@ class FetchPosts
      * 
      * @return bool
      */
-    private function slot_available()
-    {
+    private function slot_available() {
         $timestamp = $this->current_timestamp();
-        $weekdays = $this->get_data( 'wpar_days' );
-        if ( !in_array( lcfirst( gmdate( 'D', $timestamp ) ), $weekdays, true ) ) {
+        $weekdays = $this->get_data( 'wpar_days', [
+            'sun',
+            'mon',
+            'tue',
+            'wed',
+            'thu',
+            'fri',
+            'sat',
+        ] );
+        if ( ! in_array( lcfirst( gmdate( 'D', $timestamp ) ), $weekdays, true ) ) {
             return false;
         }
         $time_based = $this->get_data( 'republish_time_specific', 'no' );
@@ -356,11 +365,9 @@ class FetchPosts
                     $available = true;
                 } elseif ( $current_timestamp >= $start_time && $current_timestamp <= $day_end ) {
                     $available = true;
-                }
-            
-            }
-        
-        }
+                }            
+}        
+}
         
         return $available;
     }
@@ -370,10 +377,9 @@ class FetchPosts
      * 
      * @since 1.1.7
      */
-    private function has_future_posts( string $post_type )
-    {
+    private function has_future_posts( string $post_type ) {
         $can_check = $this->do_filter( 'has_future_post_check', false, $post_type );
-        if ( !$can_check ) {
+        if ( ! $can_check ) {
             return false;
         }
         // cureent timestmap
@@ -386,12 +392,12 @@ class FetchPosts
             'post_status' => 'future',
             'fields'      => 'ids',
             'date_query'  => [
-            'year'  => gmdate( 'Y', $timestamp ),
-            'month' => gmdate( 'n', $timestamp ),
-            'day'   => gmdate( 'j', $timestamp ),
-        ],
+				'year'  => gmdate( 'Y', $timestamp ),
+				'month' => gmdate( 'n', $timestamp ),
+				'day'   => gmdate( 'j', $timestamp ),
+			],
         ] ), $post_type );
-        if ( !empty($posts) && count( $posts ) > 0 ) {
+        if ( ! empty($posts) && count( $posts ) > 0 ) {
             return true;
         }
         return false;
@@ -402,10 +408,9 @@ class FetchPosts
      * 
      * @since 1.3.0
      */
-    private function store_post_ids( array $ids, string $post_type )
-    {
+    private function store_post_ids( array $ids, string $post_type ) {
         $post_ids = get_option( 'wpar_global_republish_post_ids' );
-        if ( !$post_ids || !is_array( $post_ids ) ) {
+        if ( ! $post_ids || ! is_array( $post_ids ) ) {
             $post_ids = [];
         }
         $post_ids = $this->do_filter( 'post_ids_before_store', $post_ids, $post_type );
@@ -417,16 +422,36 @@ class FetchPosts
      * 
      * @since 1.3.0
      */
-    private function set_limit( int $post_id )
-    {
+    private function set_limit( int $post_id ) {
         $timestamp = $this->current_timestamp();
         $transient_name = 'wpar_daily_' . gmdate( 'Y_m_d', $timestamp );
         $numbers_proceed = get_transient( $transient_name );
-        if ( !$numbers_proceed ) {
+        if ( ! $numbers_proceed ) {
             $numbers_proceed = [];
         }
         $numbers_proceed[] = $post_id;
         set_transient( $transient_name, $numbers_proceed, DAY_IN_SECONDS );
+    }
+    
+    /**
+     * Generate Action event if not already exists.
+     */
+    public function schedule_health() {
+        if ( ! $this->is_enabled( 'enable_plugin', true ) ) {
+            return;
+        }
+        $next_action = $this->get_next_action( 'wpar/global_schedule_next_date' );
+        
+        if ( $next_action ) {
+            $schedule_date = gmdate( 'H:i:s', $next_action );
+            
+            if ( '00:00:00' !== $schedule_date ) {
+                $this->unschedule_all_actions( 'wpar/global_schedule_next_date' );
+                $interval = $this->get_data( 'republish_interval_days', '1' );
+                $this->set_recurring_action( strtotime( gmdate( 'Y-m-d', $next_action ) ), $interval * DAY_IN_SECONDS, 'wpar/global_schedule_next_date' );
+            }        
+}
+    
     }
 
 }

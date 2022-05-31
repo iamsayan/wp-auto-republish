@@ -24,8 +24,7 @@ class PostRepublish
     /**
      * Register functions.
      */
-    public function register()
-    {
+    public function register() {
         $this->action( 'wpar/global_republish_single_post', 'do_republish' );
         $this->action( 'wpar/process_republish_post', 'call_republish' );
     }
@@ -36,8 +35,7 @@ class PostRepublish
      * @since 1.3.2
      * @param array   $args   Republish params
      */
-    public function call_republish( array $args )
-    {
+    public function call_republish( array $args ) {
         $method = $args['method'];
         if ( 'republish' === $method ) {
             $post_id = $this->update_old_post(
@@ -55,8 +53,7 @@ class PostRepublish
      * @since 1.1.7
      * @param int   $post_id   Post ID
      */
-    public function do_republish( $post_id )
-    {
+    public function do_republish( $post_id ) {
         // check if given post is not published.
         if ( 'publish' === get_post_status( $post_id ) ) {
             $this->handle( (int) $post_id );
@@ -75,8 +72,7 @@ class PostRepublish
      * Override this method to perform any actions required
      * during the async request.
      */
-    private function handle( int $post_id )
-    {
+    private function handle( int $post_id ) {
         $action = $this->do_filter(
             'republish_action',
             'repost',
@@ -103,11 +99,10 @@ class PostRepublish
         bool $single = false,
         bool $instant = false,
         bool $external = false
-    )
-    {
+    ) {
         $post = \get_post( $post_id );
         $pub_date = $this->get_meta( $post->ID, '_wpar_original_pub_date' );
-        if ( !$pub_date && $post->post_status !== 'future' ) {
+        if ( ! $pub_date && $post->post_status !== 'future' ) {
             $this->update_meta( $post->ID, '_wpar_original_pub_date', $post->post_date );
         }
         $this->update_meta( $post->ID, '_wpar_last_pub_date', $post->post_date );
@@ -144,8 +139,7 @@ class PostRepublish
      * 
      * @return string
      */
-    private function get_publish_time( int $post_id, bool $single = false, bool $scheduled = false )
-    {
+    private function get_publish_time( int $post_id, bool $single = false, bool $scheduled = false ) {
         $post = \get_post( $post_id );
         $timestamp = $this->current_timestamp();
         $interval = MINUTE_IN_SECONDS * $this->do_filter( 'second_position_interval', wp_rand( 1, 15 ) );
@@ -153,7 +147,7 @@ class PostRepublish
         
         if ( $this->get_data( 'wpar_republish_post_position', 'one' ) == 'one' ) {
             $datetime = $this->get_meta( $post_id, '_wpar_global_republish_datetime' );
-            if ( !empty($datetime) && $timestamp >= strtotime( $datetime ) ) {
+            if ( ! empty($datetime) && $timestamp >= strtotime( $datetime ) ) {
                 $new_time = $datetime;
             }
         } else {
@@ -166,7 +160,7 @@ class PostRepublish
                 'orderby'     => 'date',
                 'fields'      => 'ids',
             ] );
-            if ( !empty($lastposts) ) {
+            if ( ! empty($lastposts) ) {
                 foreach ( $lastposts as $lastpost ) {
                     $post_date = get_the_date( 'U', $lastpost );
                     $post_date = $post_date + $interval;
@@ -189,11 +183,10 @@ class PostRepublish
      *
      * @param object $post WP Post object.
      */
-    private function set_occurence( WP_Post $post )
-    {
+    private function set_occurence( WP_Post $post ) {
         $repeat = $this->get_meta( $post->ID, '_wpar_post_republish_occurrence' );
         
-        if ( !empty($repeat) && is_numeric( $repeat ) ) {
+        if ( ! empty($repeat) && is_numeric( $repeat ) ) {
             $repeat++;
         } else {
             $repeat = 1;

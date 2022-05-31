@@ -20,8 +20,7 @@ final class Loader
      * 
      * @return array Full list of classes
      */
-    public static function get_services()
-    {
+    public static function get_services() {
         $services = [
             Pages\Dashboard::class,
             Base\Enqueue::class,
@@ -37,7 +36,7 @@ final class Loader
             Core\RepublishInfo::class,
             Tools\DatabaseActions::class,
             Tools\DatabaseTable::class,
-            Tools\Updates::class
+            Tools\Updates::class,
         ];
         return $services;
     }
@@ -46,8 +45,7 @@ final class Loader
      * Loop through the classes, initialize them, 
      * and call the register() method if it exists
      */
-    public static function register_services()
-    {
+    public static function register_services() {
         foreach ( self::get_services() as $class ) {
             $service = self::instantiate( $class );
             if ( method_exists( $service, 'register' ) ) {
@@ -62,8 +60,7 @@ final class Loader
      * @param  class $class    class from the services array
      * @return class instance  new instance of the class
      */
-    private static function instantiate( $class )
-    {
+    private static function instantiate( $class ) {
         $service = new $class();
         return $service;
     }

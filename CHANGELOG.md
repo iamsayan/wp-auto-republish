@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.3.5
+Release Date: 26th May, 2022
+
+* Fixed: PHP Error if there is any old version of Extended Library is present.
+* Fixed: Schedule Generation process.
+* Fixed: PHP Error on Some installations.
+* Added: Recommended PHP directive values under Tools Tab.
+
 ## 1.3.4
 Release Date: 16th May, 2022
 

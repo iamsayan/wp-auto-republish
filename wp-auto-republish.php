@@ -4,7 +4,7 @@
  * Plugin Name: RevivePress
  * Plugin URI: https://wprevivepress.com?utm_source=landing&utm_medium=plugin
  * Description: RevivePress (formerly WP Auto Republish), the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
- * Version: 1.3.4
+ * Version: 1.3.5
  * Author: Sayan Datta
  * Author URI: https://sayandatta.in
  * License: GPLv3
@@ -33,7 +33,7 @@
  * 
  */
 // If this file is called firectly, abort!!!
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
@@ -42,11 +42,10 @@ if ( function_exists( 'revivepress_fs' ) ) {
     return;
 } else {
     // Create a helper function for easy SDK access.
-    function revivepress_fs()
-    {
+    function revivepress_fs() {
         global  $revivepress_fs ;
         
-        if ( !isset( $revivepress_fs ) ) {
+        if ( ! isset( $revivepress_fs ) ) {
             // Include Freemius SDK.
             require_once dirname( __FILE__ ) . '/vendor/freemius/start.php';
             $revivepress_fs = fs_dynamic_init( [
@@ -59,14 +58,14 @@ if ( function_exists( 'revivepress_fs' ) ) {
                 'has_addons'     => false,
                 'has_paid_plans' => true,
                 'trial'          => [
-                'days'               => 7,
-                'is_require_payment' => false,
-            ],
+					'days'               => 7,
+					'is_require_payment' => false,
+				],
                 'menu'           => [
-                'slug'        => 'revivepress',
-                'support'     => false,
-                'affiliation' => false,
-            ],
+					'slug'        => 'revivepress',
+					'support'     => false,
+					'affiliation' => false,
+				],
                 'is_live'        => true,
             ] );
         }
@@ -81,8 +80,8 @@ if ( function_exists( 'revivepress_fs' ) ) {
 }
 
 // Define constants
-if ( !defined( 'REVIVEPRESS_VERSION' ) ) {
-    define( 'REVIVEPRESS_VERSION', '1.3.4' );
+if ( ! defined( 'REVIVEPRESS_VERSION' ) ) {
+    define( 'REVIVEPRESS_VERSION', '1.3.5' );
 }
 // Require once the Composer Autoload
 if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
@@ -91,58 +90,48 @@ if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
 /**
  * The code that runs during plugin activation
  */
-if ( !function_exists( 'revivepress_activation' ) ) {
-    function revivepress_activation()
-    {
+if ( ! function_exists( 'revivepress_activation' ) ) {
+    function revivepress_activation() {
         RevivePress\Base\Activate::activate();
     }
-
 }
 register_activation_hook( __FILE__, 'revivepress_activation' );
 /**
  * The code that runs during plugin deactivation
  */
-if ( !function_exists( 'revivepress_deactivation' ) ) {
-    function revivepress_deactivation()
-    {
+if ( ! function_exists( 'revivepress_deactivation' ) ) {
+    function revivepress_deactivation() {
         RevivePress\Base\Deactivate::deactivate();
     }
-
 }
 register_deactivation_hook( __FILE__, 'revivepress_deactivation' );
 /**
  * The code that runs during plugin uninstalltion
  */
-if ( !function_exists( 'revivepress_uninstallation' ) ) {
-    function revivepress_uninstallation()
-    {
+if ( ! function_exists( 'revivepress_uninstallation' ) ) {
+    function revivepress_uninstallation() {
         RevivePress\Base\Uninstall::uninstall();
     }
-
 }
 revivepress_fs()->add_action( 'after_uninstall', 'revivepress_uninstallation' );
 /**
  * Initialize all the core classes of the plugin
  */
-if ( !function_exists( 'revivepress_init' ) ) {
-    function revivepress_init()
-    {
+if ( ! function_exists( 'revivepress_init' ) ) {
+    function revivepress_init() {
         if ( class_exists( 'RevivePress\\Loader' ) ) {
             RevivePress\Loader::register_services();
         }
     }
-
 }
 revivepress_init();
 /**
  * Add RevivePress icon to freemius
  */
-if ( !function_exists( 'revivepress_freemius_logo' ) ) {
-    function revivepress_freemius_logo()
-    {
+if ( ! function_exists( 'revivepress_freemius_logo' ) ) {
+    function revivepress_freemius_logo() {
         return dirname( __FILE__ ) . '/assets/images/logo.png';
     }
-
 }
 revivepress_fs()->add_filter( 'plugin_icon', 'revivepress_freemius_logo' );
 /**
