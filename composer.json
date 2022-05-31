@@ -30,6 +30,14 @@
             "functions.php"
         ]
     },
+    "scripts": {
+        "build": [
+			"composer dump-autoload --no-dev"
+		]
+	},
+    "config": {
+		"optimize-autoloader": true
+	},
     "require": {
         "woocommerce/action-scheduler": "^3.1"
     }

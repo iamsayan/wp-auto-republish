@@ -54,8 +54,7 @@ class BaseController
     /**
      * The constructor.
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->plugin_path = plugin_dir_path( $this->dirname_r( __FILE__, 2 ) );
         $this->plugin_url = plugin_dir_url( $this->dirname_r( __FILE__, 2 ) );
         $this->plugin = plugin_basename( $this->dirname_r( __FILE__, 3 ) ) . '/wp-auto-republish.php';
@@ -67,8 +66,7 @@ class BaseController
     /**
      * PHP < 7.0.0 compatibility
      */
-    private function dirname_r( $path, $count = 1 )
-    {
+    private function dirname_r( $path, $count = 1 ) {
         
         if ( $count > 1 ) {
             return dirname( $this->dirname_r( $path, --$count ) );

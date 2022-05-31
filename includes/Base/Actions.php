@@ -22,8 +22,7 @@ class Actions extends BaseController
     /**
      * Register functions.
      */
-    public function register()
-    {
+    public function register() {
         $this->action(
             "plugin_action_links_{$this->plugin}",
             'settings_link',
@@ -50,8 +49,7 @@ class Actions extends BaseController
     /**
      * Register settings link.
      */
-    public function settings_link( $links )
-    {
+    public function settings_link( $links ) {
         $settings = [ '<a href="' . admin_url( 'admin.php?page=revivepress' ) . '">' . __( 'Settings', 'wp-auto-republish' ) . '</a>' ];
         return array_merge( $settings, $links );
     }
@@ -59,8 +57,7 @@ class Actions extends BaseController
     /**
      * Add roadmap item to submenu
      */
-    public function menu_items()
-    {
+    public function menu_items() {
         global  $submenu ;
         $manage_options_cap = apply_filters( 'wpar/manage_options_capability', 'manage_options' );
         $submenu['revivepress'][] = [ __( 'Scheduled Tasks', 'wp-auto-republish' ), $manage_options_cap, admin_url( 'tools.php?page=action-scheduler&status=pending&s=wpar' ) ];
@@ -70,8 +67,7 @@ class Actions extends BaseController
     /**
      * Open External links in new tab
      */
-    public function do_footer()
-    {
+    public function do_footer() {
         ?>
 		<script type="text/javascript">
 			jQuery( document ).ready( function( $ ) {
@@ -85,8 +81,7 @@ class Actions extends BaseController
     /**
      * Register meta links.
      */
-    public function meta_links( $links, $file )
-    {
+    public function meta_links( $links, $file ) {
         if ( $this->plugin === $file ) {
             // only for this plugin
             $links[] = '<a href="https://wprevivepress.com/docs/?utm_source=plugin_page&utm_medium=plugin" target="_blank">' . __( 'Documentation', 'wp-auto-republish' ) . '</a>';
@@ -97,8 +92,7 @@ class Actions extends BaseController
     /**
      * Custom Admin footer text
      */
-    public function admin_footer( $text )
-    {
+    public function admin_footer( $text ) {
         $current_screen = get_current_screen();
         
         if ( 'toplevel_page_revivepress' === $current_screen->id ) {
@@ -116,8 +110,7 @@ class Actions extends BaseController
     /**
      * Run process after plugin update.
      */
-    public function run_upgrade_action( $upgrader_object, $options )
-    {
+    public function run_upgrade_action( $upgrader_object, $options ) {
         // If an update has taken place and the updated type is plugins and the plugins element exists
         if ( 'update' === $options['action'] && 'plugin' === $options['type'] && isset( $options['plugins'] ) ) {
             // Iterate through the plugins being updated and check if ours is there

@@ -5,7 +5,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-05-16 14:01+0000\n"
+"POT-Creation-Date: 2022-05-31 04:03+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -43,6 +43,34 @@ msgstr ""
 
 #: includes/Api/Callbacks/AdminCallbacks.php:78
 msgid "Delete All Accounts"
+msgstr ""
+
+#: includes/Api/Callbacks/AdminCallbacks.php:116, includes/Core/Premium/Social/TwitterShare.php:158, includes/Core/Premium/Social/TwitterShare.php:184
+msgid "Name"
+msgstr ""
+
+#: includes/Api/Callbacks/AdminCallbacks.php:117
+msgid "Directive"
+msgstr ""
+
+#: includes/Api/Callbacks/AdminCallbacks.php:118
+msgid "Least Suggested"
+msgstr ""
+
+#: includes/Api/Callbacks/AdminCallbacks.php:119
+msgid "Recommended"
+msgstr ""
+
+#: includes/Api/Callbacks/AdminCallbacks.php:120
+msgid "Current Value"
+msgstr ""
+
+#: includes/Api/Callbacks/AdminCallbacks.php:136
+msgid "To change PHP directives you need to modify php.ini file, more information about this you can %ssearch here%s or contact your hosting provider. See Site Health for more."
+msgstr ""
+
+#: includes/Api/Callbacks/AdminCallbacks.php:138
+msgid "WordPress Cron is currently disabled. Please enable it if you are facing asny issue."
 msgstr ""
 
 #: includes/Api/Callbacks/ManagerCallbacks.php:29
@@ -981,7 +1009,7 @@ msgstr ""
 msgid "<strong>Settings import failed:</strong> Please upload a file to import."
 msgstr ""
 
-#: includes/Base/PluginTools.php:212
+#: includes/Base/PluginTools.php:210
 msgid "Success! Plugin Settings has been imported successfully."
 msgstr ""
 
@@ -1265,7 +1293,7 @@ msgstr ""
 msgid "Use these tags into email title or/and body. Available Dynamic Tags"
 msgstr ""
 
-#: includes/Core/Premium/PostMetaBox.php:54, includes/Pages/Dashboard.php:74, includes/Tools/Updates.php:98
+#: includes/Core/Premium/PostMetaBox.php:54, includes/Pages/Dashboard.php:74, includes/Tools/Updates.php:99
 msgid "RevivePress"
 msgstr ""
 
@@ -1735,10 +1763,6 @@ msgstr ""
 msgid "Success! Your %s account(s) added successfully."
 msgstr ""
 
-#: includes/Core/Premium/Social/TwitterShare.php:158, includes/Core/Premium/Social/TwitterShare.php:184
-msgid "Name"
-msgstr ""
-
 #: includes/Core/Premium/Social/TwitterShare.php:159, includes/Core/Premium/Social/TwitterShare.php:185
 msgid "Handle"
 msgstr ""
@@ -2072,11 +2096,11 @@ msgid "Republish WPML Translated Posts"
 msgstr ""
 
 #. translators: %s: settings page link
-#: includes/Tools/Updates.php:101
+#: includes/Tools/Updates.php:102
 msgid "WP Auto Republish is now RevivePress. We have introduced several performance improvements along with completely redesigned UI. WPML & OneSignal Support are also added in the Premium Version. Go to %s to review & configure the plugin settings."
 msgstr ""
 
-#: includes/Tools/Updates.php:102
+#: includes/Tools/Updates.php:103
 msgid "RevivePress > Dashbaord"
 msgstr ""
 
@@ -2348,62 +2372,70 @@ msgstr ""
 msgid "Re-Generate Interval"
 msgstr ""
 
-#: templates/admin.php:251
-msgid "Upgrade to the premium version and get the following features:"
-msgstr ""
-
 #: templates/admin.php:253
-msgid "Custom Post types & Taxonomies"
+msgid "System Status"
 msgstr ""
 
 #: templates/admin.php:254
-msgid "Individual & Scheduled Republishing"
-msgstr ""
-
-#: templates/admin.php:255
-msgid "Date Time Range Based Republishing"
-msgstr ""
-
-#: templates/admin.php:256
-msgid "Custom Post Republish Interval & Title"
-msgstr ""
-
-#: templates/admin.php:257
-msgid "Automatic Social Media Share"
-msgstr ""
-
-#: templates/admin.php:258
-msgid "Automatic Cache Plugin Purge Support"
-msgstr ""
-
-#: templates/admin.php:259
-msgid "Change Post Status after Republish"
-msgstr ""
-
-#: templates/admin.php:260
-msgid "One Click Instant Republish & Clone"
+msgid "In order to use this plugin, please ensure your server meets the following PHP configurations. Your hosting provider will help you modify server configurations, if required."
 msgstr ""
 
 #: templates/admin.php:261
-msgid "Custom Post Republish Rulesets"
-msgstr ""
-
-#: templates/admin.php:262
-msgid "WordPress Sticky Posts Support"
+msgid "Upgrade to the premium version and get the following features:"
 msgstr ""
 
 #: templates/admin.php:263
-msgid "OneSignal Notification Support"
+msgid "Custom Post types & Taxonomies"
 msgstr ""
 
 #: templates/admin.php:264
-msgid "WPML & Translation Compatibility"
+msgid "Individual & Scheduled Republishing"
 msgstr ""
 
 #: templates/admin.php:265
-msgid "Email Notification upon Republishing"
+msgid "Date Time Range Based Republishing"
 msgstr ""
 
 #: templates/admin.php:266
+msgid "Custom Post Republish Interval & Title"
+msgstr ""
+
+#: templates/admin.php:267
+msgid "Automatic Social Media Share"
+msgstr ""
+
+#: templates/admin.php:268
+msgid "Automatic Cache Plugin Purge Support"
+msgstr ""
+
+#: templates/admin.php:269
+msgid "Change Post Status after Republish"
+msgstr ""
+
+#: templates/admin.php:270
+msgid "One Click Instant Republish & Clone"
+msgstr ""
+
+#: templates/admin.php:271
+msgid "Custom Post Republish Rulesets"
+msgstr ""
+
+#: templates/admin.php:272
+msgid "WordPress Sticky Posts Support"
+msgstr ""
+
+#: templates/admin.php:273
+msgid "OneSignal Notification Support"
+msgstr ""
+
+#: templates/admin.php:274
+msgid "WPML & Translation Compatibility"
+msgstr ""
+
+#: templates/admin.php:275
+msgid "Email Notification upon Republishing"
+msgstr ""
+
+#: templates/admin.php:276
 msgid "Priority Email Support & many more.."
 msgstr ""

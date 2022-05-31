@@ -7,7 +7,6 @@ namespace Composer\Autoload;
 class ComposerStaticInitd5699dfd0ed62714b22c430580475703
 {
     public static $files = array (
-        'a2c48002d05f7782d8b603bd2bcb5252' => __DIR__ . '/..' . '/johnbillion/extended-cpts/extended-cpts.php',
         '6116bb3c2e739c8baa180dc51ba4c9fe' => __DIR__ . '/..' . '/woocommerce/action-scheduler/action-scheduler.php',
         '1a19a63a1a4b80ac8fcb008711e9450e' => __DIR__ . '/../..' . '/functions.php',
     );
@@ -17,14 +16,6 @@ class ComposerStaticInitd5699dfd0ed62714b22c430580475703
         array (
             'RevivePress\\' => 12,
         ),
-        'E' => 
-        array (
-            'ExtCPTs\\Tests\\' => 14,
-        ),
-        'C' => 
-        array (
-            'Composer\\CaBundle\\' => 18,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -32,18 +23,9 @@ class ComposerStaticInitd5699dfd0ed62714b22c430580475703
         array (
             0 => __DIR__ . '/../..' . '/includes',
         ),
-        'ExtCPTs\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/johnbillion/extended-cpts/tests/phpunit',
-        ),
-        'Composer\\CaBundle\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
-        ),
     );
 
     public static $classMap = array (
-        'Composer\\CaBundle\\CaBundle' => __DIR__ . '/..' . '/composer/ca-bundle/src/CaBundle.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'RevivePress\\Api\\Callbacks\\AdminCallbacks' => __DIR__ . '/../..' . '/includes/Api/Callbacks/AdminCallbacks.php',
         'RevivePress\\Api\\Callbacks\\ManagerCallbacks' => __DIR__ . '/../..' . '/includes/Api/Callbacks/ManagerCallbacks.php',

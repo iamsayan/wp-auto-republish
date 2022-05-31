@@ -25,15 +25,14 @@ trait HelperFunctions
      *
      * @return array
      */
-    protected function get_post_types()
-    {
+    protected function get_post_types() {
         $post_types = \get_post_types( [
             'public'   => true,
             '_builtin' => true,
         ], 'objects' );
         $data = [];
         foreach ( $post_types as $post_type ) {
-            if ( !is_object( $post_type ) ) {
+            if ( ! is_object( $post_type ) ) {
                 continue;
             }
             
@@ -49,7 +48,7 @@ trait HelperFunctions
                 // skip media
             }
             
-            $data[$post_type->name] = $label;
+            $data[ $post_type->name ] = $label;
         }
         return $data;
     }
@@ -62,8 +61,7 @@ trait HelperFunctions
      * @param bool  $hide    Hide empty taxonomies True or False.
      * @return array
      */
-    protected function get_taxonomies( $args, $hide = false, $builtin = true )
-    {
+    protected function get_taxonomies( $args, $hide = false, $builtin = true ) {
         /**
          * Remove WPML filters while getting terms, to get all languages
          */
@@ -83,13 +81,13 @@ trait HelperFunctions
             'product_shipping_class',
             'product_visibility',
             'product_type',
-            'post_format'
+            'post_format',
         ];
         $taxonomy_array = array_merge( $attribute_taxonomy_array, $wc_taxonomy_array );
         // If $post_types value is not empty
-        if ( !empty($post_types) ) {
+        if ( ! empty($post_types) ) {
             foreach ( $post_types as $post_type ) {
-                if ( !is_object( $post_type ) ) {
+                if ( ! is_object( $post_type ) ) {
                     continue;
                 }
                 
@@ -111,8 +109,8 @@ trait HelperFunctions
                 // Loop on all taxonomies
                 foreach ( $taxonomies as $taxonomy ) {
                     
-                    if ( is_object( $taxonomy ) && !in_array( $taxonomy->name, $taxonomy_array ) ) {
-                        if ( $builtin && ($post_type != 'post' || !in_array( $taxonomy->name, [ 'category', 'post_tag' ] )) ) {
+                    if ( is_object( $taxonomy ) && ! in_array( $taxonomy->name, $taxonomy_array ) ) {
+                        if ( $builtin && ($post_type != 'post' || ! in_array( $taxonomy->name, [ 'category', 'post_tag' ] )) ) {
                             continue;
                         }
                         $terms = \get_terms( [
@@ -120,19 +118,17 @@ trait HelperFunctions
                             'hide_empty' => $hide,
                         ] );
                         foreach ( $terms as $term ) {
-                            $terms_array[$post_type . '|' . $taxonomy->name . '|' . $term->term_id] = ucwords( $taxonomy->label ) . ': ' . $term->name;
+                            $terms_array[ $post_type . '|' . $taxonomy->name . '|' . $term->term_id ] = ucwords( $taxonomy->label ) . ': ' . $term->name;
                         }
-                    }
+                    }                
+}
                 
-                }
-                
-                if ( !empty($terms_array) ) {
-                    $data[$post_type]['label'] = $label;
-                    $data[$post_type]['categories'] = $terms_array;
+                if ( ! empty($terms_array) ) {
+                    $data[ $post_type ]['label'] = $label;
+                    $data[ $post_type ]['categories'] = $terms_array;
                     unset( $terms_array );
-                }
-            
-            }
+                }            
+}
         }
         /**
          * Register WPML filters back
@@ -147,8 +143,7 @@ trait HelperFunctions
      * @param array $args WP_Query args.
      * @return array
      */
-    protected function get_posts( $args )
-    {
+    protected function get_posts( $args ) {
         $current_language = \apply_filters( 'wpml_current_language', null );
         // changes the language of global query to use the specfied language
         \do_action( 'wpml_switch_language', 'all' );
@@ -164,8 +159,7 @@ trait HelperFunctions
      * 
      * @return bool
      */
-    protected function is_enabled( $name, $prefix = false )
-    {
+    protected function is_enabled( $name, $prefix = false ) {
         if ( $prefix ) {
             $name = 'wpar_' . $name;
         }
@@ -181,15 +175,14 @@ trait HelperFunctions
      * @since 1.3.0
      * @return bool
      */
-    protected function get_roles( $can_edit_post = true )
-    {
+    protected function get_roles( $can_edit_post = true ) {
         $options = [];
         $roles = \get_editable_roles();
         foreach ( $roles as $role => $details ) {
-            if ( $can_edit_post && (!isset( $details['capabilities']['edit_posts'] ) || !$details['capabilities']['edit_posts']) ) {
+            if ( $can_edit_post && ( ! isset( $details['capabilities']['edit_posts'] ) || ! $details['capabilities']['edit_posts']) ) {
                 continue;
             }
-            $options[$role] = \translate_user_role( $details['name'] );
+            $options[ $role ] = \translate_user_role( $details['name'] );
         }
         return $options;
     }
@@ -199,14 +192,13 @@ trait HelperFunctions
      * 
      * @return bool
      */
-    protected function get_users( $args = array() )
-    {
+    protected function get_users( $args = array() ) {
         $options = [];
         $users = \get_users( [
             'fields' => [ 'ID', 'display_name' ],
         ] );
         foreach ( $users as $user ) {
-            $options[$user->ID] = $user->display_name;
+            $options[ $user->ID ] = $user->display_name;
         }
         return $options;
     }
@@ -219,8 +211,7 @@ trait HelperFunctions
      * @param  array   $insert    Field.
      * @return array
      */
-    protected function insert_settings( $array, $position, $insert )
-    {
+    protected function insert_settings( $array, $position, $insert ) {
         $array = array_merge( array_slice( $array, 0, $position ), $insert, array_slice( $array, $position ) );
         return $array;
     }
@@ -230,8 +221,7 @@ trait HelperFunctions
      * 
      * @return string
      */
-    protected function php_to_js_date( $format )
-    {
+    protected function php_to_js_date( $format ) {
         switch ( $format ) {
             case 'F j, Y':
                 $format = 'MM dd, yy';
@@ -261,8 +251,7 @@ trait HelperFunctions
      * @since 1.2.6
      * @return bool
      */
-    protected function current_timestamp( $gmt = false )
-    {
+    protected function current_timestamp( $gmt = false ) {
         $local_time = current_time( 'timestamp', $gmt );
         // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested
         return $local_time;
@@ -274,12 +263,11 @@ trait HelperFunctions
      * @since 1.3.0
      * @return int
      */
-    protected function get_daily_completed()
-    {
+    protected function get_daily_completed() {
         $timestamp = $this->current_timestamp();
         $transient_name = 'wpar_daily_' . gmdate( 'Y_m_d', $timestamp );
         $numbers_proceed = get_transient( $transient_name );
-        if ( !$numbers_proceed ) {
+        if ( ! $numbers_proceed ) {
             return 0;
         }
         return count( $numbers_proceed );
@@ -303,9 +291,8 @@ trait HelperFunctions
         $content = '',
         $date = '',
         $type = ''
-    )
-    {
-        if ( !function_exists( 'post_exists' ) ) {
+    ) {
+        if ( ! function_exists( 'post_exists' ) ) {
             require_once ABSPATH . 'wp-admin/includes/post.php';
         }
         return \post_exists(
@@ -322,8 +309,7 @@ trait HelperFunctions
      * @since 1.3.0
      * @return string
      */
-    protected function str_to_second( $input )
-    {
+    protected function str_to_second( $input ) {
         $times = explode( ' ', preg_replace( '!\\s+!', ' ', str_replace( [ ',', '-', '_' ], ' ', $input ) ) );
         $total_time = 0;
         foreach ( $times as $time ) {
@@ -338,16 +324,15 @@ trait HelperFunctions
      * @since 1.3.0
      * @return string
      */
-    protected function convert_str_to_second( $input )
-    {
+    protected function convert_str_to_second( $input ) {
         $res = preg_replace( "/[^a-z]/i", '', strtolower( $input ) );
-        if ( !in_array( $res, [
+        if ( ! in_array( $res, [
             'y',
             'm',
             'd',
             'w',
             'h',
-            'i'
+            'i',
         ] ) ) {
             return $input * MINUTE_IN_SECONDS;
         }
@@ -383,9 +368,8 @@ trait HelperFunctions
      * @since 1.3.2
      * @return bool Whether or not the current screen is editing an existing post.
      */
-    protected function is_edit_post_screen()
-    {
-        if ( !\is_admin() ) {
+    protected function is_edit_post_screen() {
+        if ( ! \is_admin() ) {
             return false;
         }
         $current_screen = \get_current_screen();
@@ -398,9 +382,8 @@ trait HelperFunctions
      * @since 1.3.2
      * @return bool Whether or not the current screen is editing an new post.
      */
-    protected function is_new_post_screen()
-    {
-        if ( !\is_admin() ) {
+    protected function is_new_post_screen() {
+        if ( ! \is_admin() ) {
             return false;
         }
         $current_screen = \get_current_screen();
@@ -413,9 +396,8 @@ trait HelperFunctions
      * @since 1.3.2
      * @return bool Whether we are currently editing a post with Classic editor.
      */
-    protected function is_classic_editor()
-    {
-        if ( !$this->is_edit_post_screen() && !$this->is_new_post_screen() ) {
+    protected function is_classic_editor() {
+        if ( ! $this->is_edit_post_screen() && ! $this->is_new_post_screen() ) {
             return false;
         }
         $screen = \get_current_screen();
@@ -431,8 +413,7 @@ trait HelperFunctions
      * @since 1.3.2
      * @return bool Whether we are currently editing a post with Block editor.
      */
-    protected function is_block_editor()
-    {
+    protected function is_block_editor() {
         $screen = \get_current_screen();
         if ( \method_exists( $screen, 'is_block_editor' ) && $screen->is_block_editor() ) {
             return true;
@@ -448,8 +429,7 @@ trait HelperFunctions
      * @since 1.3.2
      * @return bool Whether or not the post can be copied to a new draft.
      */
-    protected function post_type_has_admin_bar( $post_type )
-    {
+    protected function post_type_has_admin_bar( $post_type ) {
         $post_type_object = \get_post_type_object( $post_type );
         if ( empty($post_type_object) ) {
             return false;
@@ -463,8 +443,7 @@ trait HelperFunctions
      * @since 1.3.2
      * @return string
      */
-    protected function get_permalink( $post_id )
-    {
+    protected function get_permalink( $post_id ) {
         $permalink_structure = get_option( 'permalink_structure' );
         
         if ( $permalink_structure != '' ) {
@@ -482,13 +461,12 @@ trait HelperFunctions
      * @since 1.3.1
      * @return array
      */
-    protected function filter_post_ids( $input )
-    {
+    protected function filter_post_ids( $input ) {
         $input = preg_replace( [
             '/[^\\d,]/',
             '/(?<=,),+/',
             '/^,+/',
-            '/,+$/'
+            '/,+$/',
         ], '', $input );
         return explode( ',', $input );
     }
@@ -499,12 +477,11 @@ trait HelperFunctions
      * @since 1.3.2
      * @return bool
      */
-    protected function can_proceed( $action, $args )
-    {
-        if ( empty($args) || !is_array( $args ) ) {
+    protected function can_proceed( $action, $args ) {
+        if ( empty($args) || ! is_array( $args ) ) {
             return true;
         }
-        if ( isset( $args[$action] ) && false === $args[$action] ) {
+        if ( isset( $args[ $action ] ) && false === $args[ $action ] ) {
             return false;
         }
         return true;
@@ -516,8 +493,7 @@ trait HelperFunctions
      * @since 1.3.2
      * @return bool
      */
-    protected function validate_date( $date, $format = 'Y-m-d H:i:s' )
-    {
+    protected function validate_date( $date, $format = 'Y-m-d H:i:s' ) {
         $date_time = DateTime::createFromFormat( $format, $date );
         return $date_time && $date_time->format( $format ) == $date;
     }

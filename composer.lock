@@ -1,9 +1,14 @@
 {
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "151e3e859fab9ba4459292abb8b595ab",
     "packages": [
         {
             "name": "woocommerce/action-scheduler",
             "version": "3.4.1",
-            "version_normalized": "3.4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/woocommerce/action-scheduler.git",
@@ -21,7 +26,6 @@
                 "wp-cli/wp-cli": "~2.5.0",
                 "yoast/phpunit-polyfills": "^1.0"
             },
-            "time": "2022-05-03T09:41:49+00:00",
             "type": "wordpress-plugin",
             "extra": {
                 "scripts-description": {
@@ -30,7 +34,6 @@
                     "phpcbf": "Fix coding standards warnings/errors automatically with PHP Code Beautifier"
                 }
             },
-            "installation-source": "dist",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0-or-later"
@@ -41,9 +44,16 @@
                 "issues": "https://github.com/woocommerce/action-scheduler/issues",
                 "source": "https://github.com/woocommerce/action-scheduler/tree/3.4.1"
             },
-            "install-path": "../woocommerce/action-scheduler"
+            "time": "2022-05-03T09:41:49+00:00"
         }
     ],
-    "dev": true,
-    "dev-package-names": []
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }

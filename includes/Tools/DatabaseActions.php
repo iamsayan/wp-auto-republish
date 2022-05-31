@@ -23,8 +23,7 @@ class DatabaseActions
     /**
      * Register functions.
      */
-    public function register()
-    {
+    public function register() {
         $this->action( 'wpar/remove_post_metadata', 'run_cleanup' );
         $this->action( 'wpar/deschedule_posts', 'deschedule_posts' );
     }
@@ -32,8 +31,7 @@ class DatabaseActions
     /**
      * Post meta cleanup.
      */
-    public function run_cleanup()
-    {
+    public function run_cleanup() {
         $post_types = array_keys( $this->get_post_types() );
         $args = [
             'post_type'   => $post_types,
@@ -42,7 +40,7 @@ class DatabaseActions
             'fields'      => 'ids',
         ];
         $posts = $this->get_posts( $args );
-        if ( !empty($posts) ) {
+        if ( ! empty($posts) ) {
             foreach ( $posts as $post_id ) {
                 // Remove schedules
                 $this->unschedule_all_actions( 'wpar/global_republish_single_post', [ $post_id ] );
@@ -62,21 +60,22 @@ class DatabaseActions
     /**
      * Remove actions.
      */
-    public function deschedule_posts()
-    {
+    public function deschedule_posts() {
         $post_types = array_keys( $this->get_post_types() );
         $args = $this->do_filter( 'deschedule_posts_args', [
             'post_type'   => $post_types,
             'numberposts' => -1,
             'post_status' => [ 'publish', 'future', 'private' ],
             'fields'      => 'ids',
-            'meta_query'  => [ [
-            'key'     => '_wpar_original_pub_date',
-            'compare' => 'EXISTS',
-        ] ],
+            'meta_query'  => [
+				[
+					'key'     => '_wpar_original_pub_date',
+					'compare' => 'EXISTS',
+				],
+			],
         ] );
         $posts = $this->get_posts( $args );
-        if ( !empty($posts) ) {
+        if ( ! empty($posts) ) {
             foreach ( $posts as $post_id ) {
                 // get original published date
                 $pub_date = $this->get_meta( $post_id, '_wpar_original_pub_date' );
