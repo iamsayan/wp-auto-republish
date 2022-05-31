@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '257857ff3beb43c1a4c262f033b2660cd9993497',
+        'reference' => 'bb18de212777c8b34cb8fb65e547789c3ce7273f',
         'name' => 'iamsayan/wp-auto-republish',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '257857ff3beb43c1a4c262f033b2660cd9993497',
+            'reference' => 'bb18de212777c8b34cb8fb65e547789c3ce7273f',
             'dev_requirement' => false,
         ),
         'woocommerce/action-scheduler' => array(
