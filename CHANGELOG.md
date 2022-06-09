@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.3.7
+Release Date: 9th June, 2022
+
+* Fixed: Republish was not working in some cases.
+
 ## 1.3.6
 Release Date: 31st May, 2022
 

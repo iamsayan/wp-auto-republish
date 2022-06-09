@@ -27,9 +27,7 @@ class FetchPosts
         $this->action( 'init', 'process_start' );
         $this->action( 'wpar/global_republish_flat_posts', 'query_posts' );
         $this->action( 'wpar/global_republish_flat_posts_completed', 'complete' );
-        $this->action( 'wpar/global_schedule_next_date', 'schedule_date' );
         $this->action( 'wpar/process_flat_batches', 'set_schedule' );
-        $this->action( 'wpar/schedular_health_check', 'schedule_health' );
     }
     
     /**
@@ -39,19 +37,20 @@ class FetchPosts
         if ( ! $this->is_enabled( 'enable_plugin', true ) ) {
             return;
         }
-        if ( ! wp_next_scheduled( 'wpar/schedular_health_check' ) ) {
-            wp_schedule_event( time(), 'hourly', 'wpar/schedular_health_check' );
-        }
-        $scheduled = get_option( 'wpar_next_scheduled' );
+        $timestamp = $this->current_timestamp();
+        $last_scheduled = get_option( 'wpar_next_scheduled_timestamp' );
         
-        if ( ! $scheduled && ! $this->has_next_action( 'wpar/global_schedule_next_date' ) ) {
+        if ( ! $last_scheduled || ! is_numeric( $last_scheduled ) ) {
             $this->schedule_date();
+        } else {
             $interval = $this->get_data( 'republish_interval_days', '1' );
-            $this->set_recurring_action( strtotime( 'tomorrow' ), $interval * DAY_IN_SECONDS, 'wpar/global_schedule_next_date' );
-            update_option( 'wpar_next_scheduled', true );
+            $last_timestamp = strtotime( gmdate( 'Y-m-d', $last_scheduled ) . ' 00:00:00' );
+            if ( $timestamp - $last_timestamp > $interval * DAY_IN_SECONDS ) {
+                $this->schedule_date();
+            }
         }
         
-        $timestamp = gmdate( 'd/m/Y', $this->current_timestamp() );
+        $timestamp = gmdate( 'd/m/Y', $timestamp );
         $next_date = get_option( 'wpar_next_eligible_date' );
         if ( $next_date && $next_date == $timestamp ) {
             $this->check_and_create_tasks();
@@ -63,6 +62,7 @@ class FetchPosts
      */
     public function schedule_date() {
         $timestamp = $this->current_timestamp();
+        update_option( 'wpar_next_scheduled_timestamp', $timestamp );
         $weekdays = $this->get_data( 'wpar_days', [
             'sun',
             'mon',
@@ -73,29 +73,26 @@ class FetchPosts
             'sat',
         ] );
         
-        if ( ! in_array( lcfirst( gmdate( 'D', $timestamp ) ), $weekdays, true ) ) {
-            $i = 1;
-            while ( $i <= 7 ) {
-                $next_timestamp = strtotime( '+' . $i . ' days', $timestamp );
-                $next_date = lcfirst( gmdate( 'D', $next_timestamp ) );
-                if ( in_array( $next_date, $weekdays ) ) {
-                    break;
-                }
-                $i++;
-            }
-            $timestamp = $next_timestamp;
+        if ( in_array( lcfirst( gmdate( 'D', $timestamp ) ), $weekdays, true ) ) {
+            update_option( 'wpar_next_eligible_date', gmdate( 'd/m/Y', $timestamp ) );
+        } else {
+            delete_option( 'wpar_next_eligible_date' );
         }
-        
-        update_option( 'wpar_next_eligible_date', gmdate( 'd/m/Y', $timestamp ) );
+    
     }
     
     /**
      * Run post fetching process.
      */
     public function check_and_create_tasks() {
+        $in_process = get_transient( 'wpar_in_progress' );
         
-        if ( $this->valid_next_run() ) {
+        if ( $this->valid_next_run() && ! $in_process ) {
+            // Lock the process to prevent duplicate schedules for 30 seconds.
+            set_transient( 'wpar_in_progress', true, 30 );
+            // Update timestamp refenrance.
             update_option( 'wpar_last_global_cron_run', $this->current_timestamp() );
+            // Create Tasks.
             $this->create_tasks();
         }
     
@@ -116,8 +113,10 @@ class FetchPosts
                     $this->set_single_action( time() + 30 * ($counter / 2), 'wpar/global_republish_flat_posts', [ $post_type ] );
                 }            
 }
-            // Check for posts.
-            $this->set_single_action( time() + 30 * (($counter + 1) / 2), 'wpar/global_republish_flat_posts_completed' );
+            if ( $counter > 0 ) {
+                // Check for posts.
+                $this->set_single_action( time() + 30 * (($counter + 1) / 2), 'wpar/global_republish_flat_posts_completed' );
+            }
         }
     
     }
@@ -430,27 +429,6 @@ class FetchPosts
         }
         $numbers_proceed[] = $post_id;
         set_transient( $transient_name, $numbers_proceed, DAY_IN_SECONDS );
-    }
-    
-    /**
-     * Generate Action event if not already exists.
-     */
-    public function schedule_health() {
-        if ( ! $this->is_enabled( 'enable_plugin', true ) ) {
-            return;
-        }
-        $next_action = $this->get_next_action( 'wpar/global_schedule_next_date' );
-        
-        if ( $next_action ) {
-            $schedule_date = gmdate( 'H:i:s', $next_action );
-            
-            if ( '00:00:00' !== $schedule_date ) {
-                $this->unschedule_all_actions( 'wpar/global_schedule_next_date' );
-                $interval = $this->get_data( 'republish_interval_days', '1' );
-                $this->set_recurring_action( strtotime( gmdate( 'Y-m-d', $next_action ) ), $interval * DAY_IN_SECONDS, 'wpar/global_schedule_next_date' );
-            }        
-}
-    
     }
 
 }
