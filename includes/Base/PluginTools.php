@@ -196,9 +196,7 @@ class PluginTools
     	// security check
 		$this->verify_nonce();
 		
-		$this->unschedule_all_actions( 'wpar/global_schedule_next_date' );
-		\delete_option( 'wpar_next_scheduled' );
-
+		\delete_option( 'wpar_next_scheduled_timestamp' );
 		$this->success();
 	}
 

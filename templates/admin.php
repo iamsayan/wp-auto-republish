@@ -55,7 +55,7 @@ esc_html_e( 'Share', 'wp-auto-republish' );
 ?></a>
     </div>
 </div>
-<div class="wrap wpar-wrap" data-reload="no" data-regenerate="no">
+<div class="wrap wpar-wrap" data-reload="no">
     <h2 style="display: none;"></h2>
     <div id="poststuff">
         <div id="post-body" class="metabox-holder">

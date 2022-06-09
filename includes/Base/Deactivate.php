@@ -27,6 +27,7 @@ class Deactivate
 		delete_option( 'wpar_plugin_no_thanks_rating_notice' );
 		delete_option( 'wpar_plugin_installed_time' );
 		delete_option( 'revivepress_hide_permalink_notice' );
+		delete_option( 'wpar_next_scheduled_timestamp' );
 
 		$permalink_structure = get_option( 'permalink_structure' );
 		$permalink_structure = str_replace( [ '%wpar_', '%rvp_' ], '%', $permalink_structure );
