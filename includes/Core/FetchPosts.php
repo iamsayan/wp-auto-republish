@@ -62,7 +62,10 @@ class FetchPosts
      */
     public function schedule_date() {
         $timestamp = $this->current_timestamp();
-        update_option( 'wpar_next_scheduled_timestamp', $timestamp );
+        $auto_forward = $this->do_filter( 'enable_auto_forward', true );
+        if ( false === $auto_forward ) {
+            update_option( 'wpar_next_scheduled_timestamp', $timestamp );
+        }
         $weekdays = $this->get_data( 'wpar_days', [
             'sun',
             'mon',
@@ -74,6 +77,7 @@ class FetchPosts
         ] );
         
         if ( in_array( lcfirst( gmdate( 'D', $timestamp ) ), $weekdays, true ) ) {
+            update_option( 'wpar_next_scheduled_timestamp', $timestamp );
             update_option( 'wpar_next_eligible_date', gmdate( 'd/m/Y', $timestamp ) );
         } else {
             delete_option( 'wpar_next_eligible_date' );

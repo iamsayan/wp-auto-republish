@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.3.8
+Release Date: 10th June, 2022
+
+= Premium Version =
+* Fixed: Dashboard Widget rendring issue.
+* Fixed: Post Metabox conditional logic.
+* Updated: Composer packages.
+
+= Free Version =
+* Improved: Plugin will now auto-forward to the next available weekday if all weekdays are not selected. It can be disabled by using the filter: `wpar/enable_auto_forward`.
+* Fixed: Admin Menu Logo Rendering.
+
 ## 1.3.7
 Release Date: 9th June, 2022
 
