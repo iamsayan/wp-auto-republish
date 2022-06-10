@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 5.2
 Tested up to: 6.0
-Stable tag: 1.3.7
+Stable tag: 1.3.8
 Requires PHP: 7.2
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -140,6 +140,18 @@ No, plugin can handle it efficiently by tinkering the Permalink Structure.
 == Changelog ==
 
 If you like RevivePress (formerly WP Auto Republish), please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.3.8 =
+Release Date: 10th June, 2022
+
+= Premium Version =
+* Fixed: Dashboard Widget rendring issue.
+* Fixed: Post Metabox conditional logic.
+* Updated: Composer packages.
+
+= Free Version =
+* Improved: Plugin will now auto-forward to the next available weekday if all weekdays are not selected. It can be disabled by using the filter: `wpar/enable_auto_forward`.
+* Fixed: Admin Menu Logo Rendering.
 
 = 1.3.7 =
 Release Date: 9th June, 2022
