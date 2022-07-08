@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.3.9
+Release Date: 8th July, 2022
+
+= Premium Version =
+* Fixed: PHP Fatal Errors in v7.2.
+* Fixed: Cache was not clearing automatically.
+
+= Free Version =
+* Updated: Action Scheduler Library.
+* Tweak: Using `date()` instead of `gmdate()` in some places.
+* Fixed: Typos.
+
 ## 1.3.8
 Release Date: 10th June, 2022
 
