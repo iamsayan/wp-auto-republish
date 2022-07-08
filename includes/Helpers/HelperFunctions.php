@@ -265,7 +265,7 @@ trait HelperFunctions
      */
     protected function get_daily_completed() {
         $timestamp = $this->current_timestamp();
-        $transient_name = 'wpar_daily_' . gmdate( 'Y_m_d', $timestamp );
+        $transient_name = 'wpar_daily_' . date( 'Y_m_d', $timestamp );
         $numbers_proceed = get_transient( $transient_name );
         if ( ! $numbers_proceed ) {
             return 0;

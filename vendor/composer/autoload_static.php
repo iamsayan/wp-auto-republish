@@ -49,7 +49,7 @@ class ComposerStaticInitd5699dfd0ed62714b22c430580475703
         'RevivePress\\Helpers\\Fields' => __DIR__ . '/../..' . '/includes/Helpers/Fields.php',
         'RevivePress\\Helpers\\HelperFunctions' => __DIR__ . '/../..' . '/includes/Helpers/HelperFunctions.php',
         'RevivePress\\Helpers\\Hooker' => __DIR__ . '/../..' . '/includes/Helpers/Hooker.php',
-        'RevivePress\\Helpers\\Schedular' => __DIR__ . '/../..' . '/includes/Helpers/Schedular.php',
+        'RevivePress\\Helpers\\Scheduler' => __DIR__ . '/../..' . '/includes/Helpers/Scheduler.php',
         'RevivePress\\Helpers\\SettingsData' => __DIR__ . '/../..' . '/includes/Helpers/SettingsData.php',
         'RevivePress\\Helpers\\Sitepress' => __DIR__ . '/../..' . '/includes/Helpers/Sitepress.php',
         'RevivePress\\Loader' => __DIR__ . '/../..' . '/includes/Loader.php',

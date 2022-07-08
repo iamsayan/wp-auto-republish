@@ -12,7 +12,7 @@ namespace RevivePress\Base;
 
 use RevivePress\Helpers\Ajax;
 use RevivePress\Helpers\Hooker;
-use RevivePress\Helpers\Schedular;
+use RevivePress\Helpers\Scheduler;
 use RevivePress\Helpers\HelperFunctions;
 
 defined( 'ABSPATH' ) || exit;
@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class PluginTools
 {
-	use Ajax, Hooker, HelperFunctions, Schedular;
+	use Ajax, Hooker, HelperFunctions, Scheduler;
 	
 	/**
 	 * Register functions.
@@ -64,7 +64,7 @@ class PluginTools
 		ignore_user_abort( true );
 		nocache_headers();
 		header( 'Content-Type: application/json; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename=' . str_replace( '/', '-', $output ) . '-revivepress-export-' . gmdate( 'm-d-Y', $this->current_timestamp() ) . '.json' );
+		header( 'Content-Disposition: attachment; filename=' . str_replace( '/', '-', $output ) . '-revivepress-export-' . date( 'm-d-Y', $this->current_timestamp() ) . '.json' );
 		header( "Expires: 0" );
 		echo json_encode( $settings );
 		exit;

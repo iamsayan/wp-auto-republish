@@ -11,7 +11,7 @@
 namespace RevivePress\Core;
 
 use  RevivePress\Helpers\Hooker ;
-use  RevivePress\Helpers\Schedular ;
+use  RevivePress\Helpers\Scheduler ;
 use  RevivePress\Helpers\HelperFunctions ;
 defined( 'ABSPATH' ) || exit;
 /**
@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class FetchPosts
 {
-    use  HelperFunctions, Hooker, Schedular ;
+    use  HelperFunctions, Hooker, Scheduler ;
     /**
      * Register functions.
      */
@@ -44,13 +44,13 @@ class FetchPosts
             $this->schedule_date();
         } else {
             $interval = $this->get_data( 'republish_interval_days', '1' );
-            $last_timestamp = strtotime( gmdate( 'Y-m-d', $last_scheduled ) . ' 00:00:00' );
+            $last_timestamp = strtotime( date( 'Y-m-d', $last_scheduled ) . ' 00:00:00' );
             if ( $timestamp - $last_timestamp > $interval * DAY_IN_SECONDS ) {
                 $this->schedule_date();
             }
         }
         
-        $timestamp = gmdate( 'd/m/Y', $timestamp );
+        $timestamp = date( 'd/m/Y', $timestamp );
         $next_date = get_option( 'wpar_next_eligible_date' );
         if ( $next_date && $next_date == $timestamp ) {
             $this->check_and_create_tasks();
@@ -76,9 +76,9 @@ class FetchPosts
             'sat',
         ] );
         
-        if ( in_array( lcfirst( gmdate( 'D', $timestamp ) ), $weekdays, true ) ) {
+        if ( in_array( lcfirst( date( 'D', $timestamp ) ), $weekdays, true ) ) {
             update_option( 'wpar_next_scheduled_timestamp', $timestamp );
-            update_option( 'wpar_next_eligible_date', gmdate( 'd/m/Y', $timestamp ) );
+            update_option( 'wpar_next_eligible_date', date( 'd/m/Y', $timestamp ) );
         } else {
             delete_option( 'wpar_next_eligible_date' );
         }
@@ -156,7 +156,7 @@ class FetchPosts
         }
         
         if ( isset( $post_age_seconds ) ) {
-            $before_date = gmdate( 'Y-m-d H:i:s', strtotime( "-{$post_age_seconds} seconds", $timestamp ) );
+            $before_date = date( 'Y-m-d H:i:s', strtotime( "-{$post_age_seconds} seconds", $timestamp ) );
             $args['date_query'][]['before'] = $this->do_filter( 'post_before_date', $before_date, $timestamp );
         }
         
@@ -277,7 +277,7 @@ class FetchPosts
             // schedule single post republish event
             $this->set_single_action( $utc_timestamp, 'wpar/global_republish_single_post', [ $post_id ] );
             // Convert to local timestamp
-            $local_datetime = get_date_from_gmt( gmdate( 'Y-m-d H:i:s', $utc_timestamp ) );
+            $local_datetime = get_date_from_gmt( date( 'Y-m-d H:i:s', $utc_timestamp ) );
             // update required post metas
             $this->update_meta( $post_id, 'wpar_global_republish_status', 'pending' );
             $this->update_meta( $post_id, '_wpar_global_republish_datetime', $local_datetime );
@@ -297,7 +297,7 @@ class FetchPosts
     private function next_schedule( int $timestamp, string $format = 'GMT' ) {
         $slop = $this->get_data( 'wpar_random_republish_interval', 3600 );
         $timestamp = $timestamp + wp_rand( 30, $slop );
-        $formatted_date = gmdate( 'Y-m-d H:i:s', $timestamp );
+        $formatted_date = date( 'Y-m-d H:i:s', $timestamp );
         return ( 'local' === $format ? $formatted_date : get_gmt_from_date( $formatted_date, 'U' ) );
     }
     
@@ -340,7 +340,7 @@ class FetchPosts
             'fri',
             'sat',
         ] );
-        if ( ! in_array( lcfirst( gmdate( 'D', $timestamp ) ), $weekdays, true ) ) {
+        if ( ! in_array( lcfirst( date( 'D', $timestamp ) ), $weekdays, true ) ) {
             return false;
         }
         $time_based = $this->get_data( 'republish_time_specific', 'no' );
@@ -349,8 +349,8 @@ class FetchPosts
         if ( $time_based == 'yes' ) {
             $start_time_input = $this->get_data( 'wpar_start_time', '05:00:00' );
             $end_time_input = $this->get_data( 'wpar_end_time', '23:59:59' );
-            $current_date = gmdate( 'Y-m-d', $timestamp );
-            $current_timestamp = strtotime( gmdate( 'H:i:s', $timestamp ) );
+            $current_date = date( 'Y-m-d', $timestamp );
+            $current_timestamp = strtotime( date( 'H:i:s', $timestamp ) );
             $start_time = strtotime( $start_time_input );
             $end_time = strtotime( $end_time_input );
             $available = false;
@@ -394,9 +394,9 @@ class FetchPosts
             'post_status' => 'future',
             'fields'      => 'ids',
             'date_query'  => [
-				'year'  => gmdate( 'Y', $timestamp ),
-				'month' => gmdate( 'n', $timestamp ),
-				'day'   => gmdate( 'j', $timestamp ),
+				'year'  => date( 'Y', $timestamp ),
+				'month' => date( 'n', $timestamp ),
+				'day'   => date( 'j', $timestamp ),
 			],
         ] ), $post_type );
         if ( ! empty($posts) && count( $posts ) > 0 ) {
@@ -426,7 +426,7 @@ class FetchPosts
      */
     private function set_limit( int $post_id ) {
         $timestamp = $this->current_timestamp();
-        $transient_name = 'wpar_daily_' . gmdate( 'Y_m_d', $timestamp );
+        $transient_name = 'wpar_daily_' . date( 'Y_m_d', $timestamp );
         $numbers_proceed = get_transient( $transient_name );
         if ( ! $numbers_proceed ) {
             $numbers_proceed = [];
