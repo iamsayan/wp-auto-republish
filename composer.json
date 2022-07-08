@@ -33,7 +33,10 @@
     "scripts": {
         "build": [
 			"composer dump-autoload --no-dev"
-		]
+		],
+        "pot" : [
+            "wp i18n make-pot . languages/wp-auto-republish.pot --exclude=\"/vendor,/assets\""
+        ]
 	},
     "config": {
 		"optimize-autoloader": true

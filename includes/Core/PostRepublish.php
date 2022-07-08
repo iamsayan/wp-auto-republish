@@ -12,7 +12,7 @@ namespace RevivePress\Core;
 
 use  WP_Post ;
 use  RevivePress\Helpers\Hooker ;
-use  RevivePress\Helpers\Schedular ;
+use  RevivePress\Helpers\Scheduler ;
 use  RevivePress\Helpers\HelperFunctions ;
 defined( 'ABSPATH' ) || exit;
 /**
@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class PostRepublish
 {
-    use  HelperFunctions, Hooker, Schedular ;
+    use  HelperFunctions, Hooker, Scheduler ;
     /**
      * Register functions.
      */
@@ -164,7 +164,7 @@ class PostRepublish
                 foreach ( $lastposts as $lastpost ) {
                     $post_date = get_the_date( 'U', $lastpost );
                     $post_date = $post_date + $interval;
-                    $new_time = gmdate( 'Y-m-d H:i:s', $post_date );
+                    $new_time = date( 'Y-m-d H:i:s', $post_date );
                 }
             }
         }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Action Schedular functions.
+ * Action Scheduler functions.
  *
  * @since      1.3.2
  * @package    RevivePress
@@ -13,9 +13,9 @@ namespace RevivePress\Helpers;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Action Schedular Class
+ * Action Scheduler Class
  */
-trait Schedular
+trait Scheduler
 {
 	
 	/**
@@ -104,8 +104,17 @@ trait Schedular
 	 * @param  array   $args   Parameters.
 	 * @return null|string
 	 */
-	protected function get_next_actions( $args ) {
-		return \as_get_scheduled_actions( $args ); // @phpstan-ignore-line
+	protected function get_next_actions( $args, $return_format = 'ids' ) {
+		$args = \wp_parse_args( $args, [
+			'status'       => \ActionScheduler_Store::STATUS_PENDING,
+			'per_page'     => 1,
+			'orderby'      => 'date',
+			'order'        => 'ASC',
+			'group'        => 'wp-auto-republish',
+			'date_compare' => '=',
+		] );
+
+		return \as_get_scheduled_actions( $args, $return_format ); // @phpstan-ignore-line
 	}
 
 	/**
@@ -116,17 +125,13 @@ trait Schedular
 	 * @param  string  $group  Group Name.
 	 * @return null|string
 	 */
-	protected function get_next_action_by_data( $hook, $timestamp, $args, $group = 'wp-auto-republish' ) {
-		return $this->get_next_actions( [
-			'hook'         => $hook,
-			'args'         => $args,
-			'date'         => gmdate( 'U', $timestamp ),
-			'date_compare' => '=',
-			'group'        => $group,
-			'status'       => \ActionScheduler_Store::STATUS_PENDING,
-			'per_page'     => 1,
-			'orderby'      => 'date',
-			'order'        => 'ASC',
-		], 'ids' );
+	protected function get_next_action_by_data( $hook, $timestamp, $args ) {
+		$actions = $this->get_next_actions( [
+			'hook' => $hook,
+			'args' => $args,
+			'date' => gmdate( 'U', $timestamp ),
+		] );
+
+		return $actions;
 	}
 }

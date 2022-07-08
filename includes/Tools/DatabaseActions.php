@@ -11,7 +11,7 @@
 namespace RevivePress\Tools;
 
 use  RevivePress\Helpers\Hooker ;
-use  RevivePress\Helpers\Schedular ;
+use  RevivePress\Helpers\Scheduler ;
 use  RevivePress\Helpers\HelperFunctions ;
 defined( 'ABSPATH' ) || exit;
 /**
@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class DatabaseActions
 {
-    use  HelperFunctions, Hooker, Schedular ;
+    use  HelperFunctions, Hooker, Scheduler ;
     /**
      * Register functions.
      */

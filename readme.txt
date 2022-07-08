@@ -1,9 +1,9 @@
 === RevivePress – Keep your Old Content Evergreen ===
-Contributors: infosatech
+Contributors: infosatech, freemius
 Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 5.2
 Tested up to: 6.0
-Stable tag: 1.3.8
+Stable tag: 1.3.9
 Requires PHP: 7.2
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -15,7 +15,7 @@ RevivePress (formerly WP Auto Republish), the all-in-one tool for republishing &
 
 RevivePress (formerly WP Auto Republish), the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
 
-[Free Demo](https://api.wprevivepress.com/free-demo) | [Premium Demo](https://api.wprevivepress.com/premium-demo) | [Get Premium](https://wprevivepress.com/pricing/?utm_source=landing&utm_medium=wporg)
+[Lite Demo](https://api.wprevivepress.com/free-demo) | [Premium Demo](https://api.wprevivepress.com/premium-demo) | [Get Premium](https://wprevivepress.com/pricing/?utm_source=landing&utm_medium=wporg)
 
 Like the RevivePress plugin? Consider leaving a [5 star review](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post).
 
@@ -141,6 +141,18 @@ No, plugin can handle it efficiently by tinkering the Permalink Structure.
 
 If you like RevivePress (formerly WP Auto Republish), please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
 
+= 1.3.9 =
+Release Date: 8th July, 2022
+
+= Premium Version =
+* Fixed: PHP Fatal Errors in v7.2.
+* Fixed: Cache was not clearing automatically.
+
+= Free Version =
+* Updated: Action Scheduler Library.
+* Tweak: Using `date()` instead of `gmdate()` in some places.
+* Fixed: Typos.
+
 = 1.3.8 =
 Release Date: 10th June, 2022
 
@@ -161,7 +173,7 @@ Release Date: 9th June, 2022
 = 1.3.6 =
 Release Date: 31st May, 2022
 
-* Updated: Action Schedular Library.
+* Updated: Action Scheduler Library.
 
 = 1.3.5 =
 Release Date: 26th May, 2022
@@ -176,12 +188,12 @@ Release Date: 16th May, 2022
 
 = Premium Version =
 * Added: New Logging System.
-* Fixed: Action Schedular Error if WPML is active.
+* Fixed: Action Scheduler Error if WPML is active.
 * Removed: Rules and Logs Toogle Options from Settings.
 * And all Free Version Improvements and Fixes.
 
 = Free Version =
-* Added: Option Under RevivePress > Dashboard > Misc to regenerate Action Schedular Tables if missing.
+* Added: Option Under RevivePress > Dashboard > Misc to regenerate Action Scheduler Tables if missing.
 * Added: CSS Improvements.
 * Improved: Conditional Logic.
 * Improved: Republish Interval per Day is now seperated and can be customized.
@@ -194,11 +206,11 @@ Release Date: 19th April, 2022
 
 = Premium Version =
 * Added: RevivePress tags in Permalinks Tags List under Settings > Permalinks.
-* Fixed: Action Schedular Error if WPML is active.
+* Fixed: Action Scheduler Error if WPML is active.
 * And all Free Version Improvements and Fixes.
 
 = Free Version =
-* Added: Option Under RevivePress > Dashboard > Misc to regenerate Action Schedular Tables if missing.
+* Added: Option Under RevivePress > Dashboard > Misc to regenerate Action Scheduler Tables if missing.
 * Added: CSS Tweaks.
 * Fixed: Conditional logic.
 * Minimum Required PHP version is now v7.2
@@ -273,7 +285,7 @@ Release Date: 22th February, 2022
 * Removed: Health Check system which sometimes causes overload.
 * Removed: Unused Migration scripts.
 * Fixed: Fix for Database Table will run if WooCommerce not active.
-* Fixed: Fatal error caused by Action Schedular.
+* Fixed: Fatal error caused by Action Scheduler.
 * Fixed: Several typos.
 * Tested with WordPress 5.9 and minumum required WordPress version is 5.2.
 * PHP 8.0 Compatibility.

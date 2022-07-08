@@ -53,7 +53,7 @@ Release Date: 23rd February, 2021
 * Other Free version & Misc improvements and fixes.
 
 = Free Version =
-* Added: Action Schedular to Handle Post republishing more efficiently.
+* Added: Action Scheduler to Handle Post republishing more efficiently.
 * Added: A Health Check mechanism to properly handle the missed schedule issue.
 * Added: A Documentation and Faqs link as Plugin Tab.
 * Properly handled the plugin uninstall actions to reduce the server load.
