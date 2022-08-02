@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.0
+Release Date: 31st July, 2022
+
+= Premium Version =
+* Added: Tumblr Share.
+* Added: Option to sort posts by actual post published date on frontend.
+* Added: Option to share on individual social providers.
+* Fixed: Custom User Capabilities.
+
+= Free Version =
+* Tweak: Load Post Taxonomies and Authors only on Search in Settings to avoid high memory usgae.
+* Updated: Freemius Library.
+
 ## 1.3.9
 Release Date: 8th July, 2022
 
