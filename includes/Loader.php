@@ -24,6 +24,7 @@ final class Loader
         $services = [
             Pages\Dashboard::class,
             Base\Enqueue::class,
+            Base\Admin::class,
             Base\Actions::class,
             Base\Localization::class,
             Base\AdminNotice::class,

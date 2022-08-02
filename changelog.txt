@@ -1,5 +1,154 @@
 == Changelog ==
 
+= 1.3.9 =
+Release Date: 8th July, 2022
+
+= Premium Version =
+* Fixed: PHP Fatal Errors in v7.2.
+* Fixed: Cache was not clearing automatically.
+
+= Free Version =
+* Updated: Action Scheduler Library.
+* Tweak: Using `date()` instead of `gmdate()` in some places.
+* Fixed: Typos.
+
+= 1.3.8 =
+Release Date: 10th June, 2022
+
+= Premium Version =
+* Fixed: Dashboard Widget rendring issue.
+* Fixed: Post Metabox conditional logic.
+* Updated: Composer packages.
+
+= Free Version =
+* Improved: Plugin will now auto-forward to the next available weekday if all weekdays are not selected. It can be disabled by using the filter: `wpar/enable_auto_forward`.
+* Fixed: Admin Menu Logo Rendering.
+
+= 1.3.7 =
+Release Date: 9th June, 2022
+
+* Fixed: Republish was not working in some cases.
+
+= 1.3.6 =
+Release Date: 31st May, 2022
+
+* Updated: Action Scheduler Library.
+
+= 1.3.5 =
+Release Date: 26th May, 2022
+
+* Fixed: PHP Error if there is any old version of Extended Library is present.
+* Fixed: Schedule Generation process.
+* Fixed: PHP Error on Some installations.
+* Added: Recommended PHP directive values under Tools Tab.
+
+= 1.3.4 =
+Release Date: 16th May, 2022
+
+= Premium Version =
+* Added: New Logging System.
+* Fixed: Action Scheduler Error if WPML is active.
+* Removed: Rules and Logs Toogle Options from Settings.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Added: Option Under RevivePress > Dashboard > Misc to regenerate Action Scheduler Tables if missing.
+* Added: CSS Improvements.
+* Improved: Conditional Logic.
+* Improved: Republish Interval per Day is now seperated and can be customized.
+* Fixed: Incrasing Gap between Two Scheduled Posts.
+* Removed: jQuery Cookie Library.
+* Compatibility with WordPress v6.0.
+
+= 1.3.3 =
+Release Date: 19th April, 2022
+
+= Premium Version =
+* Added: RevivePress tags in Permalinks Tags List under Settings > Permalinks.
+* Fixed: Action Scheduler Error if WPML is active.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Added: Option Under RevivePress > Dashboard > Misc to regenerate Action Scheduler Tables if missing.
+* Added: CSS Tweaks.
+* Fixed: Conditional logic.
+* Minimum Required PHP version is now v7.2
+
+= 1.3.2 =
+Release Date: 10th April, 2022
+
+= Premium Version =
+* Added: WPML Compatibility.
+* Added: Option to add Custom Republish Date & Time on post edit screen and Republush Rules.
+* Added: Option to add UTM Parameters in Social Media Share.
+* Added: Internal Capabilities to hide Republish Rules from non-admin users.
+* Fixed: PHP Error on some installations.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Added: A function to call the functions externally. See functions.php file for details.
+* Added: Admin notice using WP Pointer.
+* Added: Auto Fix Permalink mechanism to support the dates, months, years is permalink structure.
+* Improvement: Optimized Post Query Memory usage.
+* Improvement: Added new Logo.
+* Fixed: PHP errors.
+* Other various Improvements and fixes.
+
+= 1.3.1 =
+Release Date: 25th February, 2022
+
+= Premium Version =
+* Added: Ability exclude Sticky Posts.
+* Added: OneSignal Support.
+* Added: Batch Processing for Social Media share and Notification.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Improvement: Optimized Post Query Memory usage.
+* Improvement: Ability to force include or exclude post ids at same time.
+* Other Improvements and fixes.
+
+= 1.3.0 =
+Release Date: 22th February, 2022
+
+* Rebranded to RevivePress
+
+= Premium Version =
+* Added: Ability to republish posts basted on Thumbnail.
+* Added: Ability to republish posts basted on Authors.
+* Added: Option to restrict the number of posts allowed to republish within a day.
+* Improvement: Added String base interval support. It means you can use postfixes of Year, Month, Week, Day, Hour, Minutes like 1y, 2m, 3w, 4d, 5h, 6i respectively. 
+* Improvemnet: Added a swtich under Misc. Options to enable/disable Republish Rules module.
+* Improvement: We have added tab based navigation in per post metabox.
+* Improvement: Instant Republish settings is not seperated from single republish settings. It has its own control settings.
+* Improvement: Social Accounts credentials will be stored on your website so that you don't need to add that evertime when you authorizes your social accounts.
+* Improvement: Social Accounts verification system.
+* Improvement: Added an option to include the start date in post republish metabox if starts date is greater than today.
+* Improvement: Added Order by name in post query setion.
+* Removed: Month Specific republish due to some issues. Will be added in the future versions.
+* Fixed: A bug where checkboxes in post metabox can't be saved.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* NEW: Redesigned UI.
+* Improvement: Optimized republish process to handle Memory limit.
+* Improvement: Added proper guide in every settings.
+* Improvement: Modular Settings to handle code in efficient way.
+* Improvement: Optimize Post Republish process by doing event segmentation.
+* Improvement: Introduces an Updater class to handle upgradation more efficiently.
+* Improvement: Added Public Roadmap link in menu item.
+* Improvement: Changed default runner interval to 3 minutes from 1 minutes thought it can be modified by filter. We don't recommend to do so.
+* Improvement: Optimize plugin to handle large scale republish events.
+* Improvement: Added Escaping and WPCS checks.
+* Updated: jQuery UI CSS Library annd Timepicker Library.
+* Removed: Health Check system which sometimes causes overload.
+* Removed: Unused Migration scripts.
+* Fixed: Fix for Database Table will run if WooCommerce not active.
+* Fixed: Fatal error caused by Action Scheduler.
+* Fixed: Several typos.
+* Tested with WordPress 5.9 and minumum required WordPress version is 5.2.
+* PHP 8.0 Compatibility.
+
 = 1.2.6.1 =
 Release Date: 25th December, 2021
 

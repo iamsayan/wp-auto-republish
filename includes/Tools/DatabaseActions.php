@@ -32,7 +32,7 @@ class DatabaseActions
      * Post meta cleanup.
      */
     public function run_cleanup() {
-        $post_types = array_keys( $this->get_post_types() );
+        $post_types = $this->get_post_types( true );
         $args = [
             'post_type'   => $post_types,
             'numberposts' => -1,
@@ -61,7 +61,7 @@ class DatabaseActions
      * Remove actions.
      */
     public function deschedule_posts() {
-        $post_types = array_keys( $this->get_post_types() );
+        $post_types = $this->get_post_types( true );
         $args = $this->do_filter( 'deschedule_posts_args', [
             'post_type'   => $post_types,
             'numberposts' => -1,

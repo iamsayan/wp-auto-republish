@@ -19,24 +19,25 @@ class Deactivate
 	 * Run plugin deactivation process.
 	 */
 	public static function deactivate() {
-		if ( ! current_user_can( 'activate_plugins' ) ) {
-			return;
-		}
-
+		// remove options.
 		delete_option( 'wpar_plugin_dismiss_rating_notice' );
 		delete_option( 'wpar_plugin_no_thanks_rating_notice' );
 		delete_option( 'wpar_plugin_installed_time' );
 		delete_option( 'revivepress_hide_permalink_notice' );
 		delete_option( 'wpar_next_scheduled_timestamp' );
 
+		// Restore permalink structure.
 		$permalink_structure = get_option( 'permalink_structure' );
 		$permalink_structure = str_replace( [ '%wpar_', '%rvp_' ], '%', $permalink_structure );
 		update_option( 'permalink_structure', $permalink_structure );
 
-		// register action
+		// register action.
 		do_action( 'wpar/after_plugin_deactivate' );
 
+		// flush permalinks.
 		flush_rewrite_rules();
+
+		// flush cache.
 		wp_cache_flush();
 	}
 }

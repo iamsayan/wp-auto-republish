@@ -305,53 +305,36 @@ class ManagerCallbacks
     }
     
     public function post_taxonomy( $args ) {
-        $taxonomies = $this->get_taxonomies( [
-            'public'   => true,
-            '_builtin' => true,
-        ] );
         $this->do_field( [
             'type'        => 'multiple_tax',
             'id'          => $args['label_for'],
             'name'        => 'wpar_post_taxonomy',
             'value'       => $this->get_data( 'wpar_post_taxonomy', [] ),
             'description' => __( 'Select taxonimies which you want to include to republishing or exclude from republishing.', 'wp-auto-republish' ),
-            'options'     => $taxonomies,
             'class'       => 'wpar-taxonomies',
             'condition'   => [ 'wpar_taxonomies_filter', '!=', 'none' ],
         ] );
     }
     
     public function force_include( $args ) {
+        $value = $this->get_data( 'force_include', [] );
         $this->do_field( [
+            'type'        => 'multiple',
             'id'          => $args['label_for'],
             'name'        => 'force_include',
-            'value'       => preg_replace( [
-				'/[^\\d,]/',
-				'/(?<=,),+/',
-				'/^,+/',
-				'/,+$/',
-			], '', $this->get_data( 'force_include' ) ),
+            'value'       => ( is_array( $value ) ? $value : explode( ',', $value ) ),
             'description' => __( 'Write the post IDs which you want to include forcefully in the republish process. But it doesn\'t mean that it will republish every time, rather it will added to the republish eligible post list. These posts will be republished only if the orther conditions are met.', 'wp-auto-republish' ),
-            'attributes'  => [
-				'style' => 'width: 90%',
-			],
         ] );
     }
     
     public function force_exclude( $args ) {
+        $value = $this->get_data( 'wpar_override_category_tag', [] );
         $this->do_field( [
+            'type'        => 'multiple',
             'id'          => $args['label_for'],
             'name'        => 'wpar_override_category_tag',
-            'value'       => preg_replace( [
-				'/[^\\d,]/',
-				'/(?<=,),+/',
-				'/^,+/',
-				'/,+$/',
-			], '', $this->get_data( 'wpar_override_category_tag' ) ),
+            'value'       => ( is_array( $value ) ? $value : explode( ',', $value ) ),
             'description' => __( 'Write the post IDs which you want to exclude forcefully from the republish process.', 'wp-auto-republish' ),
-            'attributes'  => [
-				'style' => 'width: 90%',
-			],
         ] );
     }
     

@@ -19,13 +19,10 @@ class Activate
 	 * Run plugin activation process.
 	 */
 	public static function activate() {
-		if ( ! current_user_can( 'activate_plugins' ) ) {
-			return;
-		}
-		
-		// register action
+		// register action.
 		do_action( 'wpar/after_plugin_activate' );
 
+		// flush permalinks
 		flush_rewrite_rules();
 	}
 }

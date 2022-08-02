@@ -44,9 +44,9 @@ class Enqueue extends BaseController
         );
         $this->load(
             'css',
-            'selectize',
-            'selectize.min.css',
-            '0.12.6'
+            'select2',
+            'select2.min.css',
+            '4.0.13'
         );
         $this->load(
             'css',
@@ -62,7 +62,7 @@ class Enqueue extends BaseController
             [
 				'revivepress-jquery-ui',
 				'revivepress-jquery-ui-timepicker',
-				'revivepress-selectize',
+				'revivepress-select2',
 				'revivepress-confirm',
 			]
         );
@@ -75,9 +75,9 @@ class Enqueue extends BaseController
         );
         $this->load(
             'js',
-            'selectize',
-            'selectize.min.js',
-            '0.12.6',
+            'select2',
+            'select2.min.js',
+            '4.0.13',
             [ 'jquery' ]
         );
         $this->load(
@@ -96,21 +96,22 @@ class Enqueue extends BaseController
 				'jquery',
 				'jquery-form',
 				'revivepress-datetimepicker',
-				'revivepress-selectize',
+				'revivepress-select2',
 				'revivepress-confirm',
 			]
         );
         
         if ( 'toplevel_page_revivepress' === $hook ) {
-            wp_enqueue_style( 'revivepress-selectize' );
+            wp_enqueue_style( 'revivepress-select2' );
             wp_enqueue_style( 'revivepress-jquery-ui' );
             wp_enqueue_style( 'revivepress-jquery-ui-timepicker' );
+            wp_enqueue_style( 'revivepress-fa' );
             wp_enqueue_style( 'revivepress-styles' );
             wp_enqueue_script( 'jquery-form' );
             wp_enqueue_script( 'jquery-ui-datepicker' );
             wp_enqueue_script( 'jquery-ui-sortable' );
             wp_enqueue_script( 'revivepress-datetimepicker' );
-            wp_enqueue_script( 'revivepress-selectize' );
+            wp_enqueue_script( 'revivepress-select2' );
             wp_enqueue_script( 'revivepress-confirm' );
             wp_enqueue_script( 'revivepress-admin' );
             wp_localize_script( 'revivepress-admin', 'rvpAdminL10n', [

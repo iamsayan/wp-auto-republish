@@ -66,7 +66,7 @@ class PluginTools
 		header( 'Content-Type: application/json; charset=utf-8' );
 		header( 'Content-Disposition: attachment; filename=' . str_replace( '/', '-', $output ) . '-revivepress-export-' . date( 'm-d-Y', $this->current_timestamp() ) . '.json' );
 		header( "Expires: 0" );
-		echo json_encode( $settings );
+		echo wp_json_encode( $settings );
 		exit;
 	}
 
@@ -117,10 +117,8 @@ class PluginTools
 
 		$option = get_option( 'wpar_plugin_settings' );
 
-		//error_log( json_encode( $option ) );
-	
 		$this->success( [
-			'settings_data' => json_encode( $option ),
+			'settings_data' => wp_json_encode( $option ),
 		] );
 	}
 

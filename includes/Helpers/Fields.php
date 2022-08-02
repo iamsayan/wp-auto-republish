@@ -114,42 +114,54 @@ trait Fields {
 			} elseif ( $data['type'] == 'textarea' ) {
 				echo '<textarea class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" id="' . esc_attr( $data['id'] ) . '" name="wpar_plugin_settings[' . esc_attr( $name ) . ']" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' autocomplete="off">' . wp_kses_post( $value ) . '</textarea>';
 			} elseif ( $data['type'] == 'select' ) {
-				if ( isset( $data['options'] ) && is_array( $data['options'] ) ) {
-					echo '<select id="' . esc_attr( $data['id'] ) . '" class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" name="wpar_plugin_settings[' . esc_attr( $name ) . ']" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' autocomplete="off">';
-					if ( ! empty( $data['options'] ) ) {
-						foreach ( $data['options'] as $key => $option ) {
-							$disabled = ( strpos( $key, 'premium' ) !== false ) ? ' disabled' : '';
-							echo '<option value="' . esc_attr( $key ) . '" ' . selected( $key, $value, false ) . esc_attr( $disabled ) . '>' . esc_html( $option ) . '</option>';
-						}
+				echo '<select id="' . esc_attr( $data['id'] ) . '" class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" name="wpar_plugin_settings[' . esc_attr( $name ) . ']" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' autocomplete="off">';
+				if ( ! empty( $data['options'] ) && is_array( $data['options'] ) ) {
+					foreach ( $data['options'] as $key => $option ) {
+						$disabled = ( strpos( $key, 'premium' ) !== false ) ? ' disabled' : '';
+						echo '<option value="' . esc_attr( $key ) . '" ' . selected( $key, $value, false ) . esc_attr( $disabled ) . '>' . esc_html( $option ) . '</option>';
 					}
-					echo '</select>';
 				}
+				echo '</select>';
 			} elseif ( $data['type'] == 'multiple' ) {
-				if ( isset( $data['options'] ) && is_array( $data['options'] ) ) {
-					echo '<select id="' . esc_attr( $data['id'] ) . '" class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" name="wpar_plugin_settings[' . esc_attr( $name ) . '][]" multiple="multiple" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' style="width: 90%">';
-					if ( ! empty( $data['options'] ) ) {
-						foreach ( $data['options'] as $key => $option ) {
-							echo '<option value="' . esc_attr( $key ) . '" ' . selected( in_array( $key, $value ), true, false ) . '>' . esc_html( $option ) . '</option>';
-						}
+				echo '<select id="' . esc_attr( $data['id'] ) . '" class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" name="wpar_plugin_settings[' . esc_attr( $name ) . '][]" multiple="multiple" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' style="width: 95%">';
+				if ( ! empty( $data['options'] ) && is_array( $data['options'] ) ) {
+					foreach ( $data['options'] as $key => $option ) {
+						echo '<option value="' . esc_attr( $key ) . '" ' . selected( in_array( $key, $value ), true, false ) . '>' . esc_html( $option ) . '</option>';
 					}
-					echo '</select>';
+				} elseif ( ! empty( $value ) ) {
+					foreach ( $value as $author ) {
+						$key = $author;
+						if ( 'allowed_authors' === $data['name'] ) {
+							$user = get_user_by( 'id', $key );
+							$author = $user->display_name;
+						}
+						echo '<option value="' . esc_attr( $key ) . '" selected="selected">' . esc_html( $author ) . '</option>';
+					}
 				}
+				echo '</select>';
 			} elseif ( $data['type'] == 'multiple_tax' ) {
-				if ( isset( $data['options'] ) && is_array( $data['options'] ) ) {
-					echo '<select id="' . esc_attr( $data['id'] ) . '" class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" name="wpar_plugin_settings[' . esc_attr( $name ) . '][]" multiple="multiple" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' style="width: 90%">';
-					if ( ! empty( $data['options'] ) ) {
-						foreach ( $data['options'] as $key => $option ) {
-							echo '<optgroup label="' . esc_attr( $option['label'] ) . '">';
-							if ( isset( $option['categories'] ) && ! empty( $option['categories'] ) && is_array( $option['categories'] ) ) {
-								foreach ( $option['categories'] as $cat_slug => $cat_name ) {
-									echo '<option value="' . esc_attr( $cat_slug ) . '" ' . selected( in_array( $cat_slug, $value ), true, false ) . '>' . esc_html( $cat_name ) . '</option>';
-								}
+				echo '<select id="' . esc_attr( $data['id'] ) . '" class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" name="wpar_plugin_settings[' . esc_attr( $name ) . '][]" multiple="multiple" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' style="width: 95%">';
+				if ( ! empty( $data['options'] ) && is_array( $data['options'] ) ) {
+					foreach ( $data['options'] as $key => $option ) {
+						echo '<optgroup label="' . esc_attr( $option['label'] ) . '">';
+						if ( isset( $option['categories'] ) && ! empty( $option['categories'] ) && is_array( $option['categories'] ) ) {
+							foreach ( $option['categories'] as $cat_slug => $cat_name ) {
+								echo '<option value="' . esc_attr( $cat_slug ) . '" ' . selected( in_array( $cat_slug, $value ), true, false ) . '>' . esc_html( $cat_name ) . '</option>';
 							}
-							echo '</optgroup>';
 						}
+						echo '</optgroup>';
 					}
-					echo '</select>';
+				} elseif ( ! empty( $value ) ) {
+					foreach ( $value as $taxonomy ) {
+						$get_item          = explode( '|', $taxonomy );
+						$term              = get_term( $get_item[2] );
+						$get_taxonomy_data = get_taxonomy( $term->taxonomy );
+						$cat_name          = $get_taxonomy_data->label . ' : ' . $term->name;
+
+						echo '<option value="' . esc_attr( $taxonomy ) . '" selected="selected">' . esc_html( $cat_name ) . '</option>';
+					}
 				}
+				echo '</select>';
 			} elseif ( $data['type'] == 'wp_editor' ) {
 				echo '<div class="wpar-form-control wpar-form-el wpar-editor" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) )  . '>';
 				wp_editor( html_entity_decode( $value, ENT_COMPAT, "UTF-8" ), $data['id'], [
