@@ -32,7 +32,8 @@
     },
     "scripts": {
         "build": [
-			"composer dump-autoload --no-dev"
+			"composer dump-autoload --no-dev",
+			"composer pot"
 		],
         "pot" : [
             "wp i18n make-pot . languages/wp-auto-republish.pot --exclude=\"/vendor,/assets\""

@@ -25,12 +25,13 @@ trait HelperFunctions
      *
      * @return array
      */
-    protected function get_post_types() {
-        $post_types = \get_post_types( [
+    protected function get_post_types( $only_types = false ) {
+        $args = [
             'public'   => true,
             '_builtin' => true,
-        ], 'objects' );
+        ];
         $data = [];
+        $post_types = \get_post_types( $args, 'objects' );
         foreach ( $post_types as $post_type ) {
             if ( ! is_object( $post_type ) ) {
                 continue;
@@ -50,7 +51,7 @@ trait HelperFunctions
             
             $data[ $post_type->name ] = $label;
         }
-        return $data;
+        return ( $only_types ? array_keys( $data ) : $data );
     }
     
     /**
@@ -462,13 +463,18 @@ trait HelperFunctions
      * @return array
      */
     protected function filter_post_ids( $input ) {
-        $input = preg_replace( [
-            '/[^\\d,]/',
-            '/(?<=,),+/',
-            '/^,+/',
-            '/,+$/',
-        ], '', $input );
-        return explode( ',', $input );
+        
+        if ( ! is_array( $input ) ) {
+            $input = preg_replace( [
+                '/[^\\d,]/',
+                '/(?<=,),+/',
+                '/^,+/',
+                '/,+$/',
+            ], '', $input );
+            $input = explode( ',', $input );
+        }
+        
+        return array_map( 'intval', $input );
     }
     
     /**
@@ -496,6 +502,21 @@ trait HelperFunctions
     protected function validate_date( $date, $format = 'Y-m-d H:i:s' ) {
         $date_time = DateTime::createFromFormat( $format, $date );
         return $date_time && $date_time->format( $format ) == $date;
+    }
+    
+    /**
+     * Get Social providers.
+     * 
+     * @since 1.4.0
+     * @return array
+     */
+    protected function get_social_providers() {
+        return [
+            'facebook',
+            'twitter',
+            'linkedin',
+            'tumblr',
+        ];
     }
 
 }

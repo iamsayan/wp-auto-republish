@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: RevivePress 1.3.9\n"
+"Project-Id-Version: RevivePress 1.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-auto-republish\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-07-08T14:53:06+00:00\n"
+"POT-Creation-Date: 2022-08-02T06:04:14+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: wp-auto-republish\n"
@@ -37,7 +37,7 @@ msgid "https://sayandatta.in"
 msgstr ""
 
 #: includes/Api/Callbacks/AdminCallbacks.php:65
-#: includes/Base/Enqueue.php:131
+#: includes/Base/Enqueue.php:132
 msgid "Save Settings"
 msgstr ""
 
@@ -402,47 +402,47 @@ msgstr ""
 msgid "Exclude Taxonomies"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:317
+#: includes/Api/Callbacks/ManagerCallbacks.php:313
 msgid "Select taxonimies which you want to include to republishing or exclude from republishing."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:334
+#: includes/Api/Callbacks/ManagerCallbacks.php:326
 msgid "Write the post IDs which you want to include forcefully in the republish process. But it doesn't mean that it will republish every time, rather it will added to the republish eligible post list. These posts will be republished only if the orther conditions are met."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:351
+#: includes/Api/Callbacks/ManagerCallbacks.php:337
 msgid "Write the post IDs which you want to exclude forcefully from the republish process."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:364
+#: includes/Api/Callbacks/ManagerCallbacks.php:347
 msgid "Enable this if you want to remove all the plugin data from your website."
 msgstr ""
 
-#: includes/Base/Actions.php:53
+#: includes/Base/Admin.php:47
 msgid "Settings"
 msgstr ""
 
-#: includes/Base/Actions.php:63
+#: includes/Base/Admin.php:57
 msgid "Scheduled Tasks"
 msgstr ""
 
-#: includes/Base/Actions.php:64
+#: includes/Base/Admin.php:58
 msgid "Roadmap"
 msgstr ""
 
-#: includes/Base/Actions.php:87
+#: includes/Base/Admin.php:81
 msgid "Documentation"
 msgstr ""
 
-#: includes/Base/Actions.php:100
+#: includes/Base/Admin.php:94
 msgid "Developed with"
 msgstr ""
 
-#: includes/Base/Actions.php:102
+#: includes/Base/Admin.php:96
 msgid "Support Forum"
 msgstr ""
 
-#: includes/Base/Actions.php:103
+#: includes/Base/Admin.php:97
 msgid "Rate it"
 msgstr ""
 
@@ -462,151 +462,151 @@ msgstr ""
 msgid "Dismiss Notice"
 msgstr ""
 
-#: includes/Base/Enqueue.php:118
+#: includes/Base/Enqueue.php:119
 msgid "Select weekdays (required)"
 msgstr ""
 
-#: includes/Base/Enqueue.php:119
+#: includes/Base/Enqueue.php:120
 msgid "Select post types (required)"
 msgstr ""
 
-#: includes/Base/Enqueue.php:120
+#: includes/Base/Enqueue.php:121
 msgid "Select user roles (required)"
 msgstr ""
 
-#: includes/Base/Enqueue.php:121
+#: includes/Base/Enqueue.php:122
 msgid "Select taxonomies"
 msgstr ""
 
-#: includes/Base/Enqueue.php:122
+#: includes/Base/Enqueue.php:123
 msgid "Enter post or page or custom post ids (comma separated)"
 msgstr ""
 
-#: includes/Base/Enqueue.php:123
+#: includes/Base/Enqueue.php:124
 msgid "Saving..."
 msgstr ""
 
-#: includes/Base/Enqueue.php:124
+#: includes/Base/Enqueue.php:125
 msgid "Please wait while we are saving your settings..."
 msgstr ""
 
-#: includes/Base/Enqueue.php:125
+#: includes/Base/Enqueue.php:126
 msgid "Done!"
 msgstr ""
 
-#: includes/Base/Enqueue.php:126
+#: includes/Base/Enqueue.php:127
 msgid "Error!"
 msgstr ""
 
-#: includes/Base/Enqueue.php:127
+#: includes/Base/Enqueue.php:128
 msgid "Deleting..."
 msgstr ""
 
-#: includes/Base/Enqueue.php:128
+#: includes/Base/Enqueue.php:129
 msgid "Processing..."
 msgstr ""
 
-#: includes/Base/Enqueue.php:129
+#: includes/Base/Enqueue.php:130
 msgid "Warning!"
 msgstr ""
 
-#: includes/Base/Enqueue.php:130
+#: includes/Base/Enqueue.php:131
 msgid "Please wait while we are processing your request..."
 msgstr ""
 
-#: includes/Base/Enqueue.php:132
+#: includes/Base/Enqueue.php:133
 msgid "Settings Saved Successfully!"
 msgstr ""
 
-#: includes/Base/Enqueue.php:133
+#: includes/Base/Enqueue.php:134
 msgid "Are you sure that you want to delete this item?"
 msgstr ""
 
-#: includes/Base/Enqueue.php:134
+#: includes/Base/Enqueue.php:135
 msgid "Invalid Nonce! We could not process your request."
 msgstr ""
 
-#: includes/Base/Enqueue.php:135
+#: includes/Base/Enqueue.php:136
 msgid "OK"
 msgstr ""
 
-#: includes/Base/Enqueue.php:136
+#: includes/Base/Enqueue.php:137
 msgid "Confirm"
 msgstr ""
 
-#: includes/Base/Enqueue.php:137
+#: includes/Base/Enqueue.php:138
 msgid "Cancel"
 msgstr ""
 
-#: includes/Base/Enqueue.php:138
+#: includes/Base/Enqueue.php:139
 msgid "Close"
 msgstr ""
 
-#: includes/Base/Enqueue.php:139
+#: includes/Base/Enqueue.php:140
 msgid "Paste Here"
 msgstr ""
 
-#: includes/Base/Enqueue.php:140
+#: includes/Base/Enqueue.php:141
 msgid "Import"
 msgstr ""
 
-#: includes/Base/Enqueue.php:141
+#: includes/Base/Enqueue.php:142
 msgid "Importing..."
 msgstr ""
 
-#: includes/Base/Enqueue.php:142
+#: includes/Base/Enqueue.php:143
 msgid "Please wait..."
 msgstr ""
 
-#: includes/Base/Enqueue.php:143
+#: includes/Base/Enqueue.php:144
 msgid "No logs found."
 msgstr ""
 
-#: includes/Base/Enqueue.php:144
+#: includes/Base/Enqueue.php:145
 msgid "Filter"
 msgstr ""
 
-#: includes/Base/Enqueue.php:145
+#: includes/Base/Enqueue.php:146
 msgid "Activating..."
 msgstr ""
 
-#: includes/Base/Enqueue.php:146
+#: includes/Base/Enqueue.php:147
 msgid "Deactivating..."
 msgstr ""
 
-#: includes/Base/Enqueue.php:147
+#: includes/Base/Enqueue.php:148
 msgid "Activate"
 msgstr ""
 
-#: includes/Base/Enqueue.php:148
+#: includes/Base/Enqueue.php:149
 msgid "Deactivate"
 msgstr ""
 
-#: includes/Base/Enqueue.php:149
+#: includes/Base/Enqueue.php:150
 msgid "Enabled"
 msgstr ""
 
-#: includes/Base/Enqueue.php:150
+#: includes/Base/Enqueue.php:151
 msgid "Disabled"
 msgstr ""
 
-#: includes/Base/Enqueue.php:151
+#: includes/Base/Enqueue.php:152
 msgid "Verify"
 msgstr ""
 
-#: includes/Base/Enqueue.php:152
+#: includes/Base/Enqueue.php:153
 msgid "New Account"
 msgstr ""
 
-#: includes/Base/Enqueue.php:153
+#: includes/Base/Enqueue.php:154
 msgid "Please enter the required data first!"
 msgstr ""
 
-#: includes/Base/Enqueue.php:154
+#: includes/Base/Enqueue.php:155
 msgid "Edit Template"
 msgstr ""
 
-#: includes/Base/Enqueue.php:155
+#: includes/Base/Enqueue.php:156
 msgid "Save Template"
 msgstr ""
 
@@ -618,7 +618,7 @@ msgstr ""
 msgid "<strong>Settings import failed:</strong> Please upload a file to import."
 msgstr ""
 
-#: includes/Base/PluginTools.php:208
+#: includes/Base/PluginTools.php:206
 msgid "Success! Plugin Settings has been imported successfully."
 msgstr ""
 

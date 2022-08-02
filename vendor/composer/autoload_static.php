@@ -32,6 +32,7 @@ class ComposerStaticInitd5699dfd0ed62714b22c430580475703
         'RevivePress\\Api\\SettingsApi' => __DIR__ . '/../..' . '/includes/Api/SettingsApi.php',
         'RevivePress\\Base\\Actions' => __DIR__ . '/../..' . '/includes/Base/Actions.php',
         'RevivePress\\Base\\Activate' => __DIR__ . '/../..' . '/includes/Base/Activate.php',
+        'RevivePress\\Base\\Admin' => __DIR__ . '/../..' . '/includes/Base/Admin.php',
         'RevivePress\\Base\\AdminNotice' => __DIR__ . '/../..' . '/includes/Base/AdminNotice.php',
         'RevivePress\\Base\\BaseController' => __DIR__ . '/../..' . '/includes/Base/BaseController.php',
         'RevivePress\\Base\\Deactivate' => __DIR__ . '/../..' . '/includes/Base/Deactivate.php',
