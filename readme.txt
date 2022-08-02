@@ -142,7 +142,7 @@ No, plugin can handle it efficiently by tinkering the Permalink Structure.
 If you like RevivePress (formerly WP Auto Republish), please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
 
 = 1.4.0 =
-Release Date: 31st July, 2022
+Release Date: 2nd August, 2022
 
 = Premium Version =
 * Added: Tumblr Share.
@@ -151,7 +151,7 @@ Release Date: 31st July, 2022
 * Fixed: Custom User Capabilities.
 
 = Free Version =
-* Tweak: Load Post Taxonomies and Authors only on Search in Settings to avoid high memory usgae.
+* Tweak: Load Post Taxonomies and Authors only on Search in Settings to avoid high memory usage.
 * Updated: Freemius Library.
 
 = Other Versions =

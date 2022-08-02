@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## 1.4.0
-Release Date: 31st July, 2022
+Release Date: 2nd August, 2022
 
 = Premium Version =
 * Added: Tumblr Share.
@@ -11,7 +11,7 @@ Release Date: 31st July, 2022
 * Fixed: Custom User Capabilities.
 
 = Free Version =
-* Tweak: Load Post Taxonomies and Authors only on Search in Settings to avoid high memory usgae.
+* Tweak: Load Post Taxonomies and Authors only on Search in Settings to avoid high memory usage.
 * Updated: Freemius Library.
 
 ## 1.3.9

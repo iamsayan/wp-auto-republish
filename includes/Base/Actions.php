@@ -40,7 +40,7 @@ class Actions
             '_builtin' => true,
         ] );
         if ( ! empty($taxonomies) && is_array( $taxonomies ) && ! empty($search_term) ) {
-            foreach ( $taxonomies as $key => $categories_data ) {
+            foreach ( $taxonomies as $categories_data ) {
                 $child_count = 0;
                 $child_term_array = [];
                 if ( ! empty($categories_data['categories']) && is_array( $categories_data['categories'] ) ) {
