@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 5.2
 Tested up to: 6.0
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 Requires PHP: 7.2
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -13,7 +13,7 @@ RevivePress (formerly WP Auto Republish), the all-in-one tool for republishing &
 
 == Description ==
 
-RevivePress (formerly WP Auto Republish), the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
+RevivePress, the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
 
 [Lite Demo](https://api.wprevivepress.com/free-demo) | [Premium Demo](https://api.wprevivepress.com/premium-demo) | [Get Premium](https://wprevivepress.com/pricing/?utm_source=landing&utm_medium=wporg)
 
@@ -25,7 +25,7 @@ Like the RevivePress plugin? Consider leaving a [5 star review](https://wordpres
 2. Old content won't show up in date-based searches on search engines, but resetting the date can make them <strong>look fresh again</strong>.
 3. People <strong>like to share and link to new content, </strong>and they determine that by looking at the publication date.
 4. It will highlight older posts by moving them back to <strong>front page and in the RSS feed</strong>.
-5. RevivePress (formerly WP Auto Republish) will improve your <strong>blog visibility, traffic and SEO</strong>!
+5. RevivePress will improve your <strong>blog visibility, traffic and SEO</strong>!
 6. And also <strong>Google likes updated content</strong> if it’s done right.
 
 == What does this plugin do? ==
@@ -77,7 +77,7 @@ This plugin helps revive old posts by resetting the published date to the curren
 
 ### Free and Premium Support
 
-Support for the RevivePress (formerly WP Auto Republish) plugin on the WordPress forums is free.
+Support for the RevivePress plugin on the WordPress forums is free.
 
 Premium world-class support is available via email to all [RevivePress Premium](https://wprevivepress.com/pricing/?utm_source=landing&utm_medium=wporg) customers.
 
@@ -139,7 +139,13 @@ No, plugin can handle it efficiently by tinkering the Permalink Structure.
 
 == Changelog ==
 
-If you like RevivePress (formerly WP Auto Republish), please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
+If you like RevivePress, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.4.1 =
+Release Date: 16th September, 2022
+
+* Tweak: User List Fetching logic.
+* Updated: Action Schedular Library.
 
 = 1.4.0 =
 Release Date: 2nd August, 2022

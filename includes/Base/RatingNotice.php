@@ -47,7 +47,7 @@ class RatingNotice
         
         <div class="notice notice-success">
             <p>
-				<?php echo wp_kses_post( 'Hey, I noticed you\'ve been using RevivePress (formerly WP Auto Republish) for more than 1 week – that’s awesome! Could you please do me a BIG favor and give it a <strong>5-star</strong> rating on WordPress? Just to help us spread the word and boost my motivation.', 'wp-auto-republish' ); ?>
+				<?php echo wp_kses_post( 'Hey, I noticed you\'ve been using RevivePress for more than 1 week – that’s awesome! Could you please do me a BIG favor and give it a <strong>5-star</strong> rating on WordPress? Just to help us spread the word and boost my motivation.', 'wp-auto-republish' ); ?>
 			</p>
             <p>
 				<a href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" class="button button-secondary"><?php esc_html_e( 'Ok, you deserve it', 'wp-auto-republish' ); ?></a>&nbsp;
