@@ -1,27 +1,33 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.1
+Release Date: 16th September, 2022
+
+* Tweak: User List Fetching logic.
+* Updated: Action Schedular Library.
+
 ## 1.4.0
 Release Date: 2nd August, 2022
 
-= Premium Version =
+### Premium Version
 * Added: Tumblr Share.
 * Added: Option to sort posts by actual post published date on frontend.
 * Added: Option to share on individual social providers.
 * Fixed: Custom User Capabilities.
 
-= Free Version =
+### Free Version
 * Tweak: Load Post Taxonomies and Authors only on Search in Settings to avoid high memory usage.
 * Updated: Freemius Library.
 
 ## 1.3.9
 Release Date: 8th July, 2022
 
-= Premium Version =
+### Premium Version
 * Fixed: PHP Fatal Errors in v7.2.
 * Fixed: Cache was not clearing automatically.
 
-= Free Version =
+### Free Version
 * Updated: Action Scheduler Library.
 * Tweak: Using `date()` instead of `gmdate()` in some places.
 * Fixed: Typos.
@@ -29,12 +35,12 @@ Release Date: 8th July, 2022
 ## 1.3.8
 Release Date: 10th June, 2022
 
-= Premium Version =
+### Premium Version
 * Fixed: Dashboard Widget rendring issue.
 * Fixed: Post Metabox conditional logic.
 * Updated: Composer packages.
 
-= Free Version =
+### Free Version
 * Improved: Plugin will now auto-forward to the next available weekday if all weekdays are not selected. It can be disabled by using the filter: `wpar/enable_auto_forward`.
 * Fixed: Admin Menu Logo Rendering.
 
