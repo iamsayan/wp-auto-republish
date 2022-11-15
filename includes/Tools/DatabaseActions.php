@@ -25,7 +25,9 @@ class DatabaseActions
      */
     public function register() {
         $this->action( 'wpar/remove_post_metadata', 'run_cleanup' );
+        $this->action( 'wpar/remove_post_meta_task', 'run_cleanup_task' );
         $this->action( 'wpar/deschedule_posts', 'deschedule_posts' );
+        $this->action( 'wpar/deschedule_posts_task', 'deschedule_posts_task' );
     }
     
     /**
@@ -39,9 +41,16 @@ class DatabaseActions
             'post_status' => [ 'publish', 'future', 'private' ],
             'fields'      => 'ids',
         ];
-        $posts = $this->get_posts( $args );
-        if ( ! empty($posts) ) {
-            foreach ( $posts as $post_id ) {
+        $post_ids = $this->get_posts( $args );
+        $this->schedule_batch_actions( $post_ids, 'wpar/remove_post_meta_task' );
+    }
+    
+    /**
+     * Post meta cleanup task.
+     */
+    public function run_cleanup_task( array $post_ids ) {
+        if ( ! empty($post_ids) ) {
+            foreach ( $post_ids as $post_id ) {
                 // Remove schedules
                 $this->unschedule_all_actions( 'wpar/global_republish_single_post', [ $post_id ] );
                 // Remove metas
@@ -74,9 +83,16 @@ class DatabaseActions
 				],
 			],
         ] );
-        $posts = $this->get_posts( $args );
-        if ( ! empty($posts) ) {
-            foreach ( $posts as $post_id ) {
+        $post_ids = $this->get_posts( $args );
+        $this->schedule_batch_actions( $post_ids, 'wpar/deschedule_posts_task' );
+    }
+    
+    /**
+     * Remove actions.
+     */
+    public function deschedule_posts_task( array $post_ids ) {
+        if ( ! empty($post_ids) ) {
+            foreach ( $post_ids as $post_id ) {
                 // get original published date
                 $pub_date = $this->get_meta( $post_id, '_wpar_original_pub_date' );
                 // update posts

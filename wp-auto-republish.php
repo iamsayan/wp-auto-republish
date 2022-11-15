@@ -3,8 +3,8 @@
 /**
  * Plugin Name: RevivePress
  * Plugin URI: https://wprevivepress.com?utm_source=landing&utm_medium=plugin
- * Description: RevivePress (formerly WP Auto Republish), the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
- * Version: 1.4.1
+ * Description: RevivePress, the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
+ * Version: 1.4.2
  * Author: Sayan Datta
  * Author URI: https://sayandatta.in
  * License: GPLv3
@@ -81,7 +81,7 @@ if ( function_exists( 'revivepress_fs' ) ) {
 
 // Define constants
 if ( ! defined( 'REVIVEPRESS_VERSION' ) ) {
-    define( 'REVIVEPRESS_VERSION', '1.4.1' );
+    define( 'REVIVEPRESS_VERSION', '1.4.2' );
 }
 // Require once the Composer Autoload
 if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {

@@ -67,7 +67,7 @@ class Updates extends BaseController
 
 		foreach ( self::$updates as $version => $path ) {
 			if ( version_compare( $installed_version, $version, '<' ) ) {
-				include $path;
+				include_once $path;
 				update_option( 'revivepress_version', $version );
 			}
 		}
@@ -89,7 +89,7 @@ class Updates extends BaseController
 	 * @param string $hook_suffix The current admin page.
 	 * @since 1.3.2
 	 */
-	function admin_pointer( $hook_suffix ) {
+	public function admin_pointer( $hook_suffix ) {
 		if ( ! in_array( $hook_suffix, [ 'index.php', 'plugins.php' ], true ) ) {
 			return;
 		}
@@ -100,7 +100,7 @@ class Updates extends BaseController
 			'heading'  => __( 'RevivePress', 'wp-auto-republish' ),
 			'message'  => sprintf(
 				/* translators: %s: settings page link */
-				__( 'WP Auto Republish is now RevivePress. We have introduced several performance improvements along with completely redesigned UI. WPML & OneSignal Support are also added in the Premium Version. Go to %s to review & configure the plugin settings.', 'wp-auto-republish' ),
+				__( 'We have introduced several performance improvements along with completely redesigned UI. WPML & OneSignal Support are also added in the Premium Version. Go to %s to review & configure the plugin settings.', 'wp-auto-republish' ),
 				'<a href="' . esc_url( add_query_arg( 'page', 'revivepress', admin_url( 'admin.php' ) ) ) . '">' . __( 'RevivePress > Dashbaord', 'wp-auto-republish' ) . '</a>'
 			),
 			'version'  => '1.3.2',

@@ -114,12 +114,12 @@ class FetchPosts
                 
                 if ( ! $this->has_future_posts( $post_type ) ) {
                     $counter++;
-                    $this->set_single_action( time() + 30 * ($counter / 2), 'wpar/global_republish_flat_posts', [ $post_type ] );
+                    $this->schedule_single_action( time() + 30 * ($counter / 2), 'wpar/global_republish_flat_posts', [ $post_type ] );
                 }            
 }
             if ( $counter > 0 ) {
                 // Check for posts.
-                $this->set_single_action( time() + 30 * (($counter + 1) / 2), 'wpar/global_republish_flat_posts_completed' );
+                $this->schedule_single_action( time() + 30 * (($counter + 1) / 2), 'wpar/global_republish_flat_posts_completed' );
             }
         }
     
@@ -239,16 +239,8 @@ class FetchPosts
             }
             $args = $this->do_filter( 'post_query_args', $args );
             $post_ids = $this->do_filter( 'filtered_post_ids', $this->get_posts( $args ) );
-            
-            if ( ! empty($post_ids) ) {
-                $counter = 0;
-                $chunks = \array_chunk( $post_ids, 50 );
-                foreach ( $chunks as $chunk ) {
-                    $counter++;
-                    $this->set_single_action( time() + 20 * ($counter / 2), 'wpar/process_flat_batches', [ $chunk ] );
-                }
-            }        
-}
+            $this->schedule_batch_actions( $post_ids, 'wpar/process_flat_batches' );
+        }
         
         // delete temp storage
         delete_option( 'wpar_global_republish_post_ids' );
@@ -275,7 +267,7 @@ class FetchPosts
             // delete previosly scheduled hook if exists any.
             $this->unschedule_all_actions( 'wpar/global_republish_single_post', [ $post_id ] );
             // schedule single post republish event
-            $this->set_single_action( $utc_timestamp, 'wpar/global_republish_single_post', [ $post_id ] );
+            $this->schedule_single_action( $utc_timestamp, 'wpar/global_republish_single_post', [ $post_id ] );
             // Convert to local timestamp
             $local_datetime = get_date_from_gmt( date( 'Y-m-d H:i:s', $utc_timestamp ) );
             // update required post metas
@@ -386,8 +378,7 @@ class FetchPosts
         }
         // cureent timestmap
         $timestamp = $this->current_timestamp();
-        // get future posts
-        $posts = $this->do_filter( 'has_future_post_args', $this->get_posts( [
+        $args = $this->do_filter( 'has_future_post_args', [
             'numberposts' => -1,
             'post_type'   => $post_type,
             'sort_order'  => 'ASC',
@@ -398,7 +389,9 @@ class FetchPosts
 				'month' => date( 'n', $timestamp ),
 				'day'   => date( 'j', $timestamp ),
 			],
-        ] ), $post_type );
+        ], $post_type );
+        // get future posts
+        $posts = $this->get_posts( $args );
         if ( ! empty($posts) && count( $posts ) > 0 ) {
             return true;
         }

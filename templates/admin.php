@@ -191,7 +191,7 @@ $data = [
 		'heading' => __( 'Remove Post Meta & Actions', 'wp-auto-republish' ),
 		'hint'    => __( 'Resetting will delete all post metadatas and future action events associated with Post Republish.', 'wp-auto-republish' ),
 		'notice'  => __( 'It will delete all the post meta data & action events relating to global and single post republishing. It may stop previous scheduled republished event. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
-		'success' => __( 'Success! All post meta datas and republish events deleted successfully!', 'wp-auto-republish' ),
+		'success' => __( 'Removing of Post Metas & Events are in progress. It will be completed after some time', 'wp-auto-republish' ),
 		'action'  => 'process_delete_post_metas',
 		'button'  => __( 'Clear Post Metas & Events', 'wp-auto-republish' ),
 	],
@@ -199,7 +199,7 @@ $data = [
 		'heading' => __( 'De-Schedule Posts', 'wp-auto-republish' ),
 		'hint'    => __( 'It will change the republish date to the original post published date on all posts.', 'wp-auto-republish' ),
 		'notice'  => __( 'It will change the republish date to the original post published date on all posts. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
-		'success' => __( 'Success! All posts de-scheduled successfully!', 'wp-auto-republish' ),
+		'success' => __( 'De-scheduling is in progress. It will be completed after some time.', 'wp-auto-republish' ),
 		'action'  => 'process_deschedule_posts',
 	],
     [

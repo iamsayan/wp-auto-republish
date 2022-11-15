@@ -28,8 +28,8 @@ trait Scheduler
 	 * @param  string  $group                Group Name.
 	 * @return string
 	 */
-	protected function set_recurring_action( $timestamp, $interval_in_seconds, $hook, $args = [], $group = 'wp-auto-republish' ) {
-		$action_id = \as_schedule_recurring_action( $timestamp, $interval_in_seconds, $hook, $args, $group ); // @phpstan-ignore-line
+	protected function schedule_recurring_action( $timestamp, $interval_in_seconds, $hook, $args = [], $unique = false, $group = 'wp-auto-republish' ) {
+		$action_id = \as_schedule_recurring_action( $timestamp, $interval_in_seconds, $hook, $args, $group, $unique ); // @phpstan-ignore-line
 
 		return $action_id;
 	}
@@ -43,8 +43,8 @@ trait Scheduler
 	 * @param  string  $group      Group Name.
 	 * @return string
 	 */
-	protected function set_single_action( $timestamp, $hook, $args = [], $group = 'wp-auto-republish' ) {
-		$action_id = \as_schedule_single_action( $timestamp, $hook, $args, $group ); // @phpstan-ignore-line
+	protected function schedule_single_action( $timestamp, $hook, $args = [], $unique = false, $group = 'wp-auto-republish' ) {
+		$action_id = \as_schedule_single_action( $timestamp, $hook, $args, $group, $unique ); // @phpstan-ignore-line
 
 		return $action_id;
 	}
@@ -133,5 +133,28 @@ trait Scheduler
 		] );
 
 		return $actions;
+	}
+
+	/**
+	 * Create batch tasks with a specific interval.
+	 * 
+	 * @since 1.3.2
+	 *
+	 * @param  array    $ids            Post IDs.
+	 * @param  string   $name           Action Name.
+	 * @param  integer  $chunk_size     Size of the Chunk.
+	 * @param  integer  $interval       Interval between two batch tasks.
+	 * @param  array    $args           Args to merge.
+	 */
+	protected function schedule_batch_actions( $ids, $name, $chunk_size = 50, $interval = 10, $args = [] ) {
+		if ( $ids && is_array( $ids ) ) {
+			$interval = $interval * 2;
+			$counter = 0;
+			$chunks = \array_chunk( $ids, $chunk_size );
+			foreach ( $chunks as $chunk ) {
+				$counter++;
+				$this->schedule_single_action( time() + ( $interval * ( $counter / 2 ) ), $name, array_merge( [ $chunk ], $args ) );
+			}
+		}
 	}
 }
