@@ -2,14 +2,14 @@
 Contributors: infosatech
 Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 5.2
-Tested up to: 6.0
-Stable tag: 1.4.1
+Tested up to: 6.1
+Stable tag: 1.4.2
 Requires PHP: 7.2
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
-RevivePress (formerly WP Auto Republish), the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
+RevivePress, the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
 
 == Description ==
 
@@ -140,6 +140,18 @@ No, plugin can handle it efficiently by tinkering the Permalink Structure.
 == Changelog ==
 
 If you like RevivePress, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.4.2 =
+Release Date: 14th November, 2022
+
+= Premium Version =
+* Added: Auto GUID Re-generation, can be disabled from settings.
+
+= Free Version =
+* Tweak: Disabled caching of WP_Query.
+* Updated: Action Schedular Library.
+* Updated: Freemius Library.
+* Compatibility with WordPress v6.1.
 
 = 1.4.1 =
 Release Date: 16th September, 2022

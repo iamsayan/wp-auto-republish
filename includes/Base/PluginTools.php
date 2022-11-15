@@ -170,7 +170,7 @@ class PluginTools
     	// security check
 		$this->verify_nonce();
 		
-		$this->set_single_action( time() + 10, 'wpar/remove_post_metadata' );
+		$this->schedule_single_action( time() + 10, 'wpar/remove_post_metadata' );
 
 		$this->success();
 	}
@@ -182,7 +182,7 @@ class PluginTools
     	// security check
 		$this->verify_nonce();
 		
-		$this->set_single_action( time() + 10, 'wpar/deschedule_posts' );
+		$this->schedule_single_action( time() + 10, 'wpar/deschedule_posts' );
 
 		$this->success();
 	}
@@ -194,7 +194,9 @@ class PluginTools
     	// security check
 		$this->verify_nonce();
 		
+		// remove last data
 		\delete_option( 'wpar_next_scheduled_timestamp' );
+		
 		$this->success();
 	}
 

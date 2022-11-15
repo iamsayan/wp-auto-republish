@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Composer\\CaBundle\\CaBundle' => $vendorDir . '/composer/ca-bundle/src/CaBundle.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'RevivePress\\Api\\Callbacks\\AdminCallbacks' => $baseDir . '/includes/Api/Callbacks/AdminCallbacks.php',
     'RevivePress\\Api\\Callbacks\\ManagerCallbacks' => $baseDir . '/includes/Api/Callbacks/ManagerCallbacks.php',

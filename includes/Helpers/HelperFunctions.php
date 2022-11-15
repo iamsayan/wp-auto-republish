@@ -148,6 +148,12 @@ trait HelperFunctions
         $current_language = \apply_filters( 'wpml_current_language', null );
         // changes the language of global query to use the specfied language
         \do_action( 'wpml_switch_language', 'all' );
+        // prevent cache
+        $args = \array_merge( $args, [
+            'cache_results'          => false,
+            'update_post_meta_cache' => false,
+            'update_post_term_cache' => false,
+        ] );
         // get posts
         $posts = \get_posts( $args );
         // set language back to original
@@ -176,7 +182,7 @@ trait HelperFunctions
      * @since 1.3.0
      * @return bool
      */
-    protected function get_roles( $can_edit_post = true ) {
+    protected function get_roles( $can_edit_post = false ) {
         $options = [];
         $roles = \get_editable_roles();
         foreach ( $roles as $role => $details ) {
