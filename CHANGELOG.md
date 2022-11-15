@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.2
+Release Date: 14th November, 2022
+
+= Premium Version =
+* Added: Auto GUID Re-generation, can be disabled from settings.
+
+= Free Version =
+* Tweak: Disabled caching of WP_Query.
+* Updated: Action Schedular Library.
+* Updated: Freemius Library.
+* Compatibility with WordPress v6.1.
+
 ## 1.4.1
 Release Date: 16th September, 2022
 
