@@ -67,7 +67,7 @@ class Updates extends BaseController
 
 		foreach ( self::$updates as $version => $path ) {
 			if ( version_compare( $installed_version, $version, '<' ) ) {
-				include $path;
+				include_once $path;
 				update_option( 'revivepress_version', $version );
 			}
 		}
@@ -89,7 +89,7 @@ class Updates extends BaseController
 	 * @param string $hook_suffix The current admin page.
 	 * @since 1.3.2
 	 */
-	function admin_pointer( $hook_suffix ) {
+	public function admin_pointer( $hook_suffix ) {
 		if ( ! in_array( $hook_suffix, [ 'index.php', 'plugins.php' ], true ) ) {
 			return;
 		}
