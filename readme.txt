@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 5.2
 Tested up to: 6.1
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 Requires PHP: 7.2
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -58,7 +58,8 @@ This plugin helps revive old posts by resetting the published date to the curren
 * Automatic Social Media Share.
 * Custom Post Republish Interval.
 * Set Custom Title for each Republish Event.
-* **Full WPML Compatibility**.
+* **Full WPML & Polylang Compatibility**.
+* Indexing API Plugin Support.
 * Automatic Site or Single Post Cache Purge Support (supports most of the cache plugins and hosting platforms)
 * Changing Post Status after Republish.
 * One Click Republish & Social Share.
@@ -140,6 +141,16 @@ No, plugin can handle it efficiently by tinkering the Permalink Structure.
 == Changelog ==
 
 If you like RevivePress, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.4.3 =
+Release Date: 19th November, 2022
+
+= Premium Version =
+* Added: Polylang Support.
+* Added: Indexing API Plugin Support.
+* Added: Support for Auto Republish Translated posts by WPML and Polylang.
+* Added: Option to remove log history automatically.
+* Fixed: Custom Post Types Permission issue.
 
 = 1.4.2 =
 Release Date: 14th November, 2022

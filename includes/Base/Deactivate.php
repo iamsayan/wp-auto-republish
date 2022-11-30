@@ -32,7 +32,7 @@ class Deactivate
 		update_option( 'permalink_structure', $permalink_structure );
 
 		// register action.
-		do_action( 'wpar/after_plugin_deactivate' );
+		do_action( 'wpar/plugin_deactivate' );
 
 		// flush permalinks.
 		flush_rewrite_rules();

@@ -315,7 +315,10 @@ esc_html_e( 'WordPress Sticky Posts Support', 'wp-auto-republish' );
 esc_html_e( 'OneSignal Notification Support', 'wp-auto-republish' );
 ?></p>
                         <p><span class="dashicons dashicons-yes"></span><?php 
-esc_html_e( 'WPML & Translation Compatibility', 'wp-auto-republish' );
+esc_html_e( 'WPML & Polylang Compatibility', 'wp-auto-republish' );
+?></p>
+                        <p><span class="dashicons dashicons-yes"></span><?php 
+esc_html_e( 'Indexing API Plugin Compatibility', 'wp-auto-republish' );
 ?></p>
                         <p><span class="dashicons dashicons-yes"></span><?php 
 esc_html_e( 'Email Notification upon Republishing', 'wp-auto-republish' );

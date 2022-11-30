@@ -117,6 +117,7 @@ trait HelperFunctions
                         $terms = \get_terms( [
                             'taxonomy'   => $taxonomy->name,
                             'hide_empty' => $hide,
+                            'lang'       => '',
                         ] );
                         foreach ( $terms as $term ) {
                             $terms_array[ $post_type . '|' . $taxonomy->name . '|' . $term->term_id ] = ucwords( $taxonomy->label ) . ': ' . $term->name;
@@ -153,6 +154,7 @@ trait HelperFunctions
             'cache_results'          => false,
             'update_post_meta_cache' => false,
             'update_post_term_cache' => false,
+            'lang'                   => '',
         ] );
         // get posts
         $posts = \get_posts( $args );
@@ -508,21 +510,6 @@ trait HelperFunctions
     protected function validate_date( $date, $format = 'Y-m-d H:i:s' ) {
         $date_time = DateTime::createFromFormat( $format, $date );
         return $date_time && $date_time->format( $format ) == $date;
-    }
-    
-    /**
-     * Get Social providers.
-     * 
-     * @since 1.4.0
-     * @return array
-     */
-    protected function get_social_providers() {
-        return [
-            'facebook',
-            'twitter',
-            'linkedin',
-            'tumblr',
-        ];
     }
 
 }

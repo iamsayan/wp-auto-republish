@@ -137,9 +137,9 @@ trait Scheduler
 
 	/**
 	 * Create batch tasks with a specific interval.
-	 * 
-	 * @since 1.3.2
 	 *
+	 * @since 1.3.2
+	 * 
 	 * @param  array    $ids            Post IDs.
 	 * @param  string   $name           Action Name.
 	 * @param  integer  $chunk_size     Size of the Chunk.

@@ -53,7 +53,7 @@ class Sitepress {
 	private $has_home_url = false;
 
 	/**
-	 * Is glocal language modified
+	 * Is global language modified
 	 *
 	 * @var boolean
 	 */

@@ -29,7 +29,6 @@ class AdminNotice extends BaseController
 	public function register() {
 		$this->action( 'admin_notices', 'load_notice' );
 		$this->action( 'admin_init', 'fix_action' );
-		//$this->action( 'wpar/after_plugin_activate', 'fix_permalink' );
 	}
 	
 	/**
