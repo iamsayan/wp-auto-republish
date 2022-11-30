@@ -409,7 +409,7 @@ class FetchPosts
             $post_ids = [];
         }
         $post_ids = $this->do_filter( 'post_ids_before_store', $post_ids, $post_type );
-        update_option( 'wpar_global_republish_post_ids', wp_parse_id_list( array_merge( $post_ids, $ids ) ) );
+        update_option( 'wpar_global_republish_post_ids', \wp_parse_id_list( array_merge( $post_ids, $ids ) ) );
     }
     
     /**

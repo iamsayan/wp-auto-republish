@@ -16,10 +16,6 @@ class ComposerStaticInitd5699dfd0ed62714b22c430580475703
         array (
             'RevivePress\\' => 12,
         ),
-        'C' => 
-        array (
-            'Composer\\CaBundle\\' => 18,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -27,14 +23,9 @@ class ComposerStaticInitd5699dfd0ed62714b22c430580475703
         array (
             0 => __DIR__ . '/../..' . '/includes',
         ),
-        'Composer\\CaBundle\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
-        ),
     );
 
     public static $classMap = array (
-        'Composer\\CaBundle\\CaBundle' => __DIR__ . '/..' . '/composer/ca-bundle/src/CaBundle.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'RevivePress\\Api\\Callbacks\\AdminCallbacks' => __DIR__ . '/../..' . '/includes/Api/Callbacks/AdminCallbacks.php',
         'RevivePress\\Api\\Callbacks\\ManagerCallbacks' => __DIR__ . '/../..' . '/includes/Api/Callbacks/ManagerCallbacks.php',

@@ -20,7 +20,7 @@ class Activate
 	 */
 	public static function activate() {
 		// register action.
-		do_action( 'wpar/after_plugin_activate' );
+		do_action( 'wpar/plugin_activate' );
 
 		// flush permalinks
 		flush_rewrite_rules();
