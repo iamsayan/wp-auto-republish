@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.3
+Release Date: 19th November, 2022
+
+= Premium Version =
+* Added: Polylang Support.
+* Added: Indexing API Plugin Support.
+* Added: Support for Auto Republish Translated posts by WPML and Polylang.
+* Added: Option to remove log history automatically.
+* Fixed: Custom Post Types Permission issue.
+
 ## 1.4.2
 Release Date: 14th November, 2022
 
