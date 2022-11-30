@@ -152,6 +152,9 @@ Release Date: 19th November, 2022
 * Added: Option to remove log history automatically.
 * Fixed: Custom Post Types Permission issue.
 
+= Free Version =
+* Minor bug fixes.
+
 = 1.4.2 =
 Release Date: 14th November, 2022
 
