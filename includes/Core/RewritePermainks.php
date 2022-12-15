@@ -27,6 +27,8 @@ class RewritePermainks
 	 */
 	public function register() {
 		$this->action( 'init','rewrite_tag' );
+		$this->filter( 'posts_join', 'posts_join', 10, 2 );
+		$this->filter( 'posts_where', 'posts_where', 10, 2 );
         $this->filter( 'post_link', 'filter_post_link', 10, 2 );
         $this->filter( 'post_type_link', 'filter_post_link', 10, 2 );
         $this->filter( 'available_permalink_structure_tags', 'available_tags' );
@@ -37,11 +39,87 @@ class RewritePermainks
 	 */
 	public function rewrite_tag() {
 		add_rewrite_tag( '%rvp_year%', '([0-9]{4})' );
-		add_rewrite_tag( '%rvp_monthnum%', '([0-9]{2})' );
-		add_rewrite_tag( '%rvp_day%', '([0-9]{2})' );
-		add_rewrite_tag( '%rvp_hour%', '([0-9]{2})' );
-		add_rewrite_tag( '%rvp_minute%', '([0-9]{2})' );
-		add_rewrite_tag( '%rvp_second%', '([0-9]{2})' );
+		add_rewrite_tag( '%rvp_monthnum%', '([0-9]{1,2})' );
+		add_rewrite_tag( '%rvp_day%', '([0-9]{1,2})' );
+		add_rewrite_tag( '%rvp_hour%', '([0-9]{1,2})' );
+		add_rewrite_tag( '%rvp_minute%', '([0-9]{1,2})' );
+		add_rewrite_tag( '%rvp_second%', '([0-9]{1,2})' );
+	}
+
+	/**
+	 * Custom Post Join logic.
+	 * 
+	 * @since 1.4.4
+	 * 
+	 * @param string $join Join clause used to search posts.
+	 * @param object $wp_query WP_Query object.
+	 * @return string
+	 */
+	public function posts_join( $join, $wp_query ) {
+		global $wpdb;
+
+		if ( is_admin() ) {
+			return $join;
+		}
+
+		$query_vars = array_filter( $wp_query->query_vars, function ( $key ) {
+			return ( strpos( $key, 'rvp_' ) !== false );
+		}, ARRAY_FILTER_USE_KEY );
+
+		if ( ! empty( $query_vars ) && count( $query_vars ) > 0 ) {
+			$join .= "LEFT JOIN $wpdb->postmeta ON $wpdb->posts.ID = $wpdb->postmeta.post_id ";
+		}
+	
+		return $join;
+	}
+
+	/**
+	 * Custom Post Where logic.
+	 * 
+	 * @since 1.4.4
+	 * 
+	 * @param string $where Where clause used to search posts.
+	 * @param object $wp_query WP_Query object.
+	 * @return string
+	 */
+	public function posts_where( $where, $wp_query ) {
+		global $wpdb;
+
+		if ( is_admin() ) {
+			return $where;
+		}
+
+		$clause = '';
+		if ( ! empty( $wp_query->query_vars['rvp_year'] ) ) {
+			$clause .= " AND YEAR( {$wpdb->postmeta}.meta_value ) = " . intval( $wp_query->query_vars['rvp_year'] );
+		}
+
+		if ( ! empty( $wp_query->query_vars['rvp_monthnum'] ) ) {
+			$clause .= " AND MONTH( {$wpdb->postmeta}.meta_value ) = " . intval( $wp_query->query_vars['rvp_monthnum'] );
+		}
+
+		if ( ! empty( $wp_query->query_vars['rvp_day'] ) ) {
+			$clause .= " AND DAYOFMONTH( {$wpdb->postmeta}.meta_value ) = " . intval( $wp_query->query_vars['rvp_day'] );
+		}
+
+		if ( ! empty( $wp_query->query_vars['rvp_hour'] ) ) {
+			$clause .= " AND HOUR( {$wpdb->postmeta}.meta_value ) = " . intval( $wp_query->query_vars['rvp_hour'] );
+		}
+
+		if ( ! empty( $wp_query->query_vars['rvp_minute'] ) ) {
+			$clause .= " AND MINUTE( {$wpdb->postmeta}.meta_value ) = " . intval( $wp_query->query_vars['rvp_minute'] );
+		}
+
+		if ( ! empty( $wp_query->query_vars['rvp_second'] ) ) {
+			$clause .= " AND SECOND( {$wpdb->postmeta}.meta_value ) = " . intval( $wp_query->query_vars['rvp_second'] );
+		}
+
+		if ( ! empty( $clause ) ) {
+			$where .= " AND ( ( {$wpdb->postmeta}.meta_key='_wpar_original_pub_date'";
+			$where .= $clause;
+			$where .= " ) )";
+		}
+		return $where;
 	}
 
 	/**
