@@ -2,21 +2,21 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: RevivePress 1.4.3\n"
+"Project-Id-Version: RevivePress 1.4.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-auto-republish\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-11-30T14:32:51+00:00\n"
+"POT-Creation-Date: 2022-12-15T17:32:39+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: wp-auto-republish\n"
 
 #. Plugin Name of the plugin
 #: includes/Pages/Dashboard.php:64
-#: includes/Tools/Updates.php:100
+#: includes/Tools/Updates.php:93
 msgid "RevivePress"
 msgstr ""
 
@@ -727,11 +727,11 @@ msgid "Delete Plugin Data on Uninstall?"
 msgstr ""
 
 #. translators: %s: settings page link
-#: includes/Tools/Updates.php:103
+#: includes/Tools/Updates.php:96
 msgid "We have introduced several performance improvements along with completely redesigned UI. WPML & OneSignal Support are also added in the Premium Version. Go to %s to review & configure the plugin settings."
 msgstr ""
 
-#: includes/Tools/Updates.php:104
+#: includes/Tools/Updates.php:97
 msgid "RevivePress > Dashbaord"
 msgstr ""
 

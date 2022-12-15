@@ -3,7 +3,7 @@
         'name' => 'iamsayan/wp-auto-republish',
         'pretty_version' => 'dev-develop',
         'version' => 'dev-develop',
-        'reference' => '381be1f06e10d2990153e15e3a839a23f7e1413d',
+        'reference' => 'ff7a40ec5d2db2e4e3c0b9d003a3848017a3ab5e',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'iamsayan/wp-auto-republish' => array(
             'pretty_version' => 'dev-develop',
             'version' => 'dev-develop',
-            'reference' => '381be1f06e10d2990153e15e3a839a23f7e1413d',
+            'reference' => 'ff7a40ec5d2db2e4e3c0b9d003a3848017a3ab5e',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

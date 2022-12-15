@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 5.2
 Tested up to: 6.1
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 Requires PHP: 7.2
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -142,6 +142,21 @@ No, plugin can handle it efficiently by tinkering the Permalink Structure.
 
 If you like RevivePress, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
 
+= 1.4.4 =
+Release Date: 15th December, 2022
+
+= Premium Version =
+* Added: Option to remove log history automatically.
+* Fixed: Custom Post Types Permission issue.
+* Fixed: Repost Method settings was not working.
+* Tweak: Save republish rule data in post meta instead of database.
+* Tweak: Instant social share will be now using Action Schedular.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Fixed: URLs can be accessed from any permalinks.
+* Updated: Freemius Library.
+
 = 1.4.3 =
 Release Date: 19th November, 2022
 
@@ -151,6 +166,7 @@ Release Date: 19th November, 2022
 * Added: Support for Auto Republish Translated posts by WPML and Polylang.
 * Added: Option to remove log history automatically.
 * Fixed: Custom Post Types Permission issue.
+* And all Free Version Improvements and Fixes.
 
 = Free Version =
 * Minor bug fixes.
@@ -160,6 +176,7 @@ Release Date: 14th November, 2022
 
 = Premium Version =
 * Added: Auto GUID Re-generation, can be disabled from settings.
+* And all Free Version Improvements and Fixes.
 
 = Free Version =
 * Tweak: Disabled caching of WP_Query.
@@ -181,6 +198,7 @@ Release Date: 2nd August, 2022
 * Added: Option to sort posts by actual post published date on frontend.
 * Added: Option to share on individual social providers.
 * Fixed: Custom User Capabilities.
+* And all Free Version Improvements and Fixes.
 
 = Free Version =
 * Tweak: Load Post Taxonomies and Authors only on Search in Settings to avoid high memory usage.
