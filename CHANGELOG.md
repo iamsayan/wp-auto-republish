@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 ## 1.4.4
 Release Date: 15th December, 2022
 
-= Premium Version =
+### Premium Version
 * Added: Option to remove log history automatically.
 * Fixed: Custom Post Types Permission issue.
 * Fixed: Repost Method settings was not working.
@@ -12,7 +12,7 @@ Release Date: 15th December, 2022
 * Tweak: Instant social share will be now using Action Schedular.
 * And all Free Version Improvements and Fixes.
 
-= Free Version =
+### Free Version
 * Fixed: URLs can be accessed from any permalinks.
 * Updated: Freemius Library.
 
