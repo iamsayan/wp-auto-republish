@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.5
+Release Date: 19th December, 2022
+
+### Premium Version
+* Fixed: WPML Activation detection on latest version.
+* And all Free Version Improvements and Fixes.
+
+### Free Version
+* Fixed: URLs can't be accessed which are not republished.
+
 ## 1.4.4
 Release Date: 15th December, 2022
 

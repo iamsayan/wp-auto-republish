@@ -27,8 +27,7 @@ class RewritePermainks
 	 */
 	public function register() {
 		$this->action( 'init','rewrite_tag' );
-		$this->filter( 'posts_join', 'posts_join', 10, 2 );
-		$this->filter( 'posts_where', 'posts_where', 10, 2 );
+        $this->action( 'template_redirect', 'check_rewrite' );
         $this->filter( 'post_link', 'filter_post_link', 10, 2 );
         $this->filter( 'post_type_link', 'filter_post_link', 10, 2 );
         $this->filter( 'available_permalink_structure_tags', 'available_tags' );
@@ -47,79 +46,53 @@ class RewritePermainks
 	}
 
 	/**
-	 * Custom Post Join logic.
+	 * Check and throw 404 error if the actual date doesn't match.
 	 * 
-	 * @since 1.4.4
-	 * 
-	 * @param string $join Join clause used to search posts.
-	 * @param object $wp_query WP_Query object.
-	 * @return string
+	 * @since 1.4.5
 	 */
-	public function posts_join( $join, $wp_query ) {
-		global $wpdb;
+	public function check_rewrite() {
+		if ( is_single() ) {
+			$permalink_structure = get_option( 'permalink_structure' );
+			// bail if tag is not present in the url
+			if ( false === strpos( $permalink_structure, '%rvp_' ) ) {
+				return;
+			}
 
-		if ( is_admin() ) {
-			return $join;
+			$original_date = $this->get_meta( get_the_ID(), '_wpar_original_pub_date' );
+			if ( ! $original_date ) {
+				$original_date = get_the_date( 'Y-m-d H:i:s', get_the_ID() );
+			}
+
+			// This is not an API call because the permalink is based on the stored post_date value,
+        	// which should be parsed as local time regardless of the default PHP timezone.
+			$date = explode( ' ', str_replace( [ '-', ':' ], ' ', $original_date ) );
+
+			$exit = false;
+			$rewritecode = [
+				'rvp_year',
+				'rvp_monthnum',
+				'rvp_day',
+				'rvp_hour',
+				'rvp_minute',
+				'rvp_second',
+			];
+
+			foreach ( $rewritecode as $key => $slug ) {
+				$datetime = get_query_var( $slug );
+				if ( ! empty( $datetime ) && ( intval( $datetime ) !== intval( $date[ $key ] ) ) ) {
+					$exit = true;
+					break;
+				}
+			}
+
+			if ( $exit ) {
+				global $wp_query;
+				$wp_query->set_404();
+				status_header( 404 );
+				get_template_part( 404 );
+				exit();
+			}
 		}
-
-		$query_vars = array_filter( $wp_query->query_vars, function ( $key ) {
-			return ( strpos( $key, 'rvp_' ) !== false );
-		}, ARRAY_FILTER_USE_KEY );
-
-		if ( ! empty( $query_vars ) && count( $query_vars ) > 0 ) {
-			$join .= "LEFT JOIN $wpdb->postmeta ON $wpdb->posts.ID = $wpdb->postmeta.post_id ";
-		}
-	
-		return $join;
-	}
-
-	/**
-	 * Custom Post Where logic.
-	 * 
-	 * @since 1.4.4
-	 * 
-	 * @param string $where Where clause used to search posts.
-	 * @param object $wp_query WP_Query object.
-	 * @return string
-	 */
-	public function posts_where( $where, $wp_query ) {
-		global $wpdb;
-
-		if ( is_admin() ) {
-			return $where;
-		}
-
-		$clause = '';
-		if ( ! empty( $wp_query->query_vars['rvp_year'] ) ) {
-			$clause .= " AND YEAR( {$wpdb->postmeta}.meta_value ) = " . intval( $wp_query->query_vars['rvp_year'] );
-		}
-
-		if ( ! empty( $wp_query->query_vars['rvp_monthnum'] ) ) {
-			$clause .= " AND MONTH( {$wpdb->postmeta}.meta_value ) = " . intval( $wp_query->query_vars['rvp_monthnum'] );
-		}
-
-		if ( ! empty( $wp_query->query_vars['rvp_day'] ) ) {
-			$clause .= " AND DAYOFMONTH( {$wpdb->postmeta}.meta_value ) = " . intval( $wp_query->query_vars['rvp_day'] );
-		}
-
-		if ( ! empty( $wp_query->query_vars['rvp_hour'] ) ) {
-			$clause .= " AND HOUR( {$wpdb->postmeta}.meta_value ) = " . intval( $wp_query->query_vars['rvp_hour'] );
-		}
-
-		if ( ! empty( $wp_query->query_vars['rvp_minute'] ) ) {
-			$clause .= " AND MINUTE( {$wpdb->postmeta}.meta_value ) = " . intval( $wp_query->query_vars['rvp_minute'] );
-		}
-
-		if ( ! empty( $wp_query->query_vars['rvp_second'] ) ) {
-			$clause .= " AND SECOND( {$wpdb->postmeta}.meta_value ) = " . intval( $wp_query->query_vars['rvp_second'] );
-		}
-
-		if ( ! empty( $clause ) ) {
-			$where .= " AND ( ( {$wpdb->postmeta}.meta_key='_wpar_original_pub_date'";
-			$where .= $clause;
-			$where .= " ) )";
-		}
-		return $where;
 	}
 
 	/**
