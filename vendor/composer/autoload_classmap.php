@@ -18,7 +18,6 @@ return array(
     'RevivePress\\Base\\Deactivate' => $baseDir . '/includes/Base/Deactivate.php',
     'RevivePress\\Base\\Enqueue' => $baseDir . '/includes/Base/Enqueue.php',
     'RevivePress\\Base\\Localization' => $baseDir . '/includes/Base/Localization.php',
-    'RevivePress\\Base\\PluginTools' => $baseDir . '/includes/Base/PluginTools.php',
     'RevivePress\\Base\\RatingNotice' => $baseDir . '/includes/Base/RatingNotice.php',
     'RevivePress\\Base\\Uninstall' => $baseDir . '/includes/Base/Uninstall.php',
     'RevivePress\\Core\\FetchPosts' => $baseDir . '/includes/Core/FetchPosts.php',
@@ -35,7 +34,6 @@ return array(
     'RevivePress\\Helpers\\Sitepress' => $baseDir . '/includes/Helpers/Sitepress.php',
     'RevivePress\\Loader' => $baseDir . '/includes/Loader.php',
     'RevivePress\\Pages\\Dashboard' => $baseDir . '/includes/Pages/Dashboard.php',
-    'RevivePress\\Tools\\DatabaseActions' => $baseDir . '/includes/Tools/DatabaseActions.php',
-    'RevivePress\\Tools\\DatabaseTable' => $baseDir . '/includes/Tools/DatabaseTable.php',
+    'RevivePress\\Tools\\Database' => $baseDir . '/includes/Tools/Database.php',
     'RevivePress\\Tools\\Updates' => $baseDir . '/includes/Tools/Updates.php',
 );

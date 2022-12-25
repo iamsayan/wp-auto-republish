@@ -29,14 +29,12 @@ final class Loader
             Base\Localization::class,
             Base\AdminNotice::class,
             Base\RatingNotice::class,
-            Base\PluginTools::class,
             Core\FetchPosts::class,
             Core\PostRepublish::class,
             Core\RewritePermainks::class,
             Core\SiteCache::class,
             Core\RepublishInfo::class,
-            Tools\DatabaseActions::class,
-            Tools\DatabaseTable::class,
+            Tools\Database::class,
             Tools\Updates::class,
         ];
         return $services;

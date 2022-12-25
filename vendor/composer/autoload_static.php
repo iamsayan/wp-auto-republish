@@ -38,7 +38,6 @@ class ComposerStaticInitd5699dfd0ed62714b22c430580475703
         'RevivePress\\Base\\Deactivate' => __DIR__ . '/../..' . '/includes/Base/Deactivate.php',
         'RevivePress\\Base\\Enqueue' => __DIR__ . '/../..' . '/includes/Base/Enqueue.php',
         'RevivePress\\Base\\Localization' => __DIR__ . '/../..' . '/includes/Base/Localization.php',
-        'RevivePress\\Base\\PluginTools' => __DIR__ . '/../..' . '/includes/Base/PluginTools.php',
         'RevivePress\\Base\\RatingNotice' => __DIR__ . '/../..' . '/includes/Base/RatingNotice.php',
         'RevivePress\\Base\\Uninstall' => __DIR__ . '/../..' . '/includes/Base/Uninstall.php',
         'RevivePress\\Core\\FetchPosts' => __DIR__ . '/../..' . '/includes/Core/FetchPosts.php',
@@ -55,8 +54,7 @@ class ComposerStaticInitd5699dfd0ed62714b22c430580475703
         'RevivePress\\Helpers\\Sitepress' => __DIR__ . '/../..' . '/includes/Helpers/Sitepress.php',
         'RevivePress\\Loader' => __DIR__ . '/../..' . '/includes/Loader.php',
         'RevivePress\\Pages\\Dashboard' => __DIR__ . '/../..' . '/includes/Pages/Dashboard.php',
-        'RevivePress\\Tools\\DatabaseActions' => __DIR__ . '/../..' . '/includes/Tools/DatabaseActions.php',
-        'RevivePress\\Tools\\DatabaseTable' => __DIR__ . '/../..' . '/includes/Tools/DatabaseTable.php',
+        'RevivePress\\Tools\\Database' => __DIR__ . '/../..' . '/includes/Tools/Database.php',
         'RevivePress\\Tools\\Updates' => __DIR__ . '/../..' . '/includes/Tools/Updates.php',
     );
 

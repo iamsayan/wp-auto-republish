@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 5.2
 Tested up to: 6.1
-Stable tag: 1.4.5
+Stable tag: 1.4.6
 Requires PHP: 7.2
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -15,7 +15,7 @@ RevivePress, the all-in-one tool for republishing & cloning old posts and pages 
 
 RevivePress, the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
 
-[Lite Demo](https://api.wprevivepress.com/free-demo) | [Premium Demo](https://api.wprevivepress.com/premium-demo) | [Get Premium](https://wprevivepress.com/pricing/?utm_source=landing&utm_medium=wporg)
+[Premium Demo](https://api.wprevivepress.com/premium-demo) | [Get Premium](https://wprevivepress.com/pricing/?utm_source=landing&utm_medium=wporg)
 
 Like the RevivePress plugin? Consider leaving a [5 star review](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post).
 
@@ -142,7 +142,25 @@ No, plugin can handle it efficiently by tinkering the Permalink Structure.
 
 If you like RevivePress, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
 
-= 1.4.5=
+= 1.4.6 =
+Release Date: 25th December, 2022
+
+= Premium Version =
+* Added: Pinterest Sharing.
+* Added: Link Shortner services.
+* Added: Option under Tools to Re-generate missed schedules.
+* Fixed: Shareing URL Parameters were not working.
+* Improved: Social Account adding mechanism.
+* Improved: Updated Facebook SDK.
+* Improved: Updated Twitter SDK.
+* Minimum required PHP Version is 7.4.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Tweak: Remove all plugins data if the settings is on.
+* Improved: Tools task handling.
+
+= 1.4.5 =
 Release Date: 19th December, 2022
 
 = Premium Version =

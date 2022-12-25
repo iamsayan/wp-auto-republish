@@ -1,6 +1,24 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.6
+Release Date: 25th December, 2022
+
+### Premium Version
+* Added: Pinterest Sharing.
+* Added: Link Shortner services.
+* Added: Option under Tools to Re-generate missed schedules.
+* Fixed: Shareing URL Parameters were not working.
+* Improved: Social Account adding mechanism.
+* Improved: Updated Facebook SDK.
+* Improved: Updated Twitter SDK.
+* Minimum required PHP Version is 7.4.
+* And all Free Version Improvements and Fixes.
+
+### Free Version
+* Tweak: Remove all plugins data if the settings is on.
+* Improved: Tools task handling.
+
 ## 1.4.5
 Release Date: 19th December, 2022
 
