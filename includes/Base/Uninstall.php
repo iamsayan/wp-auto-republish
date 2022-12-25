@@ -53,7 +53,7 @@ class Uninstall
         delete_option( 'wpar_social_credentials' );
         // Delete post meta.
         $where = $wpdb->prepare( 'WHERE meta_key LIKE %s OR meta_key LIKE %s', '%' . $wpdb->esc_like( 'wpar_' ) . '%', '%' . $wpdb->esc_like( 'rvp_' ) . '%' );
-        $wpdb->query( "DELETE FROM {$wpdb->prefix}{$table}meta {$where}" );
+        $wpdb->query( "DELETE FROM {$wpdb->postmeta} {$where}" );
         // Clear any cached data that has been removed.
         wp_cache_flush();
     }
