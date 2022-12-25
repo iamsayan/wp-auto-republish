@@ -4,7 +4,7 @@
  * Plugin Name: RevivePress
  * Plugin URI: https://wprevivepress.com?utm_source=landing&utm_medium=plugin
  * Description: RevivePress, the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
- * Version: 1.4.5
+ * Version: 1.4.6
  * Author: Sayan Datta
  * Author URI: https://sayandatta.in
  * License: GPLv3
@@ -75,13 +75,28 @@ if ( function_exists( 'revivepress_fs' ) ) {
     
     // Init Freemius.
     revivepress_fs();
+    // Load the TablePress plugin icon for the Freemius opt-in/activation screen.
+    revivepress_fs()->add_filter( 'plugin_icon', static function () {
+        return dirname( __FILE__ ) . '/assets/images/logo.png';
+    } );
+    // Hide the Powered by Freemius tab from generated pages, like "Upgrade" or "Pricing".
+    revivepress_fs()->add_filter( 'hide_freemius_powered_by', '__return_true' );
+    // Hide the Affiliate program notice.
+    revivepress_fs()->add_filter( 'show_affiliate_program_notice', '__return_false' );
+    // Hide the Subscription cancellation form.
+    revivepress_fs()->add_filter( 'show_deactivation_subscription_cancellation', '__return_false' );
+    // Use different arrow icons in the admin menu.
+    revivepress_fs()->override_i18n( [
+        'symbol_arrow-left'  => '&larr;',
+        'symbol_arrow-right' => '&rarr;',
+    ] );
     // Signal that SDK was initiated.
     do_action( 'revivepress_fs_loaded' );
 }
 
 // Define constants
 if ( ! defined( 'REVIVEPRESS_VERSION' ) ) {
-    define( 'REVIVEPRESS_VERSION', '1.4.5' );
+    define( 'REVIVEPRESS_VERSION', '1.4.6' );
 }
 // Require once the Composer Autoload
 if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
@@ -125,18 +140,3 @@ if ( ! function_exists( 'revivepress_init' ) ) {
     }
 }
 revivepress_init();
-/**
- * Add RevivePress icon to freemius
- */
-if ( ! function_exists( 'revivepress_freemius_logo' ) ) {
-    function revivepress_freemius_logo() {
-        return dirname( __FILE__ ) . '/assets/images/logo.png';
-    }
-}
-revivepress_fs()->add_filter( 'plugin_icon', 'revivepress_freemius_logo' );
-/**
- * Flag Freemius options
- */
-revivepress_fs()->add_filter( 'hide_freemius_powered_by', '__return_true' );
-revivepress_fs()->add_filter( 'show_affiliate_program_notice', '__return_false' );
-revivepress_fs()->add_filter( 'show_deactivation_subscription_cancellation', '__return_false' );

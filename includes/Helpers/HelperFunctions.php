@@ -447,24 +447,6 @@ trait HelperFunctions
     }
     
     /**
-     * Get Post Permalinks
-     * 
-     * @since 1.3.2
-     * @return string
-     */
-    protected function get_permalink( $post_id ) {
-        $permalink_structure = get_option( 'permalink_structure' );
-        
-        if ( $permalink_structure != '' ) {
-            $permalink = wp_get_shortlink( $post_id );
-        } else {
-            $permalink = get_permalink( $post_id );
-        }
-        
-        return $permalink;
-    }
-    
-    /**
      * Convert comma separated post ids to array
      * 
      * @since 1.3.1

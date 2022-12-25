@@ -30,6 +30,10 @@ class Enqueue extends BaseController
      * Load admin assets.
      */
     public function load_assets( $hook ) {
+        // Don't load assets on the Freemius opt-in/activation screen.
+        if ( revivepress_fs()->is_activation_mode() && revivepress_fs()->is_activation_page() ) {
+            return;
+        }
         $this->load(
             'css',
             'jquery-ui',
@@ -157,6 +161,10 @@ class Enqueue extends BaseController
                 'is_premium'        => revivepress_fs()->can_use_premium_code__premium_only(),
                 'can_use_trial'     => revivepress_fs()->is_not_paying() && ! revivepress_fs()->is_trial() && ! revivepress_fs()->is_trial_utilized(),
                 'security'          => wp_create_nonce( 'rvp_admin_nonce' ),
+                'api'               => [
+					'root'  => esc_url_raw( get_rest_url() ),
+					'nonce' => ( wp_installing() && ! is_multisite() ? '' : wp_create_nonce( 'wp_rest' ) ),
+				],
             ] );
         }
     

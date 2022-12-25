@@ -15,7 +15,6 @@
 echo  esc_attr( $class_name ) ;
 ?>"><?php 
 echo  esc_html( $this->tag ) ;
-?> <?php 
 echo  esc_html( $this->version ) ;
 ?></span></h2>
     <a href="#general" class="wpar-tab is-active" id="wpar-tab-general"><?php 
@@ -183,49 +182,57 @@ $data = [
 		'heading' => __( 'Reset Settings', 'wp-auto-republish' ),
 		'hint'    => __( 'Resetting will delete all custom options to the default settings of the plugin in your database.', 'wp-auto-republish' ),
 		'notice'  => __( 'It will delete all the data relating to this plugin settings. You have to re-configure this plugin again. Do you want to still continue?', 'wp-auto-republish' ),
-		'success' => __( 'Success! Plugin Settings reset successfully.', 'wp-auto-republish' ),
-		'action'  => 'process_delete_plugin_data',
+		'action'  => 'remove_data',
 		'reload'  => true,
-	],
-    [
-		'heading' => __( 'Remove Post Meta & Actions', 'wp-auto-republish' ),
-		'hint'    => __( 'Resetting will delete all post metadatas and future action events associated with Post Republish.', 'wp-auto-republish' ),
-		'notice'  => __( 'It will delete all the post meta data & action events relating to global and single post republishing. It may stop previous scheduled republished event. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
-		'success' => __( 'Removing of Post Metas & Events are in progress. It will be completed after some time', 'wp-auto-republish' ),
-		'action'  => 'process_delete_post_metas',
-		'button'  => __( 'Clear Post Metas & Events', 'wp-auto-republish' ),
 	],
     [
 		'heading' => __( 'De-Schedule Posts', 'wp-auto-republish' ),
 		'hint'    => __( 'It will change the republish date to the original post published date on all posts.', 'wp-auto-republish' ),
 		'notice'  => __( 'It will change the republish date to the original post published date on all posts. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
-		'success' => __( 'De-scheduling is in progress. It will be completed after some time.', 'wp-auto-republish' ),
-		'action'  => 'process_deschedule_posts',
+		'action'  => 'deschedule_posts',
 	],
     [
 		'heading' => __( 'Re-Create Missing Database Tables', 'wp-auto-republish' ),
 		'hint'    => __( 'Check if required tables exist and create them if not.', 'wp-auto-republish' ),
-		'success' => __( 'Success! Table creation proceeded successfully!', 'wp-auto-republish' ),
-		'action'  => 'process_fix_database_tables',
+		'action'  => 'recreate_tables',
 		'button'  => __( 'Re-Create Tables', 'wp-auto-republish' ),
 		'type'    => 'blue',
 	],
     [
 		'heading' => __( 'Re-Generate Republish Interval', 'wp-auto-republish' ),
 		'hint'    => __( 'It will regenerate Schedule Auto Republish Process Interval.', 'wp-auto-republish' ),
-		'success' => __( 'Success! Schedule regenerated successfully!', 'wp-auto-republish' ),
-		'action'  => 'process_regenerate_schedule',
+		'action'  => 'regenerate_interval',
 		'button'  => __( 'Re-Generate Interval', 'wp-auto-republish' ),
 		'type'    => 'blue',
+		'show'    => ! empty($options['wpar_enable_plugin']),
+	],
+    [
+		'heading' => __( 'Re-Generate Republish Schedule', 'wp-auto-republish' ),
+		'hint'    => __( 'It will regenerate Schedule Auto Republish Schedules of Single Posts and Custom Rules.', 'wp-auto-republish' ),
+		'notice'  => __( 'It will remove and re-create all the scheduled or missed republish events relating to global and single post republishing. It may stop previous scheduled republished event. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
+		'action'  => 'regenerate_schedule',
+		'button'  => __( 'Re-Generate Schedule', 'wp-auto-republish' ),
+		'show'    => revivepress_fs()->can_use_premium_code__premium_only(),
+	],
+    [
+		'heading' => __( 'Remove Post Meta & Actions', 'wp-auto-republish' ),
+		'hint'    => __( 'Resetting will delete all post metadatas and future action events associated with Post Republish.', 'wp-auto-republish' ),
+		'notice'  => __( 'It will delete all the post meta data & action events relating to global and single post republishing. It may stop previous scheduled republished event. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
+		'action'  => 'remove_meta',
+		'button'  => __( 'Clear Post Metas & Events', 'wp-auto-republish' ),
 	],
 ];
 foreach ( $data as $args ) {
     $box = wp_parse_args( $args, [
+        'show'   => true,
         'reload' => false,
         'type'   => 'red',
         'button' => $args['heading'],
         'notice' => '',
     ] );
+    if ( ! $box['show'] ) {
+        continue;
+    }
     ?>
                             <div class="wpar-tools-box">
                                 <span><?php 
@@ -237,18 +244,14 @@ foreach ( $data as $args ) {
     ?>
                                 </p>
                                 <p>
-                                    <input type="button" id="<?php 
-    echo  esc_attr( str_replace( 'process_', 'rvp_', $box['action'] ) ) ;
-    ?>" class="button button-large button-secondary default wpar-reset" data-type="<?php 
+                                    <input type="button" class="button button-large button-secondary default wpar-reset" data-type="<?php 
     echo  esc_attr( $box['type'] ) ;
-    ?>" data-action="wpar_<?php 
+    ?>" data-action="<?php 
     echo  esc_attr( $box['action'] ) ;
     ?>" data-reload="<?php 
     echo  ( $box['reload'] ? 'yes' : 'no' ) ;
     ?>" data-notice="<?php 
     echo  esc_attr( $box['notice'] ) ;
-    ?>" data-success="<?php 
-    echo  esc_attr( $box['success'] ) ;
     ?>" value="<?php 
     echo  esc_attr( $box['button'] ) ;
     ?>">

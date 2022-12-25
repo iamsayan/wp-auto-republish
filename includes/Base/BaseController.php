@@ -60,7 +60,7 @@ class BaseController
         $this->plugin = plugin_basename( $this->dirname_r( __FILE__, 3 ) ) . '/wp-auto-republish.php';
         $this->version = REVIVEPRESS_VERSION;
         $this->name = 'RevivePress';
-        $this->tag = 'Lite';
+        $this->tag = '';
     }
     
     /**
