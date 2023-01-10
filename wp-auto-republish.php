@@ -4,7 +4,7 @@
  * Plugin Name: RevivePress
  * Plugin URI: https://wprevivepress.com?utm_source=landing&utm_medium=plugin
  * Description: RevivePress, the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
- * Version: 1.4.6
+ * Version: 1.4.7
  * Author: Sayan Datta
  * Author URI: https://sayandatta.in
  * License: GPLv3
@@ -30,113 +30,247 @@
  * @license  http://www.gnu.org/licenses/ GNU General Public License
  * @link     https://wordpress.org/plugins/wp-auto-republish/
  * 
- * 
- */
-// If this file is called firectly, abort!!!
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
+  * 
+  */
 
+// If this file is called directly, abort!!!
+defined( 'ABSPATH' ) || exit;
+
+// Freemius SDK: Auto deactivate the free version when activating the paid one.
 if ( function_exists( 'revivepress_fs' ) ) {
     revivepress_fs()->set_basename( false, __FILE__ );
     return;
-} else {
-    // Create a helper function for easy SDK access.
-    function revivepress_fs() {
-        global  $revivepress_fs ;
-        
-        if ( ! isset( $revivepress_fs ) ) {
-            // Include Freemius SDK.
-            require_once dirname( __FILE__ ) . '/vendor/freemius/start.php';
-            $revivepress_fs = fs_dynamic_init( [
-                'id'             => '5789',
-                'slug'           => 'wp-auto-republish',
-                'type'           => 'plugin',
-                'public_key'     => 'pk_94e7891c5190ae1f9af5110b0f6eb',
-                'is_premium'     => false,
-                'premium_suffix' => 'Premium',
-                'has_addons'     => false,
-                'has_paid_plans' => true,
-                'trial'          => [
-					'days'               => 7,
-					'is_require_payment' => false,
-				],
-                'menu'           => [
-					'slug'        => 'revivepress',
-					'support'     => false,
-					'affiliation' => false,
-				],
-                'is_live'        => true,
-            ] );
-        }
-        
-        return $revivepress_fs;
-    }
-    
-    // Init Freemius.
-    revivepress_fs();
-    // Load the TablePress plugin icon for the Freemius opt-in/activation screen.
-    revivepress_fs()->add_filter( 'plugin_icon', static function () {
-        return dirname( __FILE__ ) . '/assets/images/logo.png';
-    } );
-    // Hide the Powered by Freemius tab from generated pages, like "Upgrade" or "Pricing".
-    revivepress_fs()->add_filter( 'hide_freemius_powered_by', '__return_true' );
-    // Hide the Affiliate program notice.
-    revivepress_fs()->add_filter( 'show_affiliate_program_notice', '__return_false' );
-    // Hide the Subscription cancellation form.
-    revivepress_fs()->add_filter( 'show_deactivation_subscription_cancellation', '__return_false' );
-    // Use different arrow icons in the admin menu.
-    revivepress_fs()->override_i18n( [
-        'symbol_arrow-left'  => '&larr;',
-        'symbol_arrow-right' => '&rarr;',
-    ] );
-    // Signal that SDK was initiated.
-    do_action( 'revivepress_fs_loaded' );
 }
 
-// Define constants
-if ( ! defined( 'REVIVEPRESS_VERSION' ) ) {
-    define( 'REVIVEPRESS_VERSION', '1.4.6' );
-}
-// Require once the Composer Autoload
-if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
-    require_once dirname( __FILE__ ) . '/vendor/autoload.php';
-}
 /**
- * The code that runs during plugin activation
+ * RevivePress class.
+ *
+ * @class Main class of the plugin.
  */
-if ( ! function_exists( 'revivepress_activation' ) ) {
-    function revivepress_activation() {
-        RevivePress\Base\Activate::activate();
+final class RevivePress {
+
+	/**
+	 * Plugin version.
+	 *
+	 * @var string
+	 */
+	public $version = '1.4.7';
+
+	/**
+	 * Minimum version of WordPress required to run RevivePress.
+	 *
+	 * @var string
+	 */
+	private $wordpress_version = '5.2';
+
+	/**
+	 * Minimum version of PHP required to run RevivePress.
+	 *
+	 * @var string
+	 */
+	private $php_version = '7.3';
+
+	/**
+	 * Hold install error messages.
+	 *
+	 * @var bool
+	 */
+	private $messages = [];
+
+	/**
+	 * The single instance of the class.
+	 *
+	 * @var RevivePress
+	 */
+	protected static $instance = null;
+
+	/**
+	 * Retrieve main RevivePress instance.
+	 *
+	 * Ensure only one instance is loaded or can be loaded.
+	 *
+	 * @see rank_math()
+	 * @return RevivePress
+	 */
+	public static function get() {
+		if ( is_null( self::$instance ) && ! ( self::$instance instanceof RevivePress ) ) {
+			self::$instance = new RevivePress();
+			self::$instance->setup();
+		}
+
+		return self::$instance;
+	}
+
+	/**
+	 * Instantiate the plugin.
+	 */
+	private function setup() {
+		// Define plugin constants.
+		$this->define_constants();
+
+		if ( ! $this->is_requirements_meet() ) {
+			return;
+		}
+
+        // Load Freemius.
+        $this->freemius();
+
+		// Include required files.
+		$this->includes();
+
+		// Instantiate services.
+		$this->instantiate();
+
+		// Loaded action.
+		do_action( 'revivepress/loaded' );
+	}
+
+	/**
+	 * Check that the WordPress and PHP setup meets the plugin requirements.
+	 *
+	 * @return bool
+	 */
+	private function is_requirements_meet() {
+
+		// Check WordPress version.
+		if ( version_compare( get_bloginfo( 'version' ), $this->wordpress_version, '<' ) ) {
+			/* translators: WordPress Version */
+			$this->messages[] = sprintf( esc_html__( 'You are using the outdated WordPress, please update it to version %s or higher.', 'wp-auto-republish' ), $this->wordpress_version );
+		}
+
+		// Check PHP version.
+		if ( version_compare( phpversion(), $this->php_version, '<' ) ) {
+			/* translators: PHP Version */
+			$this->messages[] = sprintf( esc_html__( 'RevivePresss requires PHP version %s or above. Please update PHP to run this plugin.', 'wp-auto-republish' ), $this->php_version );
+		}
+
+		if ( empty( $this->messages ) ) {
+			return true;
+		}
+
+		// Auto-deactivate plugin.
+		add_action( 'admin_init', [ $this, 'auto_deactivate' ] );
+		add_action( 'admin_notices', [ $this, 'activation_error' ] );
+
+		return false;
+	}
+
+	/**
+	 * Auto-deactivate plugin if requirements are not met, and display a notice.
+	 */
+	public function auto_deactivate() {
+		deactivate_plugins( REVIVEPRESS_BASENAME );
+		if ( isset( $_GET['activate'] ) ) { // phpcs:ignore
+			unset( $_GET['activate'] ); // phpcs:ignore
+		}
+	}
+
+	/**
+	 * Error notice on plugin activation.
+	 */
+	public function activation_error() {
+		?>
+		<div class="notice revivepress-notice notice-error">
+			<p>
+				<?php echo join( '<br>', $this->messages ); // phpcs:ignore ?>
+			</p>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Define the plugin constants.
+	 */
+	private function define_constants() {
+		define( 'REVIVEPRESS_VERSION', $this->version );
+        define( 'REVIVEPRESS_FILE', __FILE__ );
+        define( 'REVIVEPRESS_PATH', dirname( REVIVEPRESS_FILE ) . '/' );
+		define( 'REVIVEPRESS_URL', plugins_url( '', REVIVEPRESS_FILE ) . '/' );
+        define( 'REVIVEPRESS_BASENAME', plugin_basename( REVIVEPRESS_FILE ) );
+	}
+
+    /**
+	 * Include the Freemius SDK.
+	 */
+	private function freemius() {
+		include dirname( __FILE__ ) . '/freemius.php';
+
+        // Init Freemius.
+        revivepress_fs();
+
+        // Load the TablePress plugin icon for the Freemius opt-in/activation screen.
+        revivepress_fs()->add_filter(
+            'plugin_icon',
+            function() {
+                return dirname( __FILE__ ) . '/assets/images/logo.png';
+            }
+        );
+
+        // Hide the Powered by Freemius tab from generated pages, like "Upgrade" or "Pricing".
+        revivepress_fs()->add_filter( 'hide_freemius_powered_by', '__return_true' );
+
+        // Hide the Affiliate program notice.
+        revivepress_fs()->add_filter( 'show_affiliate_program_notice', '__return_false' );
+
+        // Hide the Subscription cancellation form.
+        revivepress_fs()->add_filter( 'show_deactivation_subscription_cancellation', '__return_false' );
+
+        // Use different arrow icons in the admin menu.
+        revivepress_fs()->override_i18n( [
+            'symbol_arrow-left'  => '&larr;',
+            'symbol_arrow-right' => '&rarr;',
+        ] );
+
+        // Signal that SDK was initiated.
+        do_action( 'revivepress_fs_loaded' );
+	}
+
+	/**
+	 * Include the required files.
+	 */
+	private function includes() {
+		include dirname( __FILE__ ) . '/vendor/autoload.php';
+	}
+
+	/**
+	 * Instantiate services.
+	 */
+	private function instantiate() {
+        // Activation hook.
+        register_activation_hook( REVIVEPRESS_FILE, 
+            function () {
+                RevivePress\Base\Activate::activate();
+            } 
+        );
+
+        // Deactivation hook.
+        register_deactivation_hook( REVIVEPRESS_FILE, 
+            function () {
+                RevivePress\Base\Deactivate::deactivate();
+            } 
+        );
+
+        // Uninstall hook.
+        revivepress_fs()->add_action( 
+            'after_uninstall', 
+            function () {
+                RevivePress\Base\Uninstall::uninstall();
+            } 
+        );
+
+        // Init RevivePress Classes.
+        RevivePress\Loader::register_services();
     }
 }
-register_activation_hook( __FILE__, 'revivepress_activation' );
+
 /**
- * The code that runs during plugin deactivation
+ * Returns the main instance of RevivePress to prevent the need to use globals.
+ *
+ * @return RevivePress
  */
-if ( ! function_exists( 'revivepress_deactivation' ) ) {
-    function revivepress_deactivation() {
-        RevivePress\Base\Deactivate::deactivate();
-    }
+function revivepress_init() {
+	return RevivePress::get();
 }
-register_deactivation_hook( __FILE__, 'revivepress_deactivation' );
-/**
- * The code that runs during plugin uninstalltion
- */
-if ( ! function_exists( 'revivepress_uninstallation' ) ) {
-    function revivepress_uninstallation() {
-        RevivePress\Base\Uninstall::uninstall();
-    }
-}
-revivepress_fs()->add_action( 'after_uninstall', 'revivepress_uninstallation' );
-/**
- * Initialize all the core classes of the plugin
- */
-if ( ! function_exists( 'revivepress_init' ) ) {
-    function revivepress_init() {
-        if ( class_exists( 'RevivePress\\Loader' ) ) {
-            RevivePress\Loader::register_services();
-        }
-    }
-}
+
+// Start it.
 revivepress_init();

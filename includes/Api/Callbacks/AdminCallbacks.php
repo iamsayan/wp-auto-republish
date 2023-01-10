@@ -144,7 +144,12 @@ class AdminCallbacks extends BaseController
 			</table>
 			<p>
 				<?php 
-        printf( esc_html__( 'To change PHP directives you need to modify php.ini file, more information about this you can %1$ssearch here%2$s or contact your hosting provider. See Site Health for more.', 'wp-auto-republish' ), '<a href="http://goo.gl/I9f74U" target="_blank" rel="noopener">', '</a>' );
+        printf(
+            /* translators: 1: <a> tag start, 2: </a> tag end. */
+            esc_html__( 'To change PHP directives you need to modify php.ini file, more information about this you can %1$ssearch here%2$s or contact your hosting provider. See Site Health for more.', 'wp-auto-republish' ),
+            '<a href="http://goo.gl/I9f74U" target="_blank" rel="noopener">',
+            '</a>'
+        );
         ?>
 				<?php 
         if ( defined( 'DISABLE_WP_CRON' ) && true === DISABLE_WP_CRON ) {

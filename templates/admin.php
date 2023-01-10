@@ -61,10 +61,18 @@ esc_html_e( 'Share', 'wp-auto-republish' );
             <div id="post-body-content" class="wpar-metabox">
                                     <div class="wpar-upgrade-notice" id="wpar-upgrade-notice">
                         <p>
-                            Republish & Share your Evergreen Content with more controls. Get <strong>RevivePress Premium</strong>!
+                            <?php 
+printf(
+    /* translators: Plugin Name. */
+    __( 'Republish & Share your Evergreen Content with more controls. Get %s!', 'wp-auto-republish' ),
+    '<strong>RevivePress Premium</strong>'
+);
+?>
                             <a class="wpar-upgrade" href="<?php 
 echo  esc_url( revivepress_fs()->get_upgrade_url() ) ;
-?>" target="_blank">Click here to see all the exciting features.</a>
+?>" target="_blank"><?php 
+esc_html_e( 'Click here to see all the exciting features.', 'wp-auto-republish' );
+?></a>
                         </p>
                     </div>
                                 <form id="wpar-settings-form" method="post" action="options.php">
@@ -74,7 +82,11 @@ $this->doSettingsSection( [
     'id'          => 'wpar-configure',
     'class'       => 'wpar-general',
     'title'       => __( 'General Settings', 'wp-auto-republish' ),
-    'description' => sprintf( __( 'Configure the Global Republish settings from here. Last run: %s', 'wp-auto-republish' ), date_i18n( $format, $last ) ),
+    'description' => sprintf(
+    /* translators: Last Global Republish run time. */
+    __( 'Configure the Global Republish settings from here. Last run: %s', 'wp-auto-republish' ),
+    date_i18n( $format, $last )
+),
     'name'        => 'wpar_plugin_default_option',
 ] );
 $this->doSettingsSection( [

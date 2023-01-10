@@ -13,7 +13,6 @@ return array(
     'RevivePress\\Base\\Actions' => $baseDir . '/includes/Base/Actions.php',
     'RevivePress\\Base\\Activate' => $baseDir . '/includes/Base/Activate.php',
     'RevivePress\\Base\\Admin' => $baseDir . '/includes/Base/Admin.php',
-    'RevivePress\\Base\\AdminNotice' => $baseDir . '/includes/Base/AdminNotice.php',
     'RevivePress\\Base\\BaseController' => $baseDir . '/includes/Base/BaseController.php',
     'RevivePress\\Base\\Deactivate' => $baseDir . '/includes/Base/Deactivate.php',
     'RevivePress\\Base\\Enqueue' => $baseDir . '/includes/Base/Enqueue.php',

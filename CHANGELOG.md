@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.7
+Release Date: 10th January, 2023
+
+* Fixed: Dashboard CSS styling.
+* Fixed: Localizations.
+* Tweak: Added check for minimum PHP and WordPress versions.
+* Minimum required PHP Version is 7.3.
+
 ## 1.4.6
 Release Date: 25th December, 2022
 

@@ -31,6 +31,8 @@ class RewritePermainks
         $this->filter( 'post_link', 'filter_post_link', 10, 2 );
         $this->filter( 'post_type_link', 'filter_post_link', 10, 2 );
         $this->filter( 'available_permalink_structure_tags', 'available_tags' );
+		$this->action( 'admin_notices', 'permalink_notice' );
+		$this->action( 'admin_init', 'fix_action' );
 	}
 
 	/**
@@ -164,5 +166,72 @@ class RewritePermainks
 		);
 		
 		return array_merge( $tags, $available_tags );
+	}
+
+	/**
+	 * Show permalink notices.
+	 */
+	public function permalink_notice() {
+		$show_notice = get_option( 'revivepress_hide_permalink_notice' );
+		if ( $show_notice ) {
+			return;
+		}
+
+		$permalink_structure = get_option( 'permalink_structure' );
+		$fix_url = wp_nonce_url( add_query_arg( 'rvp_sync_permalink', 'yes' ), 'rvp_sync_permalink' );
+		$hide = wp_nonce_url( add_query_arg( 'rvp_sync_permalink', 'hide' ), 'rvp_sync_permalink' );
+		
+		if ( preg_match( '(%year%|%monthnum%|%day%|%hour%|%minute%|%second%)', $permalink_structure ) === 1 ) { ?>
+			<div class="notice notice-warning">
+				<p style="line-height: 1.8;">
+					<strong>RevivePress</strong>: 
+					<em><?php printf( 
+							/* translators: 1: WordPress permalink tags, 2: RevivePress permalink tags. */
+							esc_html__( 'As it seems that your permalinks structure contains date, please use %1$s instead of %2$s respectively. Otherwise, it may create SEO issues. But, if you want to use different permalink structure everytime after republish, you can safely dismiss this warning.', 'wp-auto-republish' ), '<code>%rvp_year%</code>, <code>%rvp_monthnum%</code>, <code>%rvp_day%</code>, <code>%rvp_hour%</code>, <code>%rvp_minute%</code>, <code>%rvp_second%</code>', '<code>%year%</code>, <code>%monthnum%</code>, <code>%day%</code>, <code>%hour%</code>, <code>%minute%</code>, <code>%second%</code>' 
+						); ?>
+					</em>
+				</p>
+				<p style="margin-bottom: 10px;">
+					<a href="<?php echo esc_url( $fix_url ); ?>" class="button button-secondary"><strong><?php esc_html_e( 'Fix Permalink Structure', 'wp-auto-republish' ); ?></strong></a>&nbsp;&nbsp;
+					<a href="<?php echo esc_url( $hide ); ?>"><strong><?php esc_html_e( 'Dismiss Notice', 'wp-auto-republish' ); ?></strong></a>
+				</p>
+			</div> <?php
+		}
+	}
+
+	/**
+	 * Fix permalink action.
+	 */
+	public function fix_action() {
+		if ( ! isset( $_REQUEST['rvp_sync_permalink'] ) ) {
+			return;
+		}
+
+		check_admin_referer( 'rvp_sync_permalink' );
+			
+		if ( 'hide' === $_REQUEST['rvp_sync_permalink'] ) {
+			update_option( 'revivepress_hide_permalink_notice', true );
+		}
+
+		if ( 'yes' === $_REQUEST['rvp_sync_permalink'] ) {
+			$this->fix_permalink();
+		}
+	
+		wp_safe_redirect( admin_url( 'options-permalink.php' ) );
+		exit;
+	}
+
+	/**
+	 * Fix permalinks.
+	 */
+	private function fix_permalink() {
+		$permalink_structure = get_option( 'permalink_structure' );
+
+		$search = [ '%year%', '%monthnum%', '%day%', '%hour%', '%minute%', '%second%' ];
+		$replace = [ '%rvp_year%', '%rvp_monthnum%', '%rvp_day%', '%rvp_hour%', '%rvp_minute%', '%rvp_second%' ];
+		$permalink_structure = str_replace( $search, $replace, $permalink_structure );
+
+		update_option( 'permalink_structure', $permalink_structure );
+		flush_rewrite_rules();
 	}
 }
