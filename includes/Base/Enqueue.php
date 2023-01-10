@@ -159,7 +159,6 @@ class Enqueue extends BaseController
                 'edit_template'     => __( 'Edit Template', 'wp-auto-republish' ),
                 'save_template'     => __( 'Save Template', 'wp-auto-republish' ),
                 'is_premium'        => revivepress_fs()->can_use_premium_code__premium_only(),
-                'can_use_trial'     => revivepress_fs()->is_not_paying() && ! revivepress_fs()->is_trial() && ! revivepress_fs()->is_trial_utilized(),
                 'security'          => wp_create_nonce( 'rvp_admin_nonce' ),
                 'api'               => [
 					'root'  => esc_url_raw( get_rest_url() ),

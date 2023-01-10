@@ -1,15 +1,15 @@
-# Copyright (C) 2022 Sayan Datta
+# Copyright (C) 2023 Sayan Datta
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: RevivePress 1.4.6\n"
+"Project-Id-Version: RevivePress 1.4.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-auto-republish\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-12-25T04:32:02+00:00\n"
+"POT-Creation-Date: 2023-01-10T15:20:19+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: wp-auto-republish\n"
@@ -61,11 +61,12 @@ msgstr ""
 msgid "Current Value"
 msgstr ""
 
-#: includes/Api/Callbacks/AdminCallbacks.php:147
+#. translators: 1: <a> tag start, 2: </a> tag end.
+#: includes/Api/Callbacks/AdminCallbacks.php:149
 msgid "To change PHP directives you need to modify php.ini file, more information about this you can %1$ssearch here%2$s or contact your hosting provider. See Site Health for more."
 msgstr ""
 
-#: includes/Api/Callbacks/AdminCallbacks.php:151
+#: includes/Api/Callbacks/AdminCallbacks.php:156
 msgid "WordPress Cron is currently disabled. Please enable it if you are facing asny issue."
 msgstr ""
 
@@ -435,22 +436,6 @@ msgstr ""
 msgid "Rate it"
 msgstr ""
 
-#: includes/Base/AdminNotice.php:48
-msgid "Your version of PHP is below the minimum version of PHP required by %s plugin. Please contact your host and request that your version be upgraded to 7.2 or later."
-msgstr ""
-
-#: includes/Base/AdminNotice.php:71
-msgid "As it seems that your permalinks structure contains date, please use %1$s instead of %2$s respectively. Otherwise, it may create SEO issues. But, if you want to use different permalink structure everytime after republish, you can safely dismiss this warning."
-msgstr ""
-
-#: includes/Base/AdminNotice.php:74
-msgid "Fix Permalink Structure"
-msgstr ""
-
-#: includes/Base/AdminNotice.php:75
-msgid "Dismiss Notice"
-msgstr ""
-
 #: includes/Base/Enqueue.php:123
 msgid "Select weekdays (required)"
 msgstr ""
@@ -609,6 +594,19 @@ msgstr ""
 
 #: includes/Base/RatingNotice.php:55
 msgid "Nope&#44; maybe later"
+msgstr ""
+
+#. translators: 1: WordPress permalink tags, 2: RevivePress permalink tags.
+#: includes/Core/RewritePermainks.php:190
+msgid "As it seems that your permalinks structure contains date, please use %1$s instead of %2$s respectively. Otherwise, it may create SEO issues. But, if you want to use different permalink structure everytime after republish, you can safely dismiss this warning."
+msgstr ""
+
+#: includes/Core/RewritePermainks.php:195
+msgid "Fix Permalink Structure"
+msgstr ""
+
+#: includes/Core/RewritePermainks.php:196
+msgid "Dismiss Notice"
 msgstr ""
 
 #: includes/Helpers/Ajax.php:42
@@ -788,228 +786,248 @@ msgstr ""
 msgid "Share"
 msgstr ""
 
-#: templates/admin.php:76
-msgid "General Settings"
+#. translators: Plugin Name.
+#: templates/admin.php:67
+msgid "Republish & Share your Evergreen Content with more controls. Get %s!"
 msgstr ""
 
-#: templates/admin.php:77
-msgid "Configure the Global Republish settings from here. Last run: %s"
-msgstr ""
-
-#: templates/admin.php:83
-msgid "Display Settings"
+#: templates/admin.php:74
+msgid "Click here to see all the exciting features."
 msgstr ""
 
 #: templates/admin.php:84
+msgid "General Settings"
+msgstr ""
+
+#. translators: Last Global Republish run time.
+#: templates/admin.php:87
+msgid "Configure the Global Republish settings from here. Last run: %s"
+msgstr ""
+
+#: templates/admin.php:95
+msgid "Display Settings"
+msgstr ""
+
+#: templates/admin.php:96
 msgid "You can control frontend republish info visiblity from here."
 msgstr ""
 
-#: templates/admin.php:90
+#: templates/admin.php:102
 msgid "Old Posts Settings"
 msgstr ""
 
-#: templates/admin.php:91
+#: templates/admin.php:103
 msgid "Control the WP_Query of Post Republish Process for Global Republish."
 msgstr ""
 
-#: templates/admin.php:97
+#: templates/admin.php:109
 msgid "Post Types Settings"
 msgstr ""
 
-#: templates/admin.php:98
+#: templates/admin.php:110
 msgid "Control Post Types, Taxonomies and Author Based Republish from here."
 msgstr ""
 
-#: templates/admin.php:104
+#: templates/admin.php:116
 msgid "Misc. Options"
 msgstr ""
 
-#: templates/admin.php:105
+#: templates/admin.php:117
 msgid "Change some uncommon but essential settings here."
 msgstr ""
 
-#: templates/admin.php:112
+#: templates/admin.php:124
 msgid "Perform database related actions from here."
 msgstr ""
 
-#: templates/admin.php:121
-#: templates/admin.php:134
+#: templates/admin.php:133
+#: templates/admin.php:146
 msgid "Export Settings"
 msgstr ""
 
-#: templates/admin.php:124
+#: templates/admin.php:136
 msgid "Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site."
 msgstr ""
 
-#: templates/admin.php:141
+#: templates/admin.php:153
 msgid "Copy"
 msgstr ""
 
-#: templates/admin.php:144
+#: templates/admin.php:156
 msgid "Copied!"
 msgstr ""
 
-#: templates/admin.php:151
-#: templates/admin.php:165
+#: templates/admin.php:163
+#: templates/admin.php:177
 msgid "Import Settings"
 msgstr ""
 
-#: templates/admin.php:154
+#: templates/admin.php:166
 msgid "Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above."
 msgstr ""
 
-#: templates/admin.php:172
+#: templates/admin.php:184
 msgid "Paste"
 msgstr ""
 
-#: templates/admin.php:182
+#: templates/admin.php:194
 msgid "Reset Settings"
 msgstr ""
 
-#: templates/admin.php:183
+#: templates/admin.php:195
 msgid "Resetting will delete all custom options to the default settings of the plugin in your database."
 msgstr ""
 
-#: templates/admin.php:184
+#: templates/admin.php:196
 msgid "It will delete all the data relating to this plugin settings. You have to re-configure this plugin again. Do you want to still continue?"
 msgstr ""
 
-#: templates/admin.php:189
+#: templates/admin.php:201
 msgid "De-Schedule Posts"
 msgstr ""
 
-#: templates/admin.php:190
+#: templates/admin.php:202
 msgid "It will change the republish date to the original post published date on all posts."
 msgstr ""
 
-#: templates/admin.php:191
+#: templates/admin.php:203
 msgid "It will change the republish date to the original post published date on all posts. Leave if you are not sure what you are doing. Do you want to still continue?"
 msgstr ""
 
-#: templates/admin.php:195
+#: templates/admin.php:207
 msgid "Re-Create Missing Database Tables"
 msgstr ""
 
-#: templates/admin.php:196
+#: templates/admin.php:208
 msgid "Check if required tables exist and create them if not."
 msgstr ""
 
-#: templates/admin.php:198
+#: templates/admin.php:210
 msgid "Re-Create Tables"
 msgstr ""
 
-#: templates/admin.php:202
+#: templates/admin.php:214
 msgid "Re-Generate Republish Interval"
 msgstr ""
 
-#: templates/admin.php:203
+#: templates/admin.php:215
 msgid "It will regenerate Schedule Auto Republish Process Interval."
 msgstr ""
 
-#: templates/admin.php:205
+#: templates/admin.php:217
 msgid "Re-Generate Interval"
 msgstr ""
 
-#: templates/admin.php:210
+#: templates/admin.php:222
 msgid "Re-Generate Republish Schedule"
 msgstr ""
 
-#: templates/admin.php:211
+#: templates/admin.php:223
 msgid "It will regenerate Schedule Auto Republish Schedules of Single Posts and Custom Rules."
 msgstr ""
 
-#: templates/admin.php:212
+#: templates/admin.php:224
 msgid "It will remove and re-create all the scheduled or missed republish events relating to global and single post republishing. It may stop previous scheduled republished event. Leave if you are not sure what you are doing. Do you want to still continue?"
 msgstr ""
 
-#: templates/admin.php:214
+#: templates/admin.php:226
 msgid "Re-Generate Schedule"
 msgstr ""
 
-#: templates/admin.php:218
+#: templates/admin.php:230
 msgid "Remove Post Meta & Actions"
 msgstr ""
 
-#: templates/admin.php:219
+#: templates/admin.php:231
 msgid "Resetting will delete all post metadatas and future action events associated with Post Republish."
 msgstr ""
 
-#: templates/admin.php:220
+#: templates/admin.php:232
 msgid "It will delete all the post meta data & action events relating to global and single post republishing. It may stop previous scheduled republished event. Leave if you are not sure what you are doing. Do you want to still continue?"
 msgstr ""
 
-#: templates/admin.php:222
+#: templates/admin.php:234
 msgid "Clear Post Metas & Events"
 msgstr ""
 
-#: templates/admin.php:270
+#: templates/admin.php:282
 msgid "System Status"
 msgstr ""
 
-#: templates/admin.php:273
+#: templates/admin.php:285
 msgid "In order to use this plugin, please ensure your server meets the following PHP configurations. Your hosting provider will help you modify server configurations, if required."
 msgstr ""
 
-#: templates/admin.php:284
+#: templates/admin.php:296
 msgid "Upgrade to the premium version and get the following features:"
 msgstr ""
 
-#: templates/admin.php:288
+#: templates/admin.php:300
 msgid "Custom Post types & Taxonomies"
 msgstr ""
 
-#: templates/admin.php:291
+#: templates/admin.php:303
 msgid "Individual & Scheduled Republishing"
 msgstr ""
 
-#: templates/admin.php:294
+#: templates/admin.php:306
 msgid "Date Time Range Based Republishing"
 msgstr ""
 
-#: templates/admin.php:297
+#: templates/admin.php:309
 msgid "Custom Post Republish Interval & Title"
 msgstr ""
 
-#: templates/admin.php:300
+#: templates/admin.php:312
 msgid "Automatic Social Media Share"
 msgstr ""
 
-#: templates/admin.php:303
+#: templates/admin.php:315
 msgid "Automatic Cache Plugin Purge Support"
 msgstr ""
 
-#: templates/admin.php:306
+#: templates/admin.php:318
 msgid "Change Post Status after Republish"
 msgstr ""
 
-#: templates/admin.php:309
+#: templates/admin.php:321
 msgid "One Click Instant Republish & Clone"
 msgstr ""
 
-#: templates/admin.php:312
+#: templates/admin.php:324
 msgid "Custom Post Republish Rulesets"
 msgstr ""
 
-#: templates/admin.php:315
+#: templates/admin.php:327
 msgid "WordPress Sticky Posts Support"
 msgstr ""
 
-#: templates/admin.php:318
+#: templates/admin.php:330
 msgid "OneSignal Notification Support"
 msgstr ""
 
-#: templates/admin.php:321
+#: templates/admin.php:333
 msgid "WPML & Polylang Compatibility"
 msgstr ""
 
-#: templates/admin.php:324
+#: templates/admin.php:336
 msgid "Indexing API Plugin Compatibility"
 msgstr ""
 
-#: templates/admin.php:327
+#: templates/admin.php:339
 msgid "Email Notification upon Republishing"
 msgstr ""
 
-#: templates/admin.php:330
+#: templates/admin.php:342
 msgid "Priority Email Support & many more.."
+msgstr ""
+
+#. translators: WordPress Version
+#: wp-auto-republish.php:138
+msgid "You are using the outdated WordPress, please update it to version %s or higher."
+msgstr ""
+
+#. translators: PHP Version
+#: wp-auto-republish.php:144
+msgid "RevivePresss requires PHP version %s or above. Please update PHP to run this plugin."
 msgstr ""

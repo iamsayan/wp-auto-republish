@@ -27,7 +27,6 @@ final class Loader
             Base\Admin::class,
             Base\Actions::class,
             Base\Localization::class,
-            Base\AdminNotice::class,
             Base\RatingNotice::class,
             Core\FetchPosts::class,
             Core\PostRepublish::class,
