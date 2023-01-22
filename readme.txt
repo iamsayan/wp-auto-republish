@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 5.2
 Tested up to: 6.1
-Stable tag: 1.4.7
+Stable tag: 1.4.8
 Requires PHP: 7.3
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -142,6 +142,30 @@ No, plugin can handle it efficiently by tinkering the Permalink Structure.
 
 If you like RevivePress, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
 
+= 1.4.8 =
+Release Date: 22nd January, 2023
+
+= Premium Version =
+* Added: Option to select post statuses which can be republished.
+* Added: Taxonomies and Author filters to Custom Republish Rules.
+* Added: Option to set Post Status after individual post republish.
+* Tweak: Only published posts are eligible for Social Share and OneSignal Notification.
+* Fixed: Republish on Queue is showing even after successful single republish.
+* Fixed: Auto Log History removal not working properly.
+* Fixed: Account Name was not showing on Pinterest Edit Template Popup.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Updated: Action Schedular Library to v3.5.4.
+* Improved: Code Optimizations.
+* Fixed: Dashboard CSS issue.
+* Fixed: Typos.
+
+= 1.4.7.1 =
+Release Date: 17th January, 2023
+
+* Fixed: Permission issue after deactivation.
+
 = 1.4.7 =
 Release Date: 10th January, 2023
 
@@ -157,7 +181,7 @@ Release Date: 25th December, 2022
 * Added: Pinterest Sharing.
 * Added: Link Shortner services.
 * Added: Option under Tools to Re-generate missed schedules.
-* Fixed: Shareing URL Parameters were not working.
+* Fixed: Sharing URL Parameters were not working.
 * Improved: Social Account adding mechanism.
 * Improved: Updated Facebook SDK.
 * Improved: Updated Twitter SDK.

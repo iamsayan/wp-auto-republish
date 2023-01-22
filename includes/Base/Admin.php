@@ -126,10 +126,10 @@ class Admin extends BaseController
 		$num_pastdue_actions = (int) $store->query_actions( $query_args, 'count' );
 
 		if ( 0 !== $num_pastdue_actions ) {
-			$query_args['group']    = 'wp-auto-republish';
-			$num_pastdue_rm_actions = (int) $store->query_actions( $query_args, 'count' );
+			$query_args['group']     = 'wp-auto-republish';
+			$num_pastdue_rvp_actions = (int) $store->query_actions( $query_args, 'count' );
 
-			$num_pastdue_actions -= $num_pastdue_rm_actions;
+			$num_pastdue_actions -= $num_pastdue_rvp_actions;
 		}
 
 		$threshold_seconds = (int) apply_filters( 'action_scheduler_pastdue_actions_seconds', DAY_IN_SECONDS );

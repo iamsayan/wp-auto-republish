@@ -222,10 +222,14 @@ class Database
             'fields'      => 'ids',
         ];
         $post_ids = $this->get_posts( $args );
-        $post_ids = implode( ', ', $post_ids );
-        $where = $wpdb->prepare( "WHERE post_id IN ( {$post_ids} ) AND meta_key LIKE %s OR meta_key LIKE %s", '%' . $wpdb->esc_like( 'wpar_' ) . '%', '%' . $wpdb->esc_like( 'rvp_' ) . '%' );
-        $wpdb->query( "DELETE FROM {$wpdb->postmeta} {$where}" );
-        // phpcs:ignore
+        
+        if ( ! empty($post_ids) ) {
+            $post_ids = join( ', ', $post_ids );
+            $where = $wpdb->prepare( "WHERE post_id IN ( {$post_ids} ) AND meta_key LIKE %s OR meta_key LIKE %s", '%' . $wpdb->esc_like( 'wpar_' ) . '%', '%' . $wpdb->esc_like( 'rvp_' ) . '%' );
+            $wpdb->query( "DELETE FROM {$wpdb->postmeta} {$where}" );
+            // phpcs:ignore
+        }
+        
         return __( 'Cleanup task started. It might take a couple of minutes.', 'wp-auto-republish' );
     }
     

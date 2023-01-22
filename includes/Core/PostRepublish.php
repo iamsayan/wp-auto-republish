@@ -54,16 +54,14 @@ class PostRepublish
      * @param int   $post_id   Post ID
      */
     public function do_republish( $post_id ) {
-        // check if given post is not published.
-        if ( 'publish' === get_post_status( $post_id ) ) {
-            $this->handle( (int) $post_id );
-        }
         // delete metas
         $this->delete_meta( $post_id, 'wpar_global_republish_status' );
         $this->delete_meta( $post_id, '_wpar_global_republish_datetime' );
         $this->delete_meta( $post_id, 'wpar_filter_republish_status' );
         $this->delete_meta( $post_id, '_wpar_filter_republish_datetime' );
         $this->delete_meta( $post_id, 'wpar_republish_rule_action' );
+        // Republish.
+        $this->handle( (int) $post_id );
     }
     
     /**
@@ -122,7 +120,6 @@ class PostRepublish
         );
         //error_log( print_r( $args, true ) );
         wp_update_post( $args );
-        $this->set_occurence( $post );
         $this->do_action( 'clear_site_cache' );
         // reinit kses filters
         \kses_init_filters();
@@ -176,23 +173,6 @@ class PostRepublish
             $single,
             $scheduled
         );
-    }
-    
-    /**
-     * Custom post type support.
-     *
-     * @param object $post WP Post object.
-     */
-    private function set_occurence( WP_Post $post ) {
-        $repeat = $this->get_meta( $post->ID, '_wpar_post_republish_occurrence' );
-        
-        if ( ! empty($repeat) && is_numeric( $repeat ) ) {
-            $repeat++;
-        } else {
-            $repeat = 1;
-        }
-        
-        $this->update_meta( $post->ID, '_wpar_post_republish_occurrence', $repeat );
     }
 
 }

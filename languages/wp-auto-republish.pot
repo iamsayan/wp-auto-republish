@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: RevivePress 1.4.7\n"
+"Project-Id-Version: RevivePress 1.4.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-auto-republish\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-01-10T15:20:19+00:00\n"
+"POT-Creation-Date: 2023-01-22T06:17:01+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: wp-auto-republish\n"
@@ -37,7 +37,7 @@ msgid "https://sayandatta.in"
 msgstr ""
 
 #: includes/Api/Callbacks/AdminCallbacks.php:65
-#: includes/Base/Enqueue.php:136
+#: includes/Base/Enqueue.php:137
 msgid "Save Settings"
 msgstr ""
 
@@ -263,7 +263,7 @@ msgid "Saturday"
 msgstr ""
 
 #: includes/Api/Callbacks/ManagerCallbacks.php:200
-msgid "Select how you want to show original published date of the post on frontend. Before Content option will push Republish info to top and After Content will pust post content to top. You can keep it disable if you don't want to use this."
+msgid "Select how you want to show original published date of the post on frontend. Before Content option will push Republish info to top and After Content will push post content to top. You can keep it disable if you don't want to use this."
 msgstr ""
 
 #: includes/Api/Callbacks/ManagerCallbacks.php:202
@@ -445,142 +445,146 @@ msgid "Select post types (required)"
 msgstr ""
 
 #: includes/Base/Enqueue.php:125
-msgid "Select user roles (required)"
+msgid "Select post statuses (required)"
 msgstr ""
 
 #: includes/Base/Enqueue.php:126
-msgid "Select taxonomies"
+msgid "Select user roles (required)"
 msgstr ""
 
 #: includes/Base/Enqueue.php:127
-msgid "Enter post or page or custom post ids (comma separated)"
+msgid "Select taxonomies"
 msgstr ""
 
 #: includes/Base/Enqueue.php:128
-msgid "Saving..."
+msgid "Enter post or page or custom post ids (comma separated)"
 msgstr ""
 
 #: includes/Base/Enqueue.php:129
-msgid "Please wait while we are saving your settings..."
+msgid "Saving..."
 msgstr ""
 
 #: includes/Base/Enqueue.php:130
-msgid "Done!"
+msgid "Please wait while we are saving your settings..."
 msgstr ""
 
 #: includes/Base/Enqueue.php:131
-msgid "Error!"
+msgid "Done!"
 msgstr ""
 
 #: includes/Base/Enqueue.php:132
-msgid "Deleting..."
+msgid "Error!"
 msgstr ""
 
 #: includes/Base/Enqueue.php:133
-msgid "Processing..."
+msgid "Deleting..."
 msgstr ""
 
 #: includes/Base/Enqueue.php:134
-msgid "Warning!"
+msgid "Processing..."
 msgstr ""
 
 #: includes/Base/Enqueue.php:135
+msgid "Warning!"
+msgstr ""
+
+#: includes/Base/Enqueue.php:136
 msgid "Please wait while we are processing your request..."
 msgstr ""
 
-#: includes/Base/Enqueue.php:137
+#: includes/Base/Enqueue.php:138
 msgid "Settings Saved Successfully!"
 msgstr ""
 
-#: includes/Base/Enqueue.php:138
+#: includes/Base/Enqueue.php:139
 msgid "Are you sure that you want to delete this item?"
 msgstr ""
 
-#: includes/Base/Enqueue.php:139
+#: includes/Base/Enqueue.php:140
 msgid "Invalid Nonce! We could not process your request."
 msgstr ""
 
-#: includes/Base/Enqueue.php:140
+#: includes/Base/Enqueue.php:141
 msgid "OK"
 msgstr ""
 
-#: includes/Base/Enqueue.php:141
+#: includes/Base/Enqueue.php:142
 msgid "Confirm"
 msgstr ""
 
-#: includes/Base/Enqueue.php:142
+#: includes/Base/Enqueue.php:143
 msgid "Cancel"
 msgstr ""
 
-#: includes/Base/Enqueue.php:143
+#: includes/Base/Enqueue.php:144
 msgid "Close"
 msgstr ""
 
-#: includes/Base/Enqueue.php:144
+#: includes/Base/Enqueue.php:145
 msgid "Paste Here"
 msgstr ""
 
-#: includes/Base/Enqueue.php:145
+#: includes/Base/Enqueue.php:146
 msgid "Import"
 msgstr ""
 
-#: includes/Base/Enqueue.php:146
+#: includes/Base/Enqueue.php:147
 msgid "Importing..."
 msgstr ""
 
-#: includes/Base/Enqueue.php:147
+#: includes/Base/Enqueue.php:148
 msgid "Please wait..."
 msgstr ""
 
-#: includes/Base/Enqueue.php:148
+#: includes/Base/Enqueue.php:149
 msgid "No logs found."
 msgstr ""
 
-#: includes/Base/Enqueue.php:149
+#: includes/Base/Enqueue.php:150
 msgid "Filter"
 msgstr ""
 
-#: includes/Base/Enqueue.php:150
+#: includes/Base/Enqueue.php:151
 msgid "Activating..."
 msgstr ""
 
-#: includes/Base/Enqueue.php:151
+#: includes/Base/Enqueue.php:152
 msgid "Deactivating..."
 msgstr ""
 
-#: includes/Base/Enqueue.php:152
+#: includes/Base/Enqueue.php:153
 msgid "Activate"
 msgstr ""
 
-#: includes/Base/Enqueue.php:153
+#: includes/Base/Enqueue.php:154
 msgid "Deactivate"
 msgstr ""
 
-#: includes/Base/Enqueue.php:154
+#: includes/Base/Enqueue.php:155
 msgid "Enabled"
 msgstr ""
 
-#: includes/Base/Enqueue.php:155
+#: includes/Base/Enqueue.php:156
 msgid "Disabled"
 msgstr ""
 
-#: includes/Base/Enqueue.php:156
+#: includes/Base/Enqueue.php:157
 msgid "Verify"
 msgstr ""
 
-#: includes/Base/Enqueue.php:157
+#: includes/Base/Enqueue.php:158
 msgid "New Account"
 msgstr ""
 
-#: includes/Base/Enqueue.php:158
+#: includes/Base/Enqueue.php:159
 msgid "Please enter the required data first!"
 msgstr ""
 
-#: includes/Base/Enqueue.php:159
+#: includes/Base/Enqueue.php:160
 msgid "Edit Template"
 msgstr ""
 
-#: includes/Base/Enqueue.php:160
+#: includes/Base/Enqueue.php:161
 msgid "Save Template"
 msgstr ""
 
@@ -725,15 +729,15 @@ msgstr ""
 msgid "Republish Schedule re-generation started. It might take a couple of minutes."
 msgstr ""
 
-#: includes/Tools/Database.php:229
+#: includes/Tools/Database.php:233
 msgid "Cleanup task started. It might take a couple of minutes."
 msgstr ""
 
-#: includes/Tools/Database.php:251
+#: includes/Tools/Database.php:255
 msgid "Post de-scheduling started. It might take a couple of minutes."
 msgstr ""
 
-#: includes/Tools/Database.php:299
+#: includes/Tools/Database.php:303
 msgid "Table re-creation started. It might take a couple of minutes."
 msgstr ""
 
