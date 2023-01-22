@@ -228,7 +228,7 @@ class FetchPosts
             }
             $args = [
                 'post_type'   => $post_types,
-                'post_status' => 'publish',
+                'post_status' => 'any',
                 'post__in'    => wp_parse_id_list( $post_ids ),
                 'numberposts' => $this->do_filter( 'number_of_posts', $number_posts ),
                 'orderby'     => $orderby,

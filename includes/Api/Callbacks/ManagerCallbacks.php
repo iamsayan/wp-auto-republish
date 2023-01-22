@@ -197,7 +197,7 @@ class ManagerCallbacks
             'id'          => $args['label_for'],
             'name'        => 'wpar_republish_position',
             'value'       => $this->get_data( 'wpar_republish_position', 'disable' ),
-            'description' => __( 'Select how you want to show original published date of the post on frontend. Before Content option will push Republish info to top and After Content will pust post content to top. You can keep it disable if you don\'t want to use this.', 'wp-auto-republish' ),
+            'description' => __( 'Select how you want to show original published date of the post on frontend. Before Content option will push Republish info to top and After Content will push post content to top. You can keep it disable if you don\'t want to use this.', 'wp-auto-republish' ),
             'options'     => [
 				'disable'        => __( 'Disable', 'wp-auto-republish' ),
 				'before_content' => __( 'Before Content', 'wp-auto-republish' ),

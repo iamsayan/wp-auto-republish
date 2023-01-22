@@ -1,6 +1,30 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.8
+Release Date: 22nd January, 2023
+
+= Premium Version =
+* Added: Option to select post statuses which can be republished.
+* Added: Taxonomies and Author filters to Custom Republish Rules.
+* Added: Option to set Post Status after individual post republish.
+* Tweak: Only published posts are eligible for Social Share and OneSignal Notification.
+* Fixed: Republish on Queue is showing even after successful single republish.
+* Fixed: Auto Log History removal not working properly.
+* Fixed: Account Name was not showing on Pinterest Edit Template Popup.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Updated: Action Schedular Library to v3.5.4.
+* Improved: Code Optimizations.
+* Fixed: Dashboard CSS issue.
+* Fixed: Typos.
+
+## 1.4.7.1
+Release Date: 17th January, 2023
+
+* Fixed: Permission issue after deactivation.
+
 ## 1.4.7
 Release Date: 10th January, 2023
 

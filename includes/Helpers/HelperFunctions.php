@@ -179,6 +179,17 @@ trait HelperFunctions
     }
     
     /**
+     * Get available post statuses
+     * 
+     * @since 1.4.8
+     * @return array
+     */
+    protected function get_post_statuses() {
+        $statuses = get_post_statuses();
+        return apply_filters( 'wpar/post_statuses', $statuses );
+    }
+    
+    /**
      * Check current user roles.
      * 
      * @since 1.3.0
