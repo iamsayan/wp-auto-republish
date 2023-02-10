@@ -164,15 +164,14 @@ class FetchPosts
         
         if ( $tax_filter != 'none' && ! empty($taxonomies) ) {
             foreach ( $taxonomies as $taxonomy ) {
-                $get_item = explode( '|', $taxonomy );
-                $type = $get_item[0];
-                $taxonomy_name = $get_item[1];
-                $term_id = $get_item[2];
-                if ( $post_type === $type && is_object_in_taxonomy( $post_type, $taxonomy_name ) ) {
+                $taxonomy_data = $this->process_taxonomy( $taxonomy );
+                $taxonomy_name = $taxonomy_data[0];
+                $term_id = $taxonomy_data[1];
+                if ( is_object_in_taxonomy( $post_type, $taxonomy_name ) ) {
                     
-                    if ( $taxonomy_name == 'category' ) {
+                    if ( 'category' === $taxonomy_name ) {
                         $cats[] = $term_id;
-                    } elseif ( $taxonomy_name == 'post_tag' ) {
+                    } elseif ( 'post_tag' === $taxonomy_name ) {
                         $tags[] = $term_id;
                     } else {
                     }                
@@ -180,7 +179,7 @@ class FetchPosts
             }
             if ( ! empty($cats) ) {
                 
-                if ( $tax_filter == 'include' ) {
+                if ( 'include' === $tax_filter ) {
                     $args['category__in'] = wp_parse_id_list( $cats );
                 } else {
                     $args['category__not_in'] = wp_parse_id_list( $cats );
@@ -188,7 +187,7 @@ class FetchPosts
 }
             if ( ! empty($tags) ) {
                 
-                if ( $tax_filter == 'include' ) {
+                if ( 'include' === $tax_filter ) {
                     $args['tag__in'] = wp_parse_id_list( $tags );
                 } else {
                     $args['tag__not_in'] = wp_parse_id_list( $tags );

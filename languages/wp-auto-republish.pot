@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: RevivePress 1.4.8\n"
+"Project-Id-Version: RevivePress 1.4.9\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-auto-republish\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-01-22T06:17:01+00:00\n"
+"POT-Creation-Date: 2023-02-10T04:51:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: wp-auto-republish\n"
@@ -33,7 +33,7 @@ msgid "Sayan Datta"
 msgstr ""
 
 #. Author URI of the plugin
-msgid "https://sayandatta.in"
+msgid "https://www.sayandatta.co.in"
 msgstr ""
 
 #: includes/Api/Callbacks/AdminCallbacks.php:65
@@ -70,352 +70,352 @@ msgstr ""
 msgid "WordPress Cron is currently disabled. Please enable it if you are facing asny issue."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:26
+#: includes/Api/Callbacks/ManagerCallbacks.php:25
 msgid "Enable this if you want to auto republish old posts of your blog. It is the switch to enable or disable the Global Republish related functionalities of this plugin."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:36
+#: includes/Api/Callbacks/ManagerCallbacks.php:35
 msgid "Set custom interval in Days. Default 1 day means plugin will republish on everyday if all weekdays are selected."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:50
+#: includes/Api/Callbacks/ManagerCallbacks.php:49
 msgid "Select post republish interval between two post republish events. It will be added to the Last Run time (see top right) and will re-run at a point of time which resolves Last Run plus this settings. If Last Run is Today at 10:05 AM and this settings is set to 30 Minutes, then next process will run at 10:35 AM. Although, running of this process doesn't mean that it will republish a post every time. It will also check if the below conditions are met, if not, republish will not work at that particular point of time."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:52
+#: includes/Api/Callbacks/ManagerCallbacks.php:51
 msgid "5 Minutes"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:53
+#: includes/Api/Callbacks/ManagerCallbacks.php:52
 msgid "10 Minutes"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:54
+#: includes/Api/Callbacks/ManagerCallbacks.php:53
 msgid "15 Minutes"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:55
+#: includes/Api/Callbacks/ManagerCallbacks.php:54
 msgid "20 Minutes"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:56
+#: includes/Api/Callbacks/ManagerCallbacks.php:55
 msgid "30 Minutes"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:57
+#: includes/Api/Callbacks/ManagerCallbacks.php:56
 msgid "45 Minutes"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:58
+#: includes/Api/Callbacks/ManagerCallbacks.php:57
 msgid "1 hour"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:59
+#: includes/Api/Callbacks/ManagerCallbacks.php:58
 msgid "2 hours"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:60
+#: includes/Api/Callbacks/ManagerCallbacks.php:59
 msgid "4 hours"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:61
+#: includes/Api/Callbacks/ManagerCallbacks.php:60
 msgid "6 hours"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:62
+#: includes/Api/Callbacks/ManagerCallbacks.php:61
 msgid "8 hours"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:63
+#: includes/Api/Callbacks/ManagerCallbacks.php:62
 msgid "12 hours"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:64
+#: includes/Api/Callbacks/ManagerCallbacks.php:63
 msgid "Custom Interval (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:76
+#: includes/Api/Callbacks/ManagerCallbacks.php:75
 msgid "Select randomness interval from here which will be added to post republish time. If republish process runs at 11.25 AM and this option is set to Upto 1 Hour, post will be republished at anytime between 11.25 AM and 12.25 PM. It can make the republishing seem more natural to Readers and SERPs."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:78
+#: includes/Api/Callbacks/ManagerCallbacks.php:77
 msgid "No Randomness (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:79
+#: includes/Api/Callbacks/ManagerCallbacks.php:78
 msgid "Upto 5 Minutes (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:80
+#: includes/Api/Callbacks/ManagerCallbacks.php:79
 msgid "Upto 10 Minutes (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:81
+#: includes/Api/Callbacks/ManagerCallbacks.php:80
 msgid "Upto 15 Minutes (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:82
+#: includes/Api/Callbacks/ManagerCallbacks.php:81
 msgid "Upto 20 Minutes (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:83
+#: includes/Api/Callbacks/ManagerCallbacks.php:82
 msgid "Upto 30 Minutes (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:84
+#: includes/Api/Callbacks/ManagerCallbacks.php:83
 msgid "Upto 45 Minutes (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:85
+#: includes/Api/Callbacks/ManagerCallbacks.php:84
 msgid "Upto 1 hour"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:86
+#: includes/Api/Callbacks/ManagerCallbacks.php:85
 msgid "Upto 2 hours"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:87
+#: includes/Api/Callbacks/ManagerCallbacks.php:86
 msgid "Upto 4 hours"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:88
+#: includes/Api/Callbacks/ManagerCallbacks.php:87
 msgid "Upto 6 hours"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:89
+#: includes/Api/Callbacks/ManagerCallbacks.php:88
 msgid "Upto 8 hours (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:90
+#: includes/Api/Callbacks/ManagerCallbacks.php:89
 msgid "Upto 12 hours (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:91
+#: includes/Api/Callbacks/ManagerCallbacks.php:90
 msgid "Upto 24 hours (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:103
+#: includes/Api/Callbacks/ManagerCallbacks.php:102
 msgid "Select the position of republished post (choosing the 2nd position will leave the most recent post in 1st place). Let's say, your last post/republished post time is 02:45 PM, First Position will push the current republished post to before the last post and Second Position will attach current republished post just after last post with a interval of 5 minutes (can be modified by filter)."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:105
+#: includes/Api/Callbacks/ManagerCallbacks.php:104
 msgid "First Position"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:106
+#: includes/Api/Callbacks/ManagerCallbacks.php:105
 msgid "Second Position"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:120
+#: includes/Api/Callbacks/ManagerCallbacks.php:119
 msgid "Enable or Disable Time Specifc Republish from here. If you Enable this, plugin will only republish between the Start Time and End Time. If Start Time is grater than End Time, plugin will assume the end time in on the next available day (if the next day is eligible for republish). No Time Limit will republish at any time."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:121
+#: includes/Api/Callbacks/ManagerCallbacks.php:120
 msgid "Note: If you are using Time Limits then you have to set the \"Republish Process Interval within a Day\" option as less than the interval between Start Time and End Time so that process interval fits within the interval. Otherwise, it will not work."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:125
+#: includes/Api/Callbacks/ManagerCallbacks.php:124
 msgid "No Time Limit"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:126
+#: includes/Api/Callbacks/ManagerCallbacks.php:125
 msgid "Set Time Limit"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:137
+#: includes/Api/Callbacks/ManagerCallbacks.php:136
 msgid "Set the starting time period for republish old posts from here. Republish will start from this time."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:154
+#: includes/Api/Callbacks/ManagerCallbacks.php:153
 msgid "Set the ending time period for republish old posts from here. Republish will not occur after this time."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:180
+#: includes/Api/Callbacks/ManagerCallbacks.php:179
 msgid "Select the weekdays when you want to republish old posts. If you want to disable republish on any weekday, you can easily do it from here. Just remove that day and save your settings."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:182
+#: includes/Api/Callbacks/ManagerCallbacks.php:181
 msgid "Sunday"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:183
+#: includes/Api/Callbacks/ManagerCallbacks.php:182
 msgid "Monday"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:184
+#: includes/Api/Callbacks/ManagerCallbacks.php:183
 msgid "Tuesday"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:185
+#: includes/Api/Callbacks/ManagerCallbacks.php:184
 msgid "Wednesday"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:186
+#: includes/Api/Callbacks/ManagerCallbacks.php:185
 msgid "Thursday"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:187
+#: includes/Api/Callbacks/ManagerCallbacks.php:186
 msgid "Friday"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:188
+#: includes/Api/Callbacks/ManagerCallbacks.php:187
 msgid "Saturday"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:200
+#: includes/Api/Callbacks/ManagerCallbacks.php:199
 msgid "Select how you want to show original published date of the post on frontend. Before Content option will push Republish info to top and After Content will push post content to top. You can keep it disable if you don't want to use this."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:202
-#: includes/Api/Callbacks/ManagerCallbacks.php:300
+#: includes/Api/Callbacks/ManagerCallbacks.php:201
+#: includes/Api/Callbacks/ManagerCallbacks.php:299
 msgid "Disable"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:203
+#: includes/Api/Callbacks/ManagerCallbacks.php:202
 msgid "Before Content"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:204
+#: includes/Api/Callbacks/ManagerCallbacks.php:203
 msgid "After Content"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:215
+#: includes/Api/Callbacks/ManagerCallbacks.php:214
 msgid "Message before original published date of the post on frontend. It will work like prefix. Post Republish info will be added after this prefix if actually exists."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:227
+#: includes/Api/Callbacks/ManagerCallbacks.php:226
 msgid "Select the post age for republishing. Post originally published before this, will be available for republish. Note: If a post is already republished, then plugin will consider the new republished date, not the actual published date."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:229
+#: includes/Api/Callbacks/ManagerCallbacks.php:228
 msgid "No Age Limit (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:230
+#: includes/Api/Callbacks/ManagerCallbacks.php:229
 msgid "30 Days (1 month)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:231
+#: includes/Api/Callbacks/ManagerCallbacks.php:230
 msgid "45 Days (1.5 months)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:232
+#: includes/Api/Callbacks/ManagerCallbacks.php:231
 msgid "60 Days (2 months)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:233
+#: includes/Api/Callbacks/ManagerCallbacks.php:232
 msgid "90 Days (3 months)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:234
+#: includes/Api/Callbacks/ManagerCallbacks.php:233
 msgid "120 Days (4 months)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:235
+#: includes/Api/Callbacks/ManagerCallbacks.php:234
 msgid "180 Days (6 months)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:236
+#: includes/Api/Callbacks/ManagerCallbacks.php:235
 msgid "240 Days (8 months)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:237
+#: includes/Api/Callbacks/ManagerCallbacks.php:236
 msgid "365 Days (1 year)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:238
+#: includes/Api/Callbacks/ManagerCallbacks.php:237
 msgid "730 Days (2 years)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:239
+#: includes/Api/Callbacks/ManagerCallbacks.php:238
 msgid "1095 Days (3 years)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:240
+#: includes/Api/Callbacks/ManagerCallbacks.php:239
 msgid "Custom Age Limit (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:251
+#: includes/Api/Callbacks/ManagerCallbacks.php:250
 msgid "Select the method of getting old posts from database."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:253
+#: includes/Api/Callbacks/ManagerCallbacks.php:252
 msgid "Select Old Post First (ASC)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:254
+#: includes/Api/Callbacks/ManagerCallbacks.php:253
 msgid "Select New Post First (DESC)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:265
+#: includes/Api/Callbacks/ManagerCallbacks.php:264
 msgid "Select the method of getting old posts order by parameter. Default: Post Date"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:267
+#: includes/Api/Callbacks/ManagerCallbacks.php:266
 msgid "Post Date"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:268
+#: includes/Api/Callbacks/ManagerCallbacks.php:267
 msgid "Post ID (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:269
+#: includes/Api/Callbacks/ManagerCallbacks.php:268
 msgid "Post Author (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:270
+#: includes/Api/Callbacks/ManagerCallbacks.php:269
 msgid "Post Title (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:271
+#: includes/Api/Callbacks/ManagerCallbacks.php:270
 msgid "Post Name (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:272
+#: includes/Api/Callbacks/ManagerCallbacks.php:271
 msgid "Random Selection (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:273
+#: includes/Api/Callbacks/ManagerCallbacks.php:272
 msgid "Comment Count (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:274
+#: includes/Api/Callbacks/ManagerCallbacks.php:273
 msgid "Relevance (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:275
+#: includes/Api/Callbacks/ManagerCallbacks.php:274
 msgid "Menu Order (Premium)"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:287
+#: includes/Api/Callbacks/ManagerCallbacks.php:286
 msgid "Select the post types of which you want to republish using global method."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:298
+#: includes/Api/Callbacks/ManagerCallbacks.php:297
 msgid "Select how you want to include or exclude a post category from republishing. If you choose Exclude Taxonomies, selected taxonomies will be ignored and Include will add them only."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:301
+#: includes/Api/Callbacks/ManagerCallbacks.php:300
 msgid "Include Taxonomies"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:302
+#: includes/Api/Callbacks/ManagerCallbacks.php:301
 msgid "Exclude Taxonomies"
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:313
+#: includes/Api/Callbacks/ManagerCallbacks.php:312
 msgid "Select taxonimies which you want to include to republishing or exclude from republishing."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:326
+#: includes/Api/Callbacks/ManagerCallbacks.php:325
 msgid "Write the post IDs which you want to include forcefully in the republish process. But it doesn't mean that it will republish every time, rather it will added to the republish eligible post list. These posts will be republished only if the orther conditions are met."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:337
+#: includes/Api/Callbacks/ManagerCallbacks.php:336
 msgid "Write the post IDs which you want to exclude forcefully from the republish process."
 msgstr ""
 
-#: includes/Api/Callbacks/ManagerCallbacks.php:347
+#: includes/Api/Callbacks/ManagerCallbacks.php:346
 msgid "Enable this if you want to remove all the plugin data from your website."
 msgstr ""
 

@@ -1403,7 +1403,7 @@ msgstr ""
 
 #. Author URI of the plugin/theme
 #| msgid "https://www.sayandatta.com"
-msgid "https://sayandatta.in"
+msgid "https://www.sayandatta.co.in"
 msgstr ""
 
 #~ msgid "Random Selection"

@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 5.2
 Tested up to: 6.1
-Stable tag: 1.4.8
+Stable tag: 1.4.9
 Requires PHP: 7.3
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -141,6 +141,18 @@ No, plugin can handle it efficiently by tinkering the Permalink Structure.
 == Changelog ==
 
 If you like RevivePress, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.4.9 =
+Release Date: 9th February, 2023
+
+= Premium Version =
+* Added: `Republish Tags` Taxonomy to filter post republish conditions based on these tags.
+* Tweak: Log History option is now the part of `Misc.` Section.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Improved: Conditional logic Optimizations.
+* Fixed: Multiple Taxonomies were displaying in dropdown if a taxonomy is attached to more than one post type.
 
 = 1.4.8 =
 Release Date: 22nd January, 2023
