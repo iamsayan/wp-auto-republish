@@ -1,5 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
+## 1.4.9
+Release Date: 9th February, 2023
+
+= Premium Version =
+* Added: `Republish Tags` Taxonomy to filter post republish conditions based on these tags.
+* Tweak: Log History option is now the part of `Misc.` Section.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Improved: Conditional logic Optimizations.
+* Fixed: Multiple Taxonomies were displaying in dropdown if a taxonomy is attached to more than one post type.
 
 ## 1.4.8
 Release Date: 22nd January, 2023

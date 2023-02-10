@@ -25,6 +25,10 @@ if ( ! function_exists( 'revivepress_fs' ) ) {
 					'support'     => false,
 					'affiliation' => false,
 				],
+                'trial'          => [
+					'days'               => 7,
+					'is_require_payment' => false,
+				],
                 'is_live'        => true,
             ] );
         }

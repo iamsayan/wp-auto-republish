@@ -76,8 +76,8 @@ class Admin extends BaseController
 	public function do_footer() { ?>
 		<script type="text/javascript">
 			jQuery( document ).ready( function( $ ) {
-				let wpar_task_item = $( "ul#adminmenu a[href*='revivepress-scheduled-tasks']" );
-				wpar_task_item.attr( { target: '_blank', href: wpar_task_item.attr( 'href' ) + '&status=pending&s=wpar' } );
+				let rvpTaskItem = $( "ul#adminmenu a[href*='revivepress-scheduled-tasks']" );
+				rvpTaskItem.attr( { target: '_blank', href: rvpTaskItem.attr( 'href' ) + '&status=pending&s=wpar' } );
 			} );
 		</script>
 		<?php

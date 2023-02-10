@@ -10,12 +10,16 @@
 
 namespace RevivePress\Helpers;
 
+use RevivePress\Helpers\HelperFunctions;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
  * Ajax class.
  */
 trait Fields {
+
+	use HelperFunctions;
 
 	/**
 	 * Send AJAX response.
@@ -153,12 +157,14 @@ trait Fields {
 					}
 				} elseif ( ! empty( $value ) ) {
 					foreach ( $value as $taxonomy ) {
-						$get_item          = explode( '|', $taxonomy );
-						$term              = get_term( $get_item[2] );
-						$get_taxonomy_data = get_taxonomy( $term->taxonomy );
-						$cat_name          = $get_taxonomy_data->label . ' : ' . $term->name;
+						$taxonomy          = $this->process_taxonomy( $taxonomy );
+						$term              = get_term( $taxonomy[1] );
+						if ( ! is_wp_error( $term ) || ! is_null( $term ) ) {
+							$get_taxonomy_data = get_taxonomy( $term->taxonomy );
+							$cat_name          = $get_taxonomy_data->label . ': ' . $term->name;
 
-						echo '<option value="' . esc_attr( $taxonomy ) . '" selected="selected">' . esc_html( $cat_name ) . '</option>';
+							echo '<option value="' . esc_attr( join( '|', $taxonomy ) ) . '" selected="selected">' . esc_html( $cat_name ) . '</option>';
+						}
 					}
 				}
 				echo '</select>';

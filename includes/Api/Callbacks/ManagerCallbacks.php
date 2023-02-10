@@ -12,11 +12,10 @@ namespace RevivePress\Api\Callbacks;
 
 use  RevivePress\Helpers\Fields ;
 use  RevivePress\Helpers\Hooker ;
-use  RevivePress\Helpers\HelperFunctions ;
 defined( 'ABSPATH' ) || exit;
 class ManagerCallbacks
 {
-    use  Fields, HelperFunctions, Hooker ;
+    use  Fields, Hooker ;
     public function enable_plugin( $args ) {
         $this->do_field( [
             'type'        => 'checkbox',

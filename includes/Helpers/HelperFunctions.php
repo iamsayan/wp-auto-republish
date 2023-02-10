@@ -111,26 +111,26 @@ trait HelperFunctions
                 foreach ( $taxonomies as $taxonomy ) {
                     
                     if ( is_object( $taxonomy ) && ! in_array( $taxonomy->name, $taxonomy_array ) ) {
-                        if ( $builtin && ($post_type != 'post' || ! in_array( $taxonomy->name, [ 'category', 'post_tag' ] )) ) {
+                        if ( $builtin && ('post' !== $post_type || ! in_array( $taxonomy->name, [ 'category', 'post_tag' ] )) ) {
                             continue;
                         }
+                        $terms_array = [];
                         $terms = \get_terms( [
                             'taxonomy'   => $taxonomy->name,
                             'hide_empty' => $hide,
                             'lang'       => '',
                         ] );
                         foreach ( $terms as $term ) {
-                            $terms_array[ $post_type . '|' . $taxonomy->name . '|' . $term->term_id ] = ucwords( $taxonomy->label ) . ': ' . $term->name;
+                            $terms_array[ $taxonomy->name . '|' . $term->term_id ] = ucwords( $taxonomy->label ) . ': ' . $term->name;
                         }
+                        // append post type names
+                        $category_label = ( ! empty($data[ $taxonomy->name ]['label']) ? $data[ $taxonomy->name ]['label'] . ' + ' . $label : $label );
+                        // insert data into array
+                        $data[ $taxonomy->name ]['label'] = $category_label;
+                        $data[ $taxonomy->name ]['categories'] = $terms_array;
                     }                
 }
-                
-                if ( ! empty($terms_array) ) {
-                    $data[ $post_type ]['label'] = $label;
-                    $data[ $post_type ]['categories'] = $terms_array;
-                    unset( $terms_array );
-                }            
-}
+            }
         }
         /**
          * Register WPML filters back
@@ -169,9 +169,7 @@ trait HelperFunctions
      * @return bool
      */
     protected function is_enabled( $name, $prefix = false ) {
-        if ( $prefix ) {
-            $name = 'wpar_' . $name;
-        }
+        $name = ( $prefix ? 'wpar_' . $name : $name );
         if ( $this->get_data( $name ) == 1 ) {
             return true;
         }
@@ -503,6 +501,20 @@ trait HelperFunctions
     protected function validate_date( $date, $format = 'Y-m-d H:i:s' ) {
         $date_time = DateTime::createFromFormat( $format, $date );
         return $date_time && $date_time->format( $format ) == $date;
+    }
+    
+    /**
+     * Process taxonomies from settings.
+     * 
+     * @since 1.4.9
+     * @return array
+     */
+    protected function process_taxonomy( $taxonomy ) {
+        $data = explode( '|', $taxonomy );
+        if ( count( $data ) > 2 ) {
+            array_shift( $data );
+        }
+        return $data;
     }
 
 }
