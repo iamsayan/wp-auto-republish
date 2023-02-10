@@ -3,6 +3,15 @@
 # RevivePress
 RevivePress (formerly WP Auto Republish), the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
 
+[![WP compatibility](https://plugintests.com/plugins/wp-auto-republish/wp-badge.svg)](https://plugintests.com/plugins/wp-last-modified-info/latest) 
+[![PHP compatibility](https://plugintests.com/plugins/wp-auto-republish/php-badge.svg)](https://plugintests.com/plugins/wp-last-modified-info/latest)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/iamsayan/wp-auto-republish)
+![PHP](https://img.shields.io/badge/php-v7.3%2B-blue)
+![GitHub Release Date](https://img.shields.io/github/release-date/iamsayan/wp-auto-republish?logo=github)
+![GitHub last commit](https://img.shields.io/github/last-commit/iamsayan/wp-auto-republish?logo=github)
+![GitHub Repo stars](https://img.shields.io/github/stars/iamsayan/wp-auto-republish?style=social)
+![GitHub forks](https://img.shields.io/github/forks/iamsayan/wp-auto-republish?style=social)
+
 ## Description
 
 The RevivePress (formerly WP Auto Republish) plugin helps revive old posts by resetting the published date to the current date. This will push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
