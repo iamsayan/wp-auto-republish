@@ -44,7 +44,7 @@ class RatingNotice
     
         $dismiss = wp_nonce_url( add_query_arg( 'rvp_rating_notice', 'dismiss' ), 'rvp_rating_nonce' ); 
         $later = wp_nonce_url( add_query_arg( 'rvp_rating_notice', 'later' ), 'rvp_rating_nonce' ); ?>
-        
+
         <div class="notice notice-success">
             <p>
 				<?php echo wp_kses_post( 'Hey, I noticed you\'ve been using RevivePress for more than 1 week – that’s awesome! Could you please do me a BIG favor and give it a <strong>5-star</strong> rating on WordPress? Just to help us spread the word and boost my motivation.', 'wp-auto-republish' ); ?>

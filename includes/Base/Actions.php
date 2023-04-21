@@ -33,6 +33,7 @@ class Actions
      */
     public function get_taxonomies_list() {
         $search_term = ( ! empty($_POST['searchTerm']) ? sanitize_text_field( wp_unslash( $_POST['searchTerm'] ) ) : '' );
+        // phpcs:ignore WordPress.Security.NonceVerification.Missing
         $filter_data['results'] = [];
         $all_data_count = 0;
         $taxonomies = $this->get_taxonomies( [
@@ -75,6 +76,7 @@ class Actions
      */
     public function get_users_list() {
         $search_term = ( ! empty($_POST['searchTerm']) ? sanitize_text_field( wp_unslash( $_POST['searchTerm'] ) ) : '' );
+        // phpcs:ignore WordPress.Security.NonceVerification.Missing
         $filter_data = [];
         $users = \get_users( [
             'fields' => [ 'ID', 'display_name' ],

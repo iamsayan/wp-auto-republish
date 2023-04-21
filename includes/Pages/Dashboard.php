@@ -89,11 +89,10 @@ class Dashboard
      */
     public function setSections() {
         $sections = [
-            'default',
+            'general',
             'post_query',
             'post_type',
             'republish_info',
-            'tools',
         ];
         $args = [];
         foreach ( $sections as $section ) {
@@ -135,7 +134,7 @@ class Dashboard
      */
     private function build_settings_fields() {
         $managers = [
-            'default'        => [
+            'general'        => [
 				'enable_plugin'              => __( 'Enable Auto Republishing?', 'wp-auto-republish' ),
 				'republish_interval_days'    => __( 'Schedule Auto Republish Process Every (in days)', 'wp-auto-republish' ),
 				'minimun_republish_interval' => __( 'Republish Process Interval within a Day', 'wp-auto-republish' ),
@@ -145,6 +144,7 @@ class Dashboard
 				'republish_time_end'         => __( 'End Time for Republishing', 'wp-auto-republish' ),
 				'republish_days'             => __( 'Select Weekdays to Republish', 'wp-auto-republish' ),
 				'republish_post_position'    => __( 'Republish Post to Position', 'wp-auto-republish' ),
+				'remove_plugin_data'         => __( 'Delete Plugin Data on Uninstall?', 'wp-auto-republish' ),
 			],
             'republish_info' => [
 				'republish_info'      => __( 'Show Original Publication Date', 'wp-auto-republish' ),
@@ -161,9 +161,6 @@ class Dashboard
 				'post_taxonomy'     => __( 'Select Post Type(s) Taxonomies', 'wp-auto-republish' ),
 				'force_include'     => __( 'Force Include Post IDs', 'wp-auto-republish' ),
 				'force_exclude'     => __( 'Force Exclude Post IDs', 'wp-auto-republish' ),
-			],
-            'tools'          => [
-				'remove_plugin_data' => __( 'Delete Plugin Data on Uninstall?', 'wp-auto-republish' ),
 			],
         ];
         return $managers;

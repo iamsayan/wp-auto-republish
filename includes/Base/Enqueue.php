@@ -104,6 +104,12 @@ class Enqueue extends BaseController
 				'revivepress-confirm',
 			]
         );
+        wp_register_style(
+            'revivepress-fa',
+            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css',
+            [],
+            '5.15.4'
+        );
         
         if ( 'toplevel_page_revivepress' === $hook ) {
             wp_enqueue_style( 'revivepress-select2' );

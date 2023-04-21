@@ -42,6 +42,7 @@ class PostRepublish
                 $args['post_id'],
                 $args['single'],
                 $args['instant'],
+                false,
                 true
             );
         }
@@ -77,7 +78,7 @@ class PostRepublish
             false,
             $post_id
         );
-        if ( $action == 'repost' ) {
+        if ( $action === 'repost' ) {
             $this->update_old_post( $post_id );
         }
     }
@@ -85,10 +86,11 @@ class PostRepublish
     /**
      * Run post update process.
      * 
-     * @param int   $post_id  Post ID
-     * @param bool  $single   Check if it is a single republish event
-     * @param bool  $instant  Check if it is one click republish event
-     * @param bool  $external Check if it is external custom event
+     * @param int   $post_id        Post ID
+     * @param bool  $single         Check if it is a single republish event
+     * @param bool  $instant        Check if it is one click republish event
+     * @param bool  $only_update    Check if it is update date/time event
+     * @param bool  $external       Check if it is external custom event
      * 
      * @return int $post_id
      */
@@ -96,22 +98,29 @@ class PostRepublish
         int $post_id,
         bool $single = false,
         bool $instant = false,
+        bool $only_update = false,
         bool $external = false
     ) {
         $post = \get_post( $post_id );
-        $pub_date = $this->get_meta( $post->ID, '_wpar_original_pub_date' );
-        if ( ! $pub_date && $post->post_status !== 'future' ) {
-            $this->update_meta( $post->ID, '_wpar_original_pub_date', $post->post_date );
-        }
-        $this->update_meta( $post->ID, '_wpar_last_pub_date', $post->post_date );
         $new_time = $this->get_publish_time( $post->ID, $single );
+        
+        if ( ! $only_update ) {
+            $pub_date = $this->get_meta( $post->ID, '_wpar_original_pub_date' );
+            if ( ! $pub_date && $post->post_status !== 'future' ) {
+                $this->update_meta( $post->ID, '_wpar_original_pub_date', $post->post_date );
+            }
+            $this->update_meta( $post->ID, '_wpar_last_pub_date', $post->post_date );
+        }
+        
         // remove kses filters
         \kses_remove_filters();
         $args = [
-            'ID'            => $post->ID,
             'post_date'     => $new_time,
             'post_date_gmt' => get_gmt_from_date( $new_time ),
         ];
+        $args = array_merge( [
+            'ID' => $post->ID,
+        ], $args );
         $args = $this->do_filter(
             'update_process_args',
             $args,

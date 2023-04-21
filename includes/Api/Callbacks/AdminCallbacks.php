@@ -28,6 +28,26 @@ class AdminCallbacks extends BaseController
         return require_once $this->plugin_path . 'templates/admin.php';
     }
     
+    public function subMenu( $items, $class ) {
+        $allowed_html = [
+            'i' => [
+				'class' => [],
+			],
+        ];
+        $sub_items = [];
+        foreach ( $items as $item => $title ) {
+            $sub_items[] = '<a href="#" class="sub-link sub-link-' . esc_attr( $item ) . '" data-type="' . esc_attr( $item ) . '">' . wp_kses( $title, $allowed_html ) . '</a>';
+        }
+        
+        if ( ! empty($sub_items) ) {
+            echo  '<div class="postbox sub-links wpar-' . esc_attr( $class ) . ' d-none">' ;
+            echo  join( '<span>&#124;</span>', $sub_items ) ;
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            echo  '</div>' ;
+        }
+    
+    }
+    
     public function sectionHeader( $title, $description ) {
         ?>
 		<div class="wpar-metabox-holder">
