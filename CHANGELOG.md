@@ -4,13 +4,13 @@ All notable changes to this project will be documented in this file.
 ## 1.5.0
 Release Date: 20th April, 2023
 
-= Premium Version =
+### Premium Version
 * Fixed: Various conditional logics.
 * Fixed: `wp_transition_post_status` nor working on same cases.
 * Fixed: Republish schedule can't be started from the current date.
 * And all Free Version Improvements and Fixes.
 
-= Free Version =
+### Free Version
 * Added: Tab Based Categorization.
 * Added: Option to set date time format of frontend info.
 * Added: Code Optimizations.
