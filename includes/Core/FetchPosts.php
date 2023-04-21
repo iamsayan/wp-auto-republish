@@ -157,7 +157,7 @@ class FetchPosts
         
         if ( isset( $post_age_seconds ) ) {
             $before_date = date( 'Y-m-d H:i:s', strtotime( "-{$post_age_seconds} seconds", $timestamp ) );
-            $args['date_query'][]['before'] = $this->do_filter( 'post_before_date', $before_date, $timestamp );
+            $args['date_query'][0]['before'] = $this->do_filter( 'post_before_date', $before_date, $timestamp );
         }
         
         $cats = $tags = $terms = [];

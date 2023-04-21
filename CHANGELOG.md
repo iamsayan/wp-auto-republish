@@ -1,5 +1,31 @@
 # Changelog
 All notable changes to this project will be documented in this file.
+
+## 1.5.0
+Release Date: 20th April, 2023
+
+= Premium Version =
+* Fixed: Various conditional logics.
+* Fixed: `wp_transition_post_status` nor working on same cases.
+* Fixed: Republish schedule can't be started from the current date.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Added: Tab Based Categorization.
+* Added: Option to set date time format of frontend info.
+* Added: Code Optimizations.
+* Updated: Freemius Library to v2.5.6.
+* Fixed: Wrong textdomains.
+* Fixed: PHP Fatal error on Activation.
+* Compatibility with WordPress v6.2.
+
+## 1.4.9.1
+Release Date: 3rd March, 2023
+
+* Added: `Exclude Posts Published Before` option for Republish Rules.
+* Fixed: Post republish date include/exclude logic.
+* Fixed: Pressing space seperatings Post Titles as individual titles.
+
 ## 1.4.9
 Release Date: 9th February, 2023
 

@@ -2,8 +2,8 @@
 Contributors: infosatech
 Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 5.2
-Tested up to: 6.1
-Stable tag: 1.4.9
+Tested up to: 6.2
+Stable tag: 1.5.0
 Requires PHP: 7.3
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -141,6 +141,31 @@ No, plugin can handle it efficiently by tinkering the Permalink Structure.
 == Changelog ==
 
 If you like RevivePress, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.5.0 =
+Release Date: 20th April, 2023
+
+= Premium Version =
+* Fixed: Various conditional logics.
+* Fixed: `wp_transition_post_status` nor working on same cases.
+* Fixed: Republish schedule can't be started from the current date.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Added: Tab Based Categorization.
+* Added: Option to set date time format of frontend info.
+* Added: Code Optimizations.
+* Updated: Freemius Library to v2.5.6.
+* Fixed: Wrong textdomains.
+* Fixed: PHP Fatal error on Activation.
+* Compatibility with WordPress v6.2.
+
+= 1.4.9.1 =
+Release Date: 3rd March, 2023
+
+* Added: `Exclude Posts Published Before` option for Republish Rules.
+* Fixed: Post republish date include/exclude logic.
+* Fixed: Pressing space seperatings Post Titles as individual titles.
 
 = 1.4.9 =
 Release Date: 9th February, 2023

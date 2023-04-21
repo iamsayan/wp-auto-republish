@@ -69,7 +69,7 @@ class RewritePermainks
         	// which should be parsed as local time regardless of the default PHP timezone.
 			$date = explode( ' ', str_replace( [ '-', ':' ], ' ', $original_date ) );
 
-			$exit = false;
+			$throw_404 = false;
 			$rewritecode = [
 				'rvp_year',
 				'rvp_monthnum',
@@ -82,12 +82,12 @@ class RewritePermainks
 			foreach ( $rewritecode as $key => $slug ) {
 				$datetime = get_query_var( $slug );
 				if ( ! empty( $datetime ) && ( intval( $datetime ) !== intval( $date[ $key ] ) ) ) {
-					$exit = true;
+					$throw_404 = true;
 					break;
 				}
 			}
 
-			if ( $exit ) {
+			if ( $throw_404 ) {
 				global $wp_query;
 				$wp_query->set_404();
 				status_header( 404 );
@@ -150,6 +150,7 @@ class RewritePermainks
 	 * @return array        Filtered tags array
 	 */
 	public function available_tags( $tags ) {
+		// phpcs:disable WordPress.WP.I18n.MissingArgDomain
 		$available_tags = array(
 			/* translators: %s: Permalink structure tag. */
 			'rvp_year'     => __( '%s (The year of the post, four digits, for example 2004.)' ),
@@ -164,7 +165,8 @@ class RewritePermainks
 			/* translators: %s: Permalink structure tag. */
 			'rvp_second'   => __( '%s (Second of the minute, for example 33.)' ),
 		);
-		
+		// phpcs:enable
+
 		return array_merge( $tags, $available_tags );
 	}
 

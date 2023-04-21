@@ -79,7 +79,8 @@ class Database
         if ( empty($_POST['rvp_export_action']) || 'rvp_export_settings' != $_POST['rvp_export_action'] ) {
             return;
         }
-        if ( ! wp_verify_nonce( $_POST['rvp_export_nonce'], 'rvp_export_nonce' ) ) {
+        if ( ! isset( $_POST['rvp_export_nonce'] ) || ! wp_verify_nonce( $_POST['rvp_export_nonce'], 'rvp_export_nonce' ) ) {
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
             return;
         }
         if ( ! current_user_can( 'manage_options' ) ) {
@@ -106,23 +107,28 @@ class Database
         if ( empty($_POST['rvp_import_action']) || 'rvp_import_settings' != $_POST['rvp_import_action'] ) {
             return;
         }
-        if ( ! wp_verify_nonce( $_POST['rvp_import_nonce'], 'rvp_import_nonce' ) ) {
+        if ( ! isset( $_POST['rvp_import_nonce'] ) || ! wp_verify_nonce( $_POST['rvp_import_nonce'], 'rvp_import_nonce' ) ) {
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
             return;
         }
         if ( ! current_user_can( 'manage_options' ) ) {
             return;
         }
-        $extension = explode( '.', sanitize_text_field( $_FILES['import_file']['name'] ) );
+        if ( empty($_FILES['import_file']['name']) || empty($_FILES['import_file']['tmp_name']) ) {
+            wp_die( wp_kses_post( __( '<strong>Settings import failed:</strong> Please upload a file to import.', 'wp-auto-republish' ) ) );
+        }
+        $extension = explode( '.', sanitize_text_field( wp_unslash( $_FILES['import_file']['name'] ) ) );
         $file_extension = end( $extension );
         if ( 'json' !== $file_extension ) {
-            wp_die( __( '<strong>Settings import failed:</strong> Please upload a valid .json file to import settings in this website.', 'wp-auto-republish' ) );
+            wp_die( wp_kses_post( __( '<strong>Settings import failed:</strong> Please upload a valid .json file to import settings in this website.', 'wp-auto-republish' ) ) );
         }
-        $import_file = sanitize_text_field( $_FILES['import_file']['tmp_name'] );
+        $import_file = sanitize_text_field( wp_unslash( $_FILES['import_file']['tmp_name'] ) );
         if ( empty($import_file) ) {
-            wp_die( __( '<strong>Settings import failed:</strong> Please upload a file to import.', 'wp-auto-republish' ) );
+            wp_die( wp_kses_post( __( '<strong>Settings import failed:</strong> Please upload a file to import.', 'wp-auto-republish' ) ) );
         }
         // Retrieve the settings from the file and convert the json object to an array.
         $settings = (array) json_decode( file_get_contents( $import_file ) );
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
         update_option( 'wpar_plugin_settings', $settings );
         // set temporary transient for admin notice
         set_transient( 'rvp_import_db_done', true );
@@ -152,6 +158,7 @@ class Database
             $this->error();
         }
         $data = wp_unslash( $_REQUEST['settings_data'] );
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
         $settings = (array) json_decode( $data );
         
         if ( ! empty($settings) && is_array( $settings ) ) {
@@ -224,10 +231,11 @@ class Database
         $post_ids = $this->get_posts( $args );
         
         if ( ! empty($post_ids) ) {
-            $post_ids = join( ', ', $post_ids );
-            $where = $wpdb->prepare( "WHERE post_id IN ( {$post_ids} ) AND meta_key LIKE %s OR meta_key LIKE %s", '%' . $wpdb->esc_like( 'wpar_' ) . '%', '%' . $wpdb->esc_like( 'rvp_' ) . '%' );
+            $post_ids_placeholders = implode( ', ', array_fill( 0, count( $post_ids ), '%d' ) );
+            // phpcs:disable WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber
+            $where = $wpdb->prepare( "WHERE post_id IN ( {$post_ids_placeholders} ) AND ( meta_key LIKE %s OR meta_key LIKE %s )", array_merge( $post_ids, [ '%' . $wpdb->esc_like( 'wpar_' ) . '%', '%' . $wpdb->esc_like( 'rvp_' ) . '%' ] ) );
             $wpdb->query( "DELETE FROM {$wpdb->postmeta} {$where}" );
-            // phpcs:ignore
+            // phpcs:enable
         }
         
         return __( 'Cleanup task started. It might take a couple of minutes.', 'wp-auto-republish' );

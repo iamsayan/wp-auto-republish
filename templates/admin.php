@@ -20,13 +20,7 @@ echo  esc_html( $this->version ) ;
     <a href="#general" class="wpar-tab is-active" id="wpar-tab-general"><?php 
 esc_html_e( 'General', 'wp-auto-republish' );
 ?></a>
-    <a href="#post" class="wpar-tab" id="wpar-tab-post"><?php 
-esc_html_e( 'Posts', 'wp-auto-republish' );
-?></a>
-        <a href="#misc" class="wpar-tab" id="wpar-tab-misc"><?php 
-esc_html_e( 'Misc.', 'wp-auto-republish' );
-?></a>
-    <a href="#tools" class="wpar-tab" id="wpar-tab-tools"><?php 
+        <a href="#tools" class="wpar-tab" id="wpar-tab-tools"><?php 
 esc_html_e( 'Tools', 'wp-auto-republish' );
 ?></a>
     <a href="https://wprevivepress.com/docs/?utm_source=dashboard&utm_medium=plugin" target="_blank" class="wpar-tab type-link" id="wpar-tab-help"><?php 
@@ -58,13 +52,14 @@ esc_html_e( 'Share', 'wp-auto-republish' );
     <h2 style="display: none;"></h2>
     <div id="poststuff">
         <div id="post-body" class="metabox-holder">
+            <div class="rvp-loader"><div></div><div></div><div></div><div></div></div>
             <div id="post-body-content" class="wpar-metabox">
                                     <div class="wpar-upgrade-notice" id="wpar-upgrade-notice">
                         <p>
                             <?php 
 printf(
     /* translators: Plugin Name. */
-    __( 'Republish & Share your Evergreen Content with more controls. Get %s!', 'wp-auto-republish' ),
+    esc_html__( 'Republish & Share your Evergreen Content with more controls. Get %s!', 'wp-auto-republish' ),
     '<strong>RevivePress Premium</strong>'
 );
 ?>
@@ -78,44 +73,47 @@ esc_html_e( 'Click here to see all the exciting features.', 'wp-auto-republish' 
                                 <form id="wpar-settings-form" method="post" action="options.php">
                     <?php 
 settings_fields( 'wpar_plugin_settings_fields' );
+$this->subMenu( [
+    'configure' => '<i class="fas fa-cog"></i>' . esc_html__( 'Configure', 'wp-auto-republish' ),
+    'query'     => '<i class="fas fa-clipboard-check"></i>' . esc_html__( 'Conditions', 'wp-auto-republish' ),
+    'filter'    => '<i class="fas fa-filter"></i>' . esc_html__( 'Filter Options', 'wp-auto-republish' ),
+    'display'   => '<i class="fas fa-eye"></i>' . esc_html__( 'Visibility', 'wp-auto-republish' ),
+], 'general' );
+// $text = encrypt_my( 'sayan', 5 );
+// $text .= decrypt_my( 'sayan', 5 );
 $this->doSettingsSection( [
     'id'          => 'wpar-configure',
-    'class'       => 'wpar-general',
+    'class'       => 'wpar-general d-none',
     'title'       => __( 'General Settings', 'wp-auto-republish' ),
     'description' => sprintf(
+    '%1$s <span class="wpar-last-run-timestamp">%2$s</span>',
     /* translators: Last Global Republish run time. */
-    __( 'Configure the Global Republish settings from here. Last run: %s', 'wp-auto-republish' ),
-    date_i18n( $format, $last )
+    __( 'Configure the Global Republish settings from here.', 'wp-auto-republish' ),
+    /* translators: Last Global Republish run time. */
+    sprintf( __( 'Last run: %s', 'wp-auto-republish' ), date_i18n( $format, $last ) )
 ),
-    'name'        => 'wpar_plugin_default_option',
-] );
-$this->doSettingsSection( [
-    'id'          => 'wpar-display',
-    'class'       => 'wpar-general',
-    'title'       => __( 'Display Settings', 'wp-auto-republish' ),
-    'description' => __( 'You can control frontend republish info visiblity from here.', 'wp-auto-republish' ),
-    'name'        => 'wpar_plugin_republish_info_option',
+    'name'        => 'wpar_plugin_general_option',
 ] );
 $this->doSettingsSection( [
     'id'          => 'wpar-query',
-    'class'       => 'wpar-post d-none',
-    'title'       => __( 'Old Posts Settings', 'wp-auto-republish' ),
+    'class'       => 'wpar-general d-none',
+    'title'       => __( 'Republish Conditions', 'wp-auto-republish' ),
     'description' => __( 'Control the WP_Query of Post Republish Process for Global Republish.', 'wp-auto-republish' ),
     'name'        => 'wpar_plugin_post_query_option',
 ] );
 $this->doSettingsSection( [
-    'id'          => 'wpar-post-types',
-    'class'       => 'wpar-post d-none',
-    'title'       => __( 'Post Types Settings', 'wp-auto-republish' ),
-    'description' => __( 'Control Post Types, Taxonomies and Author Based Republish from here.', 'wp-auto-republish' ),
+    'id'          => 'wpar-filter',
+    'class'       => 'wpar-general d-none',
+    'title'       => __( 'Filter Options', 'wp-auto-republish' ),
+    'description' => __( 'Control Post Types, Taxonomies and Author Based Filtering here.', 'wp-auto-republish' ),
     'name'        => 'wpar_plugin_post_type_option',
 ] );
 $this->doSettingsSection( [
-    'id'          => 'wpar-misc',
-    'class'       => 'wpar-misc',
-    'title'       => __( 'Misc. Options', 'wp-auto-republish' ),
-    'description' => __( 'Change some uncommon but essential settings here.', 'wp-auto-republish' ),
-    'name'        => 'wpar_plugin_tools_option',
+    'id'          => 'wpar-display',
+    'class'       => 'wpar-general d-none',
+    'title'       => __( 'Frontend Visibility', 'wp-auto-republish' ),
+    'description' => __( 'You can control frontend republish info visiblity here.', 'wp-auto-republish' ),
+    'name'        => 'wpar_plugin_republish_info_option',
 ] );
 ?>
                 </form>
