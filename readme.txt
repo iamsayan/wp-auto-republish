@@ -2,8 +2,8 @@
 Contributors: infosatech
 Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 5.2
-Tested up to: 6.2
-Stable tag: 1.5.0
+Tested up to: 6.3
+Stable tag: 1.5.1
 Requires PHP: 7.3
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -142,6 +142,26 @@ No, plugin can handle it efficiently by tinkering the Permalink Structure.
 
 If you like RevivePress, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
 
+= 1.5.1 =
+Release Date: 5th July, 2023
+
+= Premium Version =
+* Improved: URL support for Twitter OAuth.
+* Improved: Applied RevivePress namespace to composer packages to avoid potential conflicts.
+* Fixed: Twitter API v2 Issues.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Updated: PHP Composer Libraries.
+* Updated: Freemius SDK to v2.5.10.
+* Updated: Action Schedular Library to v3.6.1.
+* Improved: Added high priority to execute action events properly along with other plugins.
+* Improved: Auto Regenerate republish events on deletion of the action scheduler events.
+* Tweak: Reduced republish batch interval to 10 seconds from 15 seconds.
+* Fixed: Action Schedular menu item link.
+* Fixed: Some non-translated strings.
+* Compatibility with WordPress v6.3.
+
 = 1.5.0 =
 Release Date: 20th April, 2023
 
@@ -165,7 +185,7 @@ Release Date: 3rd March, 2023
 
 * Added: `Exclude Posts Published Before` option for Republish Rules.
 * Fixed: Post republish date include/exclude logic.
-* Fixed: Pressing space seperatings Post Titles as individual titles.
+* Fixed: Pressing space separates Post Titles as individual titles.
 
 = 1.4.9 =
 Release Date: 9th February, 2023

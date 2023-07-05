@@ -76,7 +76,7 @@ class Admin extends BaseController
 	public function do_footer() { ?>
 		<script type="text/javascript">
 			jQuery( document ).ready( function( $ ) {
-				let rvpTaskItem = $( "ul#adminmenu a[href*='revivepress-scheduled-tasks']" );
+				let rvpTaskItem = $( "ul#adminmenu .toplevel_page_revivepress ul.wp-submenu li a[href*='revivepress-scheduled-tasks']" );
 				rvpTaskItem.attr( { target: '_blank', href: rvpTaskItem.attr( 'href' ) + '&status=pending&s=wpar' } );
 			} );
 		</script>
@@ -99,7 +99,7 @@ class Admin extends BaseController
 	public function admin_footer( $content ) {
 		$current_screen = get_current_screen();
 		if ( 'toplevel_page_revivepress' === $current_screen->id ) {
-			$content = sprintf( __( 'Thank you for using <a href="%s" target="_blank" style="font-weight: 500;">RevivePress</a>', 'wp-auto-republish' ), 'https://wprevivepress.com/' );
+			$content = __( 'Thank you for using', 'wp-auto-republish' ) . ' <a href="https://wprevivepress.com/" target="_blank" style="font-weight: 500;">RevivePress</a>';
 			$content .= ' &bull; <a href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" style="font-weight: 500;">' . __( 'Rate it', 'wp-auto-republish' ) . '</a> (<span style="color:#ffa000;">★★★★★</span>) on WordPress.org, if you like this plugin.</span>';
 			$content = '<span class="wpar-footer">' . $content . '</span>';
 		}

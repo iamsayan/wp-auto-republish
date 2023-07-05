@@ -23,7 +23,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "RevivePress\\": "./includes"
+            "RevivePress\\": "includes/"
         },
         "files": [ 
             "vendor/woocommerce/action-scheduler/action-scheduler.php",

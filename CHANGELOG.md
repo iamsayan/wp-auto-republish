@@ -1,6 +1,26 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.5.1
+Release Date: 5th July, 2023
+
+### Premium Version
+* Improved: URL support for Twitter OAuth.
+* Improved: Applied RevivePress namespace to composer packages to avoid potential conflicts.
+* Fixed: Twitter API v2 Issues.
+* And all Free Version Improvements and Fixes.
+
+### Free Version
+* Updated: PHP Composer Libraries.
+* Updated: Freemius SDK to v2.5.10.
+* Updated: Action Schedular Library to v3.6.1.
+* Improved: Added high priority to execute action events properly along with other plugins.
+* Improved: Auto Regenerate republish events on deletion of the action scheduler events.
+* Tweak: Reduced republish batch interval to 10 seconds from 15 seconds.
+* Fixed: Action Schedular menu item link.
+* Fixed: Some non-translated strings.
+* Compatibility with WordPress v6.3.
+
 ## 1.5.0
 Release Date: 20th April, 2023
 

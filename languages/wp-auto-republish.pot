@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: RevivePress 1.5.0\n"
+"Project-Id-Version: RevivePress 1.5.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-auto-republish\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-04-21T02:45:20+00:00\n"
+"POT-Creation-Date: 2023-07-05T03:06:44+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: wp-auto-republish\n"
@@ -433,7 +433,7 @@ msgid "Documentation"
 msgstr ""
 
 #: includes/Base/Admin.php:102
-msgid "Thank you for using <a href=\"%s\" target=\"_blank\" style=\"font-weight: 500;\">RevivePress</a>"
+msgid "Thank you for using"
 msgstr ""
 
 #: includes/Base/Admin.php:103
@@ -630,7 +630,7 @@ msgid "Dashboard"
 msgstr ""
 
 #: includes/Pages/Dashboard.php:138
-msgid "Enable Auto Republishing?"
+msgid "Enable Global Auto Republishing?"
 msgstr ""
 
 #: includes/Pages/Dashboard.php:139
@@ -709,40 +709,40 @@ msgstr ""
 msgid "Force Exclude Post IDs"
 msgstr ""
 
-#: includes/Tools/Database.php:118
-#: includes/Tools/Database.php:127
+#: includes/Tools/Database.php:120
+#: includes/Tools/Database.php:129
 msgid "<strong>Settings import failed:</strong> Please upload a file to import."
 msgstr ""
 
-#: includes/Tools/Database.php:123
+#: includes/Tools/Database.php:125
 msgid "<strong>Settings import failed:</strong> Please upload a valid .json file to import settings in this website."
 msgstr ""
 
-#: includes/Tools/Database.php:181
+#: includes/Tools/Database.php:183
 msgid "Success! Plugin Settings has been imported successfully."
 msgstr ""
 
-#: includes/Tools/Database.php:198
+#: includes/Tools/Database.php:223
 msgid "Data removal completed."
 msgstr ""
 
-#: includes/Tools/Database.php:207
+#: includes/Tools/Database.php:232
 msgid "Republish Interval regenerated."
 msgstr ""
 
-#: includes/Tools/Database.php:214
+#: includes/Tools/Database.php:239
 msgid "Republish Schedule re-generation started. It might take a couple of minutes."
 msgstr ""
 
-#: includes/Tools/Database.php:241
+#: includes/Tools/Database.php:266
 msgid "Cleanup task started. It might take a couple of minutes."
 msgstr ""
 
-#: includes/Tools/Database.php:263
+#: includes/Tools/Database.php:288
 msgid "Post de-scheduling started. It might take a couple of minutes."
 msgstr ""
 
-#: includes/Tools/Database.php:311
+#: includes/Tools/Database.php:336
 msgid "Table re-creation started. It might take a couple of minutes."
 msgstr ""
 

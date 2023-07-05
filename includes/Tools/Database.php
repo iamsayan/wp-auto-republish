@@ -42,6 +42,8 @@ class Database
         $this->filter( 'wpar/tools/regenerate_schedule', 'regenerate_schedule' );
         $this->filter( 'wpar/tools/recreate_tables', 'maybe_recreate_actionscheduler_tables' );
         $this->action( 'wpar/deschedule_posts_task', 'deschedule_posts_task' );
+        $this->action( 'action_scheduler_deleted_action', 'action_removed' );
+        $this->action( 'action_scheduler_canceled_action', 'action_removed' );
         // AJAX.
         $this->ajax( 'process_copy_data', 'copy_data' );
         $this->ajax( 'process_import_data', 'import_data' );
@@ -183,6 +185,29 @@ class Database
             delete_transient( 'rvp_import_db_done' );
         }
     
+    }
+    
+    /**
+     * Trigger when Action Scheduler action is cancelled or deleted.
+     * 
+     * @param int   $action_id  Action ID
+     */
+    public function action_removed( $action_id ) {
+        $post_ids = $this->get_posts( [
+            'posts_per_page' => -1,
+            'post_status'    => 'any',
+            'post_type'      => 'any',
+            'fields'         => 'ids',
+            'meta_key'       => 'wpar_republish_as_action_id',
+            'meta_value'     => $action_id,
+        ] );
+        if ( ! empty($post_ids) ) {
+            foreach ( $post_ids as $post_id ) {
+                $this->do_action( 'as_action_removed', $post_id );
+                $this->delete_meta( $post_id, 'wpar_global_republish_status' );
+                $this->delete_meta( $post_id, '_wpar_global_republish_datetime' );
+            }
+        }
     }
     
     /**

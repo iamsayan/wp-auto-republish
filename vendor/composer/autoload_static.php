@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitd5699dfd0ed62714b22c430580475703
+class ComposerStaticInit0ca75cc57cf56088d3266a28d92f6120
 {
     public static $files = array (
         '6116bb3c2e739c8baa180dc51ba4c9fe' => __DIR__ . '/..' . '/woocommerce/action-scheduler/action-scheduler.php',
@@ -16,10 +16,6 @@ class ComposerStaticInitd5699dfd0ed62714b22c430580475703
         array (
             'RevivePress\\' => 12,
         ),
-        'C' => 
-        array (
-            'Composer\\CaBundle\\' => 18,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -27,14 +23,9 @@ class ComposerStaticInitd5699dfd0ed62714b22c430580475703
         array (
             0 => __DIR__ . '/../..' . '/includes',
         ),
-        'Composer\\CaBundle\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
-        ),
     );
 
     public static $classMap = array (
-        'Composer\\CaBundle\\CaBundle' => __DIR__ . '/..' . '/composer/ca-bundle/src/CaBundle.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'RevivePress\\Api\\Callbacks\\AdminCallbacks' => __DIR__ . '/../..' . '/includes/Api/Callbacks/AdminCallbacks.php',
         'RevivePress\\Api\\Callbacks\\ManagerCallbacks' => __DIR__ . '/../..' . '/includes/Api/Callbacks/ManagerCallbacks.php',
@@ -69,9 +60,9 @@ class ComposerStaticInitd5699dfd0ed62714b22c430580475703
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd5699dfd0ed62714b22c430580475703::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd5699dfd0ed62714b22c430580475703::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitd5699dfd0ed62714b22c430580475703::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0ca75cc57cf56088d3266a28d92f6120::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0ca75cc57cf56088d3266a28d92f6120::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit0ca75cc57cf56088d3266a28d92f6120::$classMap;
 
         }, null, ClassLoader::class);
     }
