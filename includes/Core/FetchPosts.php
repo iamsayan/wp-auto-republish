@@ -92,9 +92,9 @@ class FetchPosts
         $in_process = get_transient( 'wpar_in_progress' );
         
         if ( $this->valid_next_run() && ! $in_process ) {
-            // Lock the process to prevent duplicate schedules for 30 seconds.
-            set_transient( 'wpar_in_progress', true, 30 );
-            // Update timestamp refenrance.
+            // Lock the process to prevent duplicate schedules.
+            set_transient( 'wpar_in_progress', true, $this->get_interval() );
+            // Update timestamp reference.
             update_option( 'wpar_last_global_cron_run', $this->current_timestamp() );
             // Create Tasks.
             $this->create_tasks();
@@ -107,20 +107,24 @@ class FetchPosts
      */
     private function create_tasks() {
         $post_types = $this->get_data( 'wpar_post_types', [ 'post' ] );
-        
+        $counter = 0;
+        // delete storage if exists.
+        delete_option( 'wpar_global_republish_post_ids' );
         if ( ! empty($post_types) ) {
-            $counter = 0;
             foreach ( $post_types as $post_type ) {
                 
                 if ( ! $this->has_future_posts( $post_type ) ) {
                     $counter++;
-                    $this->schedule_single_action( time() + 30 * ($counter / 2), 'wpar/global_republish_flat_posts', [ $post_type ] );
+                    $this->schedule_single_action( time() + 10 * ($counter / 2), 'wpar/global_republish_flat_posts', [ $post_type ] );
                 }            
 }
-            if ( $counter > 0 ) {
-                // Check for posts.
-                $this->schedule_single_action( time() + 30 * (($counter + 1) / 2), 'wpar/global_republish_flat_posts_completed' );
-            }
+        }
+        // Check for posts.
+        
+        if ( $counter > 0 ) {
+            $this->schedule_single_action( time() + 10 * (($counter + 1) / 2), 'wpar/global_republish_flat_posts_completed' );
+        } else {
+            delete_transient( 'wpar_in_progress' );
         }
     
     }
@@ -203,7 +207,7 @@ class FetchPosts
     }
     
     /**
-     * Complete
+     * Complete republish tasks.
      */
     public function complete() {
         $timestamp = $this->current_timestamp();
@@ -243,6 +247,8 @@ class FetchPosts
         
         // delete temp storage
         delete_option( 'wpar_global_republish_post_ids' );
+        // remove transient
+        delete_transient( 'wpar_in_progress' );
     }
     
     /**
@@ -266,12 +272,14 @@ class FetchPosts
             // delete previosly scheduled hook if exists any.
             $this->unschedule_all_actions( 'wpar/global_republish_single_post', [ $post_id ] );
             // schedule single post republish event
-            $this->schedule_single_action( $utc_timestamp, 'wpar/global_republish_single_post', [ $post_id ] );
+            $action_id = $this->schedule_single_action( $utc_timestamp, 'wpar/global_republish_single_post', [ $post_id ] );
             // Convert to local timestamp
             $local_datetime = get_date_from_gmt( date( 'Y-m-d H:i:s', $utc_timestamp ) );
             // update required post metas
             $this->update_meta( $post_id, 'wpar_global_republish_status', 'pending' );
             $this->update_meta( $post_id, '_wpar_global_republish_datetime', $local_datetime );
+            // store action id
+            $this->update_meta( $post_id, 'wpar_republish_as_action_id', $action_id );
             // update reference
             $this->set_limit( $post_id );
         }
@@ -295,11 +303,18 @@ class FetchPosts
     /**
      * Check if current run is actually eligible.
      */
+    private function get_interval() {
+        $interval = $this->get_data( 'wpar_minimun_republish_interval', 3600 );
+        return ( $interval >= 86400 ? 3600 : $interval );
+    }
+    
+    /**
+     * Check if current run is actually eligible.
+     */
     private function valid_next_run() {
         $last = get_option( 'wpar_last_global_cron_run' );
         $current_time = $this->current_timestamp();
-        $interval = $this->get_data( 'wpar_minimun_republish_interval', 3600 );
-        $interval = ( $interval >= 86400 ? 3600 : $interval );
+        $interval = $this->get_interval();
         $proceed = false;
         // switch
         if ( $this->slot_available() ) {
@@ -375,7 +390,7 @@ class FetchPosts
         if ( ! $can_check ) {
             return false;
         }
-        // cureent timestmap
+        // current timestamp
         $timestamp = $this->current_timestamp();
         $args = $this->do_filter( 'has_future_post_args', [
             'numberposts' => -1,

@@ -27,6 +27,7 @@ class PostRepublish
     public function register() {
         $this->action( 'wpar/global_republish_single_post', 'do_republish' );
         $this->action( 'wpar/process_republish_post', 'call_republish' );
+        $this->action( 'wpar/as_action_removed', 'remove_meta' );
     }
     
     /**
@@ -55,14 +56,22 @@ class PostRepublish
      * @param int   $post_id   Post ID
      */
     public function do_republish( $post_id ) {
-        // delete metas
+        // delete data.
         $this->delete_meta( $post_id, 'wpar_global_republish_status' );
         $this->delete_meta( $post_id, '_wpar_global_republish_datetime' );
-        $this->delete_meta( $post_id, 'wpar_filter_republish_status' );
-        $this->delete_meta( $post_id, '_wpar_filter_republish_datetime' );
-        $this->delete_meta( $post_id, 'wpar_republish_rule_action' );
+        $this->remove_meta( $post_id );
         // Republish.
         $this->handle( (int) $post_id );
+    }
+    
+    /**
+     * Delete post meta data flags.
+     * 
+     * @since 1.5.1
+     * @param int   $post_id   Post ID
+     */
+    public function remove_meta( $post_id ) {
+        $this->delete_meta( $post_id, 'wpar_republish_as_action_id' );
     }
     
     /**
@@ -127,7 +136,6 @@ class PostRepublish
             $post->ID,
             $post
         );
-        //error_log( print_r( $args, true ) );
         wp_update_post( $args );
         $this->do_action( 'clear_site_cache' );
         // reinit kses filters

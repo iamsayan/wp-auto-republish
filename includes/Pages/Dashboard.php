@@ -135,7 +135,7 @@ class Dashboard
     private function build_settings_fields() {
         $managers = [
             'general'        => [
-				'enable_plugin'              => __( 'Enable Auto Republishing?', 'wp-auto-republish' ),
+				'enable_plugin'              => __( 'Enable Global Auto Republishing?', 'wp-auto-republish' ),
 				'republish_interval_days'    => __( 'Schedule Auto Republish Process Every (in days)', 'wp-auto-republish' ),
 				'minimun_republish_interval' => __( 'Republish Process Interval within a Day', 'wp-auto-republish' ),
 				'random_republish_interval'  => __( 'Date Time Random Interval', 'wp-auto-republish' ),
