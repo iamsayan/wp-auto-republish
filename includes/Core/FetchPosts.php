@@ -92,8 +92,8 @@ class FetchPosts
         $in_process = get_transient( 'wpar_in_progress' );
         
         if ( $this->valid_next_run() && ! $in_process ) {
-            // Lock the process to prevent duplicate schedules.
-            set_transient( 'wpar_in_progress', true, $this->get_interval() );
+            // Lock the process to prevent duplicate schedules for 30 seconds.
+            set_transient( 'wpar_in_progress', true, 30 );
             // Update timestamp reference.
             update_option( 'wpar_last_global_cron_run', $this->current_timestamp() );
             // Create Tasks.
