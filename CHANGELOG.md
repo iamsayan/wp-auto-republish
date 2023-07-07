@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.5.2
+Release Date: 7th July, 2023
+
+* Fixed: Global Republish was stopped on some cases.
+
 ## 1.5.1
 Release Date: 5th July, 2023
 

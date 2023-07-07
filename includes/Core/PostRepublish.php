@@ -165,7 +165,7 @@ class PostRepublish
                 $new_time = $datetime;
             }
         } else {
-            $lastposts = $this->get_posts( [
+            $args = (array) $this->do_filter( 'republish_position_args', [
                 'post_type'   => $post->post_type,
                 'numberposts' => 1,
                 'offset'      => 1,
@@ -173,7 +173,8 @@ class PostRepublish
                 'order'       => 'DESC',
                 'orderby'     => 'date',
                 'fields'      => 'ids',
-            ] );
+            ], $post );
+            $lastposts = $this->get_posts( $args );
             if ( ! empty($lastposts) ) {
                 foreach ( $lastposts as $lastpost ) {
                     $post_date = get_the_date( 'U', $lastpost );
