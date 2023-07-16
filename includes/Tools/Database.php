@@ -42,8 +42,8 @@ class Database
         $this->filter( 'wpar/tools/regenerate_schedule', 'regenerate_schedule' );
         $this->filter( 'wpar/tools/recreate_tables', 'maybe_recreate_actionscheduler_tables' );
         $this->action( 'wpar/deschedule_posts_task', 'deschedule_posts_task' );
+        $this->action( 'action_scheduler_canceled_action', 'action_cancelled' );
         $this->action( 'action_scheduler_deleted_action', 'action_removed' );
-        $this->action( 'action_scheduler_canceled_action', 'action_removed' );
         // AJAX.
         $this->ajax( 'process_copy_data', 'copy_data' );
         $this->ajax( 'process_import_data', 'import_data' );
@@ -54,7 +54,7 @@ class Database
      */
     public function register_routes() {
         register_rest_route( 'revivepress/v1', '/toolsAction', [
-            'methods'             => \WP_REST_Server::EDITABLE,
+            'methods'             => WP_REST_Server::EDITABLE,
             'callback'            => [ $this, 'tools_actions' ],
             'permission_callback' => function () {
             return current_user_can( 'manage_options' );
@@ -188,7 +188,47 @@ class Database
     }
     
     /**
-     * Trigger when Action Scheduler action is cancelled or deleted.
+     * Trigger when Action Scheduler action is cancelled.
+     * 
+     * @param int   $action_id  Action ID
+     */
+    public function action_cancelled( $action_id ) {
+        $run_remove_hook = true;
+        
+        if ( \ActionScheduler::is_initialized() ) {
+            $action = \ActionScheduler::store()->fetch_action( $action_id );
+            if ( $action || ! is_a( $action, 'ActionScheduler_NullAction' ) ) {
+                $run_remove_hook = false;
+            }
+        }
+        
+        
+        if ( $run_remove_hook ) {
+            $this->action_removed( $action_id );
+        } else {
+            $hook = $action->get_hook();
+            $args = $action->get_args();
+            $group = $action->get_group();
+            $action_list = [ 'wpar/global_republish_single_post', 'wpar/run_single_republish', 'wpar/run_republish_rule_event' ];
+            
+            if ( in_array( $hook, $action_list, true ) ) {
+                $post = get_post( $args[0] );
+                
+                if ( ! is_object( $post ) ) {
+                    $this->action_removed( $action_id );
+                } else {
+                    $is_saving = $this->get_meta( $post->ID, 'wpar_post_is_saving' );
+                    if ( ! $is_saving ) {
+                        $this->perform_cleanup_regeneration( $post->ID );
+                    }
+                }            
+            }
+        }
+
+    }
+    
+    /**
+     * Trigger when Action Scheduler action is deleted.
      * 
      * @param int   $action_id  Action ID
      */
@@ -198,16 +238,36 @@ class Database
             'post_status'    => 'any',
             'post_type'      => 'any',
             'fields'         => 'ids',
-            'meta_key'       => 'wpar_republish_as_action_id',
-            'meta_value'     => $action_id,
+            'meta_query'     => [
+				'relation' => 'AND',
+				[
+					'key'     => 'wpar_post_is_saving',
+					'compare' => 'NOT EXISTS',
+				],
+				[
+					'key'     => 'wpar_republish_as_action_id',
+					'value'   => $action_id,
+					'compare' => '=',
+				],
+			],
         ] );
         if ( ! empty($post_ids) ) {
             foreach ( $post_ids as $post_id ) {
-                $this->do_action( 'as_action_removed', $post_id );
-                $this->delete_meta( $post_id, 'wpar_global_republish_status' );
-                $this->delete_meta( $post_id, '_wpar_global_republish_datetime' );
+                $this->perform_cleanup_regeneration( $post_id );
             }
         }
+    }
+    
+    /**
+     * Trigger when Action Scheduler action is cancelled or deleted.
+     * 
+     * @param int   $post_id  Post ID
+     */
+    private function perform_cleanup_regeneration( $post_id ) {
+        $this->do_action( 'as_action_removed', $post_id );
+        // post meta removal
+        $this->delete_meta( $post_id, 'wpar_global_republish_status' );
+        $this->delete_meta( $post_id, '_wpar_global_republish_datetime' );
     }
     
     /**
