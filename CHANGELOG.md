@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.5.3
+Release Date: 16th July, 2023
+
+* Fixed: Memory exhausted issue on post saving.
+
 ## 1.5.2
 Release Date: 7th July, 2023
 

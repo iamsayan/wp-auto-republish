@@ -4,7 +4,7 @@
  * Plugin Name: RevivePress
  * Plugin URI: https://wprevivepress.com?utm_source=landing&utm_medium=plugin
  * Description: RevivePress, the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
- * Version: 1.5.2
+ * Version: 1.5.3
  * Author: Sayan Datta
  * Author URI: https://www.sayandatta.co.in
  * License: GPLv3
@@ -61,7 +61,7 @@ if ( ! class_exists( 'RevivePress' ) ) {
 		 *
 		 * @var string
 		 */
-		public $version = '1.5.2';
+		public $version = '1.5.3';
 
 		/**
 		 * Minimum version of WordPress required to run RevivePress.
