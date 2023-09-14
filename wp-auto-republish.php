@@ -4,7 +4,7 @@
  * Plugin Name: RevivePress
  * Plugin URI: https://wprevivepress.com?utm_source=landing&utm_medium=plugin
  * Description: RevivePress, the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
- * Version: 1.5.3
+ * Version: 1.5.4
  * Author: Sayan Datta
  * Author URI: https://www.sayandatta.co.in
  * License: GPLv3
@@ -30,8 +30,8 @@
  * @license  http://www.gnu.org/licenses/ GNU General Public License
  * @link     https://wordpress.org/plugins/wp-auto-republish/
  * 
-  * 
-  */
+ * 
+ */
 
 // If this file is called directly, abort!!!
 defined( 'ABSPATH' ) || exit;
@@ -61,7 +61,7 @@ if ( ! class_exists( 'RevivePress' ) ) {
 		 *
 		 * @var string
 		 */
-		public $version = '1.5.3';
+		public $version = '1.5.4';
 
 		/**
 		 * Minimum version of WordPress required to run RevivePress.
@@ -82,7 +82,7 @@ if ( ! class_exists( 'RevivePress' ) ) {
 		 *
 		 * @var bool
 		 */
-		private $messages = [];
+		private $messages = array();
 
 		/**
 		 * The single instance of the class.
@@ -156,8 +156,8 @@ if ( ! class_exists( 'RevivePress' ) ) {
 			}
 
 			// Auto-deactivate plugin.
-			add_action( 'admin_init', [ $this, 'auto_deactivate' ] );
-			add_action( 'admin_notices', [ $this, 'activation_error' ] );
+			add_action( 'admin_init', array( $this, 'auto_deactivate' ) );
+			add_action( 'admin_notices', array( $this, 'activation_error' ) );
 
 			return false;
 		}
@@ -200,7 +200,7 @@ if ( ! class_exists( 'RevivePress' ) ) {
 		 * Include the Freemius SDK.
 		 */
 		private function freemius() {
-			include dirname( __FILE__ ) . '/freemius.php';
+			include __DIR__ . '/freemius.php';
 
 			// Init Freemius.
 			revivepress_fs();
@@ -209,7 +209,7 @@ if ( ! class_exists( 'RevivePress' ) ) {
 			revivepress_fs()->add_filter(
 				'plugin_icon',
 				function() {
-					return dirname( __FILE__ ) . '/assets/images/logo.png';
+					return __DIR__ . '/assets/images/logo.png';
 				}
 			);
 
@@ -223,10 +223,10 @@ if ( ! class_exists( 'RevivePress' ) ) {
 			revivepress_fs()->add_filter( 'show_deactivation_subscription_cancellation', '__return_false' );
 
 			// Use different arrow icons in the admin menu.
-			revivepress_fs()->override_i18n( [
+			revivepress_fs()->override_i18n( array(
 				'symbol_arrow-left'  => '&larr;',
 				'symbol_arrow-right' => '&rarr;',
-			] );
+			) );
 
 			// Signal that SDK was initiated.
 			do_action( 'revivepress_fs_loaded' );
@@ -236,7 +236,7 @@ if ( ! class_exists( 'RevivePress' ) ) {
 		 * Include the required files.
 		 */
 		private function includes() {
-			include dirname( __FILE__ ) . '/vendor/autoload.php';
+			include __DIR__ . '/vendor/autoload.php';
 		}
 
 		/**

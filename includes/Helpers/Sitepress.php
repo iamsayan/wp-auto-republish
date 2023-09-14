@@ -86,10 +86,10 @@ class Sitepress {
 
 		$sitepress = $this->get_var();
 
-		$this->has_get_category   = remove_filter( 'category_link', [ $sitepress, 'category_link_adjust_id' ], 1 );
-		$this->has_get_term       = remove_filter( 'get_term', [ $sitepress, 'get_term_adjust_id' ], 1 );
-		$this->has_terms_clauses  = remove_filter( 'terms_clauses', [ $sitepress, 'terms_clauses' ] );
-		$this->has_get_terms_args = remove_filter( 'get_terms_args', [ $sitepress, 'get_terms_args_filter' ] );
+		$this->has_get_category   = remove_filter( 'category_link', array( $sitepress, 'category_link_adjust_id' ), 1 );
+		$this->has_get_term       = remove_filter( 'get_term', array( $sitepress, 'get_term_adjust_id' ), 1 );
+		$this->has_terms_clauses  = remove_filter( 'terms_clauses', array( $sitepress, 'terms_clauses' ) );
+		$this->has_get_terms_args = remove_filter( 'get_terms_args', array( $sitepress, 'get_terms_args_filter' ) );
 	}
 
 	/**
@@ -104,22 +104,22 @@ class Sitepress {
 
 		if ( $this->has_get_category ) {
 			$this->has_get_category = false;
-			add_filter( 'category_link', [ $sitepress, 'category_link_adjust_id' ], 1, 1 );
+			add_filter( 'category_link', array( $sitepress, 'category_link_adjust_id' ), 1, 1 );
 		}
 
 		if ( $this->has_get_term ) {
 			$this->has_get_term = false;
-			add_filter( 'get_term', [ $sitepress, 'get_term_adjust_id' ], 1, 1 );
+			add_filter( 'get_term', array( $sitepress, 'get_term_adjust_id' ), 1, 1 );
 		}
 
 		if ( $this->has_terms_clauses ) {
 			$this->has_terms_clauses = false;
-			add_filter( 'terms_clauses', [ $sitepress, 'terms_clauses' ], 10, 3 );
+			add_filter( 'terms_clauses', array( $sitepress, 'terms_clauses' ), 10, 3 );
 		}
 
 		if ( $this->has_get_terms_args ) {
 			$this->has_get_terms_args = false;
-			add_filter( 'get_terms_args', [ $sitepress, 'get_terms_args_filter' ], 10, 2 );
+			add_filter( 'get_terms_args', array( $sitepress, 'get_terms_args_filter' ), 10, 2 );
 		}
 	}
 
@@ -132,7 +132,7 @@ class Sitepress {
 		}
 
 		global $wpml_url_filters;
-		$this->has_home_url = remove_filter( 'home_url', [ $wpml_url_filters, 'home_url_filter' ], -10 );
+		$this->has_home_url = remove_filter( 'home_url', array( $wpml_url_filters, 'home_url_filter' ), -10 );
 	}
 
 	/**
@@ -146,7 +146,7 @@ class Sitepress {
 		if ( $this->has_home_url ) {
 			global $wpml_url_filters;
 			$this->has_home_url = false;
-			add_filter( 'home_url', [ $wpml_url_filters, 'home_url_filter' ], -10, 4 );
+			add_filter( 'home_url', array( $wpml_url_filters, 'home_url_filter' ), -10, 4 );
 		}
 	}
 
@@ -176,18 +176,18 @@ class Sitepress {
 	 * @return  array Returns an array of active lanuages set in the WPML settings. NOTE: Though 'skip_missing' flag is set, WPML still returns all language codes, regardless if there are no posts using that translation on the website.
 	 */
 	public function get_languages() {
-		$languages = [];
+		$languages = array();
 		if ( ! $this->is_active() ) {
 			return $languages;
 		}
 
-		$active_languages = apply_filters( 'wpml_active_languages', null, [ 'skip_missing' => true ] );
+		$active_languages = apply_filters( 'wpml_active_languages', null, array( 'skip_missing' => true ) );
 
 		foreach ( $active_languages as $key => $value ) {
-			$languages[] = [
+			$languages[] = array(
 				'code'  => $key,
 				'label' => $value['native_name'],
-			];
+			);
 		}
 
 		return $languages;

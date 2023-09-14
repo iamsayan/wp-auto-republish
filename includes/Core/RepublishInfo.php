@@ -18,11 +18,14 @@ defined( 'ABSPATH' ) || exit;
  */
 class RepublishInfo
 {
-    use  Hooker, SettingsData ;
+    use Hooker ;
+    use SettingsData ;
+
     /**
      * Register functions.
      */
-    public function register() {
+    public function register()
+    {
         $this->filter( 'the_content', 'show_republish_info', $this->do_filter( 'published_date_priority', 10 ) );
     }
     
@@ -32,7 +35,8 @@ class RepublishInfo
      * @param string  $content  Original Content
      * @return string $content  Filtered Content
      */
-    public function show_republish_info( $content ) {
+    public function show_republish_info( $content )
+    {
         // get WordPress date time format
         $get_df = get_option( 'date_format' );
         $get_tf = get_option( 'time_format' );
@@ -60,5 +64,4 @@ class RepublishInfo
         
         return $content;
     }
-
 }

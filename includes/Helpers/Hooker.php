@@ -31,7 +31,7 @@ trait Hooker {
 	 * @return true    Will always return true.
 	 */
 	protected function action( $tag, $function_to_add, $priority = 10, $accepted_args = 1 ) {
-		return \add_action( $tag, [ $this, $function_to_add ], $priority, $accepted_args );
+		return \add_action( $tag, array( $this, $function_to_add ), $priority, $accepted_args );
 	}
 
 	/**
@@ -48,7 +48,7 @@ trait Hooker {
 	 * @return true    Will always return true.
 	 */
 	protected function filter( $tag, $function_to_add, $priority = 10, $accepted_args = 1 ) {
-		return \add_filter( $tag, [ $this, $function_to_add ], $priority, $accepted_args );
+		return \add_filter( $tag, array( $this, $function_to_add ), $priority, $accepted_args );
 	}
 
 	/**
@@ -60,7 +60,7 @@ trait Hooker {
 	 * @return bool Whether the function is removed.
 	 */
 	protected function remove_action( $tag, $function_to_remove, $priority = 10 ) {
-		return \remove_action( $tag, [ $this, $function_to_remove ], $priority );
+		return \remove_action( $tag, array( $this, $function_to_remove ), $priority );
 	}
 
 	/**
@@ -72,7 +72,7 @@ trait Hooker {
 	 * @return bool    Whether the function existed before it was removed.
 	 */
 	protected function remove_filter( $tag, $function_to_remove, $priority = 10 ) {
-		return \remove_filter( $tag, [ $this, $function_to_remove ], $priority );
+		return \remove_filter( $tag, array( $this, $function_to_remove ), $priority );
 	}
 
 	/**
@@ -86,7 +86,7 @@ trait Hooker {
 		$action = 'wpar/' . $args[0];
 		unset( $args[0] );
 
-		\do_action_ref_array( $action, \array_merge( [], $args ) );
+		\do_action_ref_array( $action, \array_merge( array(), $args ) );
 	}
 
 	/**
@@ -100,6 +100,6 @@ trait Hooker {
 		$action = 'wpar/' . $args[0];
 		unset( $args[0] );
 
-		return \apply_filters_ref_array( $action, \array_merge( [], $args ) );
+		return \apply_filters_ref_array( $action, \array_merge( array(), $args ) );
 	}
 }

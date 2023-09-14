@@ -21,16 +21,16 @@ defined( 'ABSPATH' ) || exit;
  */
 class Database
 {
-    use 
-        Ajax,
-        Hooker,
-        HelperFunctions,
-        Scheduler
-    ;
+    use Ajax ;
+    use Hooker ;
+    use HelperFunctions ;
+    use Scheduler ;
+
     /**
      * Register functions.
      */
-    public function register() {
+    public function register()
+    {
         $this->action( 'rest_api_init', 'register_routes' );
         $this->action( 'admin_init', 'export_settings' );
         $this->action( 'admin_init', 'import_settings' );
@@ -52,14 +52,15 @@ class Database
     /**
      * Registers the routes for the objects of the controller.
      */
-    public function register_routes() {
-        register_rest_route( 'revivepress/v1', '/toolsAction', [
+    public function register_routes()
+    {
+        register_rest_route( 'revivepress/v1', '/toolsAction', array(
             'methods'             => WP_REST_Server::EDITABLE,
-            'callback'            => [ $this, 'tools_actions' ],
+            'callback'            => array( $this, 'tools_actions' ),
             'permission_callback' => function () {
             return current_user_can( 'manage_options' );
         },
-        ] );
+        ) );
     }
     
     /**
@@ -69,7 +70,8 @@ class Database
      *
      * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
      */
-    public function tools_actions( \WP_REST_Request $request ) {
+    public function tools_actions( \WP_REST_Request $request )
+    {
         $action = $request->get_param( 'action' );
         return apply_filters( 'wpar/tools/' . $action, 'Something went wrong.', $request );
     }
@@ -77,7 +79,8 @@ class Database
     /**
      * Process a settings export that generates a .json file
      */
-    public function export_settings() {
+    public function export_settings()
+    {
         if ( empty($_POST['rvp_export_action']) || 'rvp_export_settings' != $_POST['rvp_export_action'] ) {
             return;
         }
@@ -90,7 +93,7 @@ class Database
         }
         $settings = get_option( 'wpar_plugin_settings' );
         $url = get_home_url();
-        $find = [ 'http://', 'https://' ];
+        $find = array( 'http://', 'https://' );
         $replace = '';
         $output = str_replace( $find, $replace, $url );
         ignore_user_abort( true );
@@ -105,7 +108,8 @@ class Database
     /**
      * Process a settings import from a json file
      */
-    public function import_settings() {
+    public function import_settings()
+    {
         if ( empty($_POST['rvp_import_action']) || 'rvp_import_settings' != $_POST['rvp_import_action'] ) {
             return;
         }
@@ -141,19 +145,21 @@ class Database
     /**
      * Process a settings export from ajax request
      */
-    public function copy_data() {
+    public function copy_data()
+    {
         // security check
         $this->verify_nonce();
         $option = get_option( 'wpar_plugin_settings' );
-        $this->success( [
+        $this->success( array(
             'settings_data' => wp_json_encode( $option ),
-        ] );
+        ) );
     }
     
     /**
      * Process a settings import from ajax request
      */
-    public function import_data() {
+    public function import_data()
+    {
         // security check
         $this->verify_nonce();
         if ( ! isset( $_REQUEST['settings_data'] ) ) {
@@ -175,7 +181,8 @@ class Database
     /**
      * Process reset plugin settings
      */
-    public function admin_notice() {
+    public function admin_notice()
+    {
         
         if ( get_transient( 'rvp_import_db_done' ) !== false ) {
             ?>
@@ -184,7 +191,6 @@ class Database
             ?></strong></p></div><?php 
             delete_transient( 'rvp_import_db_done' );
         }
-    
     }
     
     /**
@@ -192,7 +198,8 @@ class Database
      * 
      * @param int   $action_id  Action ID
      */
-    public function action_cancelled( $action_id ) {
+    public function action_cancelled( $action_id )
+    {
         $run_remove_hook = true;
         
         if ( \ActionScheduler::is_initialized() ) {
@@ -209,7 +216,7 @@ class Database
             $hook = $action->get_hook();
             $args = $action->get_args();
             $group = $action->get_group();
-            $action_list = [ 'wpar/global_republish_single_post', 'wpar/run_single_republish', 'wpar/run_republish_rule_event' ];
+            $action_list = array( 'wpar/global_republish_single_post', 'wpar/run_single_republish', 'wpar/run_republish_rule_event' );
             
             if ( in_array( $hook, $action_list, true ) ) {
                 $post = get_post( $args[0] );
@@ -222,9 +229,8 @@ class Database
                         $this->perform_cleanup_regeneration( $post->ID );
                     }
                 }            
-            }
-        }
-
+}        
+}
     }
     
     /**
@@ -232,25 +238,26 @@ class Database
      * 
      * @param int   $action_id  Action ID
      */
-    public function action_removed( $action_id ) {
-        $post_ids = $this->get_posts( [
+    public function action_removed( $action_id )
+    {
+        $post_ids = $this->get_posts( array(
             'posts_per_page' => -1,
             'post_status'    => 'any',
             'post_type'      => 'any',
             'fields'         => 'ids',
-            'meta_query'     => [
+            'meta_query'     => array(
 				'relation' => 'AND',
-				[
+				array(
 					'key'     => 'wpar_post_is_saving',
 					'compare' => 'NOT EXISTS',
-				],
-				[
+				),
+				array(
 					'key'     => 'wpar_republish_as_action_id',
 					'value'   => $action_id,
 					'compare' => '=',
-				],
-			],
-        ] );
+				),
+			),
+        ) );
         if ( ! empty($post_ids) ) {
             foreach ( $post_ids as $post_id ) {
                 $this->perform_cleanup_regeneration( $post_id );
@@ -263,7 +270,8 @@ class Database
      * 
      * @param int   $post_id  Post ID
      */
-    private function perform_cleanup_regeneration( $post_id ) {
+    private function perform_cleanup_regeneration( $post_id )
+    {
         $this->do_action( 'as_action_removed', $post_id );
         // post meta removal
         $this->delete_meta( $post_id, 'wpar_global_republish_status' );
@@ -273,7 +281,8 @@ class Database
     /**
      * Process reset plugin settings
      */
-    public function remove_data() {
+    public function remove_data()
+    {
         delete_option( 'wpar_plugin_settings' );
         delete_option( 'wpar_republish_log_history' );
         delete_option( 'wpar_dashboard_widget_options' );
@@ -286,7 +295,8 @@ class Database
     /**
      * Process regenerate global republish interval
      */
-    public function regenerate_interval() {
+    public function regenerate_interval()
+    {
         // remove last data
         \delete_option( 'wpar_next_scheduled_timestamp' );
         return __( 'Republish Interval regenerated.', 'wp-auto-republish' );
@@ -295,30 +305,32 @@ class Database
     /**
      * Process regenerate republish schedules
      */
-    public function regenerate_schedule() {
+    public function regenerate_schedule()
+    {
         return __( 'Republish Schedule re-generation started. It might take a couple of minutes.', 'wp-auto-republish' );
     }
     
     /**
      * Post meta cleanup.
      */
-    public function run_cleanup() {
+    public function run_cleanup()
+    {
         global  $wpdb ;
         // Remove schedules
-        $this->unschedule_all_actions( 'wpar/global_republish_single_post', [], '' );
+        $this->unschedule_all_actions( 'wpar/global_republish_single_post', array(), '' );
         $post_types = $this->get_post_types( true );
-        $args = [
+        $args = array(
             'post_type'   => $post_types,
             'numberposts' => -1,
-            'post_status' => [ 'publish', 'future', 'private' ],
+            'post_status' => array( 'publish', 'future', 'private' ),
             'fields'      => 'ids',
-        ];
+        );
         $post_ids = $this->get_posts( $args );
         
         if ( ! empty($post_ids) ) {
             $post_ids_placeholders = implode( ', ', array_fill( 0, count( $post_ids ), '%d' ) );
             // phpcs:disable WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber
-            $where = $wpdb->prepare( "WHERE post_id IN ( {$post_ids_placeholders} ) AND ( meta_key LIKE %s OR meta_key LIKE %s )", array_merge( $post_ids, [ '%' . $wpdb->esc_like( 'wpar_' ) . '%', '%' . $wpdb->esc_like( 'rvp_' ) . '%' ] ) );
+            $where = $wpdb->prepare( "WHERE post_id IN ( {$post_ids_placeholders} ) AND ( meta_key LIKE %s OR meta_key LIKE %s )", array_merge( $post_ids, array( '%' . $wpdb->esc_like( 'wpar_' ) . '%', '%' . $wpdb->esc_like( 'rvp_' ) . '%' ) ) );
             $wpdb->query( "DELETE FROM {$wpdb->postmeta} {$where}" );
             // phpcs:enable
         }
@@ -329,20 +341,21 @@ class Database
     /**
      * Remove actions.
      */
-    public function deschedule_posts() {
+    public function deschedule_posts()
+    {
         $post_types = $this->get_post_types( true );
-        $args = $this->do_filter( 'deschedule_posts_args', [
+        $args = $this->do_filter( 'deschedule_posts_args', array(
             'post_type'   => $post_types,
             'numberposts' => -1,
-            'post_status' => [ 'publish', 'future', 'private' ],
+            'post_status' => array( 'publish', 'future', 'private' ),
             'fields'      => 'ids',
-            'meta_query'  => [
-				[
+            'meta_query'  => array(
+				array(
 					'key'     => '_wpar_original_pub_date',
 					'compare' => 'EXISTS',
-				],
-			],
-        ] );
+				),
+			),
+        ) );
         $post_ids = $this->get_posts( $args );
         $this->schedule_batch_actions( $post_ids, 'wpar/deschedule_posts_task' );
         return __( 'Post de-scheduling started. It might take a couple of minutes.', 'wp-auto-republish' );
@@ -351,17 +364,18 @@ class Database
     /**
      * Remove actions.
      */
-    public function deschedule_posts_task( array $post_ids ) {
+    public function deschedule_posts_task( array $post_ids )
+    {
         if ( ! empty($post_ids) ) {
             foreach ( $post_ids as $post_id ) {
                 // get original published date
                 $pub_date = $this->get_meta( $post_id, '_wpar_original_pub_date' );
                 // update posts
-                \wp_update_post( [
+                \wp_update_post( array(
                     'ID'            => $post_id,
                     'post_date'     => $pub_date,
                     'post_date_gmt' => \get_gmt_from_date( $pub_date ),
-                ] );
+                ) );
                 // delete old meta
                 $this->delete_meta( $post_id, '_wpar_original_pub_date' );
             }
@@ -371,7 +385,8 @@ class Database
     /**
      * Recreate ActionScheduler tables if missing.
      */
-    public function maybe_recreate_actionscheduler_tables() {
+    public function maybe_recreate_actionscheduler_tables()
+    {
         global  $wpdb ;
         if ( $this->is_woocommerce_active() ) {
             return;
@@ -379,12 +394,12 @@ class Database
         if ( ! class_exists( 'ActionScheduler_HybridStore' ) || ! class_exists( 'ActionScheduler_StoreSchema' ) || ! class_exists( 'ActionScheduler_LoggerSchema' ) ) {
             return;
         }
-        $table_list = [
+        $table_list = array(
             'actionscheduler_actions',
             'actionscheduler_logs',
             'actionscheduler_groups',
             'actionscheduler_claims',
-        ];
+        );
         $found_tables = $wpdb->get_col( "SHOW TABLES LIKE '{$wpdb->prefix}actionscheduler%'" );
         foreach ( $table_list as $table_name ) {
             
@@ -399,12 +414,13 @@ class Database
     /**
      * Force the data store schema updates.
      */
-    private function recreate_actionscheduler_tables() {
+    private function recreate_actionscheduler_tables()
+    {
         $store = new \ActionScheduler_HybridStore();
         // @phpstan-ignore-line
         add_action(
             'action_scheduler/created_table',
-            [ $store, 'set_autoincrement' ],
+            array( $store, 'set_autoincrement' ),
             10,
             2
         );
@@ -416,7 +432,7 @@ class Database
         // @phpstan-ignore-line
         $logger_schema->register_tables( true );
         // @phpstan-ignore-line
-        remove_action( 'action_scheduler/created_table', [ $store, 'set_autoincrement' ], 10 );
+        remove_action( 'action_scheduler/created_table', array( $store, 'set_autoincrement' ), 10 );
     }
     
     /**
@@ -424,7 +440,8 @@ class Database
      *
      * @return bool
      */
-    private function is_woocommerce_active() {
+    private function is_woocommerce_active()
+    {
         // @codeCoverageIgnoreStart
         if ( ! function_exists( 'is_plugin_active' ) ) {
             include_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -432,5 +449,4 @@ class Database
         // @codeCoverageIgnoreEnd
         return is_plugin_active( 'woocommerce/woocommerce.php' ) && function_exists( 'is_woocommerce' );
     }
-
 }

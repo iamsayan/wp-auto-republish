@@ -54,7 +54,8 @@ class BaseController
     /**
      * The constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->plugin_path = REVIVEPRESS_PATH;
         $this->plugin_url = REVIVEPRESS_URL;
         $this->plugin = REVIVEPRESS_BASENAME;
@@ -62,5 +63,4 @@ class BaseController
         $this->name = 'RevivePress';
         $this->tag = '';
     }
-
 }

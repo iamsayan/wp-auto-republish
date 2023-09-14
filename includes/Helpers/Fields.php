@@ -34,7 +34,7 @@ trait Fields {
 			$data['type'] = 'text';
 		}
 	
-		$class = [ 'wpar-form-control', 'wpar-form-el' ];
+		$class = array( 'wpar-form-control', 'wpar-form-el' );
 		if ( isset( $data['class'] ) && ! empty( $data['class'] ) ) {
 			if ( is_array( $data['class'] ) ) {
 				$class = array_merge( $class, $data['class'] );
@@ -48,7 +48,7 @@ trait Fields {
 			$name = $data['name'];
 		}
 	
-		$attr = [];
+		$attr = array();
 		if ( isset( $data['required'] ) && true === $data['required'] ) {
 			$attr[] = 'required';
 			$attr[] = 'data-required="yes"';
@@ -113,7 +113,7 @@ trait Fields {
 		}
 
 		if ( isset( $data['type'] ) ) {
-			if ( in_array( $data['type'], [ 'text', 'email', 'password', 'date', 'number' ] ) ) {
+			if ( in_array( $data['type'], array( 'text', 'email', 'password', 'date', 'number' ) ) ) {
 				echo '<input type="' . esc_attr( $data['type'] ) . '" name="wpar_plugin_settings[' . esc_attr( $name ) . ']" id="' . esc_attr( $data['id'] ) . '" class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" autocomplete="off" value="' . esc_attr( $value ) . '" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' />';
 			} elseif ( $data['type'] == 'textarea' ) {
 				echo '<textarea class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" id="' . esc_attr( $data['id'] ) . '" name="wpar_plugin_settings[' . esc_attr( $name ) . ']" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' autocomplete="off">' . wp_kses_post( $value ) . '</textarea>';
@@ -170,13 +170,13 @@ trait Fields {
 				echo '</select>';
 			} elseif ( $data['type'] == 'wp_editor' ) {
 				echo '<div class="wpar-form-control wpar-form-el wpar-editor" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) )  . '>';
-				wp_editor( html_entity_decode( $value, ENT_COMPAT, "UTF-8" ), $data['id'], [
+				wp_editor( html_entity_decode( $value, ENT_COMPAT, "UTF-8" ), $data['id'], array(
 					'textarea_name' => 'wpar_plugin_settings[' . esc_attr( $name ) . ']',
 					'textarea_rows' => '8',
 					'teeny'         => true,
 					'tinymce'       => false,
 					'media_buttons' => false,
-				] );
+				) );
 				echo '</div>';
 			}
 			echo wp_kses_post( $tooltip );

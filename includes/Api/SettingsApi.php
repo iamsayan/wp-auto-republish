@@ -23,35 +23,35 @@ class SettingsApi
 	 *
 	 * @var array
 	 */
-	public $admin_pages = [];
+	public $admin_pages = array();
 
 	/**
 	 * Admin subpages.
 	 *
 	 * @var array
 	 */
-	public $admin_subpages = [];
+	public $admin_subpages = array();
 
 	/**
 	 * Plugin settings.
 	 *
 	 * @var array
 	 */
-	public $settings = [];
+	public $settings = array();
 
 	/**
 	 * Plugin sections.
 	 *
 	 * @var array
 	 */
-	public $sections = [];
+	public $sections = array();
 
 	/**
 	 * Plugin fields.
 	 *
 	 * @var array
 	 */
-	public $fields = [];
+	public $fields = array();
 
     /**
 	 * Register functions.
@@ -85,16 +85,16 @@ class SettingsApi
 
 		$admin_page = $this->admin_pages[0];
 
-		$subpage = [
-			[
+		$subpage = array(
+			array(
 				'parent_slug' => $admin_page['menu_slug'], 
 				'page_title'  => $admin_page['page_title'], 
 				'menu_title'  => ( $title ) ? $title : $admin_page['menu_title'], 
 				'capability'  => $admin_page['capability'], 
 				'menu_slug'   => $admin_page['menu_slug'], 
 				'callback'    => $admin_page['callback'],
-			],
-		];
+			),
+		);
 
 		$this->admin_subpages = $subpage;
 

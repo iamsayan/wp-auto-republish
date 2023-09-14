@@ -20,7 +20,8 @@ class AdminCallbacks extends BaseController
     /**
      * Call dashboard template.
      */
-    public function adminDashboard() {
+    public function adminDashboard()
+    {
         $options = get_option( 'wpar_plugin_settings' );
         $last = get_option( 'wpar_last_global_cron_run' );
         $format = get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' );
@@ -28,13 +29,14 @@ class AdminCallbacks extends BaseController
         return require_once $this->plugin_path . 'templates/admin.php';
     }
     
-    public function subMenu( $items, $class ) {
-        $allowed_html = [
-            'i' => [
-				'class' => [],
-			],
-        ];
-        $sub_items = [];
+    public function subMenu( $items, $class )
+    {
+        $allowed_html = array(
+            'i' => array(
+				'class' => array(),
+			),
+        );
+        $sub_items = array();
         foreach ( $items as $item => $title ) {
             $sub_items[] = '<a href="#" class="sub-link sub-link-' . esc_attr( $item ) . '" data-type="' . esc_attr( $item ) . '">' . wp_kses( $title, $allowed_html ) . '</a>';
         }
@@ -45,10 +47,10 @@ class AdminCallbacks extends BaseController
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo  '</div>' ;
         }
-    
     }
     
-    public function sectionHeader( $title, $description ) {
+    public function sectionHeader( $title, $description )
+    {
         ?>
 		<div class="wpar-metabox-holder">
 			<div class="wpar-metabox-td">
@@ -63,7 +65,8 @@ class AdminCallbacks extends BaseController
 		<?php 
     }
     
-    public function doSettingsSection( $attr ) {
+    public function doSettingsSection( $attr )
+    {
         $social_accounts = false;
         ?>
 		<div id="<?php 
@@ -88,13 +91,16 @@ class AdminCallbacks extends BaseController
             false
         );
         ?>
-							</p>
+				<?php 
+        ?>
+			</p>
 		</div>
 		<?php 
     }
     
-    public function systemStatus() {
-        $info = [];
+    public function systemStatus()
+    {
+        $info = array();
         $info['memory_limit'] = array(
             'label'       => __( 'PHP memory limit' ),
             'value'       => ini_get( 'memory_limit' ),
@@ -180,5 +186,4 @@ class AdminCallbacks extends BaseController
 		</div>
 		<?php 
     }
-
 }

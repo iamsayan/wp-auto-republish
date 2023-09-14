@@ -18,18 +18,21 @@ defined( 'ABSPATH' ) || exit;
  */
 class Enqueue extends BaseController
 {
-    use  Hooker ;
+    use Hooker ;
+
     /**
      * Register functions.
      */
-    public function register() {
+    public function register()
+    {
         $this->action( 'admin_enqueue_scripts', 'load_assets' );
     }
     
     /**
      * Load admin assets.
      */
-    public function load_assets( $hook ) {
+    public function load_assets( $hook )
+    {
         // Don't load assets on the Freemius opt-in/activation screen.
         if ( revivepress_fs()->is_activation_mode() && revivepress_fs()->is_activation_page() ) {
             return;
@@ -63,51 +66,51 @@ class Enqueue extends BaseController
             'styles',
             'admin.min.css',
             $this->version,
-            [
+            array(
 				'revivepress-jquery-ui',
 				'revivepress-jquery-ui-timepicker',
 				'revivepress-select2',
 				'revivepress-confirm',
-			]
+			)
         );
         $this->load(
             'js',
             'datetimepicker',
             'jquery-ui-timepicker-addon.min.js',
             '1.6.3',
-            [ 'jquery', 'jquery-ui-datepicker', 'jquery-ui-sortable' ]
+            array( 'jquery', 'jquery-ui-datepicker', 'jquery-ui-sortable' )
         );
         $this->load(
             'js',
             'select2',
             'select2.min.js',
             '4.0.13',
-            [ 'jquery' ]
+            array( 'jquery' )
         );
         $this->load(
             'js',
             'confirm',
             'jquery-confirm.min.js',
             '3.3.4',
-            [ 'jquery' ]
+            array( 'jquery' )
         );
         $this->load(
             'js',
             'admin',
             'admin.min.js',
             $this->version,
-            [
+            array(
 				'jquery',
 				'jquery-form',
 				'revivepress-datetimepicker',
 				'revivepress-select2',
 				'revivepress-confirm',
-			]
+			)
         );
         wp_register_style(
             'revivepress-fa',
             'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css',
-            [],
+            array(),
             '5.15.4'
         );
         
@@ -124,7 +127,7 @@ class Enqueue extends BaseController
             wp_enqueue_script( 'revivepress-select2' );
             wp_enqueue_script( 'revivepress-confirm' );
             wp_enqueue_script( 'revivepress-admin' );
-            wp_localize_script( 'revivepress-admin', 'rvpAdminL10n', [
+            wp_localize_script( 'revivepress-admin', 'rvpAdminL10n', array(
                 'ajaxurl'              => admin_url( 'admin-ajax.php' ),
                 'select_weekdays'      => __( 'Select weekdays (required)', 'wp-auto-republish' ),
                 'select_post_types'    => __( 'Select post types (required)', 'wp-auto-republish' ),
@@ -167,13 +170,12 @@ class Enqueue extends BaseController
                 'save_template'        => __( 'Save Template', 'wp-auto-republish' ),
                 'is_premium'           => revivepress_fs()->can_use_premium_code__premium_only(),
                 'security'             => wp_create_nonce( 'rvp_admin_nonce' ),
-                'api'                  => [
+                'api'                  => array(
 					'root'  => esc_url_raw( get_rest_url() ),
 					'nonce' => ( wp_installing() && ! is_multisite() ? '' : wp_create_nonce( 'wp_rest' ) ),
-				],
-            ] );
+				),
+            ) );
         }
-    
     }
     
     /**
@@ -186,7 +188,8 @@ class Enqueue extends BaseController
         $version,
         $dep = array(),
         $end = true
-    ) {
+    )
+    {
         
         if ( $type == 'css' ) {
             wp_register_style(
@@ -204,7 +207,5 @@ class Enqueue extends BaseController
                 $end
             );
         }
-    
     }
-
 }

@@ -38,9 +38,9 @@ class Admin extends BaseController
 	 * Register settings link.
 	 */
 	public function settings_link( $links ) {
-		$settings = [
+		$settings = array(
 			'<a href="' . admin_url( 'admin.php?page=revivepress' ) . '">' . __( 'Settings', 'wp-auto-republish' ) . '</a>',
-		];
+		);
 		return array_merge( $settings, $links );
 	}
 
@@ -59,9 +59,9 @@ class Admin extends BaseController
 				__( 'Scheduled Tasks', 'wp-auto-republish' ),
 				$manage_options_cap,
 				'revivepress-scheduled-tasks',
-				[ $as, 'render_admin_ui' ]
+				array( $as, 'render_admin_ui' )
 			);
-			add_action( 'load-' . $hook_suffix , [ $as, 'process_admin_ui' ] );
+			add_action( 'load-' . $hook_suffix , array( $as, 'process_admin_ui' ) );
 		}
 
 		// Filter to redefine that RevivePress > Scheduled Tasks menu item.
@@ -116,11 +116,11 @@ class Admin extends BaseController
 	 * @param null $null Null value.
 	 */
 	public function as_exclude_pastdue_actions( $null ) {
-		$query_args = [
+		$query_args = array(
 			'date'     => as_get_datetime_object( time() - DAY_IN_SECONDS ),
 			'status'   => \ActionScheduler_Store::STATUS_PENDING,
 			'per_page' => 1,
-		];
+		);
 
 		$store               = \ActionScheduler_Store::instance();
 		$num_pastdue_actions = (int) $store->query_actions( $query_args, 'count' );

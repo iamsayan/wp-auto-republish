@@ -23,9 +23,8 @@
 
 	<!-- Configs -->
 	<config name="minimum_supported_wp_version" value="4.7" /> <!-- Minimum WP Version -->
-	<config name="testVersion" value="5.6" /> <!-- Minimum PHP Version -->
+	<config name="testVersion" value="7.4" /> <!-- Minimum PHP Version -->
 	<config name="text_domain" value="wp-auto-republish"/>
-	<config name="installed_paths" value="D:\Laragon\wpcs" />
 
 	<!-- Rules -->
 	<rule ref="Squiz">

@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.5.4
+Release Date: 10th September, 2023
+
+= Premium Version =
+* Fixed: Twitter social share issues.
+* Fixed: Pinterest social share issues.
+* Fixed: Linkedin social share issues.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Updated: PHP Composer Libraries.
+* Updated: Freemius SDK to v2.5.12.
+* Updated: Action Schedular Library to v3.6.2.
+
 ## 1.5.3
 Release Date: 16th July, 2023
 

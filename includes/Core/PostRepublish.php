@@ -20,11 +20,15 @@ defined( 'ABSPATH' ) || exit;
  */
 class PostRepublish
 {
-    use  HelperFunctions, Hooker, Scheduler ;
+    use HelperFunctions ;
+    use Hooker ;
+    use Scheduler ;
+
     /**
      * Register functions.
      */
-    public function register() {
+    public function register()
+    {
         $this->action( 'wpar/global_republish_single_post', 'do_republish' );
         $this->action( 'wpar/process_republish_post', 'call_republish' );
         $this->action( 'wpar/as_action_removed', 'remove_meta' );
@@ -36,7 +40,8 @@ class PostRepublish
      * @since 1.3.2
      * @param array   $args   Republish params
      */
-    public function call_republish( array $args ) {
+    public function call_republish( array $args )
+    {
         $method = $args['method'];
         if ( 'republish' === $method ) {
             $post_id = $this->update_old_post(
@@ -55,7 +60,8 @@ class PostRepublish
      * @since 1.1.7
      * @param int   $post_id   Post ID
      */
-    public function do_republish( $post_id ) {
+    public function do_republish( $post_id )
+    {
         // delete data.
         $this->delete_meta( $post_id, 'wpar_global_republish_status' );
         $this->delete_meta( $post_id, '_wpar_global_republish_datetime' );
@@ -70,7 +76,8 @@ class PostRepublish
      * @since 1.5.1
      * @param int   $post_id   Post ID
      */
-    public function remove_meta( $post_id ) {
+    public function remove_meta( $post_id )
+    {
         $this->delete_meta( $post_id, 'wpar_republish_as_action_id' );
     }
     
@@ -80,7 +87,8 @@ class PostRepublish
      * Override this method to perform any actions required
      * during the async request.
      */
-    private function handle( int $post_id ) {
+    private function handle( int $post_id )
+    {
         $action = $this->do_filter(
             'republish_action',
             'repost',
@@ -109,7 +117,8 @@ class PostRepublish
         bool $instant = false,
         bool $only_update = false,
         bool $external = false
-    ) {
+    )
+    {
         $post = \get_post( $post_id );
         $new_time = $this->get_publish_time( $post->ID, $single );
         
@@ -123,13 +132,13 @@ class PostRepublish
         
         // remove kses filters
         \kses_remove_filters();
-        $args = [
+        $args = array(
             'post_date'     => $new_time,
             'post_date_gmt' => get_gmt_from_date( $new_time ),
-        ];
-        $args = array_merge( [
+        );
+        $args = array_merge( array(
             'ID' => $post->ID,
-        ], $args );
+        ), $args );
         $args = $this->do_filter(
             'update_process_args',
             $args,
@@ -153,7 +162,8 @@ class PostRepublish
      * 
      * @return string
      */
-    private function get_publish_time( int $post_id, bool $single = false, bool $scheduled = false ) {
+    private function get_publish_time( int $post_id, bool $single = false, bool $scheduled = false )
+    {
         $post = \get_post( $post_id );
         $timestamp = $this->current_timestamp();
         $interval = MINUTE_IN_SECONDS * $this->do_filter( 'second_position_interval', wp_rand( 1, 15 ) );
@@ -165,7 +175,7 @@ class PostRepublish
                 $new_time = $datetime;
             }
         } else {
-            $args = (array) $this->do_filter( 'republish_position_args', [
+            $args = (array) $this->do_filter( 'republish_position_args', array(
                 'post_type'   => $post->post_type,
                 'numberposts' => 1,
                 'offset'      => 1,
@@ -173,7 +183,7 @@ class PostRepublish
                 'order'       => 'DESC',
                 'orderby'     => 'date',
                 'fields'      => 'ids',
-            ], $post );
+            ), $post );
             $lastposts = $this->get_posts( $args );
             if ( ! empty($lastposts) ) {
                 foreach ( $lastposts as $lastpost ) {
@@ -192,5 +202,4 @@ class PostRepublish
             $scheduled
         );
     }
-
 }

@@ -15,18 +15,18 @@
  * @param array  $args     Republish args
  */
 if ( ! function_exists( 'revivepress_republish_post' ) ) {
-    function revivepress_republish_post( $post_id, $args = [] ) {
+    function revivepress_republish_post( $post_id, $args = array() ) {
         $post = get_post( absint( $post_id ) );
 
 		if ( ! $post instanceof WP_Post ) {
 			return;
 		}
 
-        $defaults = [
+        $defaults = array(
             'method'  => 'republish', // Republish method, accepts 'republish' or 'clone' (clone - premium only)
             'single'  => false,       // Republish based on meta, defaults to false
             'instant' => true,        // On demand republish, defaults to true
-        ];
+        );
         $args = wp_parse_args( $args, $defaults );
 
         $args['post_id']  = $post->ID;
