@@ -28,7 +28,7 @@ class Deactivate
 
 		// Restore permalink structure.
 		$permalink_structure = get_option( 'permalink_structure' );
-		$permalink_structure = str_replace( [ '%wpar_', '%rvp_' ], '%', $permalink_structure );
+		$permalink_structure = str_replace( array( '%wpar_', '%rvp_' ), '%', $permalink_structure );
 		update_option( 'permalink_structure', $permalink_structure );
 
 		// register action.

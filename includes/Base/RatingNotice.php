@@ -86,7 +86,7 @@ class RatingNotice
 			update_option( 'wpar_plugin_dismissed_time', time() );
 		}
 	
-		wp_safe_redirect( remove_query_arg( [ 'rvp_rating_notice', '_wpnonce' ] ) );
+		wp_safe_redirect( remove_query_arg( array( 'rvp_rating_notice', '_wpnonce' ) ) );
 		exit;
 	}
 	

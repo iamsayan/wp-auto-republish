@@ -12,7 +12,8 @@ defined( 'ABSPATH' ) || exit;
 /**
  * v1.3.2 migration
  */
-function revivepress_1_3_2_migration() {
+function revivepress_1_3_2_migration()
+{
     as_unschedule_all_actions( 'wpar/global_republish_fetch_posts' );
     $permalink_structure = get_option( 'permalink_structure' );
     $permalink_structure = str_replace( '%wpar_', '%rvp_', $permalink_structure );

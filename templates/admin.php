@@ -20,13 +20,17 @@ echo  esc_html( $this->version ) ;
     <a href="#general" class="wpar-tab is-active" id="wpar-tab-general"><?php 
 esc_html_e( 'General', 'wp-auto-republish' );
 ?></a>
-        <a href="#tools" class="wpar-tab" id="wpar-tab-tools"><?php 
+    <?php 
+?>
+    <a href="#tools" class="wpar-tab" id="wpar-tab-tools"><?php 
 esc_html_e( 'Tools', 'wp-auto-republish' );
 ?></a>
     <a href="https://wprevivepress.com/docs/?utm_source=dashboard&utm_medium=plugin" target="_blank" class="wpar-tab type-link" id="wpar-tab-help"><?php 
 esc_html_e( 'Help', 'wp-auto-republish' );
 ?></a>
-            <a href="<?php 
+    <?php 
+?>
+        <a href="<?php 
 echo  esc_url( revivepress_fs()->get_upgrade_url() ) ;
 ?>" target="_blank" class="wpar-tab type-link btn-upgrade wpar-upgrade" id="wpar-tab-upgrade">
             <span class="dashicons dashicons-admin-plugins"></span>
@@ -34,7 +38,9 @@ echo  esc_url( revivepress_fs()->get_upgrade_url() ) ;
 esc_html_e( 'Upgrade to Premium', 'wp-auto-republish' );
 ?></p>
         </a>
-        <div class="top-sharebar">
+    <?php 
+?>
+    <div class="top-sharebar">
         <a class="share-btn rate-btn no-popup" href="https://wordpress.org/support/plugin/wp-auto-republish/reviews/?filter=5#new-post" target="_blank" title="<?php 
 esc_html_e( 'Please rate 5 stars if you like RevivePress', 'wp-auto-republish' );
 ?>"><span class="dashicons dashicons-star-filled"></span> <?php 
@@ -54,7 +60,9 @@ esc_html_e( 'Share', 'wp-auto-republish' );
         <div id="post-body" class="metabox-holder">
             <div class="rvp-loader"><div></div><div></div><div></div><div></div></div>
             <div id="post-body-content" class="wpar-metabox">
-                                    <div class="wpar-upgrade-notice" id="wpar-upgrade-notice">
+                <?php 
+?>
+                    <div class="wpar-upgrade-notice" id="wpar-upgrade-notice">
                         <p>
                             <?php 
 printf(
@@ -70,18 +78,20 @@ esc_html_e( 'Click here to see all the exciting features.', 'wp-auto-republish' 
 ?></a>
                         </p>
                     </div>
-                                <form id="wpar-settings-form" method="post" action="options.php">
+                <?php 
+?>
+                <form id="wpar-settings-form" method="post" action="options.php">
                     <?php 
 settings_fields( 'wpar_plugin_settings_fields' );
-$this->subMenu( [
+$this->subMenu( array(
     'configure' => '<i class="fas fa-cog"></i>' . esc_html__( 'Configure', 'wp-auto-republish' ),
     'query'     => '<i class="fas fa-clipboard-check"></i>' . esc_html__( 'Conditions', 'wp-auto-republish' ),
     'filter'    => '<i class="fas fa-filter"></i>' . esc_html__( 'Filter Options', 'wp-auto-republish' ),
     'display'   => '<i class="fas fa-eye"></i>' . esc_html__( 'Visibility', 'wp-auto-republish' ),
-], 'general' );
+), 'general' );
 // $text = encrypt_my( 'sayan', 5 );
 // $text .= decrypt_my( 'sayan', 5 );
-$this->doSettingsSection( [
+$this->doSettingsSection( array(
     'id'          => 'wpar-configure',
     'class'       => 'wpar-general d-none',
     'title'       => __( 'General Settings', 'wp-auto-republish' ),
@@ -93,28 +103,28 @@ $this->doSettingsSection( [
     sprintf( __( 'Last run: %s', 'wp-auto-republish' ), date_i18n( $format, $last ) )
 ),
     'name'        => 'wpar_plugin_general_option',
-] );
-$this->doSettingsSection( [
+) );
+$this->doSettingsSection( array(
     'id'          => 'wpar-query',
     'class'       => 'wpar-general d-none',
     'title'       => __( 'Republish Conditions', 'wp-auto-republish' ),
     'description' => __( 'Control the WP_Query of Post Republish Process for Global Republish.', 'wp-auto-republish' ),
     'name'        => 'wpar_plugin_post_query_option',
-] );
-$this->doSettingsSection( [
+) );
+$this->doSettingsSection( array(
     'id'          => 'wpar-filter',
     'class'       => 'wpar-general d-none',
     'title'       => __( 'Filter Options', 'wp-auto-republish' ),
     'description' => __( 'Control Post Types, Taxonomies and Author Based Filtering here.', 'wp-auto-republish' ),
     'name'        => 'wpar_plugin_post_type_option',
-] );
-$this->doSettingsSection( [
+) );
+$this->doSettingsSection( array(
     'id'          => 'wpar-display',
     'class'       => 'wpar-general d-none',
     'title'       => __( 'Frontend Visibility', 'wp-auto-republish' ),
     'description' => __( 'You can control frontend republish info visiblity here.', 'wp-auto-republish' ),
     'name'        => 'wpar_plugin_republish_info_option',
-] );
+) );
 ?>
                 </form>
                 <div id="wpar-tools" class="postbox wpar-tools d-none">
@@ -187,59 +197,59 @@ if ( current_user_can( 'manage_options' ) ) {
                         <?php 
 }
 
-$data = [
-    [
+$data = array(
+    array(
 		'heading' => __( 'Reset Settings', 'wp-auto-republish' ),
 		'hint'    => __( 'Resetting will delete all custom options to the default settings of the plugin in your database.', 'wp-auto-republish' ),
 		'notice'  => __( 'It will delete all the data relating to this plugin settings. You have to re-configure this plugin again. Do you want to still continue?', 'wp-auto-republish' ),
 		'action'  => 'remove_data',
 		'reload'  => true,
-	],
-    [
+	),
+    array(
 		'heading' => __( 'De-Schedule Posts', 'wp-auto-republish' ),
 		'hint'    => __( 'It will change the republish date to the original post published date on all posts.', 'wp-auto-republish' ),
 		'notice'  => __( 'It will change the republish date to the original post published date on all posts. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
 		'action'  => 'deschedule_posts',
-	],
-    [
+	),
+    array(
 		'heading' => __( 'Re-Create Missing Database Tables', 'wp-auto-republish' ),
 		'hint'    => __( 'Check if required tables exist and create them if not.', 'wp-auto-republish' ),
 		'action'  => 'recreate_tables',
 		'button'  => __( 'Re-Create Tables', 'wp-auto-republish' ),
 		'type'    => 'blue',
-	],
-    [
+	),
+    array(
 		'heading' => __( 'Re-Generate Republish Interval', 'wp-auto-republish' ),
 		'hint'    => __( 'It will regenerate Schedule Auto Republish Process Interval.', 'wp-auto-republish' ),
 		'action'  => 'regenerate_interval',
 		'button'  => __( 'Re-Generate Interval', 'wp-auto-republish' ),
 		'type'    => 'blue',
 		'show'    => ! empty($options['wpar_enable_plugin']),
-	],
-    [
+	),
+    array(
 		'heading' => __( 'Re-Generate Republish Schedule', 'wp-auto-republish' ),
 		'hint'    => __( 'It will regenerate Schedule Auto Republish Schedules of Single Posts and Custom Rules.', 'wp-auto-republish' ),
 		'notice'  => __( 'It will remove and re-create all the scheduled or missed republish events relating to global and single post republishing. It may stop previous scheduled republished event. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
 		'action'  => 'regenerate_schedule',
 		'button'  => __( 'Re-Generate Schedule', 'wp-auto-republish' ),
 		'show'    => revivepress_fs()->can_use_premium_code__premium_only(),
-	],
-    [
+	),
+    array(
 		'heading' => __( 'Remove Post Meta & Actions', 'wp-auto-republish' ),
 		'hint'    => __( 'Resetting will delete all post metadatas and future action events associated with Post Republish.', 'wp-auto-republish' ),
 		'notice'  => __( 'It will delete all the post meta data & action events relating to global and single post republishing. It may stop previous scheduled republished event. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
 		'action'  => 'remove_meta',
 		'button'  => __( 'Clear Post Metas & Events', 'wp-auto-republish' ),
-	],
-];
+	),
+);
 foreach ( $data as $args ) {
-    $box = wp_parse_args( $args, [
+    $box = wp_parse_args( $args, array(
         'show'   => true,
         'reload' => false,
         'type'   => 'red',
         'button' => $args['heading'],
         'notice' => '',
-    ] );
+    ) );
     if ( ! $box['show'] ) {
         continue;
     }

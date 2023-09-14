@@ -73,8 +73,8 @@ class SiteCache
 		}
 		
 		# Purge LiteSpeed Cache 
-		if ( class_exists( 'LiteSpeed_Cache_API' ) && method_exists( 'LiteSpeed_Cache_API', 'purge_all' ) ) {
-			\LiteSpeed_Cache_API::purge_all();
+		if ( class_exists( '\LiteSpeed\Purge' ) && method_exists( '\LiteSpeed\Purge', 'purge_all' ) ) {
+			\LiteSpeed\Purge::purge_all();
 		}
 		
 		# Purge Cache Enabler

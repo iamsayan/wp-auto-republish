@@ -29,7 +29,7 @@ trait Ajax {
 	 *                                  in the order in which they were added to the action.
 	 */
 	protected function ajax( $tag, $function_to_add, $priority = 10 ) {
-		\add_action( 'wp_ajax_wpar_' . $tag, [ $this, $function_to_add ], $priority );
+		\add_action( 'wp_ajax_wpar_' . $tag, array( $this, $function_to_add ), $priority );
 	}
 
 	/**
@@ -72,7 +72,7 @@ trait Ajax {
 	 */
 	private function send( $data = null, $success = true, $status_code = null ) {
 		if ( ! is_array( $data ) ) {
-			$data = $success ? [ 'message' => $data ] : [ 'error' => $data ];
+			$data = $success ? array( 'message' => $data ) : array( 'error' => $data );
 		}
 
 		if ( $success ) {

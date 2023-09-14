@@ -18,7 +18,8 @@ class Uninstall
     /**
      * Run plugin uninstallation process.
      */
-    public static function uninstall() {
+    public static function uninstall()
+    {
         $options = get_option( 'wpar_plugin_settings' );
         if ( ! isset( $options['wpar_remove_plugin_data'] ) || ! ($options['wpar_remove_plugin_data'] == 1) ) {
             return;
@@ -43,7 +44,8 @@ class Uninstall
     /**
      * Run plugin uninstallation process.
      */
-    public static function remove_options() {
+    public static function remove_options()
+    {
         global  $wpdb ;
         delete_option( 'wpar_plugin_settings' );
         delete_option( 'wpar_republish_log_history' );
@@ -57,5 +59,4 @@ class Uninstall
         // Clear any cached data that has been removed.
         wp_cache_flush();
     }
-
 }

@@ -20,7 +20,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class RewritePermainks
 {
-	use Hooker, SettingsData;
+	use Hooker;
+    use SettingsData;
 
 	/**
 	 * Register functions.
@@ -67,17 +68,17 @@ class RewritePermainks
 
 			// This is not an API call because the permalink is based on the stored post_date value,
         	// which should be parsed as local time regardless of the default PHP timezone.
-			$date = explode( ' ', str_replace( [ '-', ':' ], ' ', $original_date ) );
+			$date = explode( ' ', str_replace( array( '-', ':' ), ' ', $original_date ) );
 
 			$throw_404 = false;
-			$rewritecode = [
+			$rewritecode = array(
 				'rvp_year',
 				'rvp_monthnum',
 				'rvp_day',
 				'rvp_hour',
 				'rvp_minute',
 				'rvp_second',
-			];
+			);
 
 			foreach ( $rewritecode as $key => $slug ) {
 				$datetime = get_query_var( $slug );
@@ -118,25 +119,25 @@ class RewritePermainks
 
 		// This is not an API call because the permalink is based on the stored post_date value,
         // which should be parsed as local time regardless of the default PHP timezone.
-		$date = explode( ' ', str_replace( [ '-', ':' ], ' ', $original_date ) );
+		$date = explode( ' ', str_replace( array( '-', ':' ), ' ', $original_date ) );
 
-		$rewritecode = [
+		$rewritecode = array(
 			'%rvp_year%',
 			'%rvp_monthnum%',
 			'%rvp_day%',
 			'%rvp_hour%',
 			'%rvp_minute%',
 			'%rvp_second%',
-		];
+		);
 
-		$rewritereplace = [
+		$rewritereplace = array(
 			$date[0],
             $date[1],
             $date[2],
             $date[3],
             $date[4],
             $date[5],
-		];
+		);
 
 		return str_replace( $rewritecode, $rewritereplace, $permalink );
 	}
@@ -229,8 +230,8 @@ class RewritePermainks
 	private function fix_permalink() {
 		$permalink_structure = get_option( 'permalink_structure' );
 
-		$search = [ '%year%', '%monthnum%', '%day%', '%hour%', '%minute%', '%second%' ];
-		$replace = [ '%rvp_year%', '%rvp_monthnum%', '%rvp_day%', '%rvp_hour%', '%rvp_minute%', '%rvp_second%' ];
+		$search = array( '%year%', '%monthnum%', '%day%', '%hour%', '%minute%', '%second%' );
+		$replace = array( '%rvp_year%', '%rvp_monthnum%', '%rvp_day%', '%rvp_hour%', '%rvp_minute%', '%rvp_second%' );
 		$permalink_structure = str_replace( $search, $replace, $permalink_structure );
 
 		update_option( 'permalink_structure', $permalink_structure );

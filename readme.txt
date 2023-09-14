@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 5.2
 Tested up to: 6.3
-Stable tag: 1.5.3
+Stable tag: 1.5.4
 Requires PHP: 7.3
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -141,6 +141,20 @@ No, plugin can handle it efficiently by tinkering the Permalink Structure.
 == Changelog ==
 
 If you like RevivePress, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.5.4 =
+Release Date: 10th September, 2023
+
+= Premium Version =
+* Fixed: Twitter social share issues.
+* Fixed: Pinterest social share issues.
+* Fixed: Linkedin social share issues.
+* And all Free Version Improvements and Fixes.
+
+= Free Version =
+* Updated: PHP Composer Libraries.
+* Updated: Freemius SDK to v2.5.12.
+* Updated: Action Schedular Library to v3.6.2.
 
 = 1.5.3 =
 Release Date: 16th July, 2023
