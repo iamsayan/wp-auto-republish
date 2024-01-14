@@ -15,8 +15,8 @@ use  RevivePress\Helpers\Hooker ;
 defined( 'ABSPATH' ) || exit;
 class ManagerCallbacks
 {
-    use Fields ;
-    use Hooker ;
+    use  Fields ;
+    use  Hooker ;
 
     public function enable_plugin( $args )
     {

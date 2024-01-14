@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
  */
 trait HelperFunctions
 {
-    use SettingsData ;
+    use  SettingsData ;
 
     /**
      * Get all registered public post types.

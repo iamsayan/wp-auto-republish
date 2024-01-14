@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class Dashboard
 {
-    use HelperFunctions ;
+    use  HelperFunctions ;
 
     /**
      * Settings.

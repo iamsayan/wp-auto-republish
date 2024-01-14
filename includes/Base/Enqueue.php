@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class Enqueue extends BaseController
 {
-    use Hooker ;
+    use  Hooker ;
 
     /**
      * Register functions.

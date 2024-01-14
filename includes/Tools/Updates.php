@@ -19,8 +19,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class Updates extends BaseController
 {
-    use Ajax ;
-    use Hooker ;
+    use  Ajax ;
+    use  Hooker ;
 
     /**
      * Updates that need to be run

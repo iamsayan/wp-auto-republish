@@ -21,10 +21,10 @@ defined( 'ABSPATH' ) || exit;
  */
 class Database
 {
-    use Ajax ;
-    use Hooker ;
-    use HelperFunctions ;
-    use Scheduler ;
+    use  Ajax ;
+    use  Hooker ;
+    use  HelperFunctions ;
+    use  Scheduler ;
 
     /**
      * Register functions.

@@ -20,9 +20,9 @@ defined( 'ABSPATH' ) || exit;
  */
 class PostRepublish
 {
-    use HelperFunctions ;
-    use Hooker ;
-    use Scheduler ;
+    use  HelperFunctions ;
+    use  Hooker ;
+    use  Scheduler ;
 
     /**
      * Register functions.

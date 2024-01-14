@@ -2,8 +2,8 @@
 Contributors: infosatech
 Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 5.2
-Tested up to: 6.3
-Stable tag: 1.5.4
+Tested up to: 6.4
+Stable tag: 1.5.6
 Requires PHP: 7.3
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -142,6 +142,21 @@ No, plugin can handle it efficiently by tinkering the Permalink Structure.
 
 If you like RevivePress, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
 
+= 1.5.6 =
+Release Date: 14th January, 2024
+
+* Updated: PHP Composer Libraries.
+* Updated: Freemius SDK to v2.6.2.
+* Updated: Action Schedular Library to v3.7.1.
+
+= 1.5.5 =
+Release Date: 10th November, 2023
+
+* Updated: PHP Composer Libraries.
+* Updated: Freemius SDK to v2.6.0.
+* Updated: Action Schedular Library to v3.6.4.
+* Compatibility with WordPress v6.4.
+
 = 1.5.4 =
 Release Date: 10th September, 2023
 
@@ -203,146 +218,6 @@ Release Date: 20th April, 2023
 * Fixed: Wrong textdomains.
 * Fixed: PHP Fatal error on Activation.
 * Compatibility with WordPress v6.2.
-
-= 1.4.9.1 =
-Release Date: 3rd March, 2023
-
-* Added: `Exclude Posts Published Before` option for Republish Rules.
-* Fixed: Post republish date include/exclude logic.
-* Fixed: Pressing space separates Post Titles as individual titles.
-
-= 1.4.9 =
-Release Date: 9th February, 2023
-
-= Premium Version =
-* Added: `Republish Tags` Taxonomy to filter post republish conditions based on these tags.
-* Tweak: Log History option is now the part of `Misc.` Section.
-* And all Free Version Improvements and Fixes.
-
-= Free Version =
-* Improved: Conditional logic Optimizations.
-* Fixed: Multiple Taxonomies were displaying in dropdown if a taxonomy is attached to more than one post type.
-
-= 1.4.8 =
-Release Date: 22nd January, 2023
-
-= Premium Version =
-* Added: Option to select post statuses which can be republished.
-* Added: Taxonomies and Author filters to Custom Republish Rules.
-* Added: Option to set Post Status after individual post republish.
-* Tweak: Only published posts are eligible for Social Share and OneSignal Notification.
-* Fixed: Republish on Queue is showing even after successful single republish.
-* Fixed: Auto Log History removal not working properly.
-* Fixed: Account Name was not showing on Pinterest Edit Template Popup.
-* And all Free Version Improvements and Fixes.
-
-= Free Version =
-* Updated: Action Schedular Library to v3.5.4.
-* Improved: Code Optimizations.
-* Fixed: Dashboard CSS issue.
-* Fixed: Typos.
-
-= 1.4.7.1 =
-Release Date: 17th January, 2023
-
-* Fixed: Permission issue after deactivation.
-
-= 1.4.7 =
-Release Date: 10th January, 2023
-
-* Fixed: Dashboard CSS styling.
-* Fixed: Localizations.
-* Tweak: Added check for minimum PHP and WordPress versions.
-* Minimum required PHP Version is 7.3.
-
-= 1.4.6 =
-Release Date: 25th December, 2022
-
-= Premium Version =
-* Added: Pinterest Sharing.
-* Added: Link Shortner services.
-* Added: Option under Tools to Re-generate missed schedules.
-* Fixed: Sharing URL Parameters were not working.
-* Improved: Social Account adding mechanism.
-* Improved: Updated Facebook SDK.
-* Improved: Updated Twitter SDK.
-* And all Free Version Improvements and Fixes.
-
-= Free Version =
-* Tweak: Remove all plugins data if the settings is on.
-* Improved: Tools task handling.
-
-= 1.4.5 =
-Release Date: 19th December, 2022
-
-= Premium Version =
-* Fixed: WPML Activation detection on latest version.
-* And all Free Version Improvements and Fixes.
-
-= Free Version =
-* Fixed: URLs can't be accessed which are not republished.
-
-= 1.4.4 =
-Release Date: 15th December, 2022
-
-= Premium Version =
-* Added: Option to remove log history automatically.
-* Fixed: Custom Post Types Permission issue.
-* Fixed: Repost Method settings was not working.
-* Tweak: Save republish rule data in post meta instead of database.
-* Tweak: Instant social share will be now using Action Schedular.
-* And all Free Version Improvements and Fixes.
-
-= Free Version =
-* Fixed: URLs can be accessed from any permalinks.
-* Updated: Freemius Library.
-
-= 1.4.3 =
-Release Date: 19th November, 2022
-
-= Premium Version =
-* Added: Polylang Support.
-* Added: Indexing API Plugin Support.
-* Added: Support for Auto Republish Translated posts by WPML and Polylang.
-* Added: Option to remove log history automatically.
-* Fixed: Custom Post Types Permission issue.
-* And all Free Version Improvements and Fixes.
-
-= Free Version =
-* Minor bug fixes.
-
-= 1.4.2 =
-Release Date: 14th November, 2022
-
-= Premium Version =
-* Added: Auto GUID Re-generation, can be disabled from settings.
-* And all Free Version Improvements and Fixes.
-
-= Free Version =
-* Tweak: Disabled caching of WP_Query.
-* Updated: Action Schedular Library.
-* Updated: Freemius Library.
-* Compatibility with WordPress v6.1.
-
-= 1.4.1 =
-Release Date: 16th September, 2022
-
-* Tweak: User List Fetching logic.
-* Updated: Action Schedular Library.
-
-= 1.4.0 =
-Release Date: 2nd August, 2022
-
-= Premium Version =
-* Added: Tumblr Share.
-* Added: Option to sort posts by actual post published date on frontend.
-* Added: Option to share on individual social providers.
-* Fixed: Custom User Capabilities.
-* And all Free Version Improvements and Fixes.
-
-= Free Version =
-* Tweak: Load Post Taxonomies and Authors only on Search in Settings to avoid high memory usage.
-* Updated: Freemius Library.
 
 = Other Versions =
 

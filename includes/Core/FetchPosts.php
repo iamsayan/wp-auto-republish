@@ -19,9 +19,9 @@ defined( 'ABSPATH' ) || exit;
  */
 class FetchPosts
 {
-    use HelperFunctions ;
-    use Hooker ;
-    use Scheduler ;
+    use  HelperFunctions ;
+    use  Hooker ;
+    use  Scheduler ;
 
     /**
      * Register functions.
