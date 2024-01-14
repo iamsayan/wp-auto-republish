@@ -1,6 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.5.6
+Release Date: 14th January, 2024
+
+* Updated: PHP Composer Libraries.
+* Updated: Freemius SDK to v2.6.2.
+* Updated: Action Schedular Library to v3.7.1.
+
+## 1.5.5
+Release Date: 10th November, 2023
+
+* Updated: PHP Composer Libraries.
+* Updated: Freemius SDK to v2.6.0.
+* Updated: Action Schedular Library to v3.6.4.
+* Compatibility with WordPress v6.4.
+
 ## 1.5.4
 Release Date: 10th September, 2023
 
