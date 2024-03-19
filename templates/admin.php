@@ -21,6 +21,22 @@ echo  esc_html( $this->version ) ;
 esc_html_e( 'General', 'wp-auto-republish' );
 ?></a>
     <?php 
+//if ( revivepress_fs()->can_use_premium_code__premium_only() ) {
+?>
+        <a href="#single" class="wpar-tab" id="wpar-tab-single"><?php 
+esc_html_e( 'Single', 'wp-auto-republish' );
+?></a>
+        <a href="#social" class="wpar-tab" id="wpar-tab-social"><?php 
+esc_html_e( 'Social', 'wp-auto-republish' );
+?></a>
+        <a href="#email" class="wpar-tab" id="wpar-tab-email"><?php 
+esc_html_e( 'Notification', 'wp-auto-republish' );
+?></a>
+        <a href="#advanced" class="wpar-tab" id="wpar-tab-advanced"><?php 
+esc_html_e( 'Advanced', 'wp-auto-republish' );
+?></a>
+    <?php 
+//}
 ?>
     <a href="#tools" class="wpar-tab" id="wpar-tab-tools"><?php 
 esc_html_e( 'Tools', 'wp-auto-republish' );
@@ -60,26 +76,6 @@ esc_html_e( 'Share', 'wp-auto-republish' );
         <div id="post-body" class="metabox-holder">
             <div class="rvp-loader"><div></div><div></div><div></div><div></div></div>
             <div id="post-body-content" class="wpar-metabox">
-                <?php 
-?>
-                    <div class="wpar-upgrade-notice" id="wpar-upgrade-notice">
-                        <p>
-                            <?php 
-printf(
-    /* translators: Plugin Name. */
-    esc_html__( 'Republish & Share your Evergreen Content with more controls. Get %s!', 'wp-auto-republish' ),
-    '<strong>RevivePress Premium</strong>'
-);
-?>
-                            <a class="wpar-upgrade" href="<?php 
-echo  esc_url( revivepress_fs()->get_upgrade_url() ) ;
-?>" target="_blank"><?php 
-esc_html_e( 'Click here to see all the exciting features.', 'wp-auto-republish' );
-?></a>
-                        </p>
-                    </div>
-                <?php 
-?>
                 <form id="wpar-settings-form" method="post" action="options.php">
                     <?php 
 settings_fields( 'wpar_plugin_settings_fields' );
@@ -125,6 +121,123 @@ $this->doSettingsSection( array(
     'description' => __( 'You can control frontend republish info visiblity here.', 'wp-auto-republish' ),
     'name'        => 'wpar_plugin_republish_info_option',
 ) );
+//if ( revivepress_fs()->can_use_premium_code__premium_only() ) {
+$this->subMenu( array(
+    'metabox'    => '<i class="fas fa-clipboard"></i>' . esc_html__( 'Post Metabox', 'wp-auto-republish' ),
+    'individual' => '<i class="fas fa-history"></i>' . esc_html__( 'Individual Republish', 'wp-auto-republish' ),
+    'actions'    => '<i class="far fa-clock"></i>' . esc_html__( 'Republish Actions', 'wp-auto-republish' ),
+), 'single' );
+$this->doSettingsSection( array(
+    'id'          => 'wpar-metabox',
+    'class'       => 'wpar-single d-none',
+    'title'       => __( 'Single Posts Settings', 'wp-auto-republish' ),
+    'description' => __( 'Configure the Per Post based Metabox settings here.', 'wp-auto-republish' ),
+    'name'        => 'wpar_plugin_metabox_option',
+) );
+$this->doSettingsSection( array(
+    'id'          => 'wpar-individual',
+    'class'       => 'wpar-single d-none',
+    'title'       => __( 'Individual Republish', 'wp-auto-republish' ),
+    'description' => __( 'Configure the Per Post based Metabox settings here.', 'wp-auto-republish' ),
+    'name'        => 'wpar_plugin_individual_post_option',
+) );
+$this->doSettingsSection( array(
+    'id'          => 'wpar-actions',
+    'class'       => 'wpar-single d-none',
+    'title'       => __( 'Republish Actions', 'wp-auto-republish' ),
+    'description' => __( 'Configure the Per Post based Instant Republish settings here.', 'wp-auto-republish' ),
+    'name'        => 'wpar_plugin_actions_republish_option',
+) );
+$this->subMenu( array(
+    'social-general' => '<i class="fas fa-cog"></i>' . esc_html__( 'General', 'wp-auto-republish' ),
+    'facebook'       => '<i class="fab fa-facebook"></i>' . esc_html__( 'Facebook', 'wp-auto-republish' ),
+    'twitter'        => '<i class="fab fa-square-x-twitter"></i>' . esc_html__( 'X (Twitter)', 'wp-auto-republish' ),
+    'linkedin'       => '<i class="fab fa-linkedin-in"></i>' . esc_html__( 'Linkedin', 'wp-auto-republish' ),
+    'pinterest'      => '<i class="fab fa-pinterest"></i>' . esc_html__( 'Pinterest', 'wp-auto-republish' ),
+    'tumblr'         => '<i class="fab fa-tumblr"></i>' . esc_html__( 'Tumblr', 'wp-auto-republish' ),
+), 'social' );
+$this->doSettingsSection( array(
+    'id'          => 'wpar-social-general',
+    'class'       => 'wpar-social d-none',
+    'title'       => __( 'General Settings', 'wp-auto-republish' ),
+    'description' => __( 'General Settings for Social Sharing.', 'wp-auto-republish' ),
+    'name'        => 'wpar_plugin_social_general_option',
+) );
+$this->doSettingsSection( array(
+    'id'          => 'wpar-facebook',
+    'class'       => 'wpar-social d-none',
+    'title'       => __( 'Facebook Settings', 'wp-auto-republish' ),
+    'description' => sprintf(
+    /* translators: Documentation Link. */
+    __( 'Setup Facebook Page and Group Sharing from here. %s', 'wp-auto-republish' ),
+    '<a href="https://wprevivepress.com/docs-topics/social/" target="_blank">' . __( 'Learn More', 'wp-auto-republish' ) . '</a>'
+),
+    'name'        => 'wpar_plugin_facebook_option',
+    'type'        => 'facebook',
+) );
+$this->doSettingsSection( array(
+    'id'          => 'wpar-twitter',
+    'class'       => 'wpar-social d-none',
+    'title'       => __( 'X (Twitter) Settings', 'wp-auto-republish' ),
+    'description' => sprintf(
+    /* translators: Documentation Link. */
+    __( 'Setup X (Twitter) Profile Sharing from here. %s', 'wp-auto-republish' ),
+    '<a href="https://wprevivepress.com/docs-topics/social/" target="_blank">' . __( 'Learn More', 'wp-auto-republish' ) . '</a>'
+),
+    'name'        => 'wpar_plugin_twitter_option',
+    'type'        => 'twitter',
+) );
+$this->doSettingsSection( array(
+    'id'          => 'wpar-linkedin',
+    'class'       => 'wpar-social d-none',
+    'title'       => __( 'Linkedin Settings', 'wp-auto-republish' ),
+    'description' => sprintf(
+    /* translators: Documentation Link. */
+    __( 'Setup Linkedin Profile Sharing from here. %s', 'wp-auto-republish' ),
+    '<a href="https://wprevivepress.com/docs-topics/social/" target="_blank">' . __( 'Learn More', 'wp-auto-republish' ) . '</a>'
+),
+    'name'        => 'wpar_plugin_linkedin_option',
+    'type'        => 'linkedin',
+) );
+$this->doSettingsSection( array(
+    'id'          => 'wpar-pinterest',
+    'class'       => 'wpar-social d-none',
+    'title'       => __( 'Pinterest Settings', 'wp-auto-republish' ),
+    'description' => sprintf(
+    /* translators: Documentation Link. */
+    __( 'Setup Pinterest Profile Sharing from here. %s', 'wp-auto-republish' ),
+    '<a href="https://wprevivepress.com/docs-topics/social/" target="_blank">' . __( 'Learn More', 'wp-auto-republish' ) . '</a>'
+),
+    'name'        => 'wpar_plugin_pinterest_option',
+    'type'        => 'pinterest',
+) );
+$this->doSettingsSection( array(
+    'id'          => 'wpar-tumblr',
+    'class'       => 'wpar-social d-none',
+    'title'       => __( 'Tumblr Settings', 'wp-auto-republish' ),
+    'description' => sprintf(
+    /* translators: Documentation Link. */
+    __( 'Setup Tumblr Profile Sharing from here. %s', 'wp-auto-republish' ),
+    '<a href="https://wprevivepress.com/docs-topics/social/" target="_blank">' . __( 'Learn More', 'wp-auto-republish' ) . '</a>'
+),
+    'name'        => 'wpar_plugin_tumblr_option',
+    'type'        => 'tumblr',
+) );
+$this->doSettingsSection( array(
+    'id'          => 'wpar-email',
+    'class'       => 'wpar-email',
+    'title'       => __( 'Email Settings', 'wp-auto-republish' ),
+    'description' => __( 'Setup Email Notification settings from here.', 'wp-auto-republish' ),
+    'name'        => 'wpar_plugin_email_notify_option',
+) );
+$this->doSettingsSection( array(
+    'id'          => 'wpar-advanced',
+    'class'       => 'wpar-advanced',
+    'title'       => __( 'Advanced Options', 'wp-auto-republish' ),
+    'description' => __( 'Change some uncommon but essential settings here.', 'wp-auto-republish' ),
+    'name'        => 'wpar_plugin_advanced_option',
+) );
+//}
 ?>
                 </form>
                 <div id="wpar-tools" class="postbox wpar-tools d-none">

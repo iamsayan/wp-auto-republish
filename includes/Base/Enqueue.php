@@ -109,9 +109,9 @@ class Enqueue extends BaseController
         );
         wp_register_style(
             'revivepress-fa',
-            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css',
+            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
             array(),
-            '5.15.4'
+            '6.5.1'
         );
         
         if ( 'toplevel_page_revivepress' === $hook ) {

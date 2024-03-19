@@ -135,7 +135,7 @@ class Database
         // Retrieve the settings from the file and convert the json object to an array.
         $settings = (array) json_decode( file_get_contents( $import_file ) );
         // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-        update_option( 'wpar_plugin_settings', $settings );
+        update_option( 'wpar_plugin_settings', $settings, false );
         // set temporary transient for admin notice
         set_transient( 'rvp_import_db_done', true );
         wp_safe_redirect( add_query_arg( 'page', 'revivepress', admin_url( 'admin.php' ) ) );
@@ -149,6 +149,9 @@ class Database
     {
         // security check
         $this->verify_nonce();
+        if ( ! current_user_can( 'manage_options' ) ) {
+            $this->error( __( 'Error: Missing permission!', 'wp-auto-republish' ) );
+        }
         $option = get_option( 'wpar_plugin_settings' );
         $this->success( array(
             'settings_data' => wp_json_encode( $option ),
@@ -162,6 +165,9 @@ class Database
     {
         // security check
         $this->verify_nonce();
+        if ( ! current_user_can( 'manage_options' ) ) {
+            $this->error( __( 'Error: Missing permission!', 'wp-auto-republish' ) );
+        }
         if ( ! isset( $_REQUEST['settings_data'] ) ) {
             $this->error();
         }
@@ -170,7 +176,7 @@ class Database
         $settings = (array) json_decode( $data );
         
         if ( ! empty($settings) && is_array( $settings ) ) {
-            update_option( 'wpar_plugin_settings', $settings );
+            update_option( 'wpar_plugin_settings', $settings, false );
             // set temporary transient for admin notice
             set_transient( 'rvp_import_db_done', true );
         }

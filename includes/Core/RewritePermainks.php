@@ -213,7 +213,7 @@ class RewritePermainks
 		check_admin_referer( 'rvp_sync_permalink' );
 			
 		if ( 'hide' === $_REQUEST['rvp_sync_permalink'] ) {
-			update_option( 'revivepress_hide_permalink_notice', true );
+			update_option( 'revivepress_hide_permalink_notice', true, false );
 		}
 
 		if ( 'yes' === $_REQUEST['rvp_sync_permalink'] ) {
