@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Permalink Rewrite class.
  */
-class RewritePermainks
+class RewritePermalinks
 {
 	use Hooker;
     use SettingsData;

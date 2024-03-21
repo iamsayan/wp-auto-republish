@@ -105,7 +105,7 @@ class Updates extends BaseController
             'heading'  => __( 'RevivePress', 'wp-auto-republish' ),
             'message'  => sprintf(
             /* translators: %s: settings page link */
-            __( 'We have introduced several performance improvements along with completely redesigned UI. WPML & OneSignal Support are also added in the Premium Version. Go to %s to review & configure the plugin settings.', 'wp-auto-republish' ),
+            __( 'Go to %s to review & configure the plugin settings.', 'wp-auto-republish' ),
             '<a href="' . esc_url( add_query_arg( 'page', 'revivepress', admin_url( 'admin.php' ) ) ) . '">' . __( 'RevivePress > Dashbaord', 'wp-auto-republish' ) . '</a>'
         ),
             'version'  => '1.3.2',

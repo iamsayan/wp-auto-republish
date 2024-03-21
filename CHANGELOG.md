@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.5.7
+Release Date: 21st March, 2024
+
+* Improved: WP Option Autoloading Performance.
+* Updated: Action Schedular Library to v3.7.3.
+* Security & Bug Fixes.
+* Compatibility with WordPress v6.5.
+
 ## 1.5.6
 Release Date: 14th January, 2024
 

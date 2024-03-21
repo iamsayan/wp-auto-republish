@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: RevivePress 1.5.6.1\n"
+"Project-Id-Version: RevivePress 1.5.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-auto-republish\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-03-16T10:09:14+00:00\n"
+"POT-Creation-Date: 2024-03-21T08:02:56+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: wp-auto-republish\n"
@@ -1030,15 +1030,15 @@ msgid "Nope&#44; maybe later"
 msgstr ""
 
 #. translators: 1: WordPress permalink tags, 2: RevivePress permalink tags.
-#: includes/Core/RewritePermainks.php:193
+#: includes/Core/RewritePermalinks.php:193
 msgid "As it seems that your permalinks structure contains date, please use %1$s instead of %2$s respectively. Otherwise, it may create SEO issues. But, if you want to use different permalink structure everytime after republish, you can safely dismiss this warning."
 msgstr ""
 
-#: includes/Core/RewritePermainks.php:198
+#: includes/Core/RewritePermalinks.php:198
 msgid "Fix Permalink Structure"
 msgstr ""
 
-#: includes/Core/RewritePermainks.php:199
+#: includes/Core/RewritePermalinks.php:199
 msgid "Dismiss Notice"
 msgstr ""
 
@@ -1445,7 +1445,7 @@ msgstr ""
 
 #. translators: %s: settings page link
 #: includes/Tools/Updates.php:108
-msgid "We have introduced several performance improvements along with completely redesigned UI. WPML & OneSignal Support are also added in the Premium Version. Go to %s to review & configure the plugin settings."
+msgid "Go to %s to review & configure the plugin settings."
 msgstr ""
 
 #: includes/Tools/Updates.php:109
