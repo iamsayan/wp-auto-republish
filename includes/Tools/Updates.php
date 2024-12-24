@@ -19,8 +19,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class Updates extends BaseController
 {
-    use Ajax ;
-    use Hooker ;
+    use  Ajax ;
+    use  Hooker ;
 
     /**
      * Updates that need to be run
@@ -47,6 +47,9 @@ class Updates extends BaseController
      */
     public function do_updates()
     {
+        if ( ! current_user_can( 'manage_options' ) ) {
+            return;
+        }
         $installed_version = get_option( 'revivepress_version', '1.0.0' );
         // Maybe it's the first install.
         if ( ! $installed_version ) {
@@ -67,7 +70,7 @@ class Updates extends BaseController
             
             if ( version_compare( $installed_version, $version, '<' ) ) {
                 include_once $path;
-                update_option( 'revivepress_version', $version );
+                update_option( 'revivepress_version', $version, false );
             }        
 }
         // Save install date.
@@ -77,7 +80,7 @@ class Updates extends BaseController
             // phpcs:ignore
         }
         
-        update_option( 'revivepress_version', $this->version );
+        update_option( 'revivepress_version', $this->version, false );
     }
     
     /**
@@ -91,15 +94,18 @@ class Updates extends BaseController
      */
     public function admin_pointer( $hook_suffix )
     {
+        if ( ! current_user_can( 'manage_options' ) ) {
+            return;
+        }
         if ( ! in_array( $hook_suffix, array( 'index.php', 'plugins.php' ), true ) ) {
             return;
         }
-        $db_version = get_option( 'revivepress_db_version', '1.0.0' );
+        $db_version = get_option( 'revivepress_db_version', '1.0.0', false );
         $options = array(
             'heading'  => __( 'RevivePress', 'wp-auto-republish' ),
             'message'  => sprintf(
             /* translators: %s: settings page link */
-            __( 'We have introduced several performance improvements along with completely redesigned UI. WPML & OneSignal Support are also added in the Premium Version. Go to %s to review & configure the plugin settings.', 'wp-auto-republish' ),
+            __( 'Go to %s to review & configure the plugin settings.', 'wp-auto-republish' ),
             '<a href="' . esc_url( add_query_arg( 'page', 'revivepress', admin_url( 'admin.php' ) ) ) . '">' . __( 'RevivePress > Dashbaord', 'wp-auto-republish' ) . '</a>'
         ),
             'version'  => '1.3.2',
@@ -107,7 +113,7 @@ class Updates extends BaseController
         );
         
         if ( ! version_compare( $db_version, $options['version'], '<' ) ) {
-            update_option( 'revivepress_db_version', $this->version );
+            update_option( 'revivepress_db_version', $this->version, false );
             return;
         }
         
@@ -131,7 +137,10 @@ class Updates extends BaseController
     {
         // security check
         $this->verify_nonce();
-        update_option( 'revivepress_db_version', $this->version );
+        if ( ! current_user_can( 'manage_options' ) ) {
+            $this->error();
+        }
+        update_option( 'revivepress_db_version', $this->version, false );
         $this->success();
     }
 }

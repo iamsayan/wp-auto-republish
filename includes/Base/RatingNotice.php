@@ -77,13 +77,13 @@ class RatingNotice
 		check_admin_referer( 'rvp_rating_nonce' );
 
 		if ( 'dismiss' === $_REQUEST['rvp_rating_notice'] ) {
-			update_option( 'wpar_plugin_dismiss_rating_notice', '1' );
+			update_option( 'wpar_plugin_dismiss_rating_notice', '1', false );
 		}
 	
 		if ( 'later' === $_REQUEST['rvp_rating_notice'] ) {
-			update_option( 'wpar_plugin_no_thanks_rating_notice', '1' );
-			update_option( 'wpar_plugin_dismiss_rating_notice', '1' );
-			update_option( 'wpar_plugin_dismissed_time', time() );
+			update_option( 'wpar_plugin_no_thanks_rating_notice', '1', false );
+			update_option( 'wpar_plugin_dismiss_rating_notice', '1', false );
+			update_option( 'wpar_plugin_dismissed_time', time(), false );
 		}
 	
 		wp_safe_redirect( remove_query_arg( array( 'rvp_rating_notice', '_wpnonce' ) ) );
@@ -98,7 +98,7 @@ class RatingNotice
 		
         if ( ! $installed_time ) {
             $installed_time = time();
-            update_option( 'wpar_plugin_installed_time', $installed_time );
+            update_option( 'wpar_plugin_installed_time', $installed_time, false );
         }
 
         return $installed_time;

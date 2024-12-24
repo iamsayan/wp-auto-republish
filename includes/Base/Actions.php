@@ -19,9 +19,9 @@ defined( 'ABSPATH' ) || exit;
  */
 class Actions
 {
-    use Ajax ;
-    use Hooker ;
-    use HelperFunctions ;
+    use  Ajax ;
+    use  Hooker ;
+    use  HelperFunctions ;
 
     /**
      * Register functions.

@@ -18,8 +18,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class RepublishInfo
 {
-    use Hooker ;
-    use SettingsData ;
+    use  Hooker ;
+    use  SettingsData ;
 
     /**
      * Register functions.

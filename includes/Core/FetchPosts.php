@@ -19,9 +19,9 @@ defined( 'ABSPATH' ) || exit;
  */
 class FetchPosts
 {
-    use HelperFunctions ;
-    use Hooker ;
-    use Scheduler ;
+    use  HelperFunctions ;
+    use  Hooker ;
+    use  Scheduler ;
 
     /**
      * Register functions.
@@ -70,7 +70,7 @@ class FetchPosts
         $timestamp = $this->current_timestamp();
         $auto_forward = $this->do_filter( 'enable_auto_forward', true );
         if ( false === $auto_forward ) {
-            update_option( 'wpar_next_scheduled_timestamp', $timestamp );
+            update_option( 'wpar_next_scheduled_timestamp', $timestamp, false );
         }
         $weekdays = $this->get_data( 'wpar_days', array(
             'sun',
@@ -83,8 +83,8 @@ class FetchPosts
         ) );
         
         if ( in_array( lcfirst( date( 'D', $timestamp ) ), $weekdays, true ) ) {
-            update_option( 'wpar_next_scheduled_timestamp', $timestamp );
-            update_option( 'wpar_next_eligible_date', date( 'd/m/Y', $timestamp ) );
+            update_option( 'wpar_next_scheduled_timestamp', $timestamp, false );
+            update_option( 'wpar_next_eligible_date', date( 'd/m/Y', $timestamp ), false );
         } else {
             delete_option( 'wpar_next_eligible_date' );
         }
@@ -101,7 +101,7 @@ class FetchPosts
             // Lock the process to prevent duplicate schedules for 30 seconds.
             set_transient( 'wpar_in_progress', true, 30 );
             // Update timestamp reference.
-            update_option( 'wpar_last_global_cron_run', $this->current_timestamp() );
+            update_option( 'wpar_last_global_cron_run', $this->current_timestamp(), false );
             // Create Tasks.
             $this->create_tasks();
         }
@@ -438,7 +438,7 @@ class FetchPosts
             $post_ids = array();
         }
         $post_ids = $this->do_filter( 'post_ids_before_store', $post_ids, $post_type );
-        update_option( 'wpar_global_republish_post_ids', \wp_parse_id_list( array_merge( $post_ids, $ids ) ) );
+        update_option( 'wpar_global_republish_post_ids', \wp_parse_id_list( array_merge( $post_ids, $ids ) ), false );
     }
     
     /**

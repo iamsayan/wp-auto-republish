@@ -16,10 +16,6 @@ class ComposerStaticInit0ca75cc57cf56088d3266a28d92f6120
         array (
             'RevivePress\\' => 12,
         ),
-        'C' => 
-        array (
-            'Composer\\CaBundle\\' => 18,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -27,14 +23,9 @@ class ComposerStaticInit0ca75cc57cf56088d3266a28d92f6120
         array (
             0 => __DIR__ . '/../..' . '/includes',
         ),
-        'Composer\\CaBundle\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
-        ),
     );
 
     public static $classMap = array (
-        'Composer\\CaBundle\\CaBundle' => __DIR__ . '/..' . '/composer/ca-bundle/src/CaBundle.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'RevivePress\\Api\\Callbacks\\AdminCallbacks' => __DIR__ . '/../..' . '/includes/Api/Callbacks/AdminCallbacks.php',
         'RevivePress\\Api\\Callbacks\\ManagerCallbacks' => __DIR__ . '/../..' . '/includes/Api/Callbacks/ManagerCallbacks.php',
@@ -51,7 +42,7 @@ class ComposerStaticInit0ca75cc57cf56088d3266a28d92f6120
         'RevivePress\\Core\\FetchPosts' => __DIR__ . '/../..' . '/includes/Core/FetchPosts.php',
         'RevivePress\\Core\\PostRepublish' => __DIR__ . '/../..' . '/includes/Core/PostRepublish.php',
         'RevivePress\\Core\\RepublishInfo' => __DIR__ . '/../..' . '/includes/Core/RepublishInfo.php',
-        'RevivePress\\Core\\RewritePermainks' => __DIR__ . '/../..' . '/includes/Core/RewritePermainks.php',
+        'RevivePress\\Core\\RewritePermalinks' => __DIR__ . '/../..' . '/includes/Core/RewritePermalinks.php',
         'RevivePress\\Core\\SiteCache' => __DIR__ . '/../..' . '/includes/Core/SiteCache.php',
         'RevivePress\\Helpers\\Ajax' => __DIR__ . '/../..' . '/includes/Helpers/Ajax.php',
         'RevivePress\\Helpers\\Fields' => __DIR__ . '/../..' . '/includes/Helpers/Fields.php',

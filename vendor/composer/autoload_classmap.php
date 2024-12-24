@@ -6,7 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Composer\\CaBundle\\CaBundle' => $vendorDir . '/composer/ca-bundle/src/CaBundle.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'RevivePress\\Api\\Callbacks\\AdminCallbacks' => $baseDir . '/includes/Api/Callbacks/AdminCallbacks.php',
     'RevivePress\\Api\\Callbacks\\ManagerCallbacks' => $baseDir . '/includes/Api/Callbacks/ManagerCallbacks.php',
@@ -23,7 +22,7 @@ return array(
     'RevivePress\\Core\\FetchPosts' => $baseDir . '/includes/Core/FetchPosts.php',
     'RevivePress\\Core\\PostRepublish' => $baseDir . '/includes/Core/PostRepublish.php',
     'RevivePress\\Core\\RepublishInfo' => $baseDir . '/includes/Core/RepublishInfo.php',
-    'RevivePress\\Core\\RewritePermainks' => $baseDir . '/includes/Core/RewritePermainks.php',
+    'RevivePress\\Core\\RewritePermalinks' => $baseDir . '/includes/Core/RewritePermalinks.php',
     'RevivePress\\Core\\SiteCache' => $baseDir . '/includes/Core/SiteCache.php',
     'RevivePress\\Helpers\\Ajax' => $baseDir . '/includes/Helpers/Ajax.php',
     'RevivePress\\Helpers\\Fields' => $baseDir . '/includes/Helpers/Fields.php',

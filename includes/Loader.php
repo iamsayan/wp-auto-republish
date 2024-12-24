@@ -31,7 +31,7 @@ final class Loader
             Base\RatingNotice::class,
             Core\FetchPosts::class,
             Core\PostRepublish::class,
-            Core\RewritePermainks::class,
+            Core\RewritePermalinks::class,
             Core\SiteCache::class,
             Core\RepublishInfo::class,
             Tools\Database::class,
