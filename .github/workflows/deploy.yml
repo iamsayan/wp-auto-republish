@@ -7,12 +7,15 @@ on:
 jobs:
   deploy:
     name: New release
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     environment: wp.org plugin
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+
+    - name: Install Subversion
+      run: sudo apt-get install subversion
       
     - name: WordPress Plugin Deploy
       id: deploy
