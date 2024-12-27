@@ -4,9 +4,10 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0ca75cc57cf56088d3266a28d92f6120
+class ComposerStaticInit8e82ff72b5e9bc15833462a0f03d3fcf
 {
     public static $files = array (
+        '8d50dc88e56bace65e1e72f6017983ed' => __DIR__ . '/..' . '/freemius/wordpress-sdk/start.php',
         '6116bb3c2e739c8baa180dc51ba4c9fe' => __DIR__ . '/..' . '/woocommerce/action-scheduler/action-scheduler.php',
         '1a19a63a1a4b80ac8fcb008711e9450e' => __DIR__ . '/../..' . '/functions.php',
     );
@@ -48,6 +49,7 @@ class ComposerStaticInit0ca75cc57cf56088d3266a28d92f6120
         'RevivePress\\Helpers\\Fields' => __DIR__ . '/../..' . '/includes/Helpers/Fields.php',
         'RevivePress\\Helpers\\HelperFunctions' => __DIR__ . '/../..' . '/includes/Helpers/HelperFunctions.php',
         'RevivePress\\Helpers\\Hooker' => __DIR__ . '/../..' . '/includes/Helpers/Hooker.php',
+        'RevivePress\\Helpers\\Logger' => __DIR__ . '/../..' . '/includes/Helpers/Logger.php',
         'RevivePress\\Helpers\\Scheduler' => __DIR__ . '/../..' . '/includes/Helpers/Scheduler.php',
         'RevivePress\\Helpers\\SettingsData' => __DIR__ . '/../..' . '/includes/Helpers/SettingsData.php',
         'RevivePress\\Helpers\\Sitepress' => __DIR__ . '/../..' . '/includes/Helpers/Sitepress.php',
@@ -60,9 +62,9 @@ class ComposerStaticInit0ca75cc57cf56088d3266a28d92f6120
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit0ca75cc57cf56088d3266a28d92f6120::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit0ca75cc57cf56088d3266a28d92f6120::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit0ca75cc57cf56088d3266a28d92f6120::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit8e82ff72b5e9bc15833462a0f03d3fcf::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit8e82ff72b5e9bc15833462a0f03d3fcf::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit8e82ff72b5e9bc15833462a0f03d3fcf::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -43,6 +43,7 @@
 		"optimize-autoloader": true
 	},
     "require": {
-        "woocommerce/action-scheduler": "^3.1"
+        "woocommerce/action-scheduler": "^3.1",
+        "freemius/wordpress-sdk": "^2.10"
     }
 }

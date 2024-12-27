@@ -12,32 +12,26 @@
 
 <div id="wpar-nav-container" class="wpar-admin-toolbar">
 	<h2>RevivePress<span class="title-count<?php 
-echo  esc_attr( $class_name ) ;
+echo esc_attr( $class_name );
 ?>"><?php 
-echo  esc_html( $this->tag ) ;
-echo  esc_html( $this->version ) ;
+echo esc_html( $this->tag );
+echo esc_html( $this->version );
 ?></span></h2>
     <a href="#general" class="wpar-tab is-active" id="wpar-tab-general"><?php 
 esc_html_e( 'General', 'wp-auto-republish' );
 ?></a>
-    <?php 
-//if ( revivepress_fs()->can_use_premium_code__premium_only() ) {
-?>
-        <a href="#single" class="wpar-tab" id="wpar-tab-single"><?php 
+    <a href="#single" class="wpar-tab" id="wpar-tab-single"><?php 
 esc_html_e( 'Single', 'wp-auto-republish' );
 ?></a>
-        <a href="#social" class="wpar-tab" id="wpar-tab-social"><?php 
+    <a href="#social" class="wpar-tab" id="wpar-tab-social"><?php 
 esc_html_e( 'Social', 'wp-auto-republish' );
 ?></a>
-        <a href="#email" class="wpar-tab" id="wpar-tab-email"><?php 
+    <a href="#email" class="wpar-tab" id="wpar-tab-email"><?php 
 esc_html_e( 'Notification', 'wp-auto-republish' );
 ?></a>
-        <a href="#advanced" class="wpar-tab" id="wpar-tab-advanced"><?php 
+    <a href="#advanced" class="wpar-tab" id="wpar-tab-advanced"><?php 
 esc_html_e( 'Advanced', 'wp-auto-republish' );
 ?></a>
-    <?php 
-//}
-?>
     <a href="#tools" class="wpar-tab" id="wpar-tab-tools"><?php 
 esc_html_e( 'Tools', 'wp-auto-republish' );
 ?></a>
@@ -47,7 +41,7 @@ esc_html_e( 'Help', 'wp-auto-republish' );
     <?php 
 ?>
         <a href="<?php 
-echo  esc_url( revivepress_fs()->get_upgrade_url() ) ;
+echo esc_url( revivepress_fs()->get_upgrade_url() );
 ?>" target="_blank" class="wpar-tab type-link btn-upgrade wpar-upgrade" id="wpar-tab-upgrade">
             <span class="dashicons dashicons-admin-plugins"></span>
             <p><?php 
@@ -85,19 +79,17 @@ $this->subMenu( array(
     'filter'    => '<i class="fas fa-filter"></i>' . esc_html__( 'Filter Options', 'wp-auto-republish' ),
     'display'   => '<i class="fas fa-eye"></i>' . esc_html__( 'Visibility', 'wp-auto-republish' ),
 ), 'general' );
-// $text = encrypt_my( 'sayan', 5 );
-// $text .= decrypt_my( 'sayan', 5 );
 $this->doSettingsSection( array(
     'id'          => 'wpar-configure',
     'class'       => 'wpar-general d-none',
     'title'       => __( 'General Settings', 'wp-auto-republish' ),
-    'description' => sprintf(
-    '%1$s <span class="wpar-last-run-timestamp">%2$s</span>',
-    /* translators: Last Global Republish run time. */
-    __( 'Configure the Global Republish settings from here.', 'wp-auto-republish' ),
-    /* translators: Last Global Republish run time. */
-    sprintf( __( 'Last run: %s', 'wp-auto-republish' ), date_i18n( $format, $last ) )
-),
+    'description' => sprintf( 
+        '%1$s <span class="wpar-last-run-timestamp">%2$s</span>',
+        /* translators: Last Global Republish run time. */
+        __( 'Configure the Global Republish settings from here.', 'wp-auto-republish' ),
+        /* translators: Last Global Republish run time. */
+        sprintf( __( 'Last run: %s', 'wp-auto-republish' ), date_i18n( $format, $last ) )
+    ),
     'name'        => 'wpar_plugin_general_option',
 ) );
 $this->doSettingsSection( array(
@@ -121,25 +113,16 @@ $this->doSettingsSection( array(
     'description' => __( 'You can control frontend republish info visiblity here.', 'wp-auto-republish' ),
     'name'        => 'wpar_plugin_republish_info_option',
 ) );
-//if ( revivepress_fs()->can_use_premium_code__premium_only() ) {
 $this->subMenu( array(
-    'metabox'    => '<i class="fas fa-clipboard"></i>' . esc_html__( 'Post Metabox', 'wp-auto-republish' ),
-    'individual' => '<i class="fas fa-history"></i>' . esc_html__( 'Individual Republish', 'wp-auto-republish' ),
-    'actions'    => '<i class="far fa-clock"></i>' . esc_html__( 'Republish Actions', 'wp-auto-republish' ),
+    'controls' => '<i class="fas fa-clipboard"></i>' . esc_html__( 'Republish Controls', 'wp-auto-republish' ),
+    'actions'  => '<i class="far fa-clock"></i>' . esc_html__( 'Republish Actions', 'wp-auto-republish' ),
 ), 'single' );
 $this->doSettingsSection( array(
-    'id'          => 'wpar-metabox',
+    'id'          => 'wpar-controls',
     'class'       => 'wpar-single d-none',
-    'title'       => __( 'Single Posts Settings', 'wp-auto-republish' ),
+    'title'       => __( 'Republish Controls', 'wp-auto-republish' ),
     'description' => __( 'Configure the Per Post based Metabox settings here.', 'wp-auto-republish' ),
     'name'        => 'wpar_plugin_metabox_option',
-) );
-$this->doSettingsSection( array(
-    'id'          => 'wpar-individual',
-    'class'       => 'wpar-single d-none',
-    'title'       => __( 'Individual Republish', 'wp-auto-republish' ),
-    'description' => __( 'Configure the Per Post based Metabox settings here.', 'wp-auto-republish' ),
-    'name'        => 'wpar_plugin_individual_post_option',
 ) );
 $this->doSettingsSection( array(
     'id'          => 'wpar-actions',
@@ -167,11 +150,11 @@ $this->doSettingsSection( array(
     'id'          => 'wpar-facebook',
     'class'       => 'wpar-social d-none',
     'title'       => __( 'Facebook Settings', 'wp-auto-republish' ),
-    'description' => sprintf(
-    /* translators: Documentation Link. */
-    __( 'Setup Facebook Page and Group Sharing from here. %s', 'wp-auto-republish' ),
-    '<a href="https://wprevivepress.com/docs-topics/social/" target="_blank">' . __( 'Learn More', 'wp-auto-republish' ) . '</a>'
-),
+    'description' => sprintf( 
+        /* translators: Documentation Link. */
+        __( 'Setup Facebook Page and Group Sharing from here. %s', 'wp-auto-republish' ),
+        '<a href="https://wprevivepress.com/docs-topics/social/" target="_blank">' . __( 'Learn More', 'wp-auto-republish' ) . '</a>'
+    ),
     'name'        => 'wpar_plugin_facebook_option',
     'type'        => 'facebook',
 ) );
@@ -179,11 +162,11 @@ $this->doSettingsSection( array(
     'id'          => 'wpar-twitter',
     'class'       => 'wpar-social d-none',
     'title'       => __( 'X (Twitter) Settings', 'wp-auto-republish' ),
-    'description' => sprintf(
-    /* translators: Documentation Link. */
-    __( 'Setup X (Twitter) Profile Sharing from here. %s', 'wp-auto-republish' ),
-    '<a href="https://wprevivepress.com/docs-topics/social/" target="_blank">' . __( 'Learn More', 'wp-auto-republish' ) . '</a>'
-),
+    'description' => sprintf( 
+        /* translators: Documentation Link. */
+        __( 'Setup X (Twitter) Profile Sharing from here. %s', 'wp-auto-republish' ),
+        '<a href="https://wprevivepress.com/docs-topics/social/" target="_blank">' . __( 'Learn More', 'wp-auto-republish' ) . '</a>'
+    ),
     'name'        => 'wpar_plugin_twitter_option',
     'type'        => 'twitter',
 ) );
@@ -191,11 +174,11 @@ $this->doSettingsSection( array(
     'id'          => 'wpar-linkedin',
     'class'       => 'wpar-social d-none',
     'title'       => __( 'Linkedin Settings', 'wp-auto-republish' ),
-    'description' => sprintf(
-    /* translators: Documentation Link. */
-    __( 'Setup Linkedin Profile Sharing from here. %s', 'wp-auto-republish' ),
-    '<a href="https://wprevivepress.com/docs-topics/social/" target="_blank">' . __( 'Learn More', 'wp-auto-republish' ) . '</a>'
-),
+    'description' => sprintf( 
+        /* translators: Documentation Link. */
+        __( 'Setup Linkedin Profile Sharing from here. %s', 'wp-auto-republish' ),
+        '<a href="https://wprevivepress.com/docs-topics/social/" target="_blank">' . __( 'Learn More', 'wp-auto-republish' ) . '</a>'
+    ),
     'name'        => 'wpar_plugin_linkedin_option',
     'type'        => 'linkedin',
 ) );
@@ -203,11 +186,11 @@ $this->doSettingsSection( array(
     'id'          => 'wpar-pinterest',
     'class'       => 'wpar-social d-none',
     'title'       => __( 'Pinterest Settings', 'wp-auto-republish' ),
-    'description' => sprintf(
-    /* translators: Documentation Link. */
-    __( 'Setup Pinterest Profile Sharing from here. %s', 'wp-auto-republish' ),
-    '<a href="https://wprevivepress.com/docs-topics/social/" target="_blank">' . __( 'Learn More', 'wp-auto-republish' ) . '</a>'
-),
+    'description' => sprintf( 
+        /* translators: Documentation Link. */
+        __( 'Setup Pinterest Profile Sharing from here. %s', 'wp-auto-republish' ),
+        '<a href="https://wprevivepress.com/docs-topics/social/" target="_blank">' . __( 'Learn More', 'wp-auto-republish' ) . '</a>'
+    ),
     'name'        => 'wpar_plugin_pinterest_option',
     'type'        => 'pinterest',
 ) );
@@ -215,11 +198,11 @@ $this->doSettingsSection( array(
     'id'          => 'wpar-tumblr',
     'class'       => 'wpar-social d-none',
     'title'       => __( 'Tumblr Settings', 'wp-auto-republish' ),
-    'description' => sprintf(
-    /* translators: Documentation Link. */
-    __( 'Setup Tumblr Profile Sharing from here. %s', 'wp-auto-republish' ),
-    '<a href="https://wprevivepress.com/docs-topics/social/" target="_blank">' . __( 'Learn More', 'wp-auto-republish' ) . '</a>'
-),
+    'description' => sprintf( 
+        /* translators: Documentation Link. */
+        __( 'Setup Tumblr Profile Sharing from here. %s', 'wp-auto-republish' ),
+        '<a href="https://wprevivepress.com/docs-topics/social/" target="_blank">' . __( 'Learn More', 'wp-auto-republish' ) . '</a>'
+    ),
     'name'        => 'wpar_plugin_tumblr_option',
     'type'        => 'tumblr',
 ) );
@@ -237,7 +220,6 @@ $this->doSettingsSection( array(
     'description' => __( 'Change some uncommon but essential settings here.', 'wp-auto-republish' ),
     'name'        => 'wpar_plugin_advanced_option',
 ) );
-//}
 ?>
                 </form>
                 <div id="wpar-tools" class="postbox wpar-tools d-none">
@@ -246,7 +228,6 @@ $this->sectionHeader( 'Plugin Tools', __( 'Perform database related actions from
 ?>
 				    <div class="inside wpar-inside" style="padding: 10px 20px;">
                         <?php 
-
 if ( current_user_can( 'manage_options' ) ) {
     ?>
                             <div class="wpar-tools-box">
@@ -309,51 +290,50 @@ if ( current_user_can( 'manage_options' ) ) {
                             </div>
                         <?php 
 }
-
 $data = array(
     array(
-		'heading' => __( 'Reset Settings', 'wp-auto-republish' ),
-		'hint'    => __( 'Resetting will delete all custom options to the default settings of the plugin in your database.', 'wp-auto-republish' ),
-		'notice'  => __( 'It will delete all the data relating to this plugin settings. You have to re-configure this plugin again. Do you want to still continue?', 'wp-auto-republish' ),
-		'action'  => 'remove_data',
-		'reload'  => true,
-	),
+        'heading' => __( 'Reset Settings', 'wp-auto-republish' ),
+        'hint'    => __( 'Resetting will delete all custom options to the default settings of the plugin in your database.', 'wp-auto-republish' ),
+        'notice'  => __( 'It will delete all the data relating to this plugin settings. You have to re-configure this plugin again. Do you want to still continue?', 'wp-auto-republish' ),
+        'action'  => 'remove_data',
+        'reload'  => true,
+    ),
     array(
-		'heading' => __( 'De-Schedule Posts', 'wp-auto-republish' ),
-		'hint'    => __( 'It will change the republish date to the original post published date on all posts.', 'wp-auto-republish' ),
-		'notice'  => __( 'It will change the republish date to the original post published date on all posts. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
-		'action'  => 'deschedule_posts',
-	),
+        'heading' => __( 'De-Schedule Posts', 'wp-auto-republish' ),
+        'hint'    => __( 'It will change the republish date to the original post published date on all posts.', 'wp-auto-republish' ),
+        'notice'  => __( 'It will change the republish date to the original post published date on all posts. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
+        'action'  => 'deschedule_posts',
+    ),
     array(
-		'heading' => __( 'Re-Create Missing Database Tables', 'wp-auto-republish' ),
-		'hint'    => __( 'Check if required tables exist and create them if not.', 'wp-auto-republish' ),
-		'action'  => 'recreate_tables',
-		'button'  => __( 'Re-Create Tables', 'wp-auto-republish' ),
-		'type'    => 'blue',
-	),
+        'heading' => __( 'Re-Create Missing Database Tables', 'wp-auto-republish' ),
+        'hint'    => __( 'Check if required tables exist and create them if not.', 'wp-auto-republish' ),
+        'action'  => 'recreate_tables',
+        'button'  => __( 'Re-Create Tables', 'wp-auto-republish' ),
+        'type'    => 'blue',
+    ),
     array(
-		'heading' => __( 'Re-Generate Republish Interval', 'wp-auto-republish' ),
-		'hint'    => __( 'It will regenerate Schedule Auto Republish Process Interval.', 'wp-auto-republish' ),
-		'action'  => 'regenerate_interval',
-		'button'  => __( 'Re-Generate Interval', 'wp-auto-republish' ),
-		'type'    => 'blue',
-		'show'    => ! empty($options['wpar_enable_plugin']),
-	),
+        'heading' => __( 'Re-Generate Republish Interval', 'wp-auto-republish' ),
+        'hint'    => __( 'It will regenerate Schedule Auto Republish Process Interval.', 'wp-auto-republish' ),
+        'action'  => 'regenerate_interval',
+        'button'  => __( 'Re-Generate Interval', 'wp-auto-republish' ),
+        'type'    => 'blue',
+        'show'    => ! empty( $options['wpar_enable_plugin'] ),
+    ),
     array(
-		'heading' => __( 'Re-Generate Republish Schedule', 'wp-auto-republish' ),
-		'hint'    => __( 'It will regenerate Schedule Auto Republish Schedules of Single Posts and Custom Rules.', 'wp-auto-republish' ),
-		'notice'  => __( 'It will remove and re-create all the scheduled or missed republish events relating to global and single post republishing. It may stop previous scheduled republished event. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
-		'action'  => 'regenerate_schedule',
-		'button'  => __( 'Re-Generate Schedule', 'wp-auto-republish' ),
-		'show'    => revivepress_fs()->can_use_premium_code__premium_only(),
-	),
+        'heading' => __( 'Re-Generate Republish Schedule', 'wp-auto-republish' ),
+        'hint'    => __( 'It will regenerate Schedule Auto Republish Schedules of Single Posts and Custom Rules.', 'wp-auto-republish' ),
+        'notice'  => __( 'It will remove and re-create all the scheduled or missed republish events relating to global and single post republishing. It may stop previous scheduled republished event. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
+        'action'  => 'regenerate_schedule',
+        'button'  => __( 'Re-Generate Schedule', 'wp-auto-republish' ),
+        'show'    => revivepress_fs()->can_use_premium_code__premium_only(),
+    ),
     array(
-		'heading' => __( 'Remove Post Meta & Actions', 'wp-auto-republish' ),
-		'hint'    => __( 'Resetting will delete all post metadatas and future action events associated with Post Republish.', 'wp-auto-republish' ),
-		'notice'  => __( 'It will delete all the post meta data & action events relating to global and single post republishing. It may stop previous scheduled republished event. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
-		'action'  => 'remove_meta',
-		'button'  => __( 'Clear Post Metas & Events', 'wp-auto-republish' ),
-	),
+        'heading' => __( 'Remove Post Meta & Actions', 'wp-auto-republish' ),
+        'hint'    => __( 'Resetting will delete all post metadatas and future action events associated with Post Republish.', 'wp-auto-republish' ),
+        'notice'  => __( 'It will delete all the post meta data & action events relating to global and single post republishing. It may stop previous scheduled republished event. Leave if you are not sure what you are doing. Do you want to still continue?', 'wp-auto-republish' ),
+        'action'  => 'remove_meta',
+        'button'  => __( 'Clear Post Metas & Events', 'wp-auto-republish' ),
+    ),
 );
 foreach ( $data as $args ) {
     $box = wp_parse_args( $args, array(
@@ -369,24 +349,24 @@ foreach ( $data as $args ) {
     ?>
                             <div class="wpar-tools-box">
                                 <span><?php 
-    echo  esc_html( $box['heading'] ) ;
+    echo esc_html( $box['heading'] );
     ?></span>
                                 <p>
                                     <?php 
-    echo  esc_html( $box['hint'] ) ;
+    echo esc_html( $box['hint'] );
     ?>
                                 </p>
                                 <p>
                                     <input type="button" class="button button-large button-secondary default wpar-reset" data-type="<?php 
-    echo  esc_attr( $box['type'] ) ;
+    echo esc_attr( $box['type'] );
     ?>" data-action="<?php 
-    echo  esc_attr( $box['action'] ) ;
+    echo esc_attr( $box['action'] );
     ?>" data-reload="<?php 
-    echo  ( $box['reload'] ? 'yes' : 'no' ) ;
+    echo ( $box['reload'] ? 'yes' : 'no' );
     ?>" data-notice="<?php 
-    echo  esc_attr( $box['notice'] ) ;
+    echo esc_attr( $box['notice'] );
     ?>" value="<?php 
-    echo  esc_attr( $box['button'] ) ;
+    echo esc_attr( $box['button'] );
     ?>">
                                 </p>
                             </div>
