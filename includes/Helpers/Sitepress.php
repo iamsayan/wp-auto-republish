@@ -53,13 +53,6 @@ class Sitepress {
 	private $has_home_url = false;
 
 	/**
-	 * Is global language modified
-	 *
-	 * @var boolean
-	 */
-	private $current_lang = false;
-
-	/**
 	 * Main instance
 	 *
 	 * Ensure only one instance is loaded or can be loaded.
@@ -166,6 +159,24 @@ class Sitepress {
 	 */
 	public function get_var() {
 		return $GLOBALS['sitepress'];
+	}
+
+	/**
+	 * Delete cached tax permalink.
+	 *
+	 * @param int    $term_id The term ID.
+	 * @param string $taxonomy The taxonomy name.
+	 * @return void
+	 */
+	public function delete_cached_tax_permalink( $term_id, $taxonomy ) {
+		if ( ! $this->is_active() ) {
+			return;
+		}
+
+		wp_cache_delete(
+			md5( wp_json_encode( array( $term_id, $taxonomy, false ) ) ),
+			'icl_tax_permalink_filter'
+		);
 	}
 
 	/**

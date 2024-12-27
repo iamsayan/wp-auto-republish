@@ -4,7 +4,7 @@
  * Plugin Name: RevivePress
  * Plugin URI: https://wprevivepress.com?utm_source=landing&utm_medium=plugin
  * Description: RevivePress, the all-in-one tool for republishing & cloning old posts and pages which push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.
- * Version: 1.5.7
+ * Version: 1.5.8
  * Author: Sayan Datta
  * Author URI: https://www.sayandatta.co.in
  * License: GPLv3
@@ -61,7 +61,7 @@ if ( ! class_exists( 'RevivePress' ) ) {
 		 *
 		 * @var string
 		 */
-		public $version = '1.5.7';
+		public $version = '1.5.8';
 
 		/**
 		 * Minimum version of WordPress required to run RevivePress.
@@ -80,7 +80,7 @@ if ( ! class_exists( 'RevivePress' ) ) {
 		/**
 		 * Hold install error messages.
 		 *
-		 * @var bool
+		 * @var array
 		 */
 		private $messages = array();
 
@@ -119,11 +119,11 @@ if ( ! class_exists( 'RevivePress' ) ) {
 				return;
 			}
 
-			// Load Freemius.
-			$this->freemius();
-
 			// Include required files.
 			$this->includes();
+
+			// Load Freemius.
+			$this->freemius();
 
 			// Instantiate services.
 			$this->instantiate();
@@ -205,7 +205,7 @@ if ( ! class_exists( 'RevivePress' ) ) {
 			// Init Freemius.
 			revivepress_fs();
 
-			// Load the TablePress plugin icon for the Freemius opt-in/activation screen.
+			// Load the RevivePress plugin icon for the Freemius opt-in/activation screen.
 			revivepress_fs()->add_filter(
 				'plugin_icon',
 				function() {

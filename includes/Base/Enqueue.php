@@ -10,29 +10,26 @@
  */
 namespace RevivePress\Base;
 
-use  RevivePress\Helpers\Hooker ;
-use  RevivePress\Base\BaseController ;
+use RevivePress\Helpers\Hooker;
+use RevivePress\Base\BaseController;
 defined( 'ABSPATH' ) || exit;
 /**
  * Script class.
  */
-class Enqueue extends BaseController
-{
-    use  Hooker ;
+class Enqueue extends BaseController {
+    use Hooker;
 
     /**
      * Register functions.
      */
-    public function register()
-    {
+    public function register() {
         $this->action( 'admin_enqueue_scripts', 'load_assets' );
     }
-    
+
     /**
      * Load admin assets.
      */
-    public function load_assets( $hook )
-    {
+    public function load_assets( $hook ) {
         // Don't load assets on the Freemius opt-in/activation screen.
         if ( revivepress_fs()->is_activation_mode() && revivepress_fs()->is_activation_page() ) {
             return;
@@ -67,11 +64,11 @@ class Enqueue extends BaseController
             'admin.min.css',
             $this->version,
             array(
-				'revivepress-jquery-ui',
-				'revivepress-jquery-ui-timepicker',
-				'revivepress-select2',
-				'revivepress-confirm',
-			)
+                'revivepress-jquery-ui',
+                'revivepress-jquery-ui-timepicker',
+                'revivepress-select2',
+                'revivepress-confirm',
+            )
         );
         $this->load(
             'js',
@@ -100,12 +97,12 @@ class Enqueue extends BaseController
             'admin.min.js',
             $this->version,
             array(
-				'jquery',
-				'jquery-form',
-				'revivepress-datetimepicker',
-				'revivepress-select2',
-				'revivepress-confirm',
-			)
+                'jquery',
+                'jquery-form',
+                'revivepress-datetimepicker',
+                'revivepress-select2',
+                'revivepress-confirm',
+            )
         );
         wp_register_style(
             'revivepress-fa',
@@ -113,7 +110,6 @@ class Enqueue extends BaseController
             array(),
             '6.5.1'
         );
-        
         if ( 'toplevel_page_revivepress' === $hook ) {
             wp_enqueue_style( 'revivepress-select2' );
             wp_enqueue_style( 'revivepress-jquery-ui' );
@@ -138,7 +134,7 @@ class Enqueue extends BaseController
                 'saving'               => __( 'Saving...', 'wp-auto-republish' ),
                 'saving_text'          => __( 'Please wait while we are saving your settings...', 'wp-auto-republish' ),
                 'done'                 => __( 'Done!', 'wp-auto-republish' ),
-                'error'                => __( 'Error!', 'wp-auto-republish' ),
+                'error'                => __( 'Error', 'wp-auto-republish' ),
                 'deleting'             => __( 'Deleting...', 'wp-auto-republish' ),
                 'processing'           => __( 'Processing...', 'wp-auto-republish' ),
                 'warning'              => __( 'Warning!', 'wp-auto-republish' ),
@@ -171,13 +167,13 @@ class Enqueue extends BaseController
                 'is_premium'           => revivepress_fs()->can_use_premium_code__premium_only(),
                 'security'             => wp_create_nonce( 'rvp_admin_nonce' ),
                 'api'                  => array(
-					'root'  => esc_url_raw( get_rest_url() ),
-					'nonce' => ( wp_installing() && ! is_multisite() ? '' : wp_create_nonce( 'wp_rest' ) ),
-				),
+                    'root'  => esc_url_raw( get_rest_url() ),
+                    'nonce' => ( wp_installing() && ! is_multisite() ? '' : wp_create_nonce( 'wp_rest' ) ),
+                ),
             ) );
         }
     }
-    
+
     /**
      * Register CSS & JS wrapper function.
      */
@@ -188,9 +184,7 @@ class Enqueue extends BaseController
         $version,
         $dep = array(),
         $end = true
-    )
-    {
-        
+    ) {
         if ( $type == 'css' ) {
             wp_register_style(
                 'revivepress-' . $handle,

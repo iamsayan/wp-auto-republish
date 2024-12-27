@@ -5,13 +5,9 @@
  */
 defined( 'ABSPATH' ) || exit;
 if ( ! function_exists( 'revivepress_fs' ) ) {
-    function revivepress_fs()
-    {
-        global  $revivepress_fs ;
-        
+    function revivepress_fs() {
+        global $revivepress_fs;
         if ( ! isset( $revivepress_fs ) ) {
-            // Include Freemius SDK.
-            require_once __DIR__ . '/vendor/freemius/start.php';
             $revivepress_fs = fs_dynamic_init( array(
                 'id'             => '5789',
                 'slug'           => 'wp-auto-republish',
@@ -22,18 +18,17 @@ if ( ! function_exists( 'revivepress_fs' ) ) {
                 'has_addons'     => false,
                 'has_paid_plans' => true,
                 'menu'           => array(
-					'slug'        => 'revivepress',
-					'support'     => false,
-					'affiliation' => false,
-				),
+                    'slug'        => 'revivepress',
+                    'support'     => false,
+                    'affiliation' => false,
+                ),
                 'trial'          => array(
-					'days'               => 7,
-					'is_require_payment' => false,
-				),
+                    'days'               => 7,
+                    'is_require_payment' => false,
+                ),
                 'is_live'        => true,
             ) );
         }
-        
         return $revivepress_fs;
     }
 

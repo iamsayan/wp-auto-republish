@@ -13,26 +13,22 @@ namespace RevivePress\Base;
 /**
  * Uninstall class.
  */
-class Uninstall
-{
+class Uninstall {
     /**
      * Run plugin uninstallation process.
      */
-    public static function uninstall()
-    {
+    public static function uninstall() {
         $options = get_option( 'wpar_plugin_settings' );
         if ( ! isset( $options['wpar_remove_plugin_data'] ) || ! ($options['wpar_remove_plugin_data'] == 1) ) {
             return;
         }
-        
         if ( ! is_multisite() ) {
             self::remove_options();
             return;
         }
-        
-        global  $wpdb ;
+        global $wpdb;
         $blog_ids = $wpdb->get_col( "SELECT blog_id FROM {$wpdb->blogs} WHERE archived = '0' AND spam = '0' AND deleted = '0'" );
-        if ( ! empty($blog_ids) ) {
+        if ( ! empty( $blog_ids ) ) {
             foreach ( $blog_ids as $blog_id ) {
                 switch_to_blog( $blog_id );
                 self::remove_options();
@@ -40,13 +36,12 @@ class Uninstall
             }
         }
     }
-    
+
     /**
      * Run plugin uninstallation process.
      */
-    public static function remove_options()
-    {
-        global  $wpdb ;
+    public static function remove_options() {
+        global $wpdb;
         delete_option( 'wpar_plugin_settings' );
         delete_option( 'wpar_republish_log_history' );
         delete_option( 'wpar_dashboard_widget_options' );

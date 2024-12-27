@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.5.8
+Release Date: 27th December, 2024
+
+* Added: Better handling of post IDs storage and retrieval.
+* Improved: Post scheduling logic and performance.
+* Improved: Daily post limit tracking mechanism.
+* Fixed: Issue with post type validation in global republish.
+* Fixed: Incorrect timestamp handling in some cases.
+* Fixed: Post meta cleanup after republishing.
+* Updated: PHP Composer Libraries.
+* Code Optimization & Performance Improvements.
+* Security & Bug Fixes.
+
 ## 1.5.7
 Release Date: 21st March, 2024
 

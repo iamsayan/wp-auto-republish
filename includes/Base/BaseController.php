@@ -13,49 +13,53 @@ namespace RevivePress\Base;
 /**
  * Base Controller class.
  */
-class BaseController
-{
+class BaseController {
     /**
      * Plugin path.
      *
      * @var string
      */
-    public  $plugin_path ;
+    public $plugin_path;
+
     /**
      * Plugin URL.
      *
      * @var string
      */
-    public  $plugin_url ;
+    public $plugin_url;
+
     /**
      * Plugin basename.
      *
      * @var string
      */
-    public  $plugin ;
+    public $plugin;
+
     /**
      * Plugin version.
      *
      * @var string
      */
-    public  $version ;
+    public $version;
+
     /**
      * Plugin name.
      *
      * @var string
      */
-    public  $name ;
+    public $name;
+
     /**
      * Plugin tag.
      *
      * @var string
      */
-    public  $tag ;
+    public $tag;
+
     /**
      * The constructor.
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->plugin_path = REVIVEPRESS_PATH;
         $this->plugin_url = REVIVEPRESS_URL;
         $this->plugin = REVIVEPRESS_BASENAME;

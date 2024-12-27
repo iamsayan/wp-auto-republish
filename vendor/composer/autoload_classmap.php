@@ -28,6 +28,7 @@ return array(
     'RevivePress\\Helpers\\Fields' => $baseDir . '/includes/Helpers/Fields.php',
     'RevivePress\\Helpers\\HelperFunctions' => $baseDir . '/includes/Helpers/HelperFunctions.php',
     'RevivePress\\Helpers\\Hooker' => $baseDir . '/includes/Helpers/Hooker.php',
+    'RevivePress\\Helpers\\Logger' => $baseDir . '/includes/Helpers/Logger.php',
     'RevivePress\\Helpers\\Scheduler' => $baseDir . '/includes/Helpers/Scheduler.php',
     'RevivePress\\Helpers\\SettingsData' => $baseDir . '/includes/Helpers/SettingsData.php',
     'RevivePress\\Helpers\\Sitepress' => $baseDir . '/includes/Helpers/Sitepress.php',

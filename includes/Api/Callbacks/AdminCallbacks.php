@@ -10,69 +10,63 @@
  */
 namespace RevivePress\Api\Callbacks;
 
-use  RevivePress\Base\BaseController ;
+use RevivePress\Base\BaseController;
 defined( 'ABSPATH' ) || exit;
 /**
  * Admin callbacks class.
  */
-class AdminCallbacks extends BaseController
-{
+class AdminCallbacks extends BaseController {
     /**
      * Call dashboard template.
      */
-    public function adminDashboard()
-    {
+    public function adminDashboard() {
         $options = get_option( 'wpar_plugin_settings' );
         $last = get_option( 'wpar_last_global_cron_run' );
         $format = get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' );
         $class_name = ( revivepress_fs()->can_use_premium_code__premium_only() ? ' premium' : '' );
         return require_once $this->plugin_path . 'templates/admin.php';
     }
-    
-    public function subMenu( $items, $class )
-    {
+
+    public function subMenu( $items, $class ) {
         $allowed_html = array(
             'i' => array(
-				'class' => array(),
-			),
+                'class' => array(),
+            ),
         );
         $sub_items = array();
         foreach ( $items as $item => $title ) {
             $sub_items[] = '<a href="#" class="sub-link sub-link-' . esc_attr( $item ) . '" data-type="' . esc_attr( $item ) . '">' . wp_kses( $title, $allowed_html ) . '</a>';
         }
-        
-        if ( ! empty($sub_items) ) {
-            echo  '<div class="postbox sub-links wpar-' . esc_attr( $class ) . ' d-none">' ;
-            echo  join( '<span>&#124;</span>', $sub_items ) ;
+        if ( ! empty( $sub_items ) ) {
+            echo '<div class="postbox sub-links wpar-' . esc_attr( $class ) . ' d-none">';
+            echo join( '<span>&#124;</span>', $sub_items );
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo  '</div>' ;
+            echo '</div>';
         }
     }
-    
-    public function sectionHeader( $title, $description )
-    {
+
+    public function sectionHeader( $title, $description ) {
         ?>
 		<div class="wpar-metabox-holder">
 			<div class="wpar-metabox-td">
 				<h3 class="wpar-metabox-title"><?php 
-        echo  esc_html( $title ) ;
+        echo esc_html( $title );
         ?></h3>
 				<p class="wpar-metabox-description"><?php 
-        echo  wp_kses_post( $description ) ;
+        echo wp_kses_post( $description );
         ?></p>
 			</div>
 		</div>
 		<?php 
     }
-    
-    public function doSettingsSection( $attr )
-    {
+
+    public function doSettingsSection( $attr ) {
         $social_accounts = false;
         ?>
 		<div id="<?php 
-        echo  esc_attr( $attr['id'] ) ;
+        echo esc_attr( $attr['id'] );
         ?>" class="postbox <?php 
-        echo  esc_attr( $attr['class'] ) ;
+        echo esc_attr( $attr['class'] );
         ?>">
 			<?php 
         $this->sectionHeader( $attr['title'], $attr['description'] );
@@ -97,9 +91,8 @@ class AdminCallbacks extends BaseController
 		</div>
 		<?php 
     }
-    
-    public function systemStatus()
-    {
+
+    public function systemStatus() {
         $info = array();
         $info['memory_limit'] = array(
             'label'       => __( 'PHP memory limit' ),
@@ -148,19 +141,19 @@ class AdminCallbacks extends BaseController
             ?>
 						<tr>
 							<td><?php 
-            echo  esc_html( $data['label'] ) ;
+            echo esc_html( $data['label'] );
             ?></td>
 							<td><?php 
-            echo  esc_html( $key ) ;
+            echo esc_html( $key );
             ?></td>
 							<td class="bold"><?php 
-            echo  esc_html( $data['minimum'] ) ;
+            echo esc_html( $data['minimum'] );
             ?></td>
 							<td class="bold"><?php 
-            echo  esc_html( $data['recommended'] ) ;
+            echo esc_html( $data['recommended'] );
             ?></td>
 							<td class="bold"><?php 
-            echo  esc_html( $data['value'] ) ;
+            echo esc_html( $data['value'] );
             ?></td>
 						</tr>
 					<?php 
@@ -170,7 +163,7 @@ class AdminCallbacks extends BaseController
 			</table>
 			<p>
 				<?php 
-        printf(
+        printf( 
             /* translators: 1: <a> tag start, 2: </a> tag end. */
             esc_html__( 'To change PHP directives you need to modify php.ini file, more information about this you can %1$ssearch here%2$s or contact your hosting provider. See Site Health for more.', 'wp-auto-republish' ),
             '<a href="http://goo.gl/I9f74U" target="_blank" rel="noopener">',

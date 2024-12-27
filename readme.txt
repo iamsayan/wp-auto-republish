@@ -2,8 +2,8 @@
 Contributors: infosatech
 Tags: republish, republishing, old posts, old post, repost, old post promoter, post promoter, promotion, SEO, rss, plugin, posts
 Requires at least: 5.2
-Tested up to: 6.5
-Stable tag: 1.5.7
+Tested up to: 6.7
+Stable tag: 1.5.8
 Requires PHP: 7.3
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -141,6 +141,19 @@ No, plugin can handle it efficiently by tinkering the Permalink Structure.
 == Changelog ==
 
 If you like RevivePress, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-auto-republish/reviews/#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.5.8 =
+Release Date: 27th December, 2024
+
+* Added: Better handling of post IDs storage and retrieval.
+* Improved: Post scheduling logic and performance.
+* Improved: Daily post limit tracking mechanism.
+* Fixed: Issue with post type validation in global republish.
+* Fixed: Incorrect timestamp handling in some cases.
+* Fixed: Post meta cleanup after republishing.
+* Updated: PHP Composer Libraries.
+* Code Optimization & Performance Improvements.
+* Security & Bug Fixes.
 
 = 1.5.7 =
 Release Date: 21st March, 2024
